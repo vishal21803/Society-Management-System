@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Dec 05, 2025 at 05:20 AM
+-- Generation Time: Dec 06, 2025 at 01:09 PM
 -- Server version: 9.1.0
 -- PHP Version: 8.3.14
 
@@ -24,6 +24,32 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `bills`
+--
+
+DROP TABLE IF EXISTS `bills`;
+CREATE TABLE IF NOT EXISTS `bills` (
+  `bill_id` int NOT NULL AUTO_INCREMENT,
+  `member_id` int NOT NULL,
+  `bill_date` datetime NOT NULL,
+  `bill_amount` int NOT NULL,
+  `bill_purpose` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`bill_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `bills`
+--
+
+INSERT INTO `bills` (`bill_id`, `member_id`, `bill_date`, `bill_amount`, `bill_purpose`) VALUES
+(12, 18, '2025-12-06 11:19:30', 200, 'diwali event'),
+(11, 18, '2025-12-06 11:18:29', 500, 'Membership yearly fees'),
+(13, 18, '2025-12-06 11:19:55', 100, 'Monthly Cleaning'),
+(14, 18, '2025-12-06 11:37:29', 150, 'Holi Celebration 2k26');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `cities`
 --
 
@@ -32,38 +58,64 @@ CREATE TABLE IF NOT EXISTS `cities` (
   `city_id` int NOT NULL AUTO_INCREMENT,
   `zone_id` int NOT NULL,
   `city_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `cstatus` int NOT NULL DEFAULT '1',
   PRIMARY KEY (`city_id`),
   KEY `zone_id` (`zone_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `cities`
 --
 
-INSERT INTO `cities` (`city_id`, `zone_id`, `city_name`) VALUES
-(1, 4, 'Bhopal'),
-(2, 5, 'Durg'),
-(3, 5, 'Kumhari'),
-(4, 5, 'Jamul'),
-(5, 5, 'Bhilai-3'),
-(6, 6, 'Raipur'),
-(7, 6, 'Arang'),
-(8, 6, 'Tilda'),
-(9, 6, 'Abhanpur'),
-(10, 6, 'Naya Raipur'),
-(11, 7, 'Bilaspur'),
-(12, 7, 'Ratanpur'),
-(13, 7, 'Takhtapur'),
-(14, 7, 'Koni'),
-(16, 8, 'Korba'),
-(17, 5, 'Katghora'),
-(18, 8, 'kusmunda'),
-(19, 8, 'Deepka'),
-(20, 8, 'Chhuri'),
-(21, 9, 'Raigarh'),
-(22, 10, 'Dantewada seher'),
-(23, 11, 'Kondagaon'),
-(24, 11, 'Bastar');
+INSERT INTO `cities` (`city_id`, `zone_id`, `city_name`, `cstatus`) VALUES
+(1, 4, 'Bhopal', 1),
+(2, 5, 'Durg', 1),
+(3, 5, 'Kumhari', 1),
+(4, 5, 'Jamul', 1),
+(5, 5, 'Bhilai-3', 1),
+(6, 6, 'Raipur', 1),
+(7, 6, 'Arang', 1),
+(8, 6, 'Tilda', 1),
+(9, 6, 'Abhanpur', 1),
+(10, 6, 'Naya Raipur', 1),
+(11, 7, 'Bilaspur', 1),
+(12, 7, 'Ratanpur', 1),
+(13, 7, 'Takhtapur', 1),
+(14, 7, 'Koni', 1),
+(16, 8, 'Korba', 1),
+(17, 5, 'Katghora', 1),
+(18, 8, 'kusmunda', 1),
+(19, 8, 'Deepka', 1),
+(20, 8, 'Chhuri', 1),
+(21, 9, 'Raigarh', 1),
+(22, 10, 'Dantewada seher', 1),
+(23, 11, 'Kondagaon', 1),
+(24, 11, 'Bastar', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `downloads`
+--
+
+DROP TABLE IF EXISTS `downloads`;
+CREATE TABLE IF NOT EXISTS `downloads` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `topic` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remark` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `file_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `downshow` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `downloads`
+--
+
+INSERT INTO `downloads` (`id`, `topic`, `remark`, `file_name`, `created_at`, `downshow`) VALUES
+(1, 'Maintenance Bill-15324', 'This is the receipt of yearly maintenance in our society.', '1764937140_My Resume.pdf', '2025-12-05 12:11:53', 'general'),
+(3, 'Rozjaar yojna', 'Fill the Form to get a Job', '1765006268_wallpaperflare.com_wallpaper.jpg', '2025-12-06 07:31:08', 'members');
 
 -- --------------------------------------------------------
 
@@ -85,15 +137,15 @@ CREATE TABLE IF NOT EXISTS `events` (
   `toshow_type` enum('all','zone','city','member') COLLATE utf8mb4_unicode_ci DEFAULT 'all',
   `toshow_id` int DEFAULT NULL,
   PRIMARY KEY (`event_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `events`
 --
 
 INSERT INTO `events` (`event_id`, `title`, `description`, `event_date`, `created_at`, `event_time`, `event_location`, `event_status`, `event_img`, `toshow_type`, `toshow_id`) VALUES
-(2, 'Diwali 2025', 'We are going to celebrate Diwali this evening', '2025-10-20', '2025-12-03 17:57:19', '18:30:00', 'Club Hous', 'completed', '1764784639_a2.jpeg', 'zone', NULL),
-(3, 'Fun fest', 'Fun and games', '2025-12-12', '2025-12-04 16:15:17', '21:46:00', 'Club', 'upcoming', 'AEGON_I.jpg', 'member', 8);
+(2, 'Holi 2025', 'We are going to celebrate Holi this morning', '2025-03-16', '2025-12-03 17:57:19', '09:30:00', 'Club House', 'completed', '1764784639_a2.jpeg', 'city', NULL),
+(4, 'Diwali 2025', 'we are gonna celebrate diwali today', '2025-10-20', '2025-12-05 06:36:35', '18:30:00', 'Socity Ground', 'cancelled', 'social.avif', 'zone', 0);
 
 -- --------------------------------------------------------
 
@@ -113,7 +165,7 @@ CREATE TABLE IF NOT EXISTS `gallery` (
   `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`gallery_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `gallery`
@@ -121,7 +173,8 @@ CREATE TABLE IF NOT EXISTS `gallery` (
 
 INSERT INTO `gallery` (`gallery_id`, `title`, `description`, `visibility_type`, `zone_id`, `city_id`, `member_id`, `image`, `created_at`) VALUES
 (2, 'Diwali', 'Diwali Celebration 2k25', 'all', 0, 0, 0, '1764832607_a2.jpeg', '2025-12-04 12:46:47'),
-(3, 'Holi', 'Holi 2k26', 'city', 0, 14, 0, '1764875203_wallpaperflare.com_wallpaper.jpg', '2025-12-05 00:36:43');
+(3, 'Holi', 'Holi 2k26', 'city', 0, 14, 0, '1764875203_wallpaperflare.com_wallpaper.jpg', '2025-12-05 00:36:43'),
+(4, 'feb', 'नमस्ते', 'all', 0, 0, 0, '1764916419_logo.png', '2025-12-05 12:03:39');
 
 -- --------------------------------------------------------
 
@@ -145,22 +198,24 @@ CREATE TABLE IF NOT EXISTS `members` (
   `photo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `fullname` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `balance_amount` float NOT NULL,
   PRIMARY KEY (`member_id`),
   KEY `user_id` (`user_id`),
   KEY `zone_id` (`zone_id`),
   KEY `city_id` (`city_id`),
   KEY `plan_id` (`plan_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `members`
 --
 
-INSERT INTO `members` (`member_id`, `user_id`, `zone_id`, `city_id`, `plan_id`, `gender`, `dob`, `membership_start`, `membership_end`, `phone`, `address`, `photo`, `created_at`, `fullname`) VALUES
-(8, 6, 6, 7, 0, 'Male', '1555-08-18', '2025-12-04', NULL, '9479031012', 'Near Railway Station,durg', '1764859706_pic.jpg', '2025-12-04 14:48:26', 'Viserionr'),
-(11, 9, 5, 4, 1, 'Male', '1988-09-01', '2025-12-04', '2026-12-04', '7985122998', 'Near Puri ITI,kohka', '1764877535_logo.png', '2025-12-04 19:45:35', 'Surya Naik'),
-(7, 5, 5, 5, 1, 'Male', '1988-05-17', '2025-12-04', '2026-12-04', '1234567890', 'Kurud', '1764855137_AEGON_I.jpg', '2025-12-04 13:32:17', 'Vish'),
-(10, 8, 7, 12, 1, 'Male', '2025-12-13', '2025-12-04', '2026-12-04', '1234567890', 'Near railway station', '1764877201_wallpaperflare.com_wallpaper (2).jpg', '2025-12-04 19:40:01', 'sonu kumar');
+INSERT INTO `members` (`member_id`, `user_id`, `zone_id`, `city_id`, `plan_id`, `gender`, `dob`, `membership_start`, `membership_end`, `phone`, `address`, `photo`, `created_at`, `fullname`, `balance_amount`) VALUES
+(11, 9, 5, 4, 1, 'Male', '1988-09-01', '2025-12-04', '2026-12-04', '7985122998', 'Near Puri ITI,kohka', '1764877535_logo.png', '2025-12-04 19:45:35', 'Surya Naik', 0),
+(7, 5, 5, 5, 1, 'Male', '1999-05-17', '2025-12-04', '2026-12-04', '1234567890', 'Kurud', '1764855137_AEGON_I.jpg', '2025-12-04 13:32:17', 'Vish', 0),
+(10, 8, 7, 12, 1, 'Male', '2025-12-13', '2025-12-04', '2026-12-04', '8234567890', 'Near railway station,Kohka', '1764877201_wallpaperflare.com_wallpaper (2).jpg', '2025-12-04 19:40:01', 'Sonu kumar', 0),
+(13, 12, 6, 6, 1, 'Male', '1991-11-19', '2025-12-05', '2026-12-05', '1234567890', 'Near magneto', '1764919049_logo.png', '2025-12-05 07:17:29', 'Rajiv', 0),
+(18, 15, 7, 14, 1, 'Male', '1994-11-11', '2025-12-04', '2026-12-04', '1234567890', 'Near Station', '1764942326_wallpaperflare.com_wallpaper.jpg', '2025-12-05 13:45:26', 'Jon Snow', 0);
 
 -- --------------------------------------------------------
 
@@ -180,14 +235,15 @@ CREATE TABLE IF NOT EXISTS `news` (
   `toshow_type` enum('all','zone','city','member') COLLATE utf8mb4_unicode_ci DEFAULT 'all',
   `toshow_id` int DEFAULT NULL,
   PRIMARY KEY (`news_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `news`
 --
 
 INSERT INTO `news` (`news_id`, `title`, `description`, `created_at`, `news_date`, `status`, `news_img`, `toshow_type`, `toshow_id`) VALUES
-(1, 'Robbery in Homes', 'House break at 12A', '2025-12-03 18:08:01', '2024-11-03', '', '1819963171wallpaperflare.com_wallpaper.jpg', 'zone', 0);
+(1, 'Robbery in Homes', 'House break at 12A', '2025-12-03 18:08:01', '2024-11-03', 'inactive', '1819963171wallpaperflare.com_wallpaper.jpg', 'zone', 0),
+(3, 'News 5', 'fd', '2025-12-06 12:46:55', '2023-01-12', 'active', '1765025215_wallpaperflare.com_wallpaper.jpg', 'city', 6);
 
 -- --------------------------------------------------------
 
@@ -202,22 +258,38 @@ CREATE TABLE IF NOT EXISTS `payments` (
   `amount` decimal(10,2) NOT NULL,
   `payment_date` datetime DEFAULT CURRENT_TIMESTAMP,
   `payment_for_year` int DEFAULT NULL,
-  `receipt_no` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `note` text COLLATE utf8mb4_unicode_ci,
   `created_by` int DEFAULT NULL,
+  `receipt_no` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`pay_id`),
   UNIQUE KEY `receipt_no` (`receipt_no`),
   KEY `member_id` (`member_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `payments`
 --
 
-INSERT INTO `payments` (`pay_id`, `member_id`, `amount`, `payment_date`, `payment_for_year`, `receipt_no`, `note`, `created_by`) VALUES
-(1, 8, 500.00, '2025-12-04 00:00:00', 2026, '554', 'We got your Payment', 0),
-(2, 7, 500.00, '2025-12-04 00:00:00', 2026, '492', 'Okay we got your money', 0),
-(3, 7, 500.00, '2025-12-05 00:00:00', 2027, '645', 'We got you payment', 0);
+INSERT INTO `payments` (`pay_id`, `member_id`, `amount`, `payment_date`, `payment_for_year`, `note`, `created_by`, `receipt_no`, `status`) VALUES
+(1, 8, 500.00, '2025-12-04 00:00:00', 2026, 'We got your Payment', 0, NULL, ''),
+(2, 7, 500.00, '2025-12-04 00:00:00', 2026, 'Okay we got your money', 0, NULL, ''),
+(3, 7, 500.00, '2025-12-05 00:00:00', 2027, 'We got you payment', 0, NULL, ''),
+(25, 18, 500.00, '2025-12-05 00:00:00', 2025, NULL, NULL, 'JS380611', '');
+
+--
+-- Triggers `payments`
+--
+DROP TRIGGER IF EXISTS `auto_receipt_no`;
+DELIMITER $$
+CREATE TRIGGER `auto_receipt_no` BEFORE INSERT ON `payments` FOR EACH ROW BEGIN
+   SET NEW.receipt_no = CONCAT(
+        'JS',
+        FLOOR(100000 + RAND() * 900000)
+   );
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -256,7 +328,7 @@ CREATE TABLE IF NOT EXISTS `plan_requests` (
   `request_date` date DEFAULT NULL,
   `status` enum('pending','approved','rejected') COLLATE utf8mb4_unicode_ci DEFAULT 'pending',
   PRIMARY KEY (`req_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `plan_requests`
@@ -266,7 +338,35 @@ INSERT INTO `plan_requests` (`req_id`, `user_id`, `plan_id`, `request_date`, `st
 (3, '7', 1, '2025-12-04', 'approved'),
 (4, '10', 1, '2025-12-05', 'approved'),
 (5, '11', 1, '2025-12-05', 'approved'),
-(6, '7', 1, '2025-12-05', 'pending');
+(6, '7', 1, '2025-12-05', 'pending'),
+(8, '13', 1, '2025-12-05', 'approved'),
+(14, '18', 1, NULL, 'approved');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `receipt`
+--
+
+DROP TABLE IF EXISTS `receipt`;
+CREATE TABLE IF NOT EXISTS `receipt` (
+  `receipt_id` int NOT NULL AUTO_INCREMENT,
+  `member_id` int NOT NULL,
+  `receipt_date` datetime NOT NULL,
+  `receipt_amount` int NOT NULL,
+  `purpose` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `manualID` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`receipt_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=158 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `receipt`
+--
+
+INSERT INTO `receipt` (`receipt_id`, `member_id`, `receipt_date`, `receipt_amount`, `purpose`, `manualID`) VALUES
+(155, 18, '2025-12-06 11:19:02', 500, 'Membership yearly fees received-Cash', '186'),
+(156, 18, '2025-12-06 11:20:41', 100, 'Monthly Cleaning Fee received', '188'),
+(157, 18, '2025-12-06 11:38:39', 350, 'Payment received for both diwali event 2k25 and up', '236');
 
 -- --------------------------------------------------------
 
@@ -282,7 +382,7 @@ CREATE TABLE IF NOT EXISTS `requests` (
   `request_date` datetime DEFAULT CURRENT_TIMESTAMP,
   `approved_date` datetime DEFAULT NULL,
   PRIMARY KEY (`request_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `requests`
@@ -295,7 +395,9 @@ INSERT INTO `requests` (`request_id`, `member_id`, `status`, `request_date`, `ap
 (4, 7, 'approved', '2025-12-04 19:02:17', '2025-12-05 09:33:54'),
 (5, 8, 'approved', '2025-12-04 20:18:26', '2025-12-04 23:22:56'),
 (6, 10, 'approved', '2025-12-05 01:10:01', '2025-12-05 01:10:01'),
-(7, 11, 'approved', '2025-12-05 01:15:35', '2025-12-05 01:15:35');
+(7, 11, 'approved', '2025-12-05 01:15:35', '2025-12-05 01:15:35'),
+(9, 13, 'approved', '2025-12-05 12:47:29', '2025-12-05 12:47:29'),
+(14, 18, 'approved', '2025-12-05 19:15:26', '2025-12-06 00:19:47');
 
 -- --------------------------------------------------------
 
@@ -341,7 +443,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `onboarding` int NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `users`
@@ -353,7 +455,30 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `role`, `created_at`, `o
 (6, 'vinujie', 'vishal2104821003patil@gmail.com', '123456', 'user', '2025-12-04 14:48:26', 1),
 (7, 'ram', 'ram@gmail.com', '123456', 'user', '2025-12-04 19:35:49', 1),
 (8, 'sonu', 'sonu@gmail.com', '123456', 'user', '2025-12-04 19:40:01', 1),
-(9, 'surya', 'surya@gmail.com', '123456', 'user', '2025-12-04 19:45:35', 1);
+(9, 'surya', 'surya@gmail.com', '123456', 'user', '2025-12-04 19:45:35', 1),
+(12, 'raj', '000mayank10000@gmail.com', '123456', 'user', '2025-12-05 07:17:29', 1),
+(15, 'jon', 'jon@gmail.com', 'a', 'user', '2025-12-05 13:44:29', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `wallet`
+--
+
+DROP TABLE IF EXISTS `wallet`;
+CREATE TABLE IF NOT EXISTS `wallet` (
+  `wallet_id` int NOT NULL AUTO_INCREMENT,
+  `member_id` int NOT NULL,
+  `amount` int NOT NULL,
+  PRIMARY KEY (`wallet_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `wallet`
+--
+
+INSERT INTO `wallet` (`wallet_id`, `member_id`, `amount`) VALUES
+(1, 18, 1500);
 
 -- --------------------------------------------------------
 
@@ -365,21 +490,23 @@ DROP TABLE IF EXISTS `zones`;
 CREATE TABLE IF NOT EXISTS `zones` (
   `zone_id` int NOT NULL AUTO_INCREMENT,
   `zone_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `zstatus` int NOT NULL DEFAULT '1',
   PRIMARY KEY (`zone_id`),
   UNIQUE KEY `name` (`zone_name`)
-) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `zones`
 --
 
-INSERT INTO `zones` (`zone_id`, `zone_name`) VALUES
-(5, 'Durg/Bhilai-Zone 1'),
-(6, 'Raipur-Zone 2'),
-(7, 'Bilaspur-Zone 3'),
-(8, 'Korba-Zone 4'),
-(9, 'Raigarh-Zone 5'),
-(11, 'Jagdalpur-Zone 7');
+INSERT INTO `zones` (`zone_id`, `zone_name`, `zstatus`) VALUES
+(5, 'Durg/Bhilai-Zone 1', 1),
+(6, 'Raipur-Zone 2', 1),
+(7, 'Bilaspur-Zone 3', 1),
+(8, 'Korba-Zone 4', 1),
+(9, 'Raigarh-Zone 5', 1),
+(11, 'Jagdalpur-Zone 7', 1),
+(13, 'zone 67', 1);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

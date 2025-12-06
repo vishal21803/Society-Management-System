@@ -1,54 +1,57 @@
 <?php
 include("connectdb.php");
 
-$gallery_id = $_POST['gallery_id'];
-$title      = $_POST['title'];
-$desc       = $_POST['description'];
-$visibility = $_POST['visibility'];
-$zone_id    = $_POST['zone_id'] ?? '';
-$city_id    = $_POST['city_id'] ?? '';
-$member_id  = $_POST['member_id'] ?? '';
+if(isset($_POST['gallery_id'])){
 
-/* ============================
-   IMAGE UPLOAD (OPTIONAL)
-============================ */
-if(!empty($_FILES['image']['name'])){
-    
-    $filename = rand(1000,9999)."_".$_FILES['image']['name'];
-    $tmpname  = $_FILES['image']['tmp_name'];
+    $id          = intval($_POST['gallery_id']);
+    $title       = mysqli_real_escape_string($con, $_POST['title']);
+    $description = mysqli_real_escape_string($con, $_POST['description']);
+    $visibility  = intval($_POST['visibility_type']);
 
-    move_uploaded_file($tmpname, "upload/gallery/".$filename);
+    // IMAGE HANDLING
+    if(!empty($_FILES['image']['name'])){
 
-    $update = mysqli_query($con,"UPDATE gallery SET 
-        title='$title',
-        description='$desc',
-        visibility_type='$visibility',
-        zone_id='$zone_id',
-        city_id='$city_id',
-        member_id='$member_id',
-        image='$filename'
-        WHERE gallery_id='$gallery_id'
-    ");
+        $oldImgQuery = mysqli_query($con, "SELECT image FROM gallery WHERE gallery_id='$id'");
+        $oldImgRow = mysqli_fetch_assoc($oldImgQuery);
 
-}else{
+        // Delete old image if exists
+        if(!empty($oldImgRow['image'])){
+            $oldPath = "upload/gallery/".$oldImgRow['image'];
+            if(file_exists($oldPath)){
+                unlink($oldPath);
+            }
+        }
 
-    $update = mysqli_query($con,"UPDATE gallery SET 
-        title='$title',
-        description='$desc',
-        visibility_type='$visibility',
-        zone_id='$zone_id',
-        city_id='$city_id',
-        member_id='$member_id'
-        WHERE gallery_id='$gallery_id'
-    ");
-}
+        // Upload new image
+        $newImage = time().'_'.$_FILES['image']['name'];
+        move_uploaded_file($_FILES['image']['tmp_name'], "upload/gallery/".$newImage);
 
-/* ============================
-   RESPONSE
-============================ */
-if($update){
-    echo "<span class='text-success fw-bold'>✅ Gallery Updated Successfully</span>";
-}else{
-    echo "<span class='text-danger fw-bold'>❌ Update Failed</span>";
+        $update = mysqli_query($con,"UPDATE gallery SET 
+            title='$title',
+            description='$description',
+            visibility_type='$visibility',
+            image='$newImage'
+            WHERE gallery_id='$id'
+        ");
+
+    } else {
+
+        // Update without image
+        $update = mysqli_query($con,"UPDATE gallery SET 
+            title='$title',
+            description='$description',
+            visibility_type='$visibility'
+            WHERE gallery_id='$id'
+        ");
+    }
+
+    if($update){
+        echo "success";
+    } else {
+        echo "error";
+    }
+
+} else {
+    echo "invalid";
 }
 ?>

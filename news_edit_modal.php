@@ -12,6 +12,10 @@
 
         <input type="hidden" name="news_id" id="edit_news_id">
 
+        <select id="edit_status" name="status" class="form-control mb-2">
+            <option value="active">Active</option>
+            <option value="inactive">Inactive</option>
+        </select>
         <input type="text" id="edit_title" name="title" class="form-control mb-2" placeholder="Title" required>
 
         <textarea id="newsText" name="description" class="form-control mb-2" required></textarea>
@@ -34,10 +38,7 @@
 
         <input type="date" id="edit_news_date" name="news_date" class="form-control mb-2">
 
-        <!-- <select id="edit_status" name="status" class="form-control mb-2">
-            <option value="1">Active</option>
-            <option value="0">Inactive</option>
-        </select> -->
+        
 
         <input type="file" name="news_img" class="form-control">
 

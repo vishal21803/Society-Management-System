@@ -12,7 +12,7 @@ include("connectdb.php");
 
     <div class="flex-grow-1 p-4">
 
-        <h4 class="mb-4">Members List</h4>
+        <h4 class="mb-4">Manage Bills</h4>
 
         <div class="table-responsive">
             <table class="table table-striped table-hover table-bordered align-middle text-center" id="myTable">

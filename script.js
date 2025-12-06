@@ -589,6 +589,40 @@ function updateEvent(){
     });
 }
 
+function deleteEvent(event_id)
+{
+    if(!event_id){
+        alert("Invalid Event ID");
+        return;
+    }
+
+    if(confirm("Are you sure you want to delete this event?"))
+    {
+        $.ajax({
+            url: "deleteEvent.php",
+            type: "POST",
+            data: { event_id: event_id },
+            success: function(response)
+            {
+                console.log(response);   // ✅ DEBUG LINE
+
+                if(response.trim() === "success")
+                {
+                    alert("Event Deleted Successfully");
+                    location.reload();
+                }
+                else
+                {
+                    alert("Delete Failed: " + response);
+                }
+            },
+            error: function(){
+                alert("AJAX Error");
+            }
+        });
+    }
+}
+
 function editTargetSelect(){
     let type = document.getElementById("edit_toshow_type").value;
 
@@ -903,3 +937,59 @@ function activateCity(zid){
         }
     });
 }
+
+function viewImage(imgPath)
+{
+    document.getElementById("fullImagePreview").src = imgPath;
+    var modal = new bootstrap.Modal(document.getElementById('imageViewModal'));
+    modal.show();
+}
+
+$(document).ready(function() {
+    
+
+    // DELETE button
+    $('.deleteBtn').click(function(){
+        var id = $(this).data('id');
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if(result.isConfirmed){
+                $.ajax({
+                    url: 'delete_gallery.php',
+                    type: 'POST',
+                    data: {id:id},
+                    success: function(response){
+                        if(response == 'success'){
+                            Swal.fire('Deleted!','Record has been deleted.','success').then(()=>{
+                                location.reload();
+                            });
+                        } else {
+                            Swal.fire('Error!','Something went wrong.','error');
+                        }
+                    }
+                });
+            }
+        });
+    });
+
+    // EDIT button
+    $('.editBtn').click(function(){
+        var id = $(this).data('id');
+        $.ajax({
+            url: 'edit_gallery.php',
+            type: 'GET',
+            data: {id:id},
+            success: function(data){
+                // Show modal with form (we will create it in edit_gallery.php)
+                $('body').append(data);
+                $('#editModal').modal('show');
+            }
+        });
+    });
+
+});
