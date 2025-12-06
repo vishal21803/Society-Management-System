@@ -8,75 +8,99 @@ include("connectdb.php");
 
 <main>
 <div class="d-flex">
+
     <?php include('adminDashboard.php'); ?>
 
     <div class="flex-grow-1 p-4">
 
-        <h4 class="mb-4">Manage Bills</h4>
 
-        <div class="table-responsive">
-            <table class="table table-striped table-hover table-bordered align-middle text-center" id="myTable">
+        <!-- ✅ SAME CARD DESIGN AS EVENTS -->
+        <div class="card shadow">
 
-                <thead class="table-dark">
-                    <tr>
-                        <th>#</th>
-                        <th>Name</th>
-                        <th>City</th>
-                        <th>Zone</th>
-                        <th>Email</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
+            <div class="card-header bg-warning fw-bold text-dark d-flex justify-content-between align-items-center">
+                <span><i class="bi bi-receipt-cutoff me-2"></i> Manage Bills</span>
 
-                <tbody>
-<?php
-$i=0;
-$query = "
-SELECT m.member_id, m.fullname, u.email, c.city_name, z.zone_name
-FROM members m
-JOIN users u ON m.user_id = u.id
-JOIN cities c ON m.city_id = c.city_id
-JOIN zones z ON m.zone_id = z.zone_id
-ORDER BY m.member_id DESC
-";
-$result = mysqli_query($con, $query);
+                <!-- Agar future me add bill button chahiye ho -->
+                <!-- <a href="billForm.php">
+                    <button class="btn btn-success btn-sm">
+                        + Add Bill
+                    </button>
+                </a> -->
+            </div>
 
-while($row = mysqli_fetch_assoc($result)) {
-$i++;
-?>
-<tr>
-    <th><?= $i ?></th>
-    <td><?= htmlspecialchars($row['fullname']) ?></td>
-    <td><?= htmlspecialchars($row['city_name']) ?></td>
-    <td><?= htmlspecialchars($row['zone_name']) ?></td>
-    <td><?= htmlspecialchars($row['email']) ?></td>
+            <div class="card-body table-responsive">
 
-    <td>
-        <button class="btn btn-sm btn-primary"
-            data-bs-toggle="modal"
-            data-bs-target="#historyModal<?= $row['member_id'] ?>">
-            History
-        </button>
+                <!-- ✅ SAME TABLE STYLE -->
+                <table class="table table-bordered table-hover align-middle text-center w-100" id="myTable">
 
-        <button class="btn btn-sm btn-success"
-            data-bs-toggle="modal"
-            data-bs-target="#billModal<?= $row['member_id'] ?>">
-            Bill
-        </button>
+                    <thead class="table-dark">
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>City</th>
+                            <th>Zone</th>
+                            <th>Email</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
 
-        <button class="btn btn-sm btn-warning"
-            data-bs-toggle="modal"
-            data-bs-target="#receiptModal<?= $row['member_id'] ?>">
-            Receipt
-        </button>
-    </td>
-</tr>
-<?php } ?>
-                </tbody>
-            </table>
+                    <tbody>
+                        <?php
+                        $i=1;
+                        $query = "
+                        SELECT m.member_id, m.fullname, u.email, c.city_name, z.zone_name
+                        FROM members m
+                        JOIN users u ON m.user_id = u.id
+                        JOIN cities c ON m.city_id = c.city_id
+                        JOIN zones z ON m.zone_id = z.zone_id
+                        ORDER BY m.member_id DESC
+                        ";
+                        $result = mysqli_query($con, $query);
+
+                        while($row = mysqli_fetch_assoc($result)) {
+                        ?>
+                        <tr>
+                            <td><?= $i++ ?></td>
+
+                            <td><?= htmlspecialchars($row['fullname']) ?></td>
+
+                            <td><?= htmlspecialchars($row['city_name']) ?></td>
+
+                            <td><?= htmlspecialchars($row['zone_name']) ?></td>
+
+                            <td><?= htmlspecialchars($row['email']) ?></td>
+
+                            <td>
+                                <button class="btn btn-sm btn-primary"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#historyModal<?= $row['member_id'] ?>">
+                                    History
+                                </button>
+
+                                <button class="btn btn-sm btn-success"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#billModal<?= $row['member_id'] ?>">
+                                    Bill
+                                </button>
+
+                                <button class="btn btn-sm btn-warning"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#receiptModal<?= $row['member_id'] ?>">
+                                    Receipt
+                                </button>
+                            </td>
+                        </tr>
+                        <?php } ?>
+
+                    </tbody>
+                </table>
+
+            </div>
         </div>
+
     </div>
 </div>
+
 
 <?php
 // ✅ RE-RUN QUERY ONLY FOR MODALS

@@ -14,44 +14,44 @@
     <ul class="admin-sidebar-nav nav flex-column mb-auto">
         <li class="nav-item mb-2">
             <a href="dataTableZones.php" class="nav-link admin-sidebar-link text-white fw-semibold">
-                <i class="bi bi-speedometer2 me-2"></i> Manage Zones
+                <i class="bi bi-map me-2"></i> Manage Zones
             </a>
         </li>
          <li class="nav-item mb-2">
             <a href="dataTableCities.php" class="nav-link admin-sidebar-link text-white fw-semibold">
-                <i class="bi bi-speedometer2 me-2"></i> Manage Cities
+                <i class="bi bi-buildings me-2"></i> Manage Cities
             </a>
         </li>
         <li class="nav-item mb-2">
             <a href="dataTableMember.php" class="nav-link admin-sidebar-link text-white fw-semibold">
-                <i class="bi bi-people me-2"></i> Manage Members
+                <i class="bi bi-people-fill me-2"></i> Manage Members
             </a>
         </li>
         <li class="nav-item mb-2">
             <a href="manage_request.php" class="nav-link admin-sidebar-link text-white fw-semibold">
-                <i class="bi bi-people me-2"></i> Manage Requests
+                <i class="bi bi-envelope-paper-fill me-2"></i> Manage Requests
             </a>
         </li>
         
          <li class="nav-item mb-2">
             <a href="manage_events.php" class="nav-link admin-sidebar-link text-white fw-semibold">
-                <i class="bi bi-calendar-event me-2"></i> Add Events
+                <i class="bi bi-calendar-event-fill me-2"></i> Manage Events
             </a>
         </li>
          <li class="nav-item mb-2">
             <a href="manage_news.php" class="nav-link admin-sidebar-link text-white fw-semibold">
-                <i class="bi bi-newspaper me-2"></i> Add News
+                <i class="bi bi-newspaper me-2"></i> Manage News
             </a>
         </li>
         <li class="nav-item mb-2">
             <a href="manage_gallery.php" class="nav-link admin-sidebar-link text-white fw-semibold">
-                <i class="bi bi-images me-2"></i> Add Gallery
+                <i class="bi bi-images me-2"></i> Manage Gallery
             </a>
         </li>
        
         <li class="nav-item mb-2">
             <a href="admin-payments.php" class="nav-link admin-sidebar-link text-white fw-semibold">
-                <i class="bi bi-message me-2"></i> Manage Bills
+                <i class="bi bi-receipt-cutoff me-2"></i> Manage Bills
             </a>
         </li>
          <li class="nav-item mb-2">
@@ -77,46 +77,47 @@
     <ul class="nav flex-column mb-auto">
         <li class="nav-item mb-2">
             <a href="dataTableZones.php" class="nav-link admin-sidebar-link text-white fw-semibold">
-                <i class="bi bi-speedometer2 me-2"></i> Manage Zones
+                <i class="bi bi-map me-2"></i> Manage Zones
             </a>
         </li>
          <li class="nav-item mb-2">
             <a href="dataTableCities.php" class="nav-link admin-sidebar-link text-white fw-semibold">
-                <i class="bi bi-speedometer2 me-2"></i> Manage Cities
-            </a>
-        </li>
-         <li class="nav-item mb-2">
-            <a href="dataTableMember.php" class="nav-link admin-sidebar-link text-white fw-semibold">
-                <i class="bi bi-people me-2"></i> Manage Members
-            </a>
-        </li>
-         <li class="nav-item mb-2">
-            <a href="manage_request.php" class="nav-link admin-sidebar-link text-white fw-semibold">
-                <i class="bi bi-people me-2"></i> Manage Requests
+                <i class="bi bi-buildings me-2"></i> Manage Cities
             </a>
         </li>
         <li class="nav-item mb-2">
-            <a href="manage_members.php" class="nav-link admin-sidebar-link text-white fw-semibold">
-                <i class="bi bi-people me-2"></i> Members
+            <a href="dataTableMember.php" class="nav-link admin-sidebar-link text-white fw-semibold">
+                <i class="bi bi-people-fill me-2"></i> Manage Members
             </a>
         </li>
-         <li class="nav-item mb-2">
-            <a href="manage_events.php" class="nav-link admin-sidebar-link text-white fw-semibold">
-                <i class="bi bi-calendar-event me-2"></i> Add Events
-            </a>
-        </li>
-         <li class="nav-item mb-2">
-            <a href="manage_news.php" class="nav-link admin-sidebar-link text-white fw-semibold">
-                <i class="bi bi-newspaper me-2"></i> Add News
+        <li class="nav-item mb-2">
+            <a href="manage_request.php" class="nav-link admin-sidebar-link text-white fw-semibold">
+                <i class="bi bi-envelope-paper-fill me-2"></i> Manage Requests
             </a>
         </li>
         
          <li class="nav-item mb-2">
-            <a href="admin-payments.php" class="nav-link admin-sidebar-link text-white fw-semibold">
-                <i class="bi bi-message me-2"></i> Manage Bills
+            <a href="manage_events.php" class="nav-link admin-sidebar-link text-white fw-semibold">
+                <i class="bi bi-calendar-event-fill me-2"></i> Manage Events
+            </a>
+        </li>
+         <li class="nav-item mb-2">
+            <a href="manage_news.php" class="nav-link admin-sidebar-link text-white fw-semibold">
+                <i class="bi bi-newspaper me-2"></i> Manage News
             </a>
         </li>
         <li class="nav-item mb-2">
+            <a href="manage_gallery.php" class="nav-link admin-sidebar-link text-white fw-semibold">
+                <i class="bi bi-images me-2"></i> Manage Gallery
+            </a>
+        </li>
+       
+        <li class="nav-item mb-2">
+            <a href="admin-payments.php" class="nav-link admin-sidebar-link text-white fw-semibold">
+                <i class="bi bi-receipt-cutoff me-2"></i> Manage Bills
+            </a>
+        </li>
+         <li class="nav-item mb-2">
             <a href="datatTableDownload.php" class="nav-link admin-sidebar-link text-white fw-semibold">
                 <i class="bi bi-download me-2"></i> Manage Downloads
             </a>

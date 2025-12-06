@@ -11,20 +11,28 @@ include("connectdb.php");
 
 <main>
 <div class="d-flex">
+
     <?php include('adminDashboard.php'); ?>
 
     <div class="flex-grow-1 p-4">
 
-        <!-- ✅ PAGE TITLE -->
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <h4>📰 Manage News</h4>
-            <a href="newsForm.php" class="btn btn-success btn-sm">+ Add News</a>
-        </div>
 
-       
+        <!-- ✅ SAME CARD LAYOUT AS EVENTS -->
+        <div class="card shadow">
+
+            <div class="card-header bg-warning fw-bold text-dark d-flex justify-content-between align-items-center">
+                <span><i class="bi bi-newspaper me-2"></i> Manage News</span>
+
+                <a href="newsForm.php">
+                    <button class="btn btn-success btn-sm">
+                        + Add News
+                    </button>
+                </a>
+            </div>
+
             <div class="card-body table-responsive">
 
-                <!-- ✅ DATATABLE -->
+                <!-- ✅ SAME TABLE DESIGN -->
                 <table id="myTable" class="table table-bordered table-hover align-middle w-100">
                     <thead class="table-dark">
                         <tr>
@@ -48,20 +56,18 @@ include("connectdb.php");
                         <tr>
                             <td><?= $i++ ?></td>
 
-                         <td>
-    <button class="btn btn-sm btn-info"
-        onclick="viewImage('upload/news/<?= $row['news_img'] ?>')">
-        View
-    </button>
-</td>
-
+                            <td>
+                                <button class="btn btn-sm btn-info"
+                                    onclick="viewImage('upload/news/<?= $row['news_img'] ?>')">
+                                    View
+                                </button>
+                            </td>
 
                             <td><?= htmlspecialchars($row['title']) ?></td>
 
                             <td>
-                                <span class="badge 
-                                <?= $row['status']=='active'?'bg-success':'bg-danger' ?>">
-                                <?= ucfirst($row['status']) ?>
+                                <span class="badge <?= $row['status']=='active'?'bg-success':'bg-danger' ?>">
+                                    <?= ucfirst($row['status']) ?>
                                 </span>
                             </td>
 
@@ -75,18 +81,19 @@ include("connectdb.php");
 
                             <td>
                                 <button class="btn btn-sm btn-success"
-                                onclick="editNews(<?= $row['news_id'] ?>)">
-                                Edit</button>
+                                    onclick="editNews(<?= $row['news_id'] ?>)">
+                                    Edit
+                                </button>
 
                                 <button class="btn btn-sm btn-danger"
-onclick="deleteNews(<?= $row['news_id'] ?>)">
-Delete
-</button>
-
+                                    onclick="deleteNews(<?= $row['news_id'] ?>)">
+                                    Delete
+                                </button>
                             </td>
                         </tr>
                     <?php } ?>
                     </tbody>
+
                 </table>
 
             </div>
@@ -96,22 +103,6 @@ Delete
 </div>
 
 
-<div class="modal fade" id="imageViewModal" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered modal-lg">
-    <div class="modal-content">
-
-      <div class="modal-header bg-dark text-white">
-        <h5 class="modal-title">News Image</h5>
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-      </div>
-
-      <div class="modal-body text-center">
-        <img id="fullImagePreview" src="" class="img-fluid rounded shadow">
-      </div>
-
-    </div>
-  </div>
-</div>
 
 
 <div class="modal fade" id="editNewsModal">
@@ -217,19 +208,7 @@ Delete
 
 </main>
 
-<!-- ✅ jQuery + DataTable JS -->
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 
-<!-- ✅ DATATABLE ACTIVATE -->
-<script>
-$(document).ready(function () {
-    $('#newsTable').DataTable({
-        pageLength: 10,
-        responsive: true
-    });
-});
-</script>
 
 <!-- ✅ DELETE NEWS AJAX -->
 <script>
@@ -256,13 +235,6 @@ function deleteNews(id)
         });
     }
 }
-</script>
-
-<!-- ✅ EDIT PLACEHOLDER -->
-<script>
-// function editNews(id){
-//     alert("Edit Feature Coming Soon for ID: " + id);
-// }
 </script>
 
 <?php

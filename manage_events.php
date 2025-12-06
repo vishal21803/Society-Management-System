@@ -12,11 +12,10 @@ include("connectdb.php");
     <?php include('adminDashboard.php'); ?>
     <div class="flex-grow-1 p-4">
 
-        <h4 class="mb-4">All Events</h4>
 
         <div class="card shadow">
              <div class="card-header bg-warning fw-bold text-dark d-flex justify-content-between align-items-center">
-        <span>📊 Manage Events</span>
+        <span><i class="bi bi-calendar-event-fill me-2"></i> Manage Events</span>
         
         <a href="eventForm.php"> <button class="btn btn-success btn-sm"
          >
@@ -28,7 +27,7 @@ include("connectdb.php");
 
                 <!-- ✅ TABLE ID ADDED -->
                 <table id="myTable" class="table table-bordered table-hover align-middle">
-                    <thead class="table-warning">
+                    <thead class="table-dark">
                         <tr>
                             <th>#</th>
                             <th>Event Title</th>
@@ -192,3 +191,29 @@ include("footer.php");
     include("index.php");
 }
 ?>
+
+
+
+
+
+
+
+
+
+<div class="modal fade" id="imageViewModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+
+      <div class="modal-header bg-dark text-white">
+        <h5 class="modal-title">News Image</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body text-center">
+        <img id="fullImagePreview" src="" class="img-fluid rounded shadow">
+      </div>
+
+    </div>
+  </div>
+</div>
+

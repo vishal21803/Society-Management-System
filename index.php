@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jain Society – Home</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <style>
-        .hero {
+<?php
+include("header.php");
+?>
+<style>
+     .hero {
             background: url('./upload/kaivalya-dham-0.jpg') ;
             background-size: cover;
             background-repeat: no-repeat;
@@ -19,45 +14,20 @@
             font-size: 40px;
             color: #16a34a;
         }
-    </style>
-</head>
+</style>
 
-<body>
-
-<!-- ========== NAVBAR ========== -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-warning shadow-sm">
-    <div class="container">
-        <a class="navbar-brand fw-bold" href="#">
-            <img src="logo.png" alt="" style="width:50px;" class="rounded-pill"> 
-         Jain Society
-        </a>
-        </a>
-        <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navMenu">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        
-        <div class="collapse navbar-collapse" id="navMenu">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
-                <!-- <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                <li class="nav-item"><a class="nav-link" href="#zones">Zones & Cities</a></li>
-                <li class="nav-item"><a class="nav-link" href="#membership">Membership</a></li>
-                <li class="nav-item"><a class="nav-link" href="#events">Events</a></li>
-                <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li> -->
-                <li class="nav-item"><a class="btn btn-light btn-sm ms-2" href="./login.php">Login</a></li>
-                                <li class="nav-item"><a class="btn btn-light btn-sm ms-2" href="https://Www.matrimonysoftware.in">Matrimony</a></li>
-
-            </ul>
-        </div>
-    </div>
-</nav>
-
+<main>
 <!-- ========== HERO SECTION ========== -->
 <section class="hero text-center">
     <div class="container">
         <h1 class="fw-bold display-4">Welcome to Our Jain Society</h1>
         <p class="lead">Connecting Jain families, culture, values & community together.</p>
-        <a href="register.php" class="btn btn-light btn-lg mt-3">Join Our Society</a>
+        <?php if(!isset($_SESSION["uname"])) { ?>
+
+        <a href="register.php" class="btn btn-warning btn-lg mt-3" style="color:white;">Join Our Society</a>
+
+        <?php } ?>
+
     </div>
 </section>
 
@@ -107,7 +77,7 @@
 </section>
 
 <!-- ========== ZONES & CITIES ========== -->
-<section id="zones" class="py-5">
+<!-- <section id="zones" class="py-5">
     <div class="container">
         <h2 class="fw-bold text-center mb-4">Zones & Cities</h2>
 
@@ -146,8 +116,10 @@
             </div>
         </div>
     </div>
-</section>
+</section> -->
 
+<?php if(!isset($_SESSION["uname"])) { ?>
+    
 <!-- ========== MEMBERSHIP SECTION ========== -->
 <section id="membership" class="py-5 bg-light">
     <div class="container">
@@ -172,6 +144,8 @@
         </div>
     </div>
 </section>
+
+<?php } ?>
 
 <!-- ========== NEWS & EVENTS ========== -->
 <section id="events" class="py-5">
@@ -219,11 +193,10 @@
     </div>
 </section>
 
-<!-- ========== FOOTER ========== -->
-<footer class="bg-success text-white text-center py-3">
-    <p class="mb-0">© 2025 Jain Society. All Rights Reserved.</p>
-</footer>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+</main>
+
+
+<?php
+include("footer.php");
+?>

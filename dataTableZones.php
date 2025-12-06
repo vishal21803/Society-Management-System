@@ -13,7 +13,7 @@ include("connectdb.php");
         <!-- Main content here -->
     <div class="card shadow-lg border-0">
     <div class="card-header bg-warning fw-bold text-dark d-flex justify-content-between align-items-center">
-        <span>📊 Manage Zones</span>
+        <span><i class="bi bi-map me-2"></i> Manage Zones</span>
         
     <button class="btn btn-success btn-sm"
             data-bs-toggle="modal"

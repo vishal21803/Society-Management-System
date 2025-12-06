@@ -14,7 +14,7 @@ include("connectdb.php");
     <div class="card shadow-lg border-0">
 
         <div class="card-header bg-warning fw-bold text-dark d-flex justify-content-between align-items-center">
-            <span>📊 Manage Members</span>
+            <span><i class="bi bi-people-fill me-2"></i> Manage Members</span>
             <a href="adminaddmem.php">
                 <button class="btn btn-success btn-sm">+ Add Member</button>
             </a>
