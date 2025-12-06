@@ -1,0 +1,481 @@
+main{
+  min-height: 500px;
+}
+
+.navbar-nav .nav-link {
+  position: relative;
+  transition: 0.3s;
+  color: black;
+}
+
+.navbar-nav .nav-link::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  left: 0;
+  bottom: 0;
+  background-color: #fff;
+  transition: 0.3s;
+}
+
+.navbar-nav .nav-link:hover::after {
+  width: 100%;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #FF4500 !important;
+}
+
+
+#zone-tab{
+  color: green;
+}
+
+/* ---- Step container ---- */
+.step-box {
+    background: #fff7e6;
+    border-left: 5px solid #ffa500;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,.1);
+    animation: fadeIn 0.5s ease;
+}
+
+/* ---- Step buttons ---- */
+.step-btn {
+    background: #ff9800;
+    color: white;
+    transition: 0.3s;
+}
+.step-btn:hover {
+    background: #e68900;
+    box-shadow: 0 0 8px rgba(255,150,0,0.7);
+}
+
+/* ---- Animations ---- */
+@keyframes slideLeft {
+    from {opacity: 0; transform: translateX(40px);}
+    to {opacity: 1; transform: translateX(0);}
+}
+@keyframes slideRight {
+    from {opacity: 0; transform: translateX(-40px);}
+    to {opacity: 1; transform: translateX(0);}
+}
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+/* ---- Active step highlight ---- */
+.active-step {
+    background: #ffc107;
+    color: #000;
+    box-shadow: 0 0 10px rgba(255,200,0,0.7);
+    transform: scale(1.05);
+    transition: 0.3s;
+}
+
+.step-indicator {
+    padding: 10px 25px;
+    border-radius: 6px;
+    background: #ffe9b3;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.step-indicator:hover {
+    background: #ffd36b;
+}
+
+/* Slide classes */
+.show-left { animation: slideLeft 0.5s forwards; }
+.show-right { animation: slideRight 0.5s forwards; }
+
+
+.gender-card {
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 2px solid #eee;
+    border-radius: 15px;
+    padding: 15px;
+}
+.gender-card:hover {
+    transform: scale(1.05);
+    border-color: orange;
+    background: rgba(255,165,0,0.15);
+}
+.gender-card input {
+    display: none;
+}
+.gender-card.selected {
+    border-color: green;
+    background: rgba(0,255,0,0.15);
+}
+
+.custom-input {
+    border: 2px solid #ffb84d;
+    background: #fff8e6;
+    transition: 0.3s ease;
+}
+
+.custom-input:focus {
+    border-color: #ff9933;
+    box-shadow: 0 0 8px rgba(255,153,51,0.5);
+}
+
+.animate-fade {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+:root{
+    --orange:#ff9800;
+    --yellow:#ffc107;
+    --cream:#fff3cd;
+    --red:#dc3545;
+    --green:#198754;
+}
+
+body{
+    background: linear-gradient(120deg, var(--cream), #fff);
+}
+
+.event-card{
+    border-radius: 18px;
+    box-shadow: 0 10px 35px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+.event-header{
+    background: linear-gradient(45deg, var(--orange), var(--yellow));
+    color:#000;
+    padding:20px;
+    font-weight: bold;
+}
+
+.form-control:focus{
+    border-color: var(--orange);
+    box-shadow: 0 0 0 0.2rem rgba(255,152,0,.25);
+}
+
+.upload-box{
+    border: 2px dashed var(--orange);
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.upload-box img{
+    max-width: 100%;
+    margin-top: 10px;
+    border-radius: 10px;
+    display: none;
+}
+/* Compact Card */
+.event-card .card-body {
+    padding: 20px !important;
+}
+
+/* Reduce spacing between inputs */
+.event-card .mb-3,
+.event-card .mb-4 {
+    margin-bottom: 12px !important;
+}
+
+/* Smaller textarea */
+.event-card textarea {
+    height: 80px !important;
+}
+
+/* Compact Upload Box */
+.upload-box {
+    padding: 12px !important;
+    min-height: 90px !important;
+}
+
+/* Smaller input height */
+.event-card .form-control,
+.event-card .form-select {
+    min-height: 42px;
+}
+.insta-request-card{
+    background: linear-gradient(135deg, #fff8e1, #fff);
+    border-radius: 14px;
+    transition: 0.3s ease;
+}
+
+.insta-request-card:hover{
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+}
+
+.insta-avatar{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: fill;
+    border: 3px solid #ff9800;
+}
+
+@media(max-width:768px){
+    .insta-request-card{
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+    }
+}
+
+.scroll-table-box {
+    max-height: 520px;   /* You can change this height */
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* Smooth scrollbar */
+.scroll-table-box::-webkit-scrollbar {
+    width: 6px;
+}
+.scroll-table-box::-webkit-scrollbar-thumb {
+    background: #ffc107;
+    border-radius: 10px;
+}
+.scroll-table-box::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.dashboard-square-card {
+    height: 180px;
+    border-radius: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.dashboard-square-card:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 15px 25px rgba(0,0,0,0.25);
+}
+
+.plan-card{
+    transition: 0.3s ease-in-out;
+}
+.plan-card:hover{
+    transform: translateY(-5px);
+    box-shadow: 0px 10px 25px rgba(0,0,0,0.15);
+}
+
+/* Background Gradient */
+.bg-gradient {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+}
+
+/* Form Card */
+.upload-card {
+    width: 100%;
+    max-width: 420px;
+    padding: 30px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+}
+
+/* Inputs */
+.custom-input {
+    background: rgba(255,255,255,0.85);
+    border-radius: 10px;
+    border: none;
+}
+
+/* Button Glow */
+.btn-glow {
+    background: linear-gradient(135deg, #00f2fe, #4facfe);
+    border: none;
+    color: #000;
+    font-weight: 600;
+    border-radius: 30px;
+    padding: 10px;
+    transition: 0.3s;
+}
+
+.btn-glow:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px #4facfe;
+}
+
+/* Entry Animation */
+.animate-entry {
+    animation: slideFade 0.8s ease forwards;
+}
+
+@keyframes slideFade {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Mobile Responsive */
+@media (max-width: 576px) {
+    .upload-card {
+        padding: 20px;
+    }
+}
+
+
+/* Background */
+.bg-gradient-user {
+    background: linear-gradient(135deg, #141e30, #243b55);
+}
+
+/* Card */
+.download-card {
+    max-width: 900px;
+    margin-top: 20px;
+    padding: 25px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+}
+
+
+/* Hover Row Effect */
+.table-row-animate {
+    transition: 0.3s;
+}
+
+.table-row-animate:hover {
+    background: rgba(255,255,255,0.2);
+    transform: scale(1.01);
+}
+
+/* Download Button */
+.btn-download {
+    background: linear-gradient(135deg, #00f260, #0575e6);
+    border: none;
+    border-radius: 30px;
+    padding: 6px 14px;
+    font-weight: 600;
+    color: #000;
+    transition: 0.3s;
+}
+
+.btn-download:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px #00f260;
+}
+
+/* Animation */
+.animate-entry {
+    animation: slideFade 0.8s ease forwards;
+}
+
+@keyframes slideFade {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Mobile Padding */
+@media (max-width: 576px) {
+    .download-card {
+        padding: 15px;
+    }
+}
+
+/* Background */
+.bg-gradient {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+}
+
+/* Card */
+.download-card {
+    max-width: 1100px;
+    margin-top: 20px;
+    padding: 25px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+}
+
+
+/* Hover Animation */
+.table-row-animate {
+    transition: 0.3s ease;
+}
+
+.table-row-animate:hover {
+    background: rgba(255,255,255,0.2);
+    transform: scale(1.01);
+}
+
+/* Buttons */
+.btn-view {
+    background: linear-gradient(135deg, #38ef7d, #11998e);
+    border: none;
+    color: #000;
+    font-weight: 600;
+}
+
+.btn-edit {
+    background: linear-gradient(135deg, #f7971e, #ffd200);
+    border: none;
+    color: #000;
+    font-weight: 600;
+}
+
+.btn-delete {
+    background: linear-gradient(135deg, #ff416c, #ff4b2b);
+    border: none;
+    color: #fff;
+    font-weight: 600;
+}
+
+.btn-view:hover,
+.btn-edit:hover,
+.btn-delete:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 12px rgba(255,255,255,0.6);
+}
+
+/* Animation */
+.animate-entry {
+    animation: slideFade 0.8s ease forwards;
+}
+
+@keyframes slideFade {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Mobile Fix */
+@media (max-width: 768px) {
+    .download-card {
+        padding: 15px;
+    }
+}
+
