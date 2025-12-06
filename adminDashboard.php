@@ -28,7 +28,7 @@
             </a>
         </li>
         <li class="nav-item mb-2">
-            <a href="manage_request.php" class="nav-link admin-sidebar-link text-white fw-semibold">
+            <a href="manage_req.php" class="nav-link admin-sidebar-link text-white fw-semibold">
                 <i class="bi bi-envelope-paper-fill me-2"></i> Manage Requests
             </a>
         </li>
@@ -91,7 +91,7 @@
             </a>
         </li>
         <li class="nav-item mb-2">
-            <a href="manage_request.php" class="nav-link admin-sidebar-link text-white fw-semibold">
+            <a href="manage_req.php" class="nav-link admin-sidebar-link text-white fw-semibold">
                 <i class="bi bi-envelope-paper-fill me-2"></i> Manage Requests
             </a>
         </li>

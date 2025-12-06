@@ -59,7 +59,7 @@ include("header.php");
                             <!-- TIME -->
                             <div class="col-md-6 mb-3 animate__animated animate__fadeInRight">
                                 <label class="form-label fw-semibold">Event Time</label>
-                                <input type="time" class="form-control" name="event_time" required>
+                                <input type="text" class="form-control" name="event_time" required>
                             </div>
                         </div>
 

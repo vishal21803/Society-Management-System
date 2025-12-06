@@ -15,7 +15,7 @@ include("header.php");
     <div class="row g-4">
 
         <!-- ADD MEMBER CARD -->
-        <div class="col-md-4">
+        <!-- <div class="col-md-4">
             <a href="adminaddmem.php" class="text-decoration-none">
                 <div class="dashboard-square-card bg-primary text-white shadow animate__animated animate__fadeInLeft">
                     <div class="text-center">
@@ -25,10 +25,10 @@ include("header.php");
                     </div>
                 </div>
             </a>
-        </div>
+        </div> -->
 
          <!-- ADD MEMBER CARD -->
-        <div class="col-md-4">
+        <!-- <div class="col-md-4">
             <a href="editMembers.php" class="text-decoration-none">
                 <div class="dashboard-square-card bg-secondary text-white shadow animate__animated animate__fadeInLeft">
                     <div class="text-center">
@@ -37,7 +37,7 @@ include("header.php");
                     </div>
                 </div>
             </a>
-        </div>
+        </div> -->
 
        
 
@@ -47,7 +47,7 @@ include("header.php");
                 <div class="dashboard-square-card bg-warning text-dark shadow animate__animated animate__fadeInRight">
                     <div class="text-center">
                         <i class="bi bi-hourglass-split fs-1 mb-2"></i>
-                        <h4 class="fw-bold">Pending Requests</h4>
+                        <h4 class="fw-bold">Membership Requests</h4>
                         <p class="mb-0">Approve or reject</p>
                     </div>
                 </div>

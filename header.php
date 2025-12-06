@@ -32,7 +32,7 @@
   <div class="container">
 
     <!-- ✅ LOGO -->
-    <a class="navbar-brand fw-bold text-white" href="#">
+    <a class="navbar-brand fw-bold text-white" href="index.php">
       <img src="logo.png" alt="" style="width:50px;" class="rounded-pill">
       Jain Society
     </a>
