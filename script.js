@@ -946,10 +946,11 @@ function viewImage(imgPath)
 }
 
 $(document).ready(function() {
-    
+    // Initialize DataTable
+    $('#myTable').DataTable();
 
     // DELETE button
-    $('.deleteBtn').click(function(){
+    $('#myTable').on('click', '.deleteBtn', function(){
         var id = $(this).data('id');
         Swal.fire({
             title: 'Are you sure?',
@@ -959,18 +960,11 @@ $(document).ready(function() {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if(result.isConfirmed){
-                $.ajax({
-                    url: 'delete_gallery.php',
-                    type: 'POST',
-                    data: {id:id},
-                    success: function(response){
-                        if(response == 'success'){
-                            Swal.fire('Deleted!','Record has been deleted.','success').then(()=>{
-                                location.reload();
-                            });
-                        } else {
-                            Swal.fire('Error!','Something went wrong.','error');
-                        }
+                $.post('delete_gallery.php', {id: id}, function(response){
+                    if(response.trim() == 'success'){
+                        Swal.fire('Deleted!','Record has been deleted.','success').then(()=> location.reload());
+                    } else {
+                        Swal.fire('Error!','Could not delete.','error');
                     }
                 });
             }
@@ -978,18 +972,20 @@ $(document).ready(function() {
     });
 
     // EDIT button
-    $('.editBtn').click(function(){
+    $('#myTable').on('click', '.editBtn', function(){
         var id = $(this).data('id');
-        $.ajax({
-            url: 'edit_gallery.php',
-            type: 'GET',
-            data: {id:id},
-            success: function(data){
-                // Show modal with form (we will create it in edit_gallery.php)
-                $('body').append(data);
-                $('#editModal').modal('show');
-            }
+        $.get('editGallery.php', {id:id}, function(data){
+            $('body').append(data);
+            $('#editModal').modal('show');
+            $('#editModal').on('hidden.bs.modal', function(){ $(this).remove(); });
         });
+    });
+
+    // VIEW IMAGE button
+    $('#myTable').on('click', '.viewImageBtn', function(){
+        var src = $(this).data('src');
+        $('#fullImagePreview').attr('src', src);
+        $('#imageViewModal').modal('show');
     });
 
 });

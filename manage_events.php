@@ -55,7 +55,7 @@ include("connectdb.php");
                             </td>
                             <td><?= date("d-m-Y", strtotime($row['event_date'])) ?></td>
                             <td>
-                                <button class="btn btn-sm btn-primary"
+                                <button class="btn btn-sm btn-success"
                                 onclick="editEvent(<?= $row['event_id'] ?>)">
                                 Edit</button>
 

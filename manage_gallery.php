@@ -41,7 +41,7 @@ if(isset($_SESSION["uname"]) && $_SESSION["utype"]=='admin') {
                             <?php } else { echo "No Image"; } ?>
                         </td>
                         <td>
-                            <button class="editBtn btn btn-primary" data-id="<?= $row['gallery_id'] ?>">Edit</button>
+                            <button class="editBtn btn btn-success" data-id="<?= $row['gallery_id'] ?>">Edit</button>
                             <button class="deleteBtn btn btn-danger" data-id="<?= $row['gallery_id'] ?>">Delete</button>
                         </td>
                     </tr>
@@ -69,56 +69,13 @@ if(isset($_SESSION["uname"]) && $_SESSION["utype"]=='admin') {
 </div>
 
 <!-- JS Libraries -->
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script> -->
+<!-- <script src="./jquery.dataTables.min.js"></script> -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+<!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css"> -->
 
 <script>
-$(document).ready(function() {
-    // Initialize DataTable
-    $('#myTable').DataTable();
 
-    // DELETE button
-    $('#myTable').on('click', '.deleteBtn', function(){
-        var id = $(this).data('id');
-        Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonText: 'Yes, delete it!'
-        }).then((result) => {
-            if(result.isConfirmed){
-                $.post('delete_gallery.php', {id: id}, function(response){
-                    if(response.trim() == 'success'){
-                        Swal.fire('Deleted!','Record has been deleted.','success').then(()=> location.reload());
-                    } else {
-                        Swal.fire('Error!','Could not delete.','error');
-                    }
-                });
-            }
-        });
-    });
-
-    // EDIT button
-    $('#myTable').on('click', '.editBtn', function(){
-        var id = $(this).data('id');
-        $.get('editGallery.php', {id:id}, function(data){
-            $('body').append(data);
-            $('#editModal').modal('show');
-            $('#editModal').on('hidden.bs.modal', function(){ $(this).remove(); });
-        });
-    });
-
-    // VIEW IMAGE button
-    $('#myTable').on('click', '.viewImageBtn', function(){
-        var src = $(this).data('src');
-        $('#fullImagePreview').attr('src', src);
-        $('#imageViewModal').modal('show');
-    });
-
-});
 </script>
 
 <?php

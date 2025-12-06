@@ -74,7 +74,7 @@ include("connectdb.php");
                             </td>
 
                             <td>
-                                <button class="btn btn-sm btn-primary"
+                                <button class="btn btn-sm btn-success"
                                 onclick="editNews(<?= $row['news_id'] ?>)">
                                 Edit</button>
 

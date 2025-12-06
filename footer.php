@@ -12,6 +12,7 @@
     <p class="mt-3 mb-0">&copy; 2025 Jain Society. All Rights Reserved.</p>
   </div>
 </footer>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="./dataTables.min.js"></script>
