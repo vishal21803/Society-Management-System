@@ -37,6 +37,7 @@ $q = mysqli_query($con,"
         u.email,
         u.role,
         u.onboarding,
+        u.password,
         
 
         -- ZONE & CITY NAMES
@@ -59,6 +60,76 @@ $status = $user['request_status']; // pending / approved / rejected
 ?>
 
 <main>
+
+<!-- ✅ Edit Profile Modal -->
+<div class="modal fade" id="editProfileModal" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content shadow-lg border-0">
+
+      <form method="POST" action="updateProfile.php" enctype="multipart/form-data">
+
+        <div class="modal-header bg-warning">
+          <h5 class="modal-title fw-bold">✏️ Update Profile</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+
+        <div class="modal-body">
+
+          <div class="row g-3">
+
+            <div class="col-md-6">
+              <label class="fw-bold">Full Name</label>
+              <input type="text" name="fullname" class="form-control" value="<?= $user['fullname'] ?>" required>
+            </div>
+
+            <div class="col-md-6">
+              <label class="fw-bold">Email</label>
+              <input type="email" name="email" class="form-control" value="<?= $user['email'] ?>" required>
+            </div>
+
+            <div class="col-md-6">
+              <label class="fw-bold">Mobile</label>
+              <input type="text" name="phone" class="form-control" value="<?= $user['phone'] ?>" required>
+            </div>
+
+            <div class="col-md-6">
+              <label class="fw-bold">City</label>
+              <input type="text" name="city" class="form-control" value="<?= $user['city_name'] ?>" readonly>
+            </div>
+
+            <div class="col-12">
+              <label class="fw-bold">Address</label>
+              <textarea name="address" class="form-control" required><?= $user['address'] ?></textarea>
+            </div>
+
+            <div class="col-12">
+              <label class="fw-bold">New Password</label>
+              <input type="password" name="password" class="form-control" placeholder="Enter new password">
+            </div>
+
+            <div class="col-12">
+              <label class="fw-bold">Update Photo</label>
+              <input type="file" name="photo" class="form-control">
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="submit" name="update" class="btn btn-success">Save Changes</button>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+</div>
+
+
+
+
 <div class="d-flex">
     <?php include('userDashboard.php'); ?>
     <div class="flex-grow-1 p-4">
@@ -95,6 +166,13 @@ $status = $user['request_status']; // pending / approved / rejected
 
                     <div class="row g-4">
 
+                          <div class="col-md-6">
+                            <p class="fw-bold mb-1">Email</p>
+                            <div class="form-control bg-white">
+                                <?php echo $user['fullname']; ?>
+                            </div>
+                        </div>
+
                         <div class="col-md-6">
                             <p class="fw-bold mb-1">Email</p>
                             <div class="form-control bg-white">
@@ -130,6 +208,13 @@ $status = $user['request_status']; // pending / approved / rejected
                             </div>
                         </div>
 
+                         <div class="col-md-6">
+                            <p class="fw-bold mb-1">Password</p>
+                            <div class="form-control bg-white">
+                                <?php echo $user['password']; ?>
+                            </div>
+                        </div>
+
                         <div class="col-md-6">
                             <p class="fw-bold mb-1">Registration Date</p>
                             <div class="form-control bg-white">
@@ -143,9 +228,10 @@ $status = $user['request_status']; // pending / approved / rejected
 
                 <!-- FOOTER -->
                 <div class="card-footer bg-white text-center">
-                    <a href="edit-profile.php" class="btn btn-warning px-4">
-                        <i class="bi bi-pencil-square"></i> Edit Profile
-                    </a>
+                    <button class="btn btn-warning px-4" data-bs-toggle="modal" data-bs-target="#editProfileModal">
+    <i class="bi bi-pencil-square"></i> Edit Profile
+</button>
+
                 </div>
 
             </div>
@@ -160,6 +246,13 @@ $status = $user['request_status']; // pending / approved / rejected
 </main>
 
 
+<?php if(isset($_GET['updated'])){ ?>
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+    alert("✅ Profile Updated Successfully!");
+});
+</script>
+<?php } ?>
 
 
 <?php
