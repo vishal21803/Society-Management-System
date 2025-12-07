@@ -33,10 +33,10 @@ if(isset($_SESSION["uname"]) && $_SESSION["utype"]=='admin') {
                     <thead class="table-dark">
                         <tr>
                             <th>#</th>
-                            <th>Title</th>
-                            <th>Description</th>
-                            <th>Visibility</th>
                             <th>Image</th>
+                            <th>Title</th>
+                            <th>Visibility</th>
+                            
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -50,18 +50,7 @@ if(isset($_SESSION["uname"]) && $_SESSION["utype"]=='admin') {
                         while($row = mysqli_fetch_assoc($result)) { ?>
                             <tr>
                                 <td><?= $i++ ?></td>
-
-                                <td><?= htmlspecialchars($row['title']) ?></td>
-
-                                <td><?= htmlspecialchars($row['description']) ?></td>
-
-                                <td>
-                                    <span class="badge bg-info">
-                                        <?= ucfirst($row['visibility_type']) ?>
-                                    </span>
-                                </td>
-
-                                <td>
+                                  <td>
                                     <?php if($row['image']) { ?>
                                         <button class="btn btn-sm btn-info viewImageBtn"
                                             data-src="upload/gallery/<?= $row['image'] ?>">
@@ -71,6 +60,17 @@ if(isset($_SESSION["uname"]) && $_SESSION["utype"]=='admin') {
                                         <span class="text-muted">No Image</span>
                                     <?php } ?>
                                 </td>
+
+                                <td><?= htmlspecialchars($row['title']) ?></td>
+
+
+                                <td>
+                                    <span class="badge bg-info">
+                                        <?= ucfirst($row['visibility_type']) ?>
+                                    </span>
+                                </td>
+
+                              
 
                                 <td>
                                     <button class="btn btn-sm btn-success editBtn"

@@ -105,6 +105,26 @@ include("connectdb.php");
 
 
 
+<!-- ✅ IMAGE VIEW MODAL (UNCHANGED, CLEAN LOOK) -->
+<div class="modal fade" id="imageViewModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+
+      <div class="modal-header bg-dark text-white">
+        <h5 class="modal-title">Gallery Image</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body text-center">
+        <img id="fullImagePreview" src="" class="img-fluid rounded shadow">
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- wd -->
+
+
 <div class="modal fade" id="editNewsModal">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
@@ -123,7 +143,7 @@ include("connectdb.php");
         <input type="text" id="edit_title" name="title" class="form-control mb-2" placeholder="Title" required>
 
         <label for="">News description</label>
-        <textarea id="newsText" name="description" class="form-control mb-2" required></textarea>
+        <textarea id="edit_description" name="description" class="form-control mb-2" required></textarea>
         <button type="button" onclick="hinglishToHindi()" class="btn btn-warning btn-sm">
     Hinglish → Hindi
 </button>
@@ -139,41 +159,45 @@ include("connectdb.php");
             <option value="city">City</option>
             <option value="member">Member</option>
         </select>
-         <!-- ZONE -->
-          <div class="mb-3 d-none" id="zoneBox" >
-            <label>Select Zone</label>
-            <select class="form-select" name="toshow_id">
-              <?php
-              $z = mysqli_query($con,"SELECT * FROM zones ORDER BY zone_name ASC");
-              while($row = mysqli_fetch_assoc($z)){ ?>
-                <option value="<?= $row['zone_id'] ?>"><?= $row['zone_name'] ?></option>
-              <?php } ?>
-            </select>
-          </div>
 
-          <!-- CITY -->
-          <div class="mb-3 d-none" id="cityBox" name="toshow_id">
-            <label>Select City</label>
-            <select class="form-select">
-              <?php
-              $c = mysqli_query($con,"SELECT * FROM cities ORDER BY city_name ASC");
-              while($row = mysqli_fetch_assoc($c)){ ?>
-                <option value="<?= $row['city_id'] ?>"><?= $row['city_name'] ?></option>
-              <?php } ?>
-            </select>
-          </div>
+        <input type="hidden" name="toshow_id" id="final_toshow_id" value="0">
 
-          <!-- MEMBER -->
-          <div class="mb-3 d-none" id="memberBox" name="toshow_id">
-            <label>Select Member</label>
-            <select class="form-select">
-              <?php
-              $m = mysqli_query($con,"SELECT member_id, fullname FROM members ORDER BY fullname ASC");
-              while($row = mysqli_fetch_assoc($m)){ ?>
-                <option value="<?= $row['member_id'] ?>"><?= $row['fullname'] ?></option>
-              <?php } ?>
-            </select>
-          </div>
+<!-- ZONE -->
+<div class="mb-3 d-none" id="zoneBox">
+  <label>Select Zone</label>
+  <select class="form-select" onchange="setTarget(this.value)">
+    <?php
+    $z = mysqli_query($con,"SELECT * FROM zones");
+    while($row = mysqli_fetch_assoc($z)){ ?>
+      <option value="<?= $row['zone_id'] ?>"><?= $row['zone_name'] ?></option>
+    <?php } ?>
+  </select>
+</div>
+
+<!-- CITY -->
+<div class="mb-3 d-none" id="cityBox">
+  <label>Select City</label>
+  <select class="form-select" onchange="setTarget(this.value)">
+    <?php
+    $c = mysqli_query($con,"SELECT * FROM cities");
+    while($row = mysqli_fetch_assoc($c)){ ?>
+      <option value="<?= $row['city_id'] ?>"><?= $row['city_name'] ?></option>
+    <?php } ?>
+  </select>
+</div>
+
+<!-- MEMBER -->
+<div class="mb-3 d-none" id="memberBox">
+  <label>Select Member</label>
+  <select class="form-select" onchange="setTarget(this.value)">
+    <?php
+    $m = mysqli_query($con,"SELECT member_id, fullname FROM members");
+    while($row = mysqli_fetch_assoc($m)){ ?>
+      <option value="<?= $row['member_id'] ?>"><?= $row['fullname'] ?></option>
+    <?php } ?>
+  </select>
+</div>
+
 
         <!-- <input type="text" id="edit_toshow_id" name="toshow_id" class="form-control mb-2" placeholder="Target ID"> -->
            <label for="">News Date</label>
@@ -235,6 +259,26 @@ function deleteNews(id)
         });
     }
 }
+
+function editTargetSelect(){
+  let type = document.getElementById("edit_toshow_type").value;
+
+  document.getElementById("zoneBox").classList.add("d-none");
+  document.getElementById("cityBox").classList.add("d-none");
+  document.getElementById("memberBox").classList.add("d-none");
+
+  document.getElementById("final_toshow_id").value = 0;
+
+  if(type === "zone") document.getElementById("zoneBox").classList.remove("d-none");
+  if(type === "city") document.getElementById("cityBox").classList.remove("d-none");
+  if(type === "member") document.getElementById("memberBox").classList.remove("d-none");
+}
+
+function setTarget(val){
+  document.getElementById("final_toshow_id").value = val;
+}
+
+
 </script>
 
 <?php

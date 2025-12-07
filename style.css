@@ -1,5 +1,10 @@
 main{
   min-height: 500px;
+
+}
+body
+{
+    background-color: #fff9e6;
 }
 
 .navbar-nav .nav-link {

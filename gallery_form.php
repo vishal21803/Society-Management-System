@@ -36,7 +36,7 @@ include("connectdb.php");
 
                         <!-- DESCRIPTION -->
                         <div class="form-floating mb-3 animate__animated animate__fadeInRight">
-                            <textarea id="newsText" name="description" class="form-control" style="height:120px" placeholder="Desc" required></textarea>
+                            <textarea id="newsText" name="description" class="form-control" style="height:120px" placeholder="Desc" ></textarea>
                             <label>Description</label>
                         </div>
                         <button type="button" onclick="hinglishToHindi()" class="btn btn-warning btn-sm">
