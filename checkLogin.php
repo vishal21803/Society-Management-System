@@ -28,11 +28,6 @@
 
 
 
-    if($row['onboarding'] == 0){
-           $_SESSION['utype']='user';
-    header("location:onboarding.php");  // Page 1
-    exit;
-}
 
         if($row["role"]=='user'){
             

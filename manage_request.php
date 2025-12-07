@@ -94,6 +94,47 @@ while($row = mysqli_fetch_array($res)){
 </main>
 
 
+<script>
+document.addEventListener("click", function(e){
+
+    // ✅ APPROVE
+    if(e.target.classList.contains("approveBtn")){
+        let requestId = e.target.getAttribute("data-request");
+
+        if(confirm("Approve this member?")){
+            fetch("requestAction.php", {
+                method: "POST",
+                headers: {"Content-Type": "application/x-www-form-urlencoded"},
+                body: "action=approve&request_id=" + requestId
+            })
+            .then(res => res.text())
+            .then(data => {
+                alert(data);
+                location.reload();
+            });
+        }
+    }
+
+    // ❌ REJECT
+    if(e.target.classList.contains("rejectBtn")){
+        let requestId = e.target.getAttribute("data-request");
+
+        if(confirm("Reject this member?")){
+            fetch("requestAction.php", {
+                method: "POST",
+                headers: {"Content-Type": "application/x-www-form-urlencoded"},
+                body: "action=reject&request_id=" + requestId
+            })
+            .then(res => res.text())
+            .then(data => {
+                alert(data);
+                location.reload();
+            });
+        }
+    }
+
+});
+</script>
 
 
 <?php

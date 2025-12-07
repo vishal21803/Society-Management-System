@@ -8,7 +8,9 @@ body
 }
 
 
-
+a{
+    text-decoration: none;
+}
 
 .navbar-nav .nav-link {
   position: relative;

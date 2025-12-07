@@ -2,11 +2,11 @@
 @session_start();
 include("connectdb.php");
 
-$uid=$_SESSION["uid"];
 // ===============================
 // ✅ BASIC USER DATA
 // ===============================
-$username = $_POST["username"];
+$username = $_POST["usname"];
+$password=$_POST["pass"];
 $email    = $_POST["email"];
 $fullname = $_POST["fullname"];
 $gender   = $_POST["gender"];
@@ -33,6 +33,7 @@ $img = time()."_".$file["name"];
 move_uploaded_file($file["tmp_name"], "upload/member/".$img);
 
 
+mysqli_query($con,"insert into users (name,email,password,role,created_at) values('$username','$email','$password','user',NOW())");
 
 $user_id = mysqli_insert_id($con);
 
@@ -56,7 +57,7 @@ $insert = mysqli_query($con,"
 INSERT INTO members 
 (user_id, zone_id, city_id, phone, address, photo, created_at, gender, dob, fullname, plan_id) 
 VALUES 
-('$uid', '$zone_id', '$city_id', '$phone', '$address', '$img', NOW(), '$gender','$dob','$fullname','$plan_id')
+('$user_id', '$zone_id', '$city_id', '$phone', '$address', '$img', NOW(), '$gender','$dob','$fullname','$plan_id')
 ");
 
 $member_id = mysqli_insert_id($con);
@@ -79,14 +80,14 @@ INSERT INTO requests (member_id, status, request_date)
 VALUES ('$member_id', 'pending', NOW())
 ");
 
-mysqli_query($con,"update users set onboarding=1 where id='$uid'");
+// mysqli_query($con,"update users set onboarding=1 where id='$uid'");
 
 
 
 // ===============================
 // ✅ REDIRECT TO ADMIN PAGE
 // ===============================
-header("Location: userPage.php?success=1");
+header("Location: successpage.php?success=1");
 exit;
 
 ?>

@@ -30,13 +30,52 @@ $plan = mysqli_fetch_assoc($planQuery);
                 <h5 class="fw-bold mb-2">Plan: <?= htmlspecialchars($plan['plan_name']) ?></h5>
                 <p class="mb-1"><strong>Price:</strong> ₹<?= $plan['price'] ?></p>
                 <p class="mb-1"><strong>Duration:</strong> <?= $plan['duration_days'] ?> Days</p>
-                <p class="mb-0"><strong>Start:</strong> <?= date("d M Y", strtotime($plan['membership_start'])) ?></p>
-                <p class="mb-0"><strong>End:</strong> <?= date("d M Y", strtotime($plan['membership_end'])) ?></p>
+                <!-- <p class="mb-0"><strong>Start:</strong> <?= date("d M Y", strtotime($plan['membership_start'])) ?></p>
+                <p class="mb-0"><strong>End:</strong> <?= date("d M Y", strtotime($plan['membership_end'])) ?></p> -->
+                <?php
+$startDate = (!empty($plan['membership_start'])) 
+    ? date("d M Y", strtotime($plan['membership_start'])) 
+    : "Not Started";
+
+$endDate = (!empty($plan['membership_end'])) 
+    ? date("d M Y", strtotime($plan['membership_end'])) 
+    : "Not Available";
+?>
+
+<p class="mb-0"><strong>Start:</strong> <?= $startDate ?></p>
+<p class="mb-0"><strong>End:</strong> <?= $endDate ?></p>
+
             </div>
             <div>
-                <span class="badge bg-success p-2 fs-6">Active</span>
+
+               <?php
+$statusText = "Not Active";
+$statusColor = "danger";
+
+if(
+    !empty($plan['membership_start']) &&
+    !empty($plan['membership_end']) &&
+    $plan['membership_end'] != '0000-00-00'
+){
+    $end = strtotime($plan['membership_end']);
+    $today = strtotime(date('Y-m-d'));
+
+    if($end >= $today){
+        $statusText = "Active";
+        $statusColor = "success";
+    } else {
+        $statusText = "Expired";
+        $statusColor = "secondary";
+    }
+}
+?>
+<span class="badge bg-<?= $statusColor ?> p-2 fs-6">
+    <?= $statusText ?>
+</span>
             </div>
         </div>
+     
+
 
         <!-- ✅ History Table Section -->
         <div class="history-table-container bg-white shadow rounded p-3">
