@@ -84,10 +84,6 @@ INSERT INTO requests (member_id, status, request_date, approved_date)
 VALUES ('$member_id', 'approved', NOW(), NOW())
 ");
 
-mysqli_query($con,"
-INSERT INTO wallet (member_id, amount) 
-VALUES ('$member_id', 0)
-");
 
 // ===============================
 // ✅ REDIRECT TO ADMIN PAGE

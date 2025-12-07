@@ -9,6 +9,31 @@ include("connectdb.php");
 <main>
 <div class="d-flex">
     <?php include('adminDashboard.php'); ?>
+
+<!-- ✅ Success Modal -->
+<div class="modal fade" id="successModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content shadow-lg border-0">
+      <div class="modal-header bg-success text-white">
+        <h5 class="modal-title">✅ Success</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body text-center">
+        <img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="90">
+        <h5 class="mt-3 fw-bold text-success">Member Added Successfully!</h5>
+        <p class="text-muted">New member has been registered and plan assigned.</p>
+      </div>
+      <div class="modal-footer justify-content-center">
+        <button type="button" class="btn btn-success" data-bs-dismiss="modal">OK</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
     <div class="flex-grow-1 p-4">
         <!-- Main content here -->
          <div class="container my-4">
@@ -185,6 +210,15 @@ include("connectdb.php");
 </div>
 
 </main>
+
+<?php if(isset($_GET['success']) && $_GET['success']==1){ ?>
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+    var myModal = new bootstrap.Modal(document.getElementById('successModal'));
+    myModal.show();
+});
+</script>
+<?php } ?>
 
 
 <?php
