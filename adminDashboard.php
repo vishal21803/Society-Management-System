@@ -59,6 +59,12 @@
                 <i class="bi bi-download me-2"></i> Manage Downloads
             </a>
         </li>
+
+        <li class="nav-item mb-2">
+            <a href="adminMessages.php" class="nav-link admin-sidebar-link text-white fw-semibold">
+                <i class="bi bi-chat me-2"></i> Chat
+            </a>
+        </li>
         <li class="nav-item">
             <a href="logout.php" class="nav-link admin-sidebar-link text-white fw-semibold">
                 <i class="bi bi-box-arrow-right me-2"></i> Logout
@@ -120,6 +126,11 @@
          <li class="nav-item mb-2">
             <a href="datatTableDownload.php" class="nav-link admin-sidebar-link text-white fw-semibold">
                 <i class="bi bi-download me-2"></i> Manage Downloads
+            </a>
+        </li>
+         <li class="nav-item mb-2">
+            <a href="adminMessages.php" class="nav-link admin-sidebar-link text-white fw-semibold">
+                <i class="bi bi-chat me-2"></i> Chat
             </a>
         </li>
         <li class="nav-item">
