@@ -19,7 +19,7 @@ if(!empty($_FILES['image']['name'])){
 }
 
 $update = mysqli_query($con,"
-    UPDATE gallery SET 
+    UPDATE sens_gallery SET 
     title='$title',
     description='$desc',
     visibility_type='$visibility',

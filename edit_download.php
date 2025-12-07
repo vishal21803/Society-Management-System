@@ -20,7 +20,7 @@ include("connectdb.php");
 
             <?php
             $id = $_GET['id'];
-            $res = mysqli_query($con, "SELECT * FROM downloads WHERE id=$id");
+            $res = mysqli_query($con, "SELECT * FROM sens_downloads WHERE id=$id");
             $data = mysqli_fetch_assoc($res);
             ?>
 

@@ -3,7 +3,7 @@ include("connectdb.php");
 $member_id = $_POST['member_id'];
 
 // Get member plan & start/end date
-$m = mysqli_fetch_assoc(mysqli_query($con,"SELECT m.*, p.duration_days, p.price FROM members m JOIN plans p ON m.plan_id=p.plan_id WHERE m.member_id='$member_id'"));
+$m = mysqli_fetch_assoc(mysqli_query($con,"SELECT m.*, p.duration_days, p.price FROM sens_members m JOIN sens_plans p ON m.plan_id=p.plan_id WHERE m.member_id='$member_id'"));
 
 // Calculate pending years
 $startYear = date('Y', strtotime($m['plan_start_date']));
@@ -12,7 +12,7 @@ $currYear = date('Y');
 $pendingYears = [];
 
 for($y=$startYear; $y<=$currYear; $y++){
-    $chk = mysqli_query($con,"SELECT * FROM payments WHERE member_id='$member_id' AND payment_for_year='$y'");
+    $chk = mysqli_query($con,"SELECT * FROM sens_payments WHERE member_id='$member_id' AND payment_for_year='$y'");
     if(mysqli_num_rows($chk)==0){
         $pendingYears[] = $y;
     }

@@ -20,9 +20,9 @@ include("connectdb.php");
         <?php
         $res = mysqli_query($con,"
             SELECT r.request_id, u.*, m.*
-            FROM requests r 
-            JOIN members m ON r.member_id = m.member_id
-            JOIN users u ON u.id = m.user_id
+            FROM sens_requests r 
+            JOIN sens_members m ON r.member_id = m.member_id
+            JOIN sens_users u ON u.id = m.user_id
             WHERE r.status='pending'
             ORDER BY r.request_date DESC
         ");

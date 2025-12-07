@@ -11,7 +11,7 @@ $receipt_date = date("Y-m-d H:i:s");
 
 /* ✅ INSERT INTO RECEIPT */
 $insert = mysqli_query($con, "
-    INSERT INTO receipt (manualID, member_id, receipt_date, receipt_amount, purpose)
+    INSERT INTO sens_receipt (manualID, member_id, receipt_date, receipt_amount, purpose)
     VALUES ('$receipt_id', '$member_id', '$receipt_date', '$receipt_amount', '$purpose')
 ");
 
@@ -19,7 +19,7 @@ if($insert){
 
     // ✅ SUBTRACT RECEIPT AMOUNT FROM BALANCE
     mysqli_query($con, "
-        UPDATE members 
+        UPDATE sens_members 
         SET balance_amount = balance_amount - $receipt_amount
         WHERE member_id = '$member_id'
     ");

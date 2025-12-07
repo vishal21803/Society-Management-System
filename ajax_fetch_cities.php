@@ -7,8 +7,8 @@ $sort   = $_POST['sort'];
 
 $sql = "
 SELECT c.city_id, c.city_name, z.zone_name 
-FROM cities c 
-JOIN zones z ON c.zone_id = z.zone_id 
+FROM sens_cities c 
+JOIN sens_zones z ON c.zone_id = z.zone_id 
 WHERE c.city_name LIKE '%$search%'
 ";
 

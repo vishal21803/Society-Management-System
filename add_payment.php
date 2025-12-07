@@ -13,27 +13,27 @@ $date      = date("Y-m-d");
 
 /* ✅ 1. PAYMENT INSERT */
 mysqli_query($con, "
-INSERT INTO payments
+INSERT INTO sens_payments
 (member_id, amount, payment_date,payment_for_year)
 VALUES
 ('$member_id', '$amount', '$date' ,'$year')
 ");
 
 mysqli_query($con,"
-    UPDATE wallet 
+    UPDATE sens_wallet 
     SET amount = amount + '$amount' 
     WHERE member_id = '$member_id'
 ");
 
 
 /* ✅ 2. MEMBER KA PLAN CHECK KARO */
-$memQ = mysqli_query($con,"SELECT plan_id, membership_start, membership_end FROM members WHERE member_id='$member_id'");
+$memQ = mysqli_query($con,"SELECT plan_id, membership_start, membership_end FROM sens_members WHERE member_id='$member_id'");
 $mem  = mysqli_fetch_assoc($memQ);
 
 $plan_id = $mem['plan_id'];
 
 /* ✅ 3. PLAN DETAILS */
-$planQ = mysqli_query($con,"SELECT * FROM plans WHERE plan_id='$plan_id'");
+$planQ = mysqli_query($con,"SELECT * FROM sens_plans WHERE plan_id='$plan_id'");
 $plan  = mysqli_fetch_assoc($planQ);
 
 $duration = $plan['duration_days'];   // 365 OR NULL (lifetime)
@@ -52,7 +52,7 @@ if($duration != NULL){
     $end = date("Y-m-d", strtotime($start . " + $duration days"));
 
     mysqli_query($con, "
-      UPDATE members 
+      UPDATE sens_members 
       SET membership_start='$start',
           membership_end='$end'
       WHERE member_id='$member_id'
@@ -61,7 +61,7 @@ if($duration != NULL){
 }else{
     // ✅ LIFETIME PLAN CASE
     mysqli_query($con, "
-      UPDATE members 
+      UPDATE sens_members 
       SET membership_start='$date',
           membership_end=NULL
       WHERE member_id='$member_id'
@@ -70,7 +70,7 @@ if($duration != NULL){
 
 /* ✅ 5. REQUEST STATUS APPROVE (AGAR PEHLI PAYMENT H) */
 mysqli_query($con, "
-UPDATE requests 
+UPDATE sens_requests 
 SET status='approved', approved_date=NOW()
 WHERE member_id='$member_id'
 ");

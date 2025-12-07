@@ -64,7 +64,7 @@ include("connectdb.php");
                             <select name="zone_id" class="form-select">
                                 <option value="">Select Zone</option>
                                 <?php
-                                $z = mysqli_query($con,"SELECT * FROM zones");
+                                $z = mysqli_query($con,"SELECT * FROM sens_zones");
                                 while($r=mysqli_fetch_assoc($z)){
                                     echo "<option value='{$r['zone_id']}'>{$r['zone_name']}</option>";
                                 }
@@ -78,7 +78,7 @@ include("connectdb.php");
                             <select name="city_id" class="form-select">
                                 <option value="">Select City</option>
                                 <?php
-                                $c = mysqli_query($con,"SELECT * FROM cities");
+                                $c = mysqli_query($con,"SELECT * FROM sens_cities");
                                 while($r=mysqli_fetch_assoc($c)){
                                     echo "<option value='{$r['city_id']}'>{$r['city_name']}</option>";
                                 }
@@ -92,7 +92,7 @@ include("connectdb.php");
                             <select name="member_id" class="form-select">
                                 <option value="">Select Member</option>
                                 <?php
-                                $m = mysqli_query($con,"SELECT member_id, fullname FROM members");
+                                $m = mysqli_query($con,"SELECT member_id, fullname FROM sens_members");
                                 while($r=mysqli_fetch_assoc($m)){
                                     echo "<option value='{$r['member_id']}'>{$r['fullname']}</option>";
                                 }

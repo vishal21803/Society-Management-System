@@ -18,7 +18,7 @@ $member_id = $_SESSION['member_id'] ?? 0;
 $userName = "User";
 if($uid){
     include("connectdb.php");
-    $u = mysqli_fetch_assoc(mysqli_query($con,"SELECT name FROM users WHERE id='$uid'"));
+    $u = mysqli_fetch_assoc(mysqli_query($con,"SELECT name FROM sens_users WHERE id='$uid'"));
     $userName = $u['name'];
 }
 
@@ -28,7 +28,7 @@ $statusText = "Not Active";
 $statusColor = "danger";
 
 if($member_id){
-    $m = mysqli_fetch_assoc(mysqli_query($con,"SELECT membership_end FROM members WHERE member_id='$member_id'"));
+    $m = mysqli_fetch_assoc(mysqli_query($con,"SELECT membership_end FROM sens_members WHERE member_id='$member_id'"));
 
     if(!empty($m['membership_end'])){   // ✅ NULL check added
         $end = strtotime($m['membership_end']);

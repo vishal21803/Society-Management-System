@@ -26,7 +26,7 @@ $img = $_FILES['event_img']['name'];
 $tmp = $_FILES['event_img']['tmp_name'];
 move_uploaded_file($tmp,"upload/events/".$img);
 
-$sql = "INSERT INTO events 
+$sql = "INSERT INTO sens_events 
 (title, description, event_date, event_time, event_location, event_status, event_img, toshow_type, toshow_id, created_at)
 VALUES
 ('$title','$desc','$date','$time','$loc','$status','$img','$toshow_type','$toshow_id',NOW())";

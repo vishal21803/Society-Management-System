@@ -11,7 +11,7 @@ if(isset($_SESSION['member_id'])){
     $isLoggedIn = true;
     $member_id = $_SESSION['member_id'];
 
-    $m = mysqli_query($con,"SELECT zone_id, city_id FROM members WHERE member_id='$member_id'");
+    $m = mysqli_query($con,"SELECT zone_id, city_id FROM sens_members WHERE member_id='$member_id'");
     $md = mysqli_fetch_assoc($m);
     $myZone = $md['zone_id'];
     $myCity = $md['city_id'];
@@ -19,7 +19,7 @@ if(isset($_SESSION['member_id'])){
 
 if($isLoggedIn){
     $eventQuery = mysqli_query($con,"
-        SELECT * FROM events
+        SELECT * FROM sens_events
         WHERE event_status='upcoming'
         AND (
             toshow_type='all' OR
@@ -32,7 +32,7 @@ if($isLoggedIn){
     ");
 }else{
     $eventQuery = mysqli_query($con,"
-        SELECT * FROM events
+        SELECT * FROM sens_events
         WHERE event_status='upcoming'
         AND toshow_type='all'
         ORDER BY event_id DESC

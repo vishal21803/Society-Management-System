@@ -18,8 +18,8 @@ include("connectdb.php");
 
 $res = mysqli_query($con,"
 SELECT pr.*, p.name, p.price 
-FROM plan_requests pr
-JOIN plans p ON pr.plan_id = p.plan_id
+FROM sens_plan_requests pr
+JOIN sens_plans p ON pr.plan_id = p.plan_id
 WHERE pr.status = 'pending'
 ");
 ?>

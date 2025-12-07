@@ -41,8 +41,8 @@ include("connectdb.php");
                 <?php
   $resC = mysqli_query($con,"
                         SELECT c.city_id, c.city_name, z.zone_name ,c.cstatus
-                        FROM cities c 
-                        JOIN zones z ON c.zone_id = z.zone_id
+                        FROM sens_cities c 
+                        JOIN sens_zones z ON c.zone_id = z.zone_id
                         ORDER BY c.city_name ASC
                     ");                $i=1;
                 while($c = mysqli_fetch_assoc($resC)){
@@ -138,7 +138,7 @@ include("connectdb.php");
                                     <select id="stateDropdown" class="form-select" onchange="loadZones();" required>
                                         <option value="">Select State</option>
                                         <?php
-                                            $res2 = mysqli_query($con,"SELECT * FROM states ORDER BY state_name ASC");
+                                            $res2 = mysqli_query($con,"SELECT * FROM sens_states ORDER BY state_name ASC");
                                             while($row2 = mysqli_fetch_array($res2)){
                                                 echo "<option value='{$row2['state_id']}'>{$row2['state_name']}</option>";
                                             }
@@ -150,7 +150,7 @@ include("connectdb.php");
                                     <select id="zoneDropdown" name="zone_id" class="form-select" required>
                                         <option value="">Select Zone</option>
                                          <?php
-                                            $res2 = mysqli_query($con,"SELECT * FROM zones ORDER BY zone_name ASC");
+                                            $res2 = mysqli_query($con,"SELECT * FROM sens_zones ORDER BY zone_name ASC");
                                             while($row2 = mysqli_fetch_array($res2)){
                                                 echo "<option value='{$row2['zone_id']}'>{$row2['zone_name']}</option>";
                                             }

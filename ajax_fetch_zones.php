@@ -4,7 +4,7 @@ include("connectdb.php");
 $search = $_POST['search'];
 $sort   = $_POST['sort'];
 
-$sql = "SELECT * FROM zones WHERE zone_name LIKE '%$search%'";
+$sql = "SELECT * FROM sens_zones WHERE zone_name LIKE '%$search%'";
 
 if($sort == "asc"){
     $sql .= " ORDER BY zone_name ASC";

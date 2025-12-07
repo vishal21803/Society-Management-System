@@ -28,7 +28,7 @@ $imgName = time()."_".$img;
 move_uploaded_file($tmp, "upload/news/".$imgName);
 
 /* ================= INSERT QUERY ================= */
-$sql = "INSERT INTO news 
+$sql = "INSERT INTO sens_news 
 (title, description, news_date, status, news_img, toshow_type, toshow_id, created_at)
 VALUES
 ('$title', '$desc', '$date', '$status', '$imgName', '$toshow_type', '$toshow_id', NOW())";

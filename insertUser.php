@@ -5,7 +5,7 @@ $b=$_REQUEST["email"];
 $c=$_REQUEST["password"];
 
 
-mysqli_query($con,"insert into users(name,email,password,role,created_at) values('$a','$b','$c','user',NOW())");
+mysqli_query($con,"insert into sens_users(name,email,password,role,created_at) values('$a','$b','$c','user',NOW())");
 
 header("location:successpage.php");
 

@@ -10,7 +10,7 @@ $location  = $_POST['location'];
 $status    = $_POST['status'];
 $showType  = $_POST['showType'];
 
-$q=mysqli_query($con,"UPDATE events SET 
+$q=mysqli_query($con,"UPDATE sens_events SET 
 title='$title',
 description='$desc',
 event_date='$date',

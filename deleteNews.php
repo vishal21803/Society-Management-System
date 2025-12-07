@@ -6,7 +6,7 @@ if(isset($_POST['id']))
     $id = $_POST['id'];
 
     // ✅ Pehle image ka naam nikalo (optional delete from folder)
-    $getImage = mysqli_query($con, "SELECT news_img FROM news WHERE news_id='$id'");
+    $getImage = mysqli_query($con, "SELECT news_img FROM sens_news WHERE news_id='$id'");
     if(mysqli_num_rows($getImage) > 0)
     {
         $row = mysqli_fetch_assoc($getImage);
@@ -20,7 +20,7 @@ if(isset($_POST['id']))
     }
 
     // ✅ News delete query
-    $delete = mysqli_query($con, "DELETE FROM news WHERE news_id='$id'");
+    $delete = mysqli_query($con, "DELETE FROM sens_news WHERE news_id='$id'");
 
     if($delete)
     {

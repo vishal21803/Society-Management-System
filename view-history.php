@@ -3,7 +3,7 @@ include("connectdb.php");
 $mid = $_GET['mid'];
 
 $q = mysqli_query($con,"
-SELECT * FROM payments
+SELECT * FROM sens_payments
 WHERE member_id='$mid'
 ORDER BY payment_for_year DESC
 ");

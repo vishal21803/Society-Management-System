@@ -5,7 +5,7 @@ $name = $_POST['name'];
 
 $q = mysqli_query($con,"
     SELECT *
-    FROM members 
+    FROM sens_members 
     
     WHERE fullname LIKE '%$name%' 
     

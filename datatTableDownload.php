@@ -31,7 +31,7 @@ include("connectdb.php");
 
                 <!-- ✅ DATA FETCH -->
                 <?php
-                $result = mysqli_query($con, "SELECT * FROM downloads ORDER BY id DESC");
+                $result = mysqli_query($con, "SELECT * FROM sens_downloads ORDER BY id DESC");
                 ?>
 
                 <!-- ✅ SAME TABLE STYLE -->

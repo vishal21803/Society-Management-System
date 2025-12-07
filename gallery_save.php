@@ -15,7 +15,7 @@ $tmp = $_FILES['image']['tmp_name'];
 $imgName = time()."_".$img;
 move_uploaded_file($tmp,"upload/gallery/".$imgName);
 
-$q = "INSERT INTO gallery 
+$q = "INSERT INTO sens_gallery 
 (title, description, visibility_type, zone_id, city_id, member_id, image, created_at)
 VALUES
 ('$title','$desc','$type','$zone','$city','$member','$imgName',NOW())";

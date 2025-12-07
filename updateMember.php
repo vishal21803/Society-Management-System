@@ -14,7 +14,7 @@ $city    = $_POST['city'];
 $plan    = $_POST['plan'];
 
 $update = mysqli_query($con,"
-UPDATE members SET 
+UPDATE sens_members SET 
  fullname='$name',
  phone='$phone',
  gender='$gender',

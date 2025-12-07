@@ -71,7 +71,7 @@ if(isset($_SESSION["uname"]) && $_SESSION["utype"]=='admin') {
                                     <select id="zoneStateDropdown" name="state_id" class="form-select" required>
                                         <option value="">Select State</option>
                                         <?php
-                                        $res = mysqli_query($con,"SELECT * FROM states ORDER BY state_name ASC");
+                                        $res = mysqli_query($con,"SELECT * FROM sens_states ORDER BY state_name ASC");
                                         while($row = mysqli_fetch_array($res)){
                                             echo "<option value='{$row['state_id']}'>{$row['state_name']}</option>";
                                         }
@@ -100,7 +100,7 @@ if(isset($_SESSION["uname"]) && $_SESSION["utype"]=='admin') {
                                     <select id="stateDropdown" class="form-select" onchange="loadZones();" required>
                                         <option value="">Select State</option>
                                         <?php
-                                            $res2 = mysqli_query($con,"SELECT * FROM states ORDER BY state_name ASC");
+                                            $res2 = mysqli_query($con,"SELECT * FROM sens_states ORDER BY state_name ASC");
                                             while($row2 = mysqli_fetch_array($res2)){
                                                 echo "<option value='{$row2['state_id']}'>{$row2['state_name']}</option>";
                                             }
@@ -112,7 +112,7 @@ if(isset($_SESSION["uname"]) && $_SESSION["utype"]=='admin') {
                                     <select id="zoneDropdown" name="zone_id" class="form-select" required>
                                         <option value="">Select Zone</option>
                                          <?php
-                                            $res2 = mysqli_query($con,"SELECT * FROM zones ORDER BY zone_name ASC");
+                                            $res2 = mysqli_query($con,"SELECT * FROM sens_zones ORDER BY zone_name ASC");
                                             while($row2 = mysqli_fetch_array($res2)){
                                                 echo "<option value='{$row2['zone_id']}'>{$row2['zone_name']}</option>";
                                             }
@@ -170,7 +170,7 @@ if(isset($_SESSION["uname"]) && $_SESSION["utype"]=='admin') {
                 </thead>
                 <tbody id="zoneList">
                     <?php
-                    $resZ = mysqli_query($con,"SELECT * FROM zones ORDER BY zone_name ASC");
+                    $resZ = mysqli_query($con,"SELECT * FROM sens_zones ORDER BY zone_name ASC");
                     $i=1;
                     while($z = mysqli_fetch_assoc($resZ)){
                     ?>
@@ -203,7 +203,7 @@ if(isset($_SESSION["uname"]) && $_SESSION["utype"]=='admin') {
         <select id="filterZone" class="form-select" onchange="filterCities()">
             <option value="">All Zones</option>
             <?php
-            $zres = mysqli_query($con,"SELECT * FROM zones ORDER BY zone_name ASC");
+            $zres = mysqli_query($con,"SELECT * FROM sens_zones ORDER BY zone_name ASC");
             while($z = mysqli_fetch_assoc($zres)){
             ?>
                 <option value="<?= $z['zone_id'] ?>">
@@ -243,8 +243,8 @@ if(isset($_SESSION["uname"]) && $_SESSION["utype"]=='admin') {
                     <?php
                     $resC = mysqli_query($con,"
                         SELECT c.city_id, c.city_name, z.zone_name 
-                        FROM cities c 
-                        JOIN zones z ON c.zone_id = z.zone_id
+                        FROM sens_cities c 
+                        JOIN sens_zones z ON c.zone_id = z.zone_id
                         ORDER BY c.city_name ASC
                     ");
                     $i=1;

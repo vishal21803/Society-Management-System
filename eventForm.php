@@ -113,7 +113,7 @@ include("header.php");
         <select name="toshow_zone" class="form-select">
             <option value="">Select Zone</option>
             <?php
-            $z = mysqli_query($con,"SELECT * FROM zones ORDER BY zone_name ASC");
+            $z = mysqli_query($con,"SELECT * FROM sens_zones ORDER BY zone_name ASC");
             while($row = mysqli_fetch_assoc($z)){
             ?>
                 <option value="<?= $row['zone_id'] ?>"><?= $row['zone_name'] ?></option>
@@ -127,7 +127,7 @@ include("header.php");
         <select name="toshow_city" class="form-select">
             <option value="">Select City</option>
             <?php
-            $c = mysqli_query($con,"SELECT * FROM cities ORDER BY city_name ASC");
+            $c = mysqli_query($con,"SELECT * FROM sens_cities ORDER BY city_name ASC");
             while($row = mysqli_fetch_assoc($c)){
             ?>
                 <option value="<?= $row['city_id'] ?>"><?= $row['city_name'] ?></option>
@@ -141,7 +141,7 @@ include("header.php");
         <select name="toshow_member" class="form-select">
             <option value="">Select Member</option>
             <?php
-            $m = mysqli_query($con,"SELECT member_id, fullname FROM members ORDER BY fullname ASC");
+            $m = mysqli_query($con,"SELECT member_id, fullname FROM sens_members ORDER BY fullname ASC");
             while($row = mysqli_fetch_assoc($m)){
             ?>
                 <option value="<?= $row['member_id'] ?>"><?= $row['fullname'] ?></option>

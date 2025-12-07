@@ -33,14 +33,14 @@ $img = time()."_".$file["name"];
 move_uploaded_file($file["tmp_name"], "upload/member/".$img);
 
 
-mysqli_query($con,"insert into users (name,email,password,role,created_at) values('$username','$email','$password','user',NOW())");
+mysqli_query($con,"insert into sens_users (name,email,password,role,created_at) values('$username','$email','$password','user',NOW())");
 
 $user_id = mysqli_insert_id($con);
 
 // ===============================
 // ✅ GET PLAN DETAILS
 // ===============================
-$p = mysqli_fetch_assoc(mysqli_query($con,"SELECT * FROM plans WHERE plan_id='$plan_id'"));
+$p = mysqli_fetch_assoc(mysqli_query($con,"SELECT * FROM sens_plans WHERE plan_id='$plan_id'"));
 
 $plan_start = date('Y-m-d');
 
@@ -54,7 +54,7 @@ if($p['duration_days'] != NULL){
 // ✅ INSERT INTO MEMBERS
 // ===============================
 $insert = mysqli_query($con,"
-INSERT INTO members 
+INSERT INTO sens_members 
 (user_id, zone_id, city_id, phone, address, photo, created_at, gender, dob, fullname, plan_id) 
 VALUES 
 ('$user_id', '$zone_id', '$city_id', '$phone', '$address', '$img', NOW(), '$gender','$dob','$fullname','$plan_id')
@@ -76,7 +76,7 @@ $member_id = mysqli_insert_id($con);
 // ✅ MEMBER APPROVAL REQUEST (PROFILE SIDE)
 // ===============================
 mysqli_query($con,"
-INSERT INTO requests (member_id, status, request_date) 
+INSERT INTO sens_requests (member_id, status, request_date) 
 VALUES ('$member_id', 'pending', NOW())
 ");
 

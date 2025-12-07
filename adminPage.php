@@ -33,7 +33,7 @@ include("header.php");
                 <div class="card-body">
                     <h3 class="fw-bold text-success">
                         <?php 
-                        echo mysqli_num_rows(mysqli_query($con,"SELECT * FROM members")); 
+                        echo mysqli_num_rows(mysqli_query($con,"SELECT * FROM sens_members")); 
                         ?>
                     </h3>
                     <p class="mb-0">Total Members</p>

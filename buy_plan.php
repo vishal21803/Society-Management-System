@@ -7,7 +7,7 @@ $plan_id = $_GET['plan_id'];     // 1 = Yearly
 
 // Ek nayi request insert karo (pending approval)
 mysqli_query($con, "
-INSERT INTO plan_requests 
+INSERT INTO sens_plan_requests 
 (user_id, plan_id, request_date, status)
 VALUES 
 ('$user_id', '$plan_id', CURDATE(), 'pending')

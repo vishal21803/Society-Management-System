@@ -32,7 +32,7 @@ include("connectdb.php");
         <select id="filter_zone" class="form-select" onchange="loadUsers()">
             <option value="">All Zones</option>
             <?php
-            $z = mysqli_query($con,"SELECT * FROM zones");
+            $z = mysqli_query($con,"SELECT * FROM sens_zones");
             while($row=mysqli_fetch_assoc($z)){
             ?>
             <option value="<?= $row['zone_id'] ?>"><?= $row['zone_name'] ?></option>

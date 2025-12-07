@@ -7,8 +7,8 @@ $sortBy = $_POST['sortBy'] ?? "";   // name / username / member_id
 
 $sql = "
 SELECT u.id, u.name, m.member_id, m.fullname
-FROM users u
-JOIN members m ON u.id = m.user_id
+FROM sens_users u
+JOIN sens_members m ON u.id = m.user_id
 WHERE u.name LIKE '%$search%' 
 OR m.fullname LIKE '%$search%'
 ";

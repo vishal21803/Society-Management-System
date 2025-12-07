@@ -2,7 +2,7 @@
 include("connectdb.php");
 
 $id = intval($_GET['id']);
-$res = mysqli_query($con,"SELECT * FROM gallery WHERE gallery_id='$id'");
+$res = mysqli_query($con,"SELECT * FROM sens_gallery WHERE gallery_id='$id'");
 $row = mysqli_fetch_assoc($res);
 ?>
 
@@ -37,7 +37,7 @@ $row = mysqli_fetch_assoc($res);
             <div id="zoneBox" class="d-none mb-2">
                 <select name="zone_id" class="form-select">
                     <option value="">Select Zone</option>
-                    <?php $z=mysqli_query($con,"SELECT * FROM zones");
+                    <?php $z=mysqli_query($con,"SELECT * FROM sens_zones");
                     while($r=mysqli_fetch_assoc($z)){
                         echo "<option value='{$r['zone_id']}'>{$r['zone_name']}</option>";
                     } ?>
@@ -47,7 +47,7 @@ $row = mysqli_fetch_assoc($res);
             <div id="cityBox" class="d-none mb-2">
                 <select name="city_id" class="form-select">
                     <option value="">Select City</option>
-                    <?php $c=mysqli_query($con,"SELECT * FROM cities");
+                    <?php $c=mysqli_query($con,"SELECT * FROM sens_cities");
                     while($r=mysqli_fetch_assoc($c)){
                         echo "<option value='{$r['city_id']}'>{$r['city_name']}</option>";
                     } ?>
@@ -57,7 +57,7 @@ $row = mysqli_fetch_assoc($res);
             <div id="memberBox" class="d-none mb-2">
                 <select name="member_id" class="form-select">
                     <option value="">Select Member</option>
-                    <?php $m=mysqli_query($con,"SELECT * FROM members");
+                    <?php $m=mysqli_query($con,"SELECT * FROM sens_members");
                     while($r=mysqli_fetch_assoc($m)){
                         echo "<option value='{$r['member_id']}'>{$r['fullname']}</option>";
                     } ?>

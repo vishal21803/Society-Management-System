@@ -44,11 +44,11 @@ $q = mysqli_query($con,"
         z.zone_name,
         c.city_name
 
-    FROM requests r
-    JOIN members m ON r.member_id = m.member_id
-    JOIN users u ON m.user_id = u.id
-    JOIN zones z ON m.zone_id = z.zone_id
-    JOIN cities c ON m.city_id = c.city_id
+    FROM sens_requests r
+    JOIN sens_members m ON r.member_id = m.member_id
+    JOIN sens_users u ON m.user_id = u.id
+    JOIN sens_zones z ON m.zone_id = z.zone_id
+    JOIN sens_cities c ON m.city_id = c.city_id
 
     WHERE r.member_id = '$uid'
 ");

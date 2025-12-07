@@ -18,7 +18,7 @@ include("connectdb.php");
     <div class="row g-4">
 
         <?php
-        $q = mysqli_query($con,"SELECT * FROM plans");
+        $q = mysqli_query($con,"SELECT * FROM sens_plans");
         while($plan = mysqli_fetch_assoc($q)){
         ?>
         <div class="col-md-6">

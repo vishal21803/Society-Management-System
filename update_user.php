@@ -3,12 +3,12 @@ include("connectdb.php");
 
 $id = $_POST['user_id'];
 
-mysqli_query($con,"UPDATE users SET 
+mysqli_query($con,"UPDATE sens_users SET 
 email='{$_POST['email']}',
 name='{$_POST['uname']}'
 WHERE id='$id'");
 
-mysqli_query($con,"UPDATE members SET 
+mysqli_query($con,"UPDATE sens_members SET 
 fullname='{$_POST['fullname']}',
 dob='{$_POST['dob']}',
 gender='{$_POST['gender']}',

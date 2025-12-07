@@ -5,7 +5,7 @@ if(isset($_POST['event_id']))
 {
     $event_id = $_POST['event_id'];
 
-    $delete = mysqli_query($con,"DELETE FROM events WHERE event_id='$event_id'");
+    $delete = mysqli_query($con,"DELETE FROM sens_events WHERE event_id='$event_id'");
 
     if($delete){
         echo "success";

@@ -8,7 +8,7 @@ if(!isset($_POST['id'])) {
 
 $id = (int) $_POST['id'];
 
-$res = mysqli_query($con, "SELECT * FROM gallery WHERE gallery_id = $id LIMIT 1");
+$res = mysqli_query($con, "SELECT * FROM sens_gallery WHERE gallery_id = $id LIMIT 1");
 if(!$res) {
     echo json_encode(['error' => mysqli_error($con)]);
     exit;

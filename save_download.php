@@ -12,7 +12,7 @@ $target_file = $target_dir . $file_name;
 
 if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {
 
-    $sql = "INSERT INTO downloads (topic, remark, file_name,downshow) 
+    $sql = "INSERT INTO sens_downloads (topic, remark, file_name,downshow) 
             VALUES ('$topic', '$remark', '$file_name','$type')";
     mysqli_query($con, $sql);
 

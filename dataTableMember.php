@@ -61,10 +61,10 @@ SELECT
     c.city_name,
     u.email
 
-FROM members m
-LEFT JOIN users u ON m.user_id = u.id
-LEFT JOIN zones z ON m.zone_id = z.zone_id
-LEFT JOIN cities c ON m.city_id = c.city_id
+FROM sens_members m
+LEFT JOIN sens_users u ON m.user_id = u.id
+LEFT JOIN sens_zones z ON m.zone_id = z.zone_id
+LEFT JOIN sens_cities c ON m.city_id = c.city_id
 ORDER BY m.fullname ASC
 ");
 
@@ -176,7 +176,7 @@ Edit
 <select id="edit_zone" class="form-select" onchange="loadMemberCities(this.value)">
               <option value="">Select Zone</option>
               <?php
-              $z=mysqli_query($con,"SELECT * FROM zones WHERE zstatus=1");
+              $z=mysqli_query($con,"SELECT * FROM sens_zones WHERE zstatus=1");
               while($r=mysqli_fetch_assoc($z)){
               ?>
                 <option value="<?= $r['zone_id'] ?>"><?= $r['zone_name'] ?></option>
@@ -193,7 +193,7 @@ Edit
             <label>Plan</label>
             <select id="edit_plan" class="form-select">
               <?php
-              $p=mysqli_query($con,"SELECT * FROM plans");
+              $p=mysqli_query($con,"SELECT * FROM sens_plans");
               while($pl=mysqli_fetch_assoc($p)){
               ?>
                 <option value="<?= $pl['plan_id'] ?>"><?= $pl['name'] ?></option>

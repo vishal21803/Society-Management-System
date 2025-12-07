@@ -4,7 +4,7 @@ include("connectdb.php");
 if(isset($_POST['id'])){
     $id = $_POST['id'];
 
-        $delete = mysqli_query($con,"DELETE FROM gallery WHERE gallery_id='$id'");
+        $delete = mysqli_query($con,"DELETE FROM sens_gallery WHERE gallery_id='$id'");
         if($delete){
             echo "success";
         } else {

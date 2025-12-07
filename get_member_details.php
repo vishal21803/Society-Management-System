@@ -10,10 +10,10 @@ $res = mysqli_query($con, "
        
         z.zone_name,
         c.city_name
-    FROM members m
-    JOIN users u ON u.id = m.user_id
-    JOIN zones z ON z.zone_id = m.zone_id
-    JOIN cities c ON c.city_id = m.city_id
+    FROM sens_members m
+    JOIN sens_users u ON u.id = m.user_id
+    JOIN sens_zones z ON z.zone_id = m.zone_id
+    JOIN sens_cities c ON c.city_id = m.city_id
     WHERE m.member_id='$member_id'
 ");
 

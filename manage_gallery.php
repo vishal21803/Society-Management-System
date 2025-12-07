@@ -44,7 +44,7 @@ if(isset($_SESSION["uname"]) && $_SESSION["utype"]=='admin') {
                     <tbody>
                         <?php 
                         $i = 1;
-                        $query = "SELECT * FROM gallery ORDER BY gallery_id DESC";
+                        $query = "SELECT * FROM sens_gallery ORDER BY gallery_id DESC";
                         $result = mysqli_query($con, $query);
 
                         while($row = mysqli_fetch_assoc($result)) { ?>

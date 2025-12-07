@@ -7,10 +7,10 @@ $isLogin = isset($_SESSION["uname"]);
 
 if($isLogin){
     // ✅ Logged in → General + Members both
-    $sql = "SELECT * FROM downloads WHERE downshow IN ('general','members') ORDER BY id DESC";
+    $sql = "SELECT * FROM sens_downloads WHERE downshow IN ('general','members') ORDER BY id DESC";
 }else{
     // ✅ Logged out → Only General
-    $sql = "SELECT * FROM downloads WHERE downshow='general' ORDER BY id DESC";
+    $sql = "SELECT * FROM sens_downloads WHERE downshow='general' ORDER BY id DESC";
 }
 
 $query = mysqli_query($con,$sql);

@@ -11,8 +11,8 @@ $member_id = $_SESSION['member_id'];
 // Fetch member + plan info
 $planQuery = mysqli_query($con,"
     SELECT m.membership_start, m.membership_end, p.name AS plan_name, p.price, p.duration_days
-    FROM members m
-    JOIN plans p ON m.plan_id = p.plan_id
+    FROM sens_members m
+    JOIN sens_plans p ON m.plan_id = p.plan_id
     WHERE m.member_id='$member_id'
 ");
 $plan = mysqli_fetch_assoc($planQuery);
@@ -106,7 +106,7 @@ $historyQuery = "
    bill_purpose AS purpose,
    'Bill' AS type,
    '' AS manual_id
- FROM bills
+ FROM sens_bills
  WHERE member_id='$member_id'
 )
 UNION ALL
@@ -118,7 +118,7 @@ UNION ALL
    purpose,
    'Receipt' AS type,
    manualID AS manual_id
- FROM receipt
+ FROM sens_receipt
  WHERE member_id='$member_id'
 )
 ORDER BY trans_date ASC

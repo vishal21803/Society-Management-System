@@ -111,7 +111,7 @@ include("connectdb.php");
                     <select id="stateDropdown" name="state_id" class="form-select" required onchange="loadZones();">
                         <option value="">Select State</option>
                         <?php
-                        $rs = mysqli_query($con,"SELECT * FROM states ORDER BY state_name ASC");
+                        $rs = mysqli_query($con,"SELECT * FROM sens_states ORDER BY state_name ASC");
                         while($s = mysqli_fetch_assoc($rs)){
                             echo "<option value='".$s['state_id']."'>".$s['state_name']."</option>";
                         }
@@ -124,7 +124,7 @@ include("connectdb.php");
                     <select id="zoneDropdown" name="zone_id" class="form-select" required onchange="loadCities();">
                         <option value="">Select Zone</option>
                             <?php
-                        $rs = mysqli_query($con,"SELECT * FROM zones ORDER BY zone_id ASC");
+                        $rs = mysqli_query($con,"SELECT * FROM sens_zones ORDER BY zone_id ASC");
                         while($s = mysqli_fetch_assoc($rs)){
                             echo "<option value='".$s['zone_id']."'>".$s['zone_name']."</option>";
                         }
@@ -164,7 +164,7 @@ include("connectdb.php");
 
     <div class="row">
         <?php
-        $pr = mysqli_query($con,"SELECT * FROM plans");
+        $pr = mysqli_query($con,"SELECT * FROM sens_plans");
         while($p = mysqli_fetch_assoc($pr)){
         ?>
         <div class="col-md-6 mb-3">

@@ -15,7 +15,7 @@ include("connectdb.php");
     <div class="row">
 
         <?php
-        $res = mysqli_query($con,"SELECT * FROM news ORDER BY created_at DESC");
+        $res = mysqli_query($con,"SELECT * FROM sens_news ORDER BY created_at DESC");
         while($row = mysqli_fetch_assoc($res)){
         ?>
         <div class="col-md-4 mb-3">

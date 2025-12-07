@@ -49,10 +49,10 @@ include("connectdb.php");
                         $i=1;
                         $query = "
                         SELECT m.member_id, m.fullname, u.email, c.city_name, z.zone_name
-                        FROM members m
-                        JOIN users u ON m.user_id = u.id
-                        JOIN cities c ON m.city_id = c.city_id
-                        JOIN zones z ON m.zone_id = z.zone_id
+                        FROM sens_members m
+                        JOIN sens_users u ON m.user_id = u.id
+                        JOIN sens_cities c ON m.city_id = c.city_id
+                        JOIN sens_zones z ON m.zone_id = z.zone_id
                         ORDER BY m.member_id DESC
                         ";
                         $result = mysqli_query($con, $query);
@@ -143,7 +143,7 @@ $historyQuery = "
    bill_purpose AS purpose,
    'Bill' AS type,
    '' AS manual_id
- FROM bills
+ FROM sens_bills
  WHERE member_id='$member_id'
 )
 UNION ALL
@@ -155,7 +155,7 @@ UNION ALL
    purpose,
    'Receipt' AS type,
    manualID AS manual_id
- FROM receipt
+ FROM sens_receipt
  WHERE member_id='$member_id'
 )
 ORDER BY trans_date ASC

@@ -5,7 +5,7 @@
 
  include("connectdb.php");
 
- $rsCust=mysqli_query($con,"select * from users where BINARY name='$a' ");
+ $rsCust=mysqli_query($con,"select * from sens_users where BINARY name='$a' ");
 
  if(mysqli_num_rows($rsCust)==0){
     header("location:login.php?regmsg=1");
@@ -20,7 +20,7 @@
 
                 $memid=$row["id"];
 
-         $rsmem=mysqli_query($con,"select * from members where user_id='$memid' ");
+         $rsmem=mysqli_query($con,"select * from sens_members where user_id='$memid' ");
         while($row5=mysqli_fetch_array($rsmem)) {
           $_SESSION["member_id"]=$row5["member_id"];
         }

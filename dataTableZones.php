@@ -37,7 +37,7 @@ include("connectdb.php");
             <!-- ✅ TABLE BODY -->
             <tbody>
                 <?php
-                $resZ = mysqli_query($con,"SELECT * FROM zones where zstatus=0 or zstatus=1 ORDER BY zone_name ASC");
+                $resZ = mysqli_query($con,"SELECT * FROM sens_zones where zstatus=0 or zstatus=1 ORDER BY zone_name ASC");
                 $i=1;
                 while($z = mysqli_fetch_assoc($resZ)){
                 ?>

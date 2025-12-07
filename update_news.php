@@ -9,7 +9,7 @@ $tid    = $_POST['toshow_id'] ?? 0;   // ✅ default 0
 $date   = $_POST['news_date'];
 $status = $_POST['status'];
 
-$q = "UPDATE news SET 
+$q = "UPDATE sens_news SET 
         title='$title',
         description='$desc',
         toshow_type='$type',

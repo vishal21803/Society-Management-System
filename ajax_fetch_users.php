@@ -7,10 +7,10 @@ $city   = $_POST['city'] ?? '';
 $alpha  = $_POST['alpha'] ?? '';
 
 $query = "SELECT m.*, u.name, u.email, z.zone_name, c.city_name 
-          FROM members m
-          JOIN users u ON m.user_id=u.id
-          LEFT JOIN zones z ON m.zone_id=z.zone_id
-          LEFT JOIN cities c ON m.city_id=c.city_id
+          FROM sens_members m
+          JOIN sens_users u ON m.user_id=u.id
+          LEFT JOIN sens_zones z ON m.zone_id=z.zone_id
+          LEFT JOIN sens_cities c ON m.city_id=c.city_id
           WHERE 1 ";
 
 if($search!=""){

@@ -10,7 +10,7 @@ $bill_date = date("Y-m-d H:i:s");
 
 /* ✅ INSERT INTO BILLS */
 $insert = mysqli_query($con, "
-    INSERT INTO bills (member_id, bill_date, bill_amount, bill_purpose)
+    INSERT INTO sens_bills (member_id, bill_date, bill_amount, bill_purpose)
     VALUES ('$member_id', '$bill_date', '$bill_amount', '$purpose')
 ");
 
@@ -18,7 +18,7 @@ if($insert){
 
     // ✅ ADD BILL AMOUNT TO MEMBER BALANCE
     mysqli_query($con, "
-        UPDATE members 
+        UPDATE sens_members 
         SET balance_amount = balance_amount + $bill_amount
         WHERE member_id = '$member_id'
     ");

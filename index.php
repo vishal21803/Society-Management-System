@@ -183,7 +183,7 @@ if(isset($_SESSION['member_id'])) {
     $isLoggedIn = true;
     $member_id = $_SESSION['member_id'];
 
-    $memberQuery = mysqli_query($con, "SELECT zone_id, city_id FROM members WHERE member_id='$member_id'");
+    $memberQuery = mysqli_query($con, "SELECT zone_id, city_id FROM sens_members WHERE member_id='$member_id'");
     if(mysqli_num_rows($memberQuery) > 0) {
         $memberData = mysqli_fetch_assoc($memberQuery);
         $myZone = $memberData['zone_id'];
@@ -196,7 +196,7 @@ if(isset($_SESSION['member_id'])) {
 if($isLoggedIn){
 
     $galleryQuery = mysqli_query($con, "
-    SELECT * FROM gallery 
+    SELECT * FROM sens_gallery 
     WHERE
         visibility_type='all'
 
@@ -213,7 +213,7 @@ if($isLoggedIn){
 
     // ✅ Guest user sirf ALL dekhega
     $galleryQuery = mysqli_query($con, "
-    SELECT * FROM gallery 
+    SELECT * FROM sens_gallery 
     WHERE visibility_type='all'
     ORDER BY gallery_id DESC
     ");
@@ -225,7 +225,7 @@ if($isLoggedIn){
 if($isLoggedIn){
 
 $newsQuery = mysqli_query($con, "
-SELECT * FROM news 
+SELECT * FROM sens_news 
 WHERE status='active'
 AND (
     toshow_type='all'
@@ -243,7 +243,7 @@ else{
 
     // ✅ Guest sirf ALL type dekhega
     $newsQuery = mysqli_query($con, "
-    SELECT * FROM news 
+    SELECT * FROM sens_news 
     WHERE status='active'
     AND toshow_type='all'
     ORDER BY news_id DESC
@@ -259,7 +259,7 @@ else{
 // === Events Query
 if($isLoggedIn){
     $eventQuery = mysqli_query($con, "
-        SELECT * FROM events
+        SELECT * FROM sens_events
         WHERE event_status='upcoming'
         AND (
             toshow_type='all'
@@ -272,7 +272,7 @@ if($isLoggedIn){
     ");
 }else{
     $eventQuery = mysqli_query($con, "
-        SELECT * FROM events
+        SELECT * FROM sens_events
         WHERE event_status='upcoming'
         AND toshow_type='all'
         ORDER BY event_id DESC

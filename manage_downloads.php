@@ -18,7 +18,7 @@ include("connectdb.php");
             <h4 class="text-center mb-4 e fw-bold">📂 Manage Downloads</h4>
 
             <?php
-            $result = mysqli_query($con, "SELECT * FROM downloads ORDER BY id DESC");
+            $result = mysqli_query($con, "SELECT * FROM sens_downloads ORDER BY id DESC");
             ?>
 
             <div class="table-responsive">

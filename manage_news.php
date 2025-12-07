@@ -49,7 +49,7 @@ include("connectdb.php");
                     <tbody>
                     <?php
                     $i = 1;
-                    $q = mysqli_query($con,"SELECT * FROM news ORDER BY news_id DESC");
+                    $q = mysqli_query($con,"SELECT * FROM sens_news ORDER BY news_id DESC");
 
                     while($row = mysqli_fetch_assoc($q)){
                     ?>
@@ -167,7 +167,7 @@ include("connectdb.php");
   <label>Select Zone</label>
   <select class="form-select" onchange="setTarget(this.value)">
     <?php
-    $z = mysqli_query($con,"SELECT * FROM zones");
+    $z = mysqli_query($con,"SELECT * FROM sens_zones");
     while($row = mysqli_fetch_assoc($z)){ ?>
       <option value="<?= $row['zone_id'] ?>"><?= $row['zone_name'] ?></option>
     <?php } ?>
@@ -179,7 +179,7 @@ include("connectdb.php");
   <label>Select City</label>
   <select class="form-select" onchange="setTarget(this.value)">
     <?php
-    $c = mysqli_query($con,"SELECT * FROM cities");
+    $c = mysqli_query($con,"SELECT * FROM sens_cities");
     while($row = mysqli_fetch_assoc($c)){ ?>
       <option value="<?= $row['city_id'] ?>"><?= $row['city_name'] ?></option>
     <?php } ?>
@@ -191,7 +191,7 @@ include("connectdb.php");
   <label>Select Member</label>
   <select class="form-select" onchange="setTarget(this.value)">
     <?php
-    $m = mysqli_query($con,"SELECT member_id, fullname FROM members");
+    $m = mysqli_query($con,"SELECT member_id, fullname FROM sens_members");
     while($row = mysqli_fetch_assoc($m)){ ?>
       <option value="<?= $row['member_id'] ?>"><?= $row['fullname'] ?></option>
     <?php } ?>
