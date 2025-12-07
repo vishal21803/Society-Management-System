@@ -6,7 +6,7 @@ if(isset($_SESSION["uname"]) && $_SESSION["utype"]=='admin') {
 ?>
 
 <main>
-<div class="d-flex">
+<div class="d-flex flex-column flex-lg-row">
 
     <?php include('adminDashboard.php'); ?>
 
@@ -19,7 +19,8 @@ if(isset($_SESSION["uname"]) && $_SESSION["utype"]=='admin') {
                 <span><i class="bi bi-chat-dots me-2"></i> User Messages</span>
             </div>
 
-            <div class="card-body table-responsive">
+            <div class="card-body">
+    <div class="table-responsive mobile-table">
 
                 <table id="myTable" class="table table-bordered table-hover align-middle w-100">
                     <thead class="table-dark">
@@ -65,7 +66,7 @@ if(isset($_SESSION["uname"]) && $_SESSION["utype"]=='admin') {
 
             </div>
         </div>
-
+      </div>
     </div>
 </div>
 </main>

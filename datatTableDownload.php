@@ -6,8 +6,41 @@ include("header.php");
 include("connectdb.php");
 ?>
 
+<style>
+/* ✅ Force Mobile Scroll */
+.mobile-table {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+}
+
+/* ✅ Prevent table breaking layout */
+table {
+    min-width: 900px;
+}
+
+/* ✅ Wrap long text instead of pushing screen */
+td, th {
+    white-space: normal !important;
+    word-wrap: break-word;
+    font-size: 14px;
+}
+
+/* ✅ Buttons small on mobile */
+@media (max-width: 768px) {
+    .btn {
+        font-size: 12px;
+        padding: 4px 8px;
+    }
+
+    .card-header span {
+        font-size: 14px;
+    }
+}
+</style>
+
 <main>
-<div class="d-flex">
+<div class="d-flex flex-column flex-lg-row">
 
     <?php include('adminDashboard.php'); ?>
 
@@ -27,7 +60,8 @@ include("connectdb.php");
                 </a>
             </div>
 
-            <div class="card-body table-responsive">
+<div class="card-body">
+    <div class="table-responsive mobile-table">
 
                 <!-- ✅ DATA FETCH -->
                 <?php
@@ -93,6 +127,7 @@ include("connectdb.php");
                     </tbody>
                 </table>
 
+                </div>
             </div>
         </div>
 

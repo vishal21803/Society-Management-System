@@ -70,28 +70,64 @@ function loadZones(){
 
 function goStep(step, direction) {
 
-    // Hide all
+    // ✅ CURRENT STEP DETECT
+    let currentStep = document.querySelector(".step-box:not([style*='display: none'])");
+
+    // ✅ REQUIRED FIELD CHECK
+    let requiredFields = currentStep.querySelectorAll("input[required], select[required], textarea[required]");
+    let valid = true;
+
+    requiredFields.forEach(function(field){
+
+        // ✅ Radio validation
+        if(field.type === "radio"){
+            let group = currentStep.querySelectorAll("input[name='"+field.name+"']");
+            let checked = false;
+
+            group.forEach(r => { if (r.checked) checked = true; });
+
+            if(!checked){
+                valid = false;
+            }
+
+        }
+        // ✅ Normal input validation
+        else{
+            if(field.value.trim() === ""){
+                valid = false;
+                field.classList.add("is-invalid");
+            } else {
+                field.classList.remove("is-invalid");
+            }
+        }
+    });
+
+    // ❌ STOP IF INVALID
+    if (!valid) {
+        alert("⚠️ Please fill all required fields first!");
+        return;
+    }
+
+    // ✅ HIDE ALL STEPS
     document.getElementById("step1").style.display = "none";
     document.getElementById("step2").style.display = "none";
     document.getElementById("step3").style.display = "none";
     document.getElementById("step4").style.display = "none";
 
-
-    // Remove highlights
+    // ✅ REMOVE ACTIVE INDICATORS
     document.getElementById("step1Btn").classList.remove("active-step");
     document.getElementById("step2Btn").classList.remove("active-step");
     document.getElementById("step3Btn").classList.remove("active-step");
     document.getElementById("step4Btn").classList.remove("active-step");
 
-
-    // Show correct step + animation
+    // ✅ SHOW NEW STEP
     let box = document.getElementById("step" + step);
     box.style.display = "block";
 
     if (direction === "left") box.classList.add("show-left");
     if (direction === "right") box.classList.add("show-right");
 
-    // Highlight correct step
+    // ✅ ACTIVATE INDICATOR
     document.getElementById("step" + step + "Btn").classList.add("active-step");
 }
 

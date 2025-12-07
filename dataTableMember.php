@@ -7,7 +7,7 @@ include("connectdb.php");
 ?>
 
 <main>
-<div class="d-flex">
+<div class="d-flex flex-column flex-lg-row">
     <?php include('adminDashboard.php'); ?>
     <div class="flex-grow-1 p-4">
 
@@ -20,7 +20,9 @@ include("connectdb.php");
             </a>
         </div>
 
-        <div class="card-body table-responsive">
+       <div class="card-body">
+    <div class="table-responsive mobile-table">
+
             <table class="table table-bordered table-hover align-middle text-center" id="myTable">
 
                 <!-- ✅ TABLE HEADER -->
@@ -120,7 +122,7 @@ Edit
             </table>
         </div>
     </div>
-
+</div>
     </div>
 </div>
 

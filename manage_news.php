@@ -10,7 +10,7 @@ include("connectdb.php");
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
 
 <main>
-<div class="d-flex">
+<div class="d-flex flex-column flex-lg-row">
 
     <?php include('adminDashboard.php'); ?>
 
@@ -30,8 +30,9 @@ include("connectdb.php");
                 </a>
             </div>
 
-            <div class="card-body table-responsive">
 
+<div class="card-body">
+    <div class="table-responsive mobile-table">
                 <!-- ✅ SAME TABLE DESIGN -->
                 <table id="myTable" class="table table-bordered table-hover align-middle w-100">
                     <thead class="table-dark">
@@ -98,7 +99,7 @@ include("connectdb.php");
 
             </div>
         </div>
-
+      </div>
     </div>
 </div>
 

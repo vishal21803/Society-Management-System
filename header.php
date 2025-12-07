@@ -27,6 +27,14 @@ $currentPage = basename($_SERVER['PHP_SELF']);
     <link rel="stylesheet" href="dataTables.dataTables.min.css">
     
     <link rel="stylesheet" href="style.css">
+
+    <style>
+html, body {
+    max-width: 100%;
+    overflow-x: hidden !important;
+}
+</style>
+
 </head>
 <body>
 
