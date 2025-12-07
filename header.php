@@ -1,6 +1,10 @@
 <?php
 @session_start();
 ?>
+<?php
+$currentPage = basename($_SERVER['PHP_SELF']);
+?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -45,12 +49,24 @@
       <ul class="navbar-nav ms-auto">
 
         <!-- ✅ COMMON LINKS -->
-        <li class="nav-item"><a class="nav-link text-white" href="index.php">Home</a></li>
-        <li class="nav-item"><a class="nav-link text-white" href="#">About</a></li>
-        <li class="nav-item"><a class="nav-link text-white" href="#">Events</a></li>
-        <li class="nav-item"><a class="nav-link text-white" href="#">Members</a></li>
+      <li class="nav-item">
+  <a class="nav-link text-white <?= ($currentPage == 'index.php') ? 'active-link' : '' ?>" href="index.php">Home</a>
+</li>
+
+<li class="nav-item">
+  <a class="nav-link text-white <?= ($currentPage == 'showNews.php') ? 'active-link' : '' ?>" href="showNews.php">News</a>
+</li>
+
+<li class="nav-item">
+  <a class="nav-link text-white <?= ($currentPage == 'showEvents.php') ? 'active-link' : '' ?>" href="showEvents.php">Events</a>
+</li>
+
+<li class="nav-item">
+  <a class="nav-link text-white <?= ($currentPage == '') ? 'active-link' : '' ?>" href="">Contact Us</a>
+</li>
+
         <li class="nav-item"><a class="nav-link text-white" href="https://www.matrimonysoftware.in">Matrimony</a></li>
-        <li class="nav-item"><a class="nav-link text-white" href="#">Contact</a></li>
+     
 
         <?php if(isset($_SESSION["uname"]) && $_SESSION["utype"] == "user"){ ?>
 
@@ -58,7 +74,7 @@
            
 
             <li class="nav-item">
-              <a class="nav-link text-white fw-bold" href="userPage.php">Dashboard</a>
+  <a class="nav-link text-white <?= ($currentPage == 'userPage.php') ? 'active-link' : '' ?>" href="userPage.php">Dashboard</a>
             </li>
 
          
@@ -68,7 +84,7 @@
            
 
             <li class="nav-item">
-              <a class="nav-link text-white fw-bold" href="adminPage.php">Dashboard</a>
+  <a class="nav-link text-white <?= ($currentPage == 'adminPage.php') ? 'active-link' : '' ?>" href="adminPage.php">Dashboard</a>
             </li>
 
 
@@ -76,7 +92,7 @@
 
             <!-- ✅ NOT LOGGED IN -->
             <li class="nav-item">
-              <a class="nav-link text-white fw-bold" href="login.php">Login</a>
+  <a class="nav-link text-white <?= ($currentPage == 'login.php') ? 'active-link' : '' ?>" href="login.php">Login</a>
             </li>
 
          

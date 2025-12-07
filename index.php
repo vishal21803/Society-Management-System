@@ -14,6 +14,159 @@ include("header.php");
             font-size: 40px;
             color: #16a34a;
         }
+        /* ========== COMMON SECTION BACKGROUND ========== */
+section {
+    background: linear-gradient(135deg, #fff9e6, #ffe8b5);
+}
+
+/* ========== NEWS CARDS ========== */
+.card {
+    border-radius: 20px !important;
+    overflow: hidden;
+    transition: all 0.45s ease;
+    box-shadow: 0 10px 28px rgba(0,0,0,0.15);
+    background: #fff;
+    position: relative;
+}
+
+.card:hover {
+    transform: translateY(-12px) scale(1.03);
+    box-shadow: 0 18px 45px rgba(0,0,0,0.25);
+}
+
+.card img {
+    transition: 0.4s ease;
+}
+
+.card:hover img {
+    transform: scale(1.1);
+}
+
+.card-title {
+    font-weight: 700;
+    font-size: 19px;
+}
+
+.card-text {
+    font-size: 14px;
+    color: #444;
+}
+
+.card-footer {
+    font-size: 13px;
+    background: transparent;
+}
+
+/* Read More Link */
+.card a {
+    color: #ff8800;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.card a:hover {
+    color: #d96c00;
+    text-shadow: 0 0 6px rgba(255, 153, 0, 0.6);
+}
+
+/* ========== FEATURES SECTION ========== */
+.feature-icon {
+    font-size: 45px;
+    animation: floatIcon 2s ease-in-out infinite alternate;
+}
+
+@keyframes floatIcon {
+    from { transform: translateY(0); }
+    to { transform: translateY(-6px); }
+}
+
+section .shadow {
+    border-radius: 20px;
+    transition: all 0.45s ease;
+    background: linear-gradient(135deg, #ffffff, #fff8e5);
+}
+
+section .shadow:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.2);
+}
+
+/* ========== EVENTS CARDS ========== */
+#events .shadow {
+    border-left: 6px solid #ffb300;
+    background: linear-gradient(135deg, #ffffff, #fff3d6);
+    position: relative;
+}
+
+#events .shadow::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, transparent, rgba(255, 183, 0, 0.2), transparent);
+    opacity: 0;
+    transition: 0.4s;
+}
+
+#events .shadow:hover::after {
+    opacity: 1;
+}
+
+#events .shadow:hover {
+    transform: translateY(-12px) scale(1.03);
+}
+
+/* Event Button */
+#events .btn-outline-primary {
+    border-radius: 25px;
+    font-weight: 600;
+    transition: 0.35s;
+}
+
+#events .btn-outline-primary:hover {
+    background: #ff9800;
+    border-color: #ff9800;
+    color: white;
+    box-shadow: 0 0 12px rgba(255, 152, 0, 0.7);
+}
+
+#events .shadow::after {
+    pointer-events: none;   /* ✅ Click pass through karega */
+}
+
+#events .shadow {
+    z-index: 1;
+}
+
+#events .btn-outline-primary {
+    position: relative;
+    z-index: 5;   /* ✅ Button hamesha top par rahega */
+}
+
+
+/* ========== HEADINGS EFFECT ========== */
+
+
+h2::after {
+    content: "";
+    position: absolute;
+    width: 60%;
+    height: 4px;
+    background: #ff9800;
+    left: 20%;
+    bottom: 0;
+    border-radius: 20px;
+}
+
+/* ========== RESPONSIVE FIX ========== */
+@media(max-width:768px){
+    .card:hover,
+    section .shadow:hover,
+    #events .shadow:hover {
+        transform: scale(1.02);
+    }
+}
+
 </style>
 
 

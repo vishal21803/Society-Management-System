@@ -7,6 +7,9 @@ body
     background-color: #fff9e6;
 }
 
+
+
+
 .navbar-nav .nav-link {
   position: relative;
   transition: 0.3s;
@@ -32,10 +35,83 @@ body
   color: #FF4500 !important;
 }
 
+.navbar-nav .nav-link.active-link::after {
+  width: 100%;
+}
+
+.navbar-nav .nav-link.active-link {
+  color: #FF4500 !important;
+}
 
 #zone-tab{
   color: green;
 }
+
+
+#loginbody{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    /* ✅ YOUR PROJECT THEME BASED BACKGROUND */
+    background: linear-gradient(
+        135deg,
+        #fff9e6,
+        #fff2cc,
+        #ffebc1
+    );
+
+    background-size: 300% 300%;
+    animation: subtleBG 10s ease infinite;
+}
+
+@keyframes subtleBG {
+    0%{ background-position:0% 50%; }
+    50%{ background-position:100% 50%; }
+    100%{ background-position:0% 50%; }
+}
+
+
+.glass-card{
+    width: 380px;
+    padding: 35px;
+    border-radius: 20px;
+    background: rgb(223, 194, 2);
+    backdrop-filter: blur(10px);
+    border:1px solid rgba(200, 160, 80, 0.3);
+    box-shadow: 0 12px 35px rgba(0,0,0,0.15);
+}
+
+
+@keyframes fadeIn {
+    from{ opacity:0; transform:translateY(30px); }
+    to{ opacity:1; transform:translateY(0); }
+}
+
+.glass-card h3{
+    font-weight:700;
+    text-shadow:1px 1px 3px rgba(0,0,0,0.4);
+}
+
+.glass-card input{
+    background: rgba(255,255,255,0.85) !important;
+    border: none !important;
+    padding: 12px;
+    border-radius: 10px;
+}
+
+.animate-btn{
+    transition:0.3s;
+    border-radius: 30px;
+    font-weight: 600;
+}
+
+.animate-btn:hover{
+    transform: scale(1.05);
+    box-shadow:0 5px 15px rgba(0,0,0,0.3);
+}
+
 
 /* ---- Step container ---- */
 .step-box {
