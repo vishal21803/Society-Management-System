@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Dec 06, 2025 at 01:09 PM
+-- Generation Time: Dec 07, 2025 at 11:32 AM
 -- Server version: 9.1.0
 -- PHP Version: 8.3.14
 
@@ -130,22 +130,26 @@ CREATE TABLE IF NOT EXISTS `events` (
   `description` text COLLATE utf8mb4_unicode_ci,
   `event_date` date DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `event_time` time NOT NULL,
+  `event_time` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `event_location` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `event_status` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `event_img` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `toshow_type` enum('all','zone','city','member') COLLATE utf8mb4_unicode_ci DEFAULT 'all',
   `toshow_id` int DEFAULT NULL,
   PRIMARY KEY (`event_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `events`
 --
 
 INSERT INTO `events` (`event_id`, `title`, `description`, `event_date`, `created_at`, `event_time`, `event_location`, `event_status`, `event_img`, `toshow_type`, `toshow_id`) VALUES
-(2, 'Holi 2025', 'We are going to celebrate Holi this morning', '2025-03-16', '2025-12-03 17:57:19', '09:30:00', 'Club House', 'completed', '1764784639_a2.jpeg', 'city', NULL),
-(4, 'Diwali 2025', 'we are gonna celebrate diwali today', '2025-10-20', '2025-12-05 06:36:35', '18:30:00', 'Socity Ground', 'cancelled', 'social.avif', 'zone', 0);
+(5, 'Annual Jain Dharma Pravachan', 'An inspirational spiritual discourse on positive living, self-control, and inner peace.', '2026-01-21', '2025-12-06 19:21:29', '6:30 PM – 8:30 PM', 'Jain Community Hall', 'upcoming', 'pray.jpg', 'city', 2),
+(6, 'Jain Matrimonial Meet 2026', 'A well-organized matrimonial interaction program for Jain youth from various cities.', '2026-03-08', '2025-12-06 19:26:18', '10:00 AM – 4:00 PM', 'Grand Banqut Hall', 'upcoming', '', 'zone', 5),
+(7, 'Jain Business Network Meet', 'A professional networking event for Jain entrepreneurs and business owners.', '2026-06-12', '2025-12-06 19:27:54', '11:00 AM - 5:00 PM', 'Jain Conference Center', 'upcoming', '', 'member', 10),
+(8, 'All India Jain Dharma Mahasangam 2026', 'A grand three-day national-level Jain spiritual gathering with Pravachans, cultural programs, youth activities, and social awareness sessions attended by Jain communities from across India.', '2026-01-24', '2025-12-06 19:32:25', '10:00 AM – 8:00 PM', 'National Convention Center, India', 'upcoming', '', 'all', 0),
+(9, 'National Jain Youth Leadership Summit', 'A leadership and personality development summit for Jain youth focused on entrepreneurship, ethics, career growth, and innovation.', '2026-05-15', '2025-12-06 19:33:20', '9:00 AM – 6:00 PM', 'India International Convention Venue', 'upcoming', '', 'all', 0),
+(10, 'All India Jain Business & Startup Expo', 'A nationwide business exhibition featuring Jain entrepreneurs, manufacturers, startups, and investors to promote trade and collaboration', '2026-09-20', '2025-12-06 19:34:08', '10:00 AM – 7:00 PM', 'India Expo Mart', 'upcoming', '', 'all', 0);
 
 -- --------------------------------------------------------
 
@@ -165,16 +169,19 @@ CREATE TABLE IF NOT EXISTS `gallery` (
   `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`gallery_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `gallery`
 --
 
 INSERT INTO `gallery` (`gallery_id`, `title`, `description`, `visibility_type`, `zone_id`, `city_id`, `member_id`, `image`, `created_at`) VALUES
-(2, 'Diwali', 'Diwali Celebration 2k25', 'all', 0, 0, 0, '1764832607_a2.jpeg', '2025-12-04 12:46:47'),
-(3, 'Holi', 'Holi 2k26', 'city', 0, 14, 0, '1764875203_wallpaperflare.com_wallpaper.jpg', '2025-12-05 00:36:43'),
-(4, 'feb', 'नमस्ते', 'all', 0, 0, 0, '1764916419_logo.png', '2025-12-05 12:03:39');
+(5, 'Mahavir Jayanti Celebration', 'A nationwide celebration of Lord Mahavir Jayanti observed with grand processions, special prayers, pravachans, bhajan sandhya, and community service activities across Jain temples in India. Devotees participated with devotion, peace, and spiritual enthusiasm.', 'all', 0, 0, 0, '1765093066_mahavir-jayanti-f.webp', '2025-12-07 13:07:46'),
+(6, 'Diwali & Nirvan Divas Mahotsav', 'Diwali was celebrated across the Jain community as the Nirvan Divas of Lord Mahavir with deep spiritual significance. Temples were illuminated with diyas, special pujas were performed, and messages of non-violence, truth, and self-discipline were spread.', 'all', 0, 0, 0, '1765093175_diwal.jpg', '2025-12-07 13:09:35'),
+(7, 'Festival of Colors – Holi Utsav', 'The festival of Holi was celebrated with joy, unity, and cultural programs. Community members enjoyed flower Holi, traditional music, dance performances, and social bonding while promoting harmony and brotherhood.', 'all', 0, 0, 0, '1765093215_holi.webp', '2025-12-07 13:10:15'),
+(8, 'Zone Level Jain Sports Meet', '', 'zone', 5, 0, 0, '1765095294_sports.jpg', '2025-12-07 13:44:54'),
+(9, ' City Jain Blood Donation Camp', '', 'city', 0, 12, 0, '1765095426_2171-blood-donation.jpg', '2025-12-07 13:47:06'),
+(10, 'My Personal Membership Anniversary', '', 'member', 0, 0, 18, '1765095510_flower.webp', '2025-12-07 13:48:30');
 
 -- --------------------------------------------------------
 
@@ -211,7 +218,7 @@ CREATE TABLE IF NOT EXISTS `members` (
 --
 
 INSERT INTO `members` (`member_id`, `user_id`, `zone_id`, `city_id`, `plan_id`, `gender`, `dob`, `membership_start`, `membership_end`, `phone`, `address`, `photo`, `created_at`, `fullname`, `balance_amount`) VALUES
-(11, 9, 5, 4, 1, 'Male', '1988-09-01', '2025-12-04', '2026-12-04', '7985122998', 'Near Puri ITI,kohka', '1764877535_logo.png', '2025-12-04 19:45:35', 'Surya Naik', 0),
+(11, 9, 5, 4, 2, 'Male', '1988-09-01', '2025-12-04', '2026-11-04', '7985122998', 'Near Puri ITI,kohka', '1764877535_logo.png', '2025-12-04 19:45:35', 'Surya Naik', 0),
 (7, 5, 5, 5, 1, 'Male', '1999-05-17', '2025-12-04', '2026-12-04', '1234567890', 'Kurud', '1764855137_AEGON_I.jpg', '2025-12-04 13:32:17', 'Vish', 0),
 (10, 8, 7, 12, 1, 'Male', '2025-12-13', '2025-12-04', '2026-12-04', '8234567890', 'Near railway station,Kohka', '1764877201_wallpaperflare.com_wallpaper (2).jpg', '2025-12-04 19:40:01', 'Sonu kumar', 0),
 (13, 12, 6, 6, 1, 'Male', '1991-11-19', '2025-12-05', '2026-12-05', '1234567890', 'Near magneto', '1764919049_logo.png', '2025-12-05 07:17:29', 'Rajiv', 0),
@@ -235,15 +242,19 @@ CREATE TABLE IF NOT EXISTS `news` (
   `toshow_type` enum('all','zone','city','member') COLLATE utf8mb4_unicode_ci DEFAULT 'all',
   `toshow_id` int DEFAULT NULL,
   PRIMARY KEY (`news_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `news`
 --
 
 INSERT INTO `news` (`news_id`, `title`, `description`, `created_at`, `news_date`, `status`, `news_img`, `toshow_type`, `toshow_id`) VALUES
-(1, 'Robbery in Homes', 'House break at 12A', '2025-12-03 18:08:01', '2024-11-03', 'inactive', '1819963171wallpaperflare.com_wallpaper.jpg', 'zone', 0),
-(3, 'News 5', 'fd', '2025-12-06 12:46:55', '2023-01-12', 'active', '1765025215_wallpaperflare.com_wallpaper.jpg', 'city', 6);
+(4, 'National Jain Education Mission Announced', 'The All India Jain Federation officially announced the National Jain Education Mission 2026, a landmark nationwide initiative aimed at uplifting Jain students through structured educational support. Under this mission, thousands of deserving students from economically weaker backgrounds will receive merit-based and need-based scholarships for school, college, and professional courses such as engineering, medical, law, and management.\r\n\r\nIn addition to financial aid, the mission will also provide free digital learning resources, online coaching for competitive exams, career mentorship programs, and guidance sessions conducted by industry experts and senior academicians. The initiative focuses on empowering youth with ethical values, modern education tools, and career-oriented skills, strengthening the future of the Jain community across India.', '2025-12-06 19:37:50', '2026-02-12', 'active', '1740376392wallpaperflare.com_wallpaper.jpg', 'all', 0),
+(5, 'All India Jain Digital Donation Platform Launched', 'To bring transparency, convenience, and national-level unity in social service, the Jain community launched a centralized All India Digital Donation Platform in 2026. This secure system allows devotees and donors from anywhere in the country to contribute directly to verified Jain religious trusts, temples, educational institutions, medical services, and disaster relief programs.\r\n\r\nThe platform supports UPI, debit/credit cards, net banking, and international donations, ensuring easy and fast transactions. Every donation is tracked with digital receipts and real-time fund utilization updates. This initiative strengthens trust, accountability, and participation among community members while promoting large-scale humanitarian and welfare projects across India.', '2025-12-06 19:38:27', '2026-06-07', 'active', '1019412388wallpaperflare.com_wallpaper.jpg', 'all', 0),
+(6, 'Jain Community Leads National Tree Plantation Drive', 'In an inspiring step towards environmental responsibility, the Jain community launched a nationwide eco-awareness and plantation campaign named “Green Jain Bharat Mission” in 2026. Thousands of volunteers across multiple states participated in mass plantation drives near temples, schools, highways, villages, and public parks.\r\n\r\nThe campaign focuses on promoting non-violence towards nature, climate awareness, water conservation, and sustainable living among youth and families. Educational workshops, eco-pledge programs, and plastic-free awareness drives were also conducted alongside the plantation events. This movement highlights the Jain philosophy of “Ahimsa towards all living beings,” including nature itself, making it a powerful symbol of spiritual and environmental harmony.', '2025-12-06 19:38:51', '2026-10-18', 'active', '65492357wallpaperflare.com_wallpaper.jpg', 'all', 0),
+(7, 'Urgent Medical Help Required for Society Member', 'Our respected society member is currently undergoing critical medical treatment and urgently requires financial and emotional support. The Jain Society has initiated a special assistance drive for this purpose. All members are requested to come forward with whatever contribution they can make. Even a small help can save a life. Society will ensure complete transparency in fund utilization and regular health updates will be shared with contributors.', '2025-12-07 09:20:38', '2026-09-25', 'active', '1765099238_wallpaperflare.com_wallpaper.jpg', 'zone', 0),
+(8, 'Water Supply & Cleanliness Issue Raised in City Area', 'Several society members from the city have raised concerns regarding irregular water supply and poor sanitation conditions in residential areas. The Jain Society local committee has officially submitted a complaint to the municipal corporation. A city-level inspection will be conducted soon. Residents are requested to cooperate with officials and report any further issues for faster resolution.', '2025-12-07 09:21:36', '2026-03-12', 'active', '1765099296_wallpaperflare.com_wallpaper (2).jpg', 'city', 14),
+(9, 'Illegal Construction & Noise Pollution Issue Reported in Zone', 'Multiple complaints regarding illegal construction activities and late-night noise pollution have been received from different cities within the zone. The Jain Society Zone Committee has taken this matter seriously and has scheduled a joint action meeting with local authorities. Strict action will be taken against violations. Members are advised to maintain discipline and report such issues responsibly.', '2025-12-07 09:22:41', '2026-02-01', 'active', '1765099361_flower.webp', 'member', 18);
 
 -- --------------------------------------------------------
 

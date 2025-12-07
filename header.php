@@ -62,6 +62,10 @@ $currentPage = basename($_SERVER['PHP_SELF']);
 </li>
 
 <li class="nav-item">
+  <a class="nav-link text-white <?= ($currentPage == 'showDownloads.php') ? 'active-link' : '' ?>" href="showDownloads.php">Downloads</a>
+</li>
+
+<li class="nav-item">
   <a class="nav-link text-white <?= ($currentPage == '') ? 'active-link' : '' ?>" href="">Contact Us</a>
 </li>
 
