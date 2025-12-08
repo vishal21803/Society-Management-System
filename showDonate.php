@@ -23,7 +23,7 @@ include("header.php");
                     <!-- ✅ QR CODE -->
                     <div class="col-md-5 text-center mb-4 mb-md-0">
                         <div class="qr-box">
-                            <img src="assets/qr.png" alt="QR Code" class="img-fluid qr-img">
+                            <img src="upload/qr.png" alt="QR Code" class="img-fluid qr-img">
                         </div>
                         <p class="mt-3 fw-bold text-success">Scan using any UPI App</p>
                     </div>

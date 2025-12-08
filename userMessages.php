@@ -6,107 +6,98 @@ if(isset($_SESSION["uname"]) && $_SESSION["utype"]=='user') {
 ?>
 
 <main>
-<div class="d-flex">
+<div class="d-flex flex-column flex-lg-row">
 
     <?php include('userDashboard.php'); ?>
 
     <div class="flex-grow-1 p-4">
 
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <h3 class="fw-bold">📩 My Inbox</h3>
-            <a href="userChat.php" class="btn btn-success btn-lg animate-btn">+ Message</a>
-        </div>
+        <!-- ✅ CARD STYLE SAME AS ADMIN -->
+        <div class="card shadow">
 
-        <div class="row g-4">
+            <div class="card-header bg-warning fw-bold text-dark d-flex justify-content-between align-items-center">
+                <span><i class="bi bi-chat-dots me-2"></i> My Messages</span>
 
-            <?php
-            $uid = $_SESSION['uid'];
-            $q = mysqli_query($con,"
-                SELECT * FROM sens_messages 
-                WHERE receiver_id='$uid' AND receiver_type='user'
-                ORDER BY id DESC
-            ");
+                <a href="userChat.php" class="btn btn-success btn-sm">
+                    + New Message
+                </a>
+            </div>
 
-            if(mysqli_num_rows($q) > 0){
-                $delay = 0;
-                while($row = mysqli_fetch_assoc($q)){
-                    $delay += 0.1;
-            ?>
+            <div class="card-body">
+                <div class="table-responsive mobile-table">
 
-            <div class="col-md-6">
-                <div class="message-card p-4 rounded shadow bg-white animate-message" style="animation-delay:<?= $delay ?>s">
-                    <div class="d-flex justify-content-between align-items-center mb-2">
-                        <h5 class="fw-bold mb-0"><?= htmlspecialchars($row['subject']) ?></h5>
-                        <?php if($row['status']=='unread'){ ?>
-                            <span class="badge bg-danger">NEW</span>
+                    <table id="myTable" class="table table-bordered table-hover align-middle w-100">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>#</th>
+                                <th>From</th>
+                                <th>Subject</th>
+                                <th>Message</th>
+                                <th>Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                        <?php
+                        $i = 1;
+                        $uid = $_SESSION['uid'];
+
+                        $q = mysqli_query($con,"
+                            SELECT * FROM sens_messages 
+                            WHERE receiver_id='$uid' AND receiver_type='user'
+                            ORDER BY id DESC
+                        ");
+
+                        if(mysqli_num_rows($q) > 0){
+                        while($row = mysqli_fetch_assoc($q)) {
+                        ?>
+                            <tr>
+                                <td><?= $i++ ?></td>
+
+                                <td><?= htmlspecialchars($row['sender_type']) ?></td>
+
+                                <td><?= htmlspecialchars($row['subject']) ?></td>
+
+                                <td><?= substr(htmlspecialchars($row['message']),0,50) ?>...</td>
+
+                                <td><?= date("d M Y H:i",strtotime($row['created_at'])) ?></td>
+
+                             
+                                <td>
+                                    <a href="userChat.php?id=<?= $row['sender_id'] ?>" 
+                                       class="btn btn-sm btn-success">Reply</a>
+
+                                    <a href="deleteMessage.php?id=<?= $row['id'] ?>" 
+                                       class="btn btn-sm btn-danger"
+                                       onclick="return confirm('Delete this message?');">
+                                       Delete
+                                    </a>
+                                </td>
+                            </tr>
+                        <?php }} else { ?>
+                            <tr>
+                                <td colspan="7" class="text-center text-danger">
+                                    No Messages Found
+                                </td>
+                            </tr>
                         <?php } ?>
-                    </div>
+                        </tbody>
 
-                    <p class="mb-2"><?= substr(htmlspecialchars($row['message']),0,120) ?>...</p>
+                    </table>
 
-                    <small class="text-muted">Received on: <?= date("d M Y h:i A",strtotime($row['created_at'])) ?></small>
-
-                    <div class="mt-3 text-end">
-                        <a href="deleteMessage.php?id=<?= $row['id'] ?>" 
-                           class="btn btn-outline-danger btn-sm"
-                           onclick="return confirm('Delete message?')">Delete</a>
-                    </div>
                 </div>
             </div>
 
-            <?php }} else { ?>
-            <div class="col-12 text-center">
-                <h5>No Messages Available</h5>
-            </div>
-            <?php } ?>
-
         </div>
+
     </div>
 </div>
 </main>
 
-<style>
-/* Glass-like card style with animation */
-.message-card {
-    background: rgba(255, 255, 255, 0.9);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(0,0,0,0.05);
-    transition: transform 0.3s, box-shadow 0.3s;
-    position: relative;
-}
-
-.message-card:hover {
-    transform: translateY(-6px) scale(1.02);
-    box-shadow: 0 12px 35px rgba(0,0,0,0.2);
-}
-
-.badge {
-    font-size: 0.8rem;
-    padding: 4px 10px;
-}
-
-.animate-message {
-    opacity: 0;
-    transform: translateY(30px);
-    animation: slideIn 0.6s forwards;
-}
-
-@keyframes slideIn {
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.animate-btn {
-    transition: 0.3s;
-}
-
-.animate-btn:hover {
-    transform: scale(1.05);
-}
-</style>
-
 <?php
 include("footer.php");
-}else{
+} else {
     include("index.php");
 }
 ?>

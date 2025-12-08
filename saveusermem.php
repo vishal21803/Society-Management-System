@@ -5,12 +5,12 @@ include("connectdb.php");
 // ===============================
 // ✅ BASIC USER DATA
 // ===============================
-$username = $_POST["usname"];
-$password=$_POST["pass"];
+// $username = $_POST["usname"];
+// $password=$_POST["pass"];
 $email    = $_POST["email"];
 $fullname = $_POST["fullname"];
-$gender   = $_POST["gender"];
-$dob      = $_POST["dob"];
+// $gender   = $_POST["gender"];
+// $dob      = $_POST["dob"];
 $phone    = $_POST["phone"];
 
 // ===============================
@@ -18,7 +18,7 @@ $phone    = $_POST["phone"];
 // ===============================
 $zone_id  = $_POST["zone_id"];
 $city_id  = $_POST["city_id"];
-$address  = $_POST["address"];
+// $address  = $_POST["address"];
 
 // ===============================
 // ✅ PLAN DATA (NEW ADDITION)
@@ -28,12 +28,12 @@ $plan_id  = $_POST["plan_id"];   // 🔥 Form se aayega
 // ===============================
 // ✅ IMAGE UPLOAD
 // ===============================
-$file = $_FILES["photo"];
-$img = time()."_".$file["name"];
-move_uploaded_file($file["tmp_name"], "upload/member/".$img);
+// $file = $_FILES["photo"];
+// $img = time()."_".$file["name"];
+// move_uploaded_file($file["tmp_name"], "upload/member/".$img);
 
 
-mysqli_query($con,"insert into sens_users (name,email,password,role,created_at) values('$username','$email','$password','user',NOW())");
+mysqli_query($con,"insert into sens_users (name,email,role,created_at) values('$fullname','$email','user',NOW())");
 
 $user_id = mysqli_insert_id($con);
 
@@ -55,9 +55,9 @@ if($p['duration_days'] != NULL){
 // ===============================
 $insert = mysqli_query($con,"
 INSERT INTO sens_members 
-(user_id, zone_id, city_id, phone, address, photo, created_at, gender, dob, fullname, plan_id) 
+(user_id, zone_id, city_id, phone, created_at, fullname, plan_id) 
 VALUES 
-('$user_id', '$zone_id', '$city_id', '$phone', '$address', '$img', NOW(), '$gender','$dob','$fullname','$plan_id')
+('$user_id', '$zone_id', '$city_id', '$phone', NOW(),'$fullname','$plan_id')
 ");
 
 $member_id = mysqli_insert_id($con);

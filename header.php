@@ -45,8 +45,8 @@ html, body {
 
     <!-- ✅ LOGO -->
     <a class="navbar-brand fw-bold text-white" href="index.php">
-      <img src="logo.png" alt="" style="width:50px;" class="rounded-pill">
-      Jain Society
+      <img src="upload/logo2.png" alt="" style="width:300px;" >
+      
     </a>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -60,6 +60,10 @@ html, body {
       <li class="nav-item">
   <a class="nav-link text-white <?= ($currentPage == 'index.php') ? 'active-link' : '' ?>" href="index.php">Home</a>
 </li>
+     <li class="nav-item">
+  <a class="nav-link text-white <?= ($currentPage == 'about.php') ? 'active-link' : '' ?>" href="about.php">About Us</a>
+</li>
+
 
 <li class="nav-item">
   <a class="nav-link text-white <?= ($currentPage == 'showNews.php') ? 'active-link' : '' ?>" href="showNews.php">News</a>
@@ -76,9 +80,7 @@ html, body {
   <a class="nav-link text-white <?= ($currentPage == 'showDonate.php') ? 'active-link' : '' ?>" href="showDonate.php">Donation</a>
 </li>
 
-<li class="nav-item">
-  <a class="nav-link text-white <?= ($currentPage == '') ? 'active-link' : '' ?>" href="">Contact Us</a>
-</li>
+
 
         <li class="nav-item"><a class="nav-link text-white" href="https://www.matrimonysoftware.in">Matrimony</a></li>
      

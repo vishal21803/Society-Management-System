@@ -201,48 +201,48 @@ $("#newsForm").submit(function(e){
     });
 });
 
-$(document).ready(function(){
-    let currentRequestId = 0;
+// $(document).ready(function(){
+//     let currentRequestId = 0;
 
-    $(".viewProfileBtn").click(function(){
-        let memberId = $(this).data("member");
-        currentRequestId = $(this).data("request");
+//     $(".viewProfileBtn").click(function(){
+//         let memberId = $(this).data("member");
+//         currentRequestId = $(this).data("request");
 
-        $.ajax({
-            url: "get_member_details.php",
-            type: "GET",
-            data: { member_id: memberId },
-            success: function(res){
-                $("#memberDetails").html(res);
-                new bootstrap.Modal(document.getElementById('memberModal')).show();
-            }
-        });
-    });
+//         $.ajax({
+//             url: "get_member_details.php",
+//             type: "GET",
+//             data: { member_id: memberId },
+//             success: function(res){
+//                 $("#memberDetails").html(res);
+//                 new bootstrap.Modal(document.getElementById('memberModal')).show();
+//             }
+//         });
+//     });
 
-    $("#approveBtn").click(function(){
-        $.ajax({
-            url: "update_request_status.php",
-            type: "POST",
-            data: { request_id: currentRequestId, status: "approved" },
-            success: function(res){
-                $("#memberModal").modal('hide');
-                $("#pendingList").load(" #pendingList > *");
-            }
-        });
-    });
+//     $("#approveBtn").click(function(){
+//         $.ajax({
+//             url: "update_request_status.php",
+//             type: "POST",
+//             data: { request_id: currentRequestId, status: "approved" },
+//             success: function(res){
+//                 $("#memberModal").modal('hide');
+//                 $("#pendingList").load(" #pendingList > *");
+//             }
+//         });
+//     });
 
-    $("#rejectBtn").click(function(){
-        $.ajax({
-            url: "update_request_status.php",
-            type: "POST",
-            data: { request_id: currentRequestId, status: "rejected" },
-            success: function(res){
-                $("#memberModal").modal('hide');
-                $("#pendingList").load(" #pendingList > *");
-            }
-        });
-    });
-});
+//     $("#rejectBtn").click(function(){
+//         $.ajax({
+//             url: "update_request_status.php",
+//             type: "POST",
+//             data: { request_id: currentRequestId, status: "rejected" },
+//             success: function(res){
+//                 $("#memberModal").modal('hide');
+//                 $("#pendingList").load(" #pendingList > *");
+//             }
+//         });
+//     });
+// });
 
 // ---------- ZONE EDIT ----------
 function editZone(id, name){

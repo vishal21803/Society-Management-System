@@ -62,7 +62,7 @@
 
         <li class="nav-item mb-2">
             <a href="adminMessages.php" class="nav-link admin-sidebar-link text-white fw-semibold">
-                <i class="bi bi-chat me-2"></i> Chat
+                <i class="bi bi-chat-dots me-2"></i> Chat
             </a>
         </li>
         <li class="nav-item">
@@ -130,7 +130,7 @@
         </li>
          <li class="nav-item mb-2">
             <a href="adminMessages.php" class="nav-link admin-sidebar-link text-white fw-semibold">
-                <i class="bi bi-chat me-2"></i> Chat
+                <i class="bi bi-chat-dots me-2"></i> Chat
             </a>
         </li>
         <li class="nav-item">

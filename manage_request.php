@@ -56,9 +56,18 @@ while($row = mysqli_fetch_array($res)){
                 data-request="<?php echo $row['request_id']; ?>">
                 View Profile
             </button>
+<button 
+    class="btn btn-success approveBtn"
+    data-request="<?php echo $row['request_id']; ?>">
+    Approve
+</button>
 
-             <button type="button" class="btn btn-success" id="approveBtn">Approve</button>
-        <button type="button" class="btn btn-danger" id="rejectBtn">Reject</button>
+<button 
+    class="btn btn-danger rejectBtn"
+    data-request="<?php echo $row['request_id']; ?>">
+    Reject
+</button>
+
         </div>
 
     </div>
@@ -134,6 +143,7 @@ document.addEventListener("click", function(e){
     }
 
 });
+
 </script>
 
 

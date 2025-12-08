@@ -1,198 +1,90 @@
-
-<?php @session_start();
-
+<?php 
+@session_start();
 include("header.php");
 include("connectdb.php");
 ?>
 
+<br><br>
 <main>
-<div class="d-flex">
-    <div class="flex-grow-1 p-4">
-        <!-- Main content here -->
-         <div class="container my-4">
-    <h2 class="text-center mb-4 fw-bold text-warning">Register New Member</h2>
+<div class="container my-5">
 
-    <!-- Step Progress Indicators -->
-    <div class="d-flex justify-content-center mb-4">
-        <div id="step1Btn" class="step-indicator active-step">1. Personal</div>
-        <div id="step2Btn" class="step-indicator">2. Address</div>
-        <div id="step3Btn" class="step-indicator">3. Photo</div>
-        
-                <div id="step4Btn" class="step-indicator">4. Plans</div>
+    <div class="card shadow-lg border-0">
+        <div class="card-header bg-warning text-dark fw-bold text-center fs-4">
+            ✅ Register New Member
+        </div>
 
-    </div>
+        <div class="card-body p-4">
 
-    <form action="saveusermem.php" method="POST" enctype="multipart/form-data">
+            <form action="saveusermem.php" method="POST">
 
-        <!-- STEP 1 -->
-        <div id="step1" class="step-box">
-            <h4 class="text-danger fw-bold mb-3">Personal Details</h4>
-
-            <div class="row mb-3">
-                <div class="col-md-6">
-                    <label>Full Name</label>
+                <!-- ✅ Full Name -->
+                <div class="mb-3">
+                    <label class="fw-bold">Full Name</label>
                     <input type="text" name="fullname" class="form-control" required>
                 </div>
 
-                  <div class="col-md-6">
-                    <label>Username (Login Name)</label>
-                    <input type="text" name="usname" class="form-control" required>
-                </div>
-
-                <div class="col-md-6">
-                    <label>Create Password</label>
-                    <input type="password" name="pass" class="form-control" required>
-                </div>
-
-
-                <div class="col-md-6">
-                    <label>Phone</label>
-                    <input type="number" name="phone" class="form-control" required>
-                </div>
-
-                <div class="col-md-12">
-                    <label>Email</label>
+                <!-- ✅ Email -->
+                <div class="mb-3">
+                    <label class="fw-bold">Email</label>
                     <input type="email" name="email" class="form-control" required>
                 </div>
 
-            </div>
+                <!-- ✅ Phone -->
+                <div class="mb-3">
+                    <label class="fw-bold">Phone Number</label>
+                    <input type="number" name="phone" class="form-control" required>
+                </div>
 
-            <div class="mb-3 animate-fade">
-    <label class="form-label fw-semibold">Date of Birth</label>
-    <div class="input-group">
-        <span class="input-group-text" style="background:#ffcc66; border:2px solid #ffb84d;">
-            <i class="bi bi-calendar-event-fill"></i>
-        </span>
-        <input type="date" name="dob" class="form-control custom-input" required>
-    </div>
-</div>
-
-
-          
-
-            <div class="mb-3">
-    <label class="form-label fw-bold">Gender</label>
-
-    <div class="row g-3">
-        <div class="col-4">
-            <label class="gender-card w-100 text-center" onclick="selectGender(this)">
-                <input type="radio" name="gender" value="Male">
-                <i class="bi bi-gender-male fs-1 text-primary"></i><br>
-                Male
-            </label>
-        </div>
-        <div class="col-4">
-            <label class="gender-card w-100 text-center" onclick="selectGender(this)">
-                <input type="radio" name="gender" value="Female">
-                <i class="bi bi-gender-female fs-1 text-danger"></i><br>
-                Female
-            </label>
-        </div>
-        <div class="col-4">
-            <label class="gender-card w-100 text-center" onclick="selectGender(this)">
-                <input type="radio" name="gender" value="Other">
-                <i class="bi bi-person fs-1 text-warning"></i><br>
-                Other
-            </label>
-        </div>
-    </div>
-</div>
-
-            <button type="button" class="btn step-btn" onclick="goStep(2,'left')">Next →</button>
-        </div>
-
-        <!-- STEP 2 -->
-        <div id="step2" class="step-box" style="display:none;">
-            <h4 class="text-success fw-bold mb-3">Address Details</h4>
-
-            <div class="row mb-3">
-                <!-- <div class="col-md-4">
-                    <label>State</label>
-                    <select id="stateDropdown" name="state_id" class="form-select" required onchange="loadZones();">
-                        <option value="">Select State</option>
+                <!-- ✅ Zone -->
+                <div class="mb-3">
+                    <label class="fw-bold">Zone</label>
+                    <select name="zone_id" id="zoneDropdown" class="form-select" required onchange="loadCities()">
+                        <option value="">-- Select Zone --</option>
                         <?php
-                        $rs = mysqli_query($con,"SELECT * FROM sens_states ORDER BY state_name ASC");
-                        while($s = mysqli_fetch_assoc($rs)){
-                            echo "<option value='".$s['state_id']."'>".$s['state_name']."</option>";
-                        }
-                        ?>
-                    </select>
-                </div> -->
-
-                <div class="col-md-4">
-                    <label>Zone</label>
-                    <select id="zoneDropdown" name="zone_id" class="form-select" required onchange="loadCities();">
-                        <option value="">Select Zone</option>
-                            <?php
-                        $rs = mysqli_query($con,"SELECT * FROM sens_zones ORDER BY zone_id ASC");
-                        while($s = mysqli_fetch_assoc($rs)){
-                            echo "<option value='".$s['zone_id']."'>".$s['zone_name']."</option>";
+                        $rs = mysqli_query($con,"SELECT * FROM sens_zones ORDER BY zone_name ASC");
+                        while($z = mysqli_fetch_assoc($rs)){
+                            echo "<option value='{$z['zone_id']}'>{$z['zone_name']}</option>";
                         }
                         ?>
                     </select>
                 </div>
 
-                <div class="col-md-4">
-                    <label>City</label>
-                    <select id="cityDropdown" name="city_id" class="form-select" required>
-                        <option value="">Select City</option>
+                <!-- ✅ City -->
+                <div class="mb-3">
+                    <label class="fw-bold">City</label>
+                    <select name="city_id" id="cityDropdown" class="form-select" required>
+                        <option value="">-- Select City --</option>
                     </select>
                 </div>
-            </div>
 
-            <label>Address</label>
-            <textarea name="address" class="form-control mb-3" required></textarea>
+                <!-- ✅ Membership Plan -->
+                <div class="mb-4">
+                    <label class="fw-bold">Select Membership Plan</label>
+                    <select name="plan_id" class="form-select" required>
+                        <?php
+                        $pr = mysqli_query($con,"SELECT * FROM sens_plans order by plan_id desc");
+                        while($p = mysqli_fetch_assoc($pr)){
+                            echo "<option value='{$p['plan_id']}'>
+                                    {$p['name']} - ₹{$p['price']}
+                                  </option>";
+                        }
+                        ?>
+                    </select>
+                </div>
 
-            <button type="button" class="btn btn-secondary" onclick="goStep(1,'right')">← Back</button>
-            <button type="button" class="btn step-btn" onclick="goStep(3,'left')">Next →</button>
+                <!-- ✅ Submit -->
+                <div class="text-center">
+                    <button type="submit" class="btn btn-success px-5 fw-bold">
+                        ✅ Register Member
+                    </button>
+                </div>
+
+            </form>
+
         </div>
-
-        <!-- STEP 3 -->
-        <div id="step3" class="step-box" style="display:none;">
-            <h4 class="text-primary fw-bold mb-3">Photo Upload</h4>
-
-            <label>Upload Photo</label>
-            <input type="file" name="photo" class="form-control mb-3" required>
-
-            <button type="button" class="btn btn-secondary" onclick="goStep(2,'right')">← Back</button>
-<button type="button" class="btn step-btn" onclick="goStep(4,'left')">Next →</button>
-        </div>
-
-        <!-- STEP 4 -->
-<div id="step4" class="step-box" style="display:none;">
-    <h4 class="text-warning fw-bold mb-3">Select Membership Plan</h4>
-
-    <div class="row">
-        <?php
-        $pr = mysqli_query($con,"SELECT * FROM sens_plans");
-        while($p = mysqli_fetch_assoc($pr)){
-        ?>
-        <div class="col-md-6 mb-3">
-            <label class="plan-box w-100 p-3 border rounded text-center">
-                <input type="radio" name="plan_id" value="<?= $p['plan_id'] ?>" required>
-                <h5><?= $p['name'] ?></h5>
-                <h6>₹<?= $p['price'] ?></h6>
-                <small>
-                    <?= ($p['duration_days']) ? $p['duration_days']." Days" : "Lifetime" ?>
-                </small>
-            </label>
-        </div>
-        <?php } ?>
     </div>
 
-    <button type="button" class="btn btn-secondary" onclick="goStep(3,'right')">← Back</button>
-    <button type="submit" class="btn btn-success">Submit & Send Plan Request</button>
 </div>
-
-    </form>
-</div>
-    </div>
-</div>
-
 </main>
 
-
-<?php
-include("footer.php");
-
-?>
+<?php include("footer.php"); ?>

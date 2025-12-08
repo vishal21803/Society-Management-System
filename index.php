@@ -3,7 +3,7 @@ include("header.php");
 ?>
 <style>
      .hero {
-            background: url('./upload/kaivalya-dham-0.jpg') ;
+            background: url('./upload/mandir.jpg') ;
             background-size: cover;
             background-repeat: no-repeat;
             padding: 150px 0;

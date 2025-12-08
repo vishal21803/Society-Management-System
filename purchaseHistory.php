@@ -37,41 +37,31 @@ $startDate = (!empty($plan['membership_start']))
     ? date("d M Y", strtotime($plan['membership_start'])) 
     : "Not Started";
 
-$endDate = (!empty($plan['membership_end'])) 
-    ? date("d M Y", strtotime($plan['membership_end'])) 
-    : "Not Available";
+
 ?>
 
 <p class="mb-0"><strong>Start:</strong> <?= $startDate ?></p>
-<p class="mb-0"><strong>End:</strong> <?= $endDate ?></p>
 
             </div>
             <div>
 
-               <?php
-$statusText = "Not Active";
+        <?php
+$statusText  = "Not Active";
 $statusColor = "danger";
 
+/* ✅ Sirf membership_start check hoga */
 if(
     !empty($plan['membership_start']) &&
-    !empty($plan['membership_end']) &&
-    $plan['membership_end'] != '0000-00-00'
+    $plan['membership_start'] != '0000-00-00'
 ){
-    $end = strtotime($plan['membership_end']);
-    $today = strtotime(date('Y-m-d'));
-
-    if($end >= $today){
-        $statusText = "Active";
-        $statusColor = "success";
-    } else {
-        $statusText = "Expired";
-        $statusColor = "secondary";
-    }
+    $statusText  = "Active";
+    $statusColor = "success";
 }
 ?>
 <span class="badge bg-<?= $statusColor ?> p-2 fs-6">
     <?= $statusText ?>
 </span>
+
             </div>
         </div>
      
