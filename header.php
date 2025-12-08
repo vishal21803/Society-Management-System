@@ -64,11 +64,15 @@ html, body {
   <a class="nav-link text-white <?= ($currentPage == 'about.php') ? 'active-link' : '' ?>" href="about.php">About Us</a>
 </li>
 
-
+<li class="nav-item">
+  <a class="nav-link text-white <?= ($currentPage == 'showGallery.php') ? 'active-link' : '' ?>" href="showGallery.php">Gallery</a>
+</li>
 <li class="nav-item">
   <a class="nav-link text-white <?= ($currentPage == 'showNews.php') ? 'active-link' : '' ?>" href="showNews.php">News</a>
 </li>
-
+<li class="nav-item">
+  <a class="nav-link text-white <?= ($currentPage == 'showCommity.php') ? 'active-link' : '' ?>" href="showCommity.php">Commity</a>
+</li>
 <li class="nav-item">
   <a class="nav-link text-white <?= ($currentPage == 'showEvents.php') ? 'active-link' : '' ?>" href="showEvents.php">Events</a>
 </li>

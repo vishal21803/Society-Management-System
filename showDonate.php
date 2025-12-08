@@ -23,7 +23,7 @@ include("header.php");
                     <!-- ✅ QR CODE -->
                     <div class="col-md-5 text-center mb-4 mb-md-0">
                         <div class="qr-box">
-                            <img src="upload/qr.png" alt="QR Code" class="img-fluid qr-img">
+                            <img src="upload/qrcode.png" alt="QR Code" class="img-fluid qr-img">
                         </div>
                         <p class="mt-3 fw-bold text-success">Scan using any UPI App</p>
                     </div>
@@ -42,22 +42,22 @@ include("header.php");
 
                             <div class="info-row">
                                 <span>Account Number</span>
-                                <b>XXXXXX4589</b>
+                                <b>1136216044</b>
                             </div>
 
                             <div class="info-row">
                                 <span>Bank Name</span>
-                                <b>State Bank of India</b>
+                                <b>Central Bank OF India</b>
                             </div>
 
                             <div class="info-row">
                                 <span>IFSC Code</span>
-                                <b>SBIN0001247</b>
+                                <b>CBIN0282102</b>
                             </div>
 
                             <div class="info-row">
                                 <span>Branch</span>
-                                <b>Nagpur Main Branch</b>
+                                <b>Maskasath Nagpur Branch</b>
                             </div>
 
                         </div>

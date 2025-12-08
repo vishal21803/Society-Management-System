@@ -18,6 +18,11 @@
                 <i class="bi bi-people me-2"></i> Membership History
             </a>
         </li>
+         <li class="nav-item mb-2">
+            <a href="manageFamily.php" class="nav-link admin-sidebar-link text-white fw-semibold">
+                <i class="bi bi-people me-2"></i> My Family
+            </a>
+        </li>
         <li class="nav-item mb-2">
             <a href="editProfile.php" class="nav-link admin-sidebar-link text-white fw-semibold">
                 <i class="bi bi-gear me-2"></i> Your Profile
@@ -50,6 +55,11 @@
         <li class="nav-item mb-2">
             <a href="purchaseHistory.php" class="nav-link admin-sidebar-link text-white fw-semibold">
                 <i class="bi bi-people me-2"></i> Membership History
+            </a>
+        </li>
+        <li class="nav-item mb-2">
+            <a href="manageFamily.php" class="nav-link admin-sidebar-link text-white fw-semibold">
+                <i class="bi bi-people me-2"></i> My Family
             </a>
         </li>
         <li class="nav-item mb-2">

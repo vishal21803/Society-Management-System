@@ -28,6 +28,11 @@
             </a>
         </li>
         <li class="nav-item mb-2">
+            <a href="dataTableCommity.php" class="nav-link admin-sidebar-link text-white fw-semibold">
+                <i class="bi bi-people-fill me-2"></i> Manage Commity
+            </a>
+        </li>
+        <li class="nav-item mb-2">
             <a href="manage_req.php" class="nav-link admin-sidebar-link text-white fw-semibold">
                 <i class="bi bi-envelope-paper-fill me-2"></i> Manage Requests
             </a>
@@ -94,6 +99,11 @@
         <li class="nav-item mb-2">
             <a href="dataTableMember.php" class="nav-link admin-sidebar-link text-white fw-semibold">
                 <i class="bi bi-people-fill me-2"></i> Manage Members
+            </a>
+        </li>
+            <li class="nav-item mb-2">
+            <a href="dataTableCommity.php" class="nav-link admin-sidebar-link text-white fw-semibold">
+                <i class="bi bi-people-fill me-2"></i> Manage Commity
             </a>
         </li>
         <li class="nav-item mb-2">

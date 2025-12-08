@@ -16,20 +16,22 @@ $q = mysqli_query($con,"
         r.approved_date,
 
         -- MEMBER DATA
-        m.member_id,
-        m.user_id,
-        m.zone_id,
-        m.city_id,
-        m.plan_id,
-        m.gender,
-        m.dob,
-        m.membership_start,
-        m.membership_end,
-        m.phone,
-        m.address,
-        m.photo,
-        m.created_at,
-        m.fullname,
+       m.member_id,
+m.user_id,
+m.zone_id,
+m.city_id,
+m.plan_id,
+m.gender,
+m.dob,
+m.membership_start,
+m.membership_end,
+m.phone,
+m.address,
+m.photo,
+m.created_at,
+m.fullname,
+m.business,
+m.education,
 
         -- USER DATA
         u.id,
@@ -57,6 +59,9 @@ $user = mysqli_fetch_assoc($q);
 
 $status = $user['request_status']; // pending / approved / rejected
 
+
+echo($user['education']);
+echo($user['education']);
 ?>
 
 <main>
@@ -75,44 +80,57 @@ $status = $user['request_status']; // pending / approved / rejected
 
         <div class="modal-body">
 
-          <div class="row g-3">
+       <div class="row g-3">
 
-            <div class="col-md-6">
-              <label class="fw-bold">Full Name</label>
-              <input type="text" name="fullname" class="form-control" value="<?= $user['fullname'] ?>" required>
-            </div>
+  <div class="col-md-6">
+    <label class="fw-bold">Full Name</label>
+    <input type="text" name="fullname" class="form-control" value="<?= $user['fullname'] ?>" required>
+  </div>
 
-            <div class="col-md-6">
-              <label class="fw-bold">Email</label>
-              <input type="email" name="email" class="form-control" value="<?= $user['email'] ?>" required>
-            </div>
+  <div class="col-md-6">
+    <label class="fw-bold">Email</label>
+    <input type="email" name="email" class="form-control" value="<?= $user['email'] ?>" required>
+  </div>
 
-            <div class="col-md-6">
-              <label class="fw-bold">Mobile</label>
-              <input type="text" name="phone" class="form-control" value="<?= $user['phone'] ?>" required>
-            </div>
+  <div class="col-md-6">
+    <label class="fw-bold">Mobile</label>
+    <input type="text" name="phone" class="form-control" value="<?= $user['phone'] ?>" required>
+  </div>
 
-            <div class="col-md-6">
-              <label class="fw-bold">City</label>
-              <input type="text" name="city" class="form-control" value="<?= $user['city_name'] ?>" readonly>
-            </div>
+  <div class="col-md-6">
+    <label class="fw-bold">Date of Birth</label>
+    <input type="date" name="dob" class="form-control" value="<?= $user['dob'] ?>">
+  </div>
 
-            <div class="col-12">
-              <label class="fw-bold">Address</label>
-              <textarea name="address" class="form-control" required><?= $user['address'] ?></textarea>
-            </div>
+  <div class="col-md-6">
+    <label class="fw-bold">Education</label>
+    <input type="text" name="education" class="form-control" 
+           value="<?= @$user['education'] ?>" placeholder="Your Education">
+  </div>
 
-            <div class="col-12">
-              <label class="fw-bold">New Password</label>
-              <input type="password" name="password" class="form-control" placeholder="Enter new password">
-            </div>
+  <div class="col-md-6">
+    <label class="fw-bold">Business</label>
+    <input type="text" name="business" class="form-control" 
+           value="<?= @$user['business'] ?>" placeholder="Your Business">
+  </div>
 
-            <div class="col-12">
-              <label class="fw-bold">Update Photo</label>
-              <input type="file" name="photo" class="form-control">
-            </div>
+  <div class="col-12">
+    <label class="fw-bold">Address</label>
+    <textarea name="address" class="form-control" required><?= $user['address'] ?></textarea>
+  </div>
 
-          </div>
+  <div class="col-12">
+    <label class="fw-bold">New Password</label>
+    <input type="password" name="password" class="form-control" placeholder="Enter new password">
+  </div>
+
+  <div class="col-12">
+    <label class="fw-bold">Update Photo</label>
+    <input type="file" name="photo" class="form-control">
+  </div>
+
+</div>
+
 
         </div>
 
@@ -221,6 +239,28 @@ $status = $user['request_status']; // pending / approved / rejected
                                 <?php echo date("d M Y",strtotime($user['created_at'])); ?>
                             </div>
                         </div>
+
+                        <div class="col-md-6">
+  <p class="fw-bold mb-1">Date of Birth</p>
+  <div class="form-control bg-white">
+    <?= date("d M Y", strtotime($user['dob'])) ?>
+  </div>
+</div>
+
+<div class="col-md-6">
+  <p class="fw-bold mb-1">Education</p>
+  <div class="form-control bg-white">
+    <?php echo($user['education']);?>
+  </div>
+</div>
+
+<div class="col-md-6">
+  <p class="fw-bold mb-1">Business</p>
+  <div class="form-control bg-white">
+    <?php echo($user['business']);?>
+  </div>
+</div>
+
 
                     </div>
 

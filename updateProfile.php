@@ -11,6 +11,10 @@ if(isset($_POST['update'])){
     $phone    = $_POST['phone'];
     $address  = $_POST['address'];
     $password = $_POST['password'];
+        $business = $_POST['business'];
+    $education = $_POST['education'];
+    $dob = $_POST['dob'];
+
 
     // ✅ Photo Upload
     if(!empty($_FILES['photo']['name'])){
@@ -29,7 +33,10 @@ if(isset($_POST['update'])){
     mysqli_query($con,"UPDATE sens_members SET 
         fullname='$fullname',
         phone='$phone',
-        address='$address'
+        address='$address',
+        education='$education',
+        business='$business',
+        dob='$dob'
         WHERE member_id='$uid'
     ");
 
