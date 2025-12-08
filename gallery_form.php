@@ -45,7 +45,11 @@ include("connectdb.php");
 <button type="button" onclick="autoTranslateHindi()" class="btn btn-warning btn-sm">
     Translate to Hindi
 </button> 
-
+                       <br><br>
+                   <div class="form-floating mb-3 animate__animated animate__fadeInLeft">
+                            <input type="text" name="priority" class="form-control"  required>
+                            <label>Priority</label>
+                        </div>
 
                         <!-- VISIBILITY -->
                         <div class="mb-3 animate__animated animate__fadeInUp">

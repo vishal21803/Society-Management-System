@@ -25,6 +25,9 @@ $row = mysqli_fetch_assoc($res);
             <label for="">Gallery Description</label>
             <textarea name="description" class="form-control mb-2" required><?= $row['description'] ?></textarea>
 
+             <label for="">Priority</label>
+            <input type="text" name="priority" class="form-control mb-2" value="<?= $row['priority'] ?>" required>
+
             <!-- ✅ NAME FIXED -->
              <label for="">Visibile to</label>
             <select name="visibility_type" id="visibilityType" class="form-select mb-2">

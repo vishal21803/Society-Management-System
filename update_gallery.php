@@ -5,7 +5,7 @@ $id = $_POST['gallery_id'];
 $title = $_POST['title'];
 $desc = $_POST['description'];
 $visibility = $_POST['visibility_type'];
-
+$priority=$_POST["priority"];
 $zone = $_POST['zone_id'] ?? null;
 $city = $_POST['city_id'] ?? null;
 $member = $_POST['member_id'] ?? null;
@@ -22,6 +22,7 @@ $update = mysqli_query($con,"
     UPDATE sens_gallery SET 
     title='$title',
     description='$desc',
+    priority='$priority',
     visibility_type='$visibility',
     zone_id='$zone',
     city_id='$city',

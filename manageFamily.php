@@ -5,6 +5,8 @@ if(isset($_SESSION["uname"]) && $_SESSION["utype"]=='user')
 include("header.php");
 include("connectdb.php");
 
+    $member_id = $_SESSION['member_id']; // ✅ Fixed line
+
 ?>
 
 
@@ -45,7 +47,7 @@ include("connectdb.php");
                             $q = mysqli_query($con,"
                                 SELECT f.*, m.fullname AS member_name 
                                 FROM sens_family f
-                                LEFT JOIN sens_members m ON f.member_id = m.member_id
+                                LEFT JOIN sens_members m ON f.member_id = m.member_id where f.member_id='$member_id'
                                 ORDER BY f.fam_id DESC
                             ");
 

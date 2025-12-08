@@ -22,23 +22,23 @@ if($uid){
     $userName = $u['name'];
 }
 
-// ✅ Membership Status
-// ✅ Membership Status (SAFE VERSION)
+// Default values
 $statusText = "Not Active";
 $statusColor = "danger";
 
 if($member_id){
-    $m = mysqli_fetch_assoc(mysqli_query($con,"SELECT membership_end FROM sens_members WHERE member_id='$member_id'"));
+    $m = mysqli_fetch_assoc(mysqli_query(
+        $con,
+        "SELECT membership_start FROM sens_members WHERE member_id='$member_id'"
+    ));
 
-    if(!empty($m['membership_end'])){   // ✅ NULL check added
-        $end = strtotime($m['membership_end']);
-
-        if($end !== false && $end >= time()){
-            $statusText = "Active";
-            $statusColor = "success";
-        }
+    // Check if membership_start exists and is not empty
+    if(!empty($m['membership_start']) && $m['membership_start'] != "0000-00-00"){
+        $statusText = "Active";
+        $statusColor = "success";
     }
 }
+
 
 ?>
 

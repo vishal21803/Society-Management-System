@@ -60,8 +60,6 @@ $user = mysqli_fetch_assoc($q);
 $status = $user['request_status']; // pending / approved / rejected
 
 
-echo($user['education']);
-echo($user['education']);
 ?>
 
 <main>
@@ -102,17 +100,18 @@ echo($user['education']);
     <input type="date" name="dob" class="form-control" value="<?= $user['dob'] ?>">
   </div>
 
-  <div class="col-md-6">
+<div class="col-md-6">
     <label class="fw-bold">Education</label>
     <input type="text" name="education" class="form-control" 
-           value="<?= @$user['education'] ?>" placeholder="Your Education">
-  </div>
+           value="<?= $user['education'] ?>" placeholder="Your Education">
+</div>
 
-  <div class="col-md-6">
+<div class="col-md-6">
     <label class="fw-bold">Business</label>
     <input type="text" name="business" class="form-control" 
-           value="<?= @$user['business'] ?>" placeholder="Your Business">
-  </div>
+           value="<?= $user['business'] ?>" placeholder="Your Business">
+</div>
+
 
   <div class="col-12">
     <label class="fw-bold">Address</label>
