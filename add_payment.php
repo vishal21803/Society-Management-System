@@ -2,6 +2,7 @@
 @session_start();
 include("connectdb.php");
 
+$uname=$_SESSION["uname"];
 $member_id = $_POST['member_id'];
 $amount    = $_POST['amount'];
 $year = date('Y'); // ✅ Current Year
@@ -14,9 +15,9 @@ $date      = date("Y-m-d");
 /* ✅ 1. PAYMENT INSERT */
 mysqli_query($con, "
 INSERT INTO sens_payments
-(member_id, amount, payment_date,payment_for_year)
+(member_id, amount, payment_date,payment_for_year,created_by)
 VALUES
-('$member_id', '$amount', '$date' ,'$year')
+('$member_id', '$amount', '$date' ,'$year','$uname')
 ");
 
 mysqli_query($con,"

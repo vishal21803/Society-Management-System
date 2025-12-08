@@ -1,6 +1,6 @@
 <?php 
 @session_start();
-if(isset($_SESSION["uname"]) && $_SESSION["utype"]=='admin')
+if(isset($_SESSION["uname"]) && $_SESSION["utype"]=='accountant')
 {
 include("header.php");
 include("connectdb.php");
@@ -9,7 +9,7 @@ include("connectdb.php");
 <main>
 <div class="d-flex flex-column flex-lg-row">
 
-    <?php include('adminDashboard.php'); ?>
+    <?php include('accountantDashboard.php'); ?>
 
     <div class="flex-grow-1 p-4">
 
@@ -239,23 +239,8 @@ while($h = mysqli_fetch_assoc($historyResult)){
           <input type="date" name="bill_date" class="form-control mb-2" required> -->
           <label for="">Bill Amount</label>
           <input type="number" name="bill_amount" class="form-control mb-2" required>
-          <label for="">Bill Description</label>
+          <label for="">Bill Purpose</label>
           <input type="text" name="purpose" class="form-control" required>
-
-           <label for="">Bill Type</label>
-  <select name="type" class="form-control" required>
-    <option value="">-- Select Purpose --</option>
-    <option value="New Membership">New Membership</option>
-    <option value="Yearly Fee">Yearly Fee</option>
-    <option value="Lifetime Fee">Lifetime Fee</option>
-    <option value="Scholarship">Scholarship</option>
-    <option value="Donation">Donation</option>
-            <option value="Others">Others</option>
-
-  </select>
-        <!-- #region -->
-
-
         </div>
 
         <div class="modal-footer">
@@ -283,17 +268,6 @@ while($h = mysqli_fetch_assoc($historyResult)){
           <input type="date" name="receipt_date" class="form-control mb-2" required> -->
           <label for=""> Amount</label>
           <input type="number" name="receipt_amount" class="form-control mb-2" required>
-           <label for="">Bill Type</label>
-  <select name="type" class="form-control" required>
-    <option value="">-- Select Purpose --</option>
-    <option value="New Membership">New Membership</option>
-    <option value="Yearly Fee">Yearly Fee</option>
-    <option value="Lifetime Fee">Lifetime Fee</option>
-    <option value="Scholarship">Scholarship</option>
-    <option value="Donation">Donation</option>
-        <option value="Others">Others</option>
-
-  </select>
           <label for="">Receipt purpose</label>
           <input type="text" name="purpose" class="form-control mb-2" required>
           <label for="">Receipt ID</label>

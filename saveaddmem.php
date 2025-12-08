@@ -1,6 +1,7 @@
 <?php
 @session_start();
 include("connectdb.php");
+$uname=$_SESSION["uname"];
 
 // ===============================
 // ✅ BASIC USER DATA
@@ -35,8 +36,8 @@ move_uploaded_file($file["tmp_name"], "upload/member/".$img);
 // ✅ CREATE USER ACCOUNT
 // ===============================
 mysqli_query($con,"
-INSERT INTO sens_users (name,email,role,created_at,onboarding) 
-VALUES ('$username', '$email','user',NOW(),1)
+INSERT INTO sens_users (name,email,role,created_at,onboarding,created_by) 
+VALUES ('$username', '$email','user',NOW(),1,'$uname')
 ");
 
 $user_id = mysqli_insert_id($con);
@@ -59,9 +60,9 @@ if($p['duration_days'] != NULL){
 // ===============================
 $insert = mysqli_query($con,"
 INSERT INTO sens_members 
-(user_id, zone_id, city_id, phone, address, photo, created_at, gender, dob, fullname, plan_id, membership_start, membership_end) 
+(user_id, zone_id, city_id, phone, address, photo, created_at, gender, dob, fullname, plan_id, membership_start, membership_end,created_by) 
 VALUES 
-('$user_id', '$zone_id', '$city_id', '$phone', '$address', '$img', NOW(), '$gender','$dob','$fullname','$plan_id','$plan_start','$plan_end')
+('$user_id', '$zone_id', '$city_id', '$phone', '$address', '$img', NOW(), '$gender','$dob','$fullname','$plan_id','$plan_start','$plan_end','$uname')
 ");
 
 $member_id = mysqli_insert_id($con);
@@ -71,17 +72,17 @@ $member_id = mysqli_insert_id($con);
 // ===============================
 mysqli_query($con,"
 INSERT INTO sens_plan_requests 
-(user_id, plan_id, status, request_date) 
+(user_id, plan_id, status, request_date,created_by) 
 VALUES 
-('$member_id', '$plan_id', 'approved', NOW())
+('$member_id', '$plan_id', 'approved', NOW(),'$uname')
 ");
 
 // ===============================
 // ✅ MEMBER APPROVAL REQUEST (PROFILE SIDE)
 // ===============================
 mysqli_query($con,"
-INSERT INTO sens_requests (member_id, status, request_date, approved_date) 
-VALUES ('$member_id', 'approved', NOW(), NOW())
+INSERT INTO sens_requests (member_id, status, request_date, approved_date,created_by) 
+VALUES ('$member_id', 'approved', NOW(), NOW(),'$uname')
 ");
 
 

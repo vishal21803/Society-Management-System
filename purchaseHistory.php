@@ -90,7 +90,8 @@ if(
                       <th>Bill Amount</th>
                       <th>Receipt Amount</th>
                       <th>Purpose</th>
-                      <th>Type</th>
+                      <th>Bill type</th>
+                      <th>Downoad</th>
                       <th>Receipt ID</th>
                     </tr>
                   </thead>
@@ -100,20 +101,24 @@ if(
 $historyQuery = "
 (
  SELECT 
+   bill_id AS ref_id,
    bill_date AS trans_date,
    bill_amount AS bill_amt,
-   '' AS receipt_amt,
+   bill_type AS btype,
+   NULL AS receipt_amt,
    bill_purpose AS purpose,
    'Bill' AS type,
-   '' AS manual_id
+   NULL AS manual_id
  FROM sens_bills
  WHERE member_id='$member_id'
 )
 UNION ALL
 (
  SELECT 
+   receipt_id AS ref_id,
    receipt_date AS trans_date,
-   '' AS bill_amt,
+   NULL AS bill_amt,
+   NULL AS btype,
    receipt_amount AS receipt_amt,
    purpose,
    'Receipt' AS type,
@@ -121,8 +126,10 @@ UNION ALL
  FROM sens_receipt
  WHERE member_id='$member_id'
 )
-ORDER BY trans_date ASC
+ORDER BY trans_date DESC
 ";
+
+
 
 $totalBill = 0;
 $totalReceipt = 0;
@@ -145,12 +152,23 @@ while($h = mysqli_fetch_assoc($historyResult)){
   <td><?= $h['bill_amt']!='' ? '₹'.$h['bill_amt'] : '-' ?></td>
   <td><?= $h['receipt_amt']!='' ? '₹'.$h['receipt_amt'] : '-' ?></td>
   <td><?= htmlspecialchars($h['purpose']) ?></td>
-  <td>
-    <?= ($h['type']=='Bill') 
-      ? '<span class="badge bg-success">Bill</span>' 
-      : '<span class="badge bg-warning">Receipt</span>' ?>
-  </td>
+    <td><?= $h['btype']!='' ? '₹'.$h['btype'] : '-' ?></td>
+
+
+ <td>
+<?php if($h['type']=='Bill'){ ?>
+    <a href="">
+        <span class="badge bg-success">Bill</span>
+    </a>
+<?php } else { ?>
+    <a href="tempReceipt.php?receipt_id=<?= $h['ref_id'] ?>">
+        <span class="badge bg-warning">Receipt</span>
+    </a>
+<?php } ?>
+</td>
+
   <td><?= $h['manual_id']!='' ? htmlspecialchars($h['manual_id']) : '-' ?></td>
+  
 </tr>
 <?php 
 }} else { ?>
@@ -163,7 +181,7 @@ while($h = mysqli_fetch_assoc($historyResult)){
   <td>Total</td>
   <td>₹<?= $totalBill ?></td>
   <td>₹<?= $totalReceipt ?></td>
-  <td colspan="2">Balance ₹<?= ($totalBill - $totalReceipt) ?></td>
+  <td colspan="3">Balance ₹<?= ($totalBill - $totalReceipt) ?></td>
   <td></td>
 </tr>
 

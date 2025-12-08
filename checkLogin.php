@@ -41,6 +41,12 @@
             header("location:adminPage.php");
         }
 
+         elseif($row["role"]=='accountant'){
+            
+            $_SESSION['utype']='accountant';
+            header("location:accountantPage.php");
+        }
+
       }
       
       else{

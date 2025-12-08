@@ -1,6 +1,7 @@
 <?php
 session_start();
 include("connectdb.php");
+$uname=$_SESSION["uname"];
 
 $request_id = intval($_POST['request_id']);
 $status     = $_POST['status'];
@@ -35,9 +36,9 @@ $plan_id = $row2['plan_id'];
 /* ✅ 4. Insert into PLAN_REQUESTS */
 mysqli_query($con, "
     INSERT INTO sens_plan_requests 
-    (user_id, plan_id, status) 
+    (user_id, plan_id, status,created_by) 
     VALUES 
-    ('$member_id', '$plan_id', 'approved')
+    ('$member_id', '$plan_id', 'approved','$uname')
 ");
 
 /* ✅ 5. Get PLAN DURATION */
@@ -66,8 +67,8 @@ mysqli_query($con, "
 
 
 mysqli_query($con,"
-INSERT INTO sens_wallet (member_id, amount) 
-VALUES ('$member_id', 0)
+INSERT INTO sens_wallet (member_id, amount,created_by) 
+VALUES ('$member_id', 0,'$uname')
 ");
 
 

@@ -1,5 +1,6 @@
-<?php
+<?php @session_start();
 include("connectdb.php");
+$uname=$_SESSION["uname"];
 
 $title = $_POST['title'];
 $desc  = $_POST['description'];
@@ -16,9 +17,9 @@ $imgName = time()."_".$img;
 move_uploaded_file($tmp,"upload/gallery/".$imgName);
 
 $q = "INSERT INTO sens_gallery 
-(title, description, visibility_type, zone_id, city_id, member_id, image, created_at)
+(title, description, visibility_type, zone_id, city_id, member_id, image, created_at,created_by)
 VALUES
-('$title','$desc','$type','$zone','$city','$member','$imgName',NOW())";
+('$title','$desc','$type','$zone','$city','$member','$imgName',NOW(),'$uname')";
 
 if(mysqli_query($con,$q)){
     echo "<div class='alert alert-success'>✅ Gallery Image Added Successfully</div>";

@@ -1,6 +1,7 @@
 <?php
 @session_start();
 include("connectdb.php");
+$uname=$_SESSION["uname"];
 
 if(isset($_POST['send'])){
     $sender_id   = $_SESSION['uid']; // admin id
@@ -13,9 +14,9 @@ if(isset($_POST['send'])){
     $message = mysqli_real_escape_string($con,$_POST['message']);
 
     mysqli_query($con,"INSERT INTO sens_messages 
-    (sender_id,sender_type,receiver_id,receiver_type,subject,message)
+    (sender_id,sender_type,receiver_id,receiver_type,subject,message,created_by)
     VALUES 
-    ('$sender_id','$sender_type','$receiver_id','$receiver_type','$subject','$message')");
+    ('$sender_id','$sender_type','$receiver_id','$receiver_type','$subject','$message','$uname')");
 
     header("Location: adminMessages.php");
 }

@@ -1,17 +1,21 @@
-<?php
+<?php @session_start();
 include("connectdb.php");
+$uname=$_SESSION["uname"];
 
 $member_id   = $_POST['member_id'];
 $bill_amount = $_POST['bill_amount'];
 $purpose     = $_POST['purpose'];
+$type     = $_POST['type'];
+
+
 
 // ✅ CURRENT DATE + TIME AUTO
 $bill_date = date("Y-m-d H:i:s");
 
 /* ✅ INSERT INTO BILLS */
 $insert = mysqli_query($con, "
-    INSERT INTO sens_bills (member_id, bill_date, bill_amount, bill_purpose)
-    VALUES ('$member_id', '$bill_date', '$bill_amount', '$purpose')
+    INSERT INTO sens_bills (member_id, bill_date, bill_amount, bill_purpose,created_by,bill_type)
+    VALUES ('$member_id', '$bill_date', '$bill_amount', '$purpose','$uname','$type')
 ");
 
 if($insert){

@@ -1,5 +1,6 @@
-<?php
+<?php @session_start();
 include 'connectdb.php';   // your DB connection file
+$uname=$_SESSION["uname"];
 
 $topic = $_POST['topic'];
 $remark = $_POST['remark'];
@@ -12,8 +13,8 @@ $target_file = $target_dir . $file_name;
 
 if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {
 
-    $sql = "INSERT INTO sens_downloads (topic, remark, file_name,downshow) 
-            VALUES ('$topic', '$remark', '$file_name','$type')";
+    $sql = "INSERT INTO sens_downloads (topic, remark, file_name,downshow,created_by) 
+            VALUES ('$topic', '$remark', '$file_name','$type','$uname')";
     mysqli_query($con, $sql);
 
     echo "<script>alert('File Uploaded'); window.location='datatTableDownload.php';</script>";

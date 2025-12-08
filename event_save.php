@@ -1,5 +1,6 @@
-<?php
+<?php @session_start();
 include("connectdb.php");
+$uname=$_SESSION["uname"];
 
 $title   = $_POST['event_title'];
 $desc    = $_POST['event_desc'];
@@ -27,9 +28,9 @@ $tmp = $_FILES['event_img']['tmp_name'];
 move_uploaded_file($tmp,"upload/events/".$img);
 
 $sql = "INSERT INTO sens_events 
-(title, description, event_date, event_time, event_location, event_status, event_img, toshow_type, toshow_id, created_at)
+(title, description, event_date, event_time, event_location, event_status, event_img, toshow_type, toshow_id, created_at,created_by)
 VALUES
-('$title','$desc','$date','$time','$loc','$status','$img','$toshow_type','$toshow_id',NOW())";
+('$title','$desc','$date','$time','$loc','$status','$img','$toshow_type','$toshow_id',NOW(),'$uname')";
 
 if(mysqli_query($con,$sql)){
     echo "success";
