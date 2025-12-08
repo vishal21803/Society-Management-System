@@ -152,7 +152,6 @@ h2::after {
     position: absolute;
     width: 60%;
     height: 4px;
-    background: #ff9800;
     left: 20%;
     bottom: 0;
     border-radius: 20px;
@@ -348,6 +347,12 @@ if($isLoggedIn){
 </a>
                         </p>
                     </div>
+
+                      <div class="text-end me-2">
+                            <a href="showNews.php" class="btn btn-outline-primary" style="color:black">
+                               More News
+                            </a>
+                        </div>
 
                     <div class="card-footer bg-white border-0">
                         <small class="text-muted">

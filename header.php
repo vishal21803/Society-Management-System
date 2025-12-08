@@ -38,7 +38,7 @@ html, body {
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light"
+<nav class="navbar navbar-expand-lg navbar-light fixed-top"
      style="background: linear-gradient(90deg, #FFB347, #FFCC33); box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
 
   <div class="container">
@@ -71,6 +71,9 @@ html, body {
 
 <li class="nav-item">
   <a class="nav-link text-white <?= ($currentPage == 'showDownloads.php') ? 'active-link' : '' ?>" href="showDownloads.php">Downloads</a>
+</li>
+<li class="nav-item">
+  <a class="nav-link text-white <?= ($currentPage == 'showDonate.php') ? 'active-link' : '' ?>" href="showDonate.php">Donation</a>
 </li>
 
 <li class="nav-item">
