@@ -58,9 +58,10 @@ include("connectdb.php");
                             <td><?= $i++ ?></td>
 
                             <td>
-                                <button class="btn btn-sm btn-info"
+                                <button title="View" class="btn btn-sm btn-info"
                                     onclick="viewImage('upload/news/<?= $row['news_img'] ?>')">
-                                    View
+                                    <i class="bi bi-eye-fill"></i>
+
                                 </button>
                             </td>
 
@@ -81,14 +82,14 @@ include("connectdb.php");
                             </td>
 
                             <td>
-                                <button class="btn btn-sm btn-success"
+                                <button title="Edit" class="btn btn-sm btn-primary"
                                     onclick="editNews(<?= $row['news_id'] ?>)">
-                                    Edit
+                                    <i class="bi bi-pencil"></i>
                                 </button>
 
-                                <button class="btn btn-sm btn-danger"
+                                <button title="Delete" class="btn btn-sm btn-danger"
                                     onclick="deleteNews(<?= $row['news_id'] ?>)">
-                                    Delete
+                                    <i class="bi bi-trash"></i>
                                 </button>
                             </td>
                         </tr>

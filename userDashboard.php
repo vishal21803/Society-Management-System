@@ -2,7 +2,7 @@
 
 <!-- Toggle button for small screens -->
 <button class="btn btn-warning d-lg-none  " type="button" data-bs-toggle="offcanvas" data-bs-target="#adminSidebarOffcanvas" aria-controls="adminSidebarOffcanvas">
-    <i class="bi bi-list"></i> Menu
+    <i class="bi bi-list"></i> User Panel
 </button>
 
 <!-- Sidebar for large screens -->

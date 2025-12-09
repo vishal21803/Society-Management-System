@@ -29,7 +29,7 @@ $plan = mysqli_fetch_assoc($planQuery);
             <div>
                 <h5 class="fw-bold mb-2">Plan: <?= htmlspecialchars($plan['plan_name']) ?></h5>
                 <p class="mb-1"><strong>Price:</strong> ₹<?= $plan['price'] ?></p>
-                <p class="mb-1"><strong>Duration:</strong> <?= $plan['duration_days'] ?> Days</p>
+                <!-- <p class="mb-1"><strong>Duration:</strong> <?= $plan['duration_days'] ?> Days</p> -->
                 <!-- <p class="mb-0"><strong>Start:</strong> <?= date("d M Y", strtotime($plan['membership_start'])) ?></p>
                 <p class="mb-0"><strong>End:</strong> <?= date("d M Y", strtotime($plan['membership_end'])) ?></p> -->
                 <?php

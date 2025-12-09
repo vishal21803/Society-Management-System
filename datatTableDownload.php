@@ -95,10 +95,10 @@ td, th {
                             <td><?= htmlspecialchars($row['remark']) ?></td>
 
                             <td>
-                                <a href="upload/<?= $row['file_name'] ?>" 
+                                <a title="View" href="upload/<?= $row['file_name'] ?>" 
                                    target="_blank" 
                                    class="btn btn-sm btn-info">
-                                    View
+                               <i class="bi bi-eye-fill"></i>
                                 </a>
                             </td>
 
@@ -111,15 +111,15 @@ td, th {
                             <td><?= date("d-M-Y", strtotime($row['created_at'])) ?></td>
 
                             <td>
-                                <a href="edit_download.php?id=<?= $row['id'] ?>" 
-                                   class="btn btn-sm btn-success">
-                                    Edit
+                                <a title="Edit" href="edit_download.php?id=<?= $row['id'] ?>" 
+                                   class="btn btn-sm btn-primary">
+                                    <i class="bi bi-pencil"></i>
                                 </a>
 
-                                <a href="delete_download.php?id=<?= $row['id'] ?>" 
+                                <a title="Delete" href="delete_download.php?id=<?= $row['id'] ?>" 
                                    class="btn btn-sm btn-danger"
                                    onclick="return confirm('Are you sure you want to delete this file?')">
-                                    Delete
+                                    <i class="bi bi-trash"></i>
                                 </a>
                             </td>
                         </tr>

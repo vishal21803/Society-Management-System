@@ -126,8 +126,12 @@ include("connectdb.php");
 
         <div class="mb-2">
             <label>Phone</label>
-            <input type="text" id="fam_phone" class="form-control">
-        </div>
+    <input type="number" 
+       class="form-control" 
+       placeholder="Phone Number" 
+       id="fam_phone"
+       required 
+       oninput="if(this.value.length > 10) this.value = this.value.slice(0, 10);">           </div>
 
         <!-- ✅ NEW: DOB -->
         <div class="mb-2">

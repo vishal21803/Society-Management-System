@@ -2,11 +2,10 @@
 include("header.php");
 include("connectdb.php");
 ?>
-
 <style>
-.profile-card {
+    .profile-card {
     width: 300px;
-background: linear-gradient(145deg, #f7971e, #ffd200);
+    background: linear-gradient(145deg, #f7971e, #ffd200);
     border-radius: 20px;
     text-align: center;
     padding: 25px 20px;
@@ -14,6 +13,7 @@ background: linear-gradient(145deg, #f7971e, #ffd200);
     transition: all 0.4s ease;
     position: relative;
     overflow: visible;  /* 🔥 VERY IMPORTANT */
+    margin: 0 auto; /* 🔹 centers by default */
 }
 
 .profile-card:hover {
@@ -66,6 +66,14 @@ background: linear-gradient(145deg, #f7971e, #ffd200);
     font-size: 14px;
     color: #444;
     margin: 4px 0;
+}
+
+/* 🔹 MOBILE MEDIA QUERY */
+@media (max-width: 767px) {
+    .profile-card {
+        width: 90%; /* almost full width on mobile */
+        margin: 20px auto; /* center with spacing */
+    }
 }
 
 </style>

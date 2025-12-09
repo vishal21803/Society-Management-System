@@ -68,7 +68,7 @@ while($row = mysqli_fetch_assoc($res)){
     <td><?= $row['city_name'] ?></td>
 
     <td>
-        <button class="btn btn-sm btn-success"
+        <button title="Edit" class="btn btn-sm btn-primary"
 onclick="openComiEdit(
 <?= $row['comi_id'] ?>,
 '<?= $row['comi_name'] ?>',
@@ -79,12 +79,12 @@ onclick="openComiEdit(
 <?= $row['comi_city'] ?>,
 '<?= $row['comi_priority'] ?>',
 '<?= $row['comi_duration'] ?>'
-)">Edit</button>
+)"><i class="bi bi-pencil"></i></button>
 
 
-        <button class="btn btn-sm btn-danger"
+        <button title="Delete" class="btn btn-sm btn-danger"
         onclick="deleteComi(<?= $row['comi_id'] ?>)">
-        Delete</button>
+        <i class="bi bi-trash"></i></button>
     </td>
 </tr>
 <?php } ?>

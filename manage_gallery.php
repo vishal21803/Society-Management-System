@@ -53,9 +53,10 @@ if(isset($_SESSION["uname"]) && $_SESSION["utype"]=='admin') {
                                 <td><?= $i++ ?></td>
                                   <td>
                                     <?php if($row['image']) { ?>
-                                        <button class="btn btn-sm btn-info viewImageBtn"
+                                        <button title="View" class="btn btn-sm btn-info viewImageBtn"
                                             data-src="upload/gallery/<?= $row['image'] ?>">
-                                            View
+                                            <i class="bi bi-eye-fill"></i>
+
                                         </button>
                                     <?php } else { ?>
                                         <span class="text-muted">No Image</span>
@@ -74,14 +75,14 @@ if(isset($_SESSION["uname"]) && $_SESSION["utype"]=='admin') {
                               
 
                                 <td>
-                                    <button class="btn btn-sm btn-success editBtn"
+                                    <button title="Edit" class="btn btn-sm btn-primary editBtn"
                                         data-id="<?= $row['gallery_id'] ?>">
-                                        Edit
+                                        <i class="bi bi-pencil"></i>
                                     </button>
 
-                                    <button class="btn btn-sm btn-danger deleteBtn"
+                                    <button title="Delete" class="btn btn-sm btn-danger deleteBtn"
                                         data-id="<?= $row['gallery_id'] ?>">
-                                        Delete
+                                        <i class="bi bi-trash"></i>
                                     </button>
                                 </td>
 

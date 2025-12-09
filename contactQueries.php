@@ -55,9 +55,9 @@ if(isset($_SESSION["uname"]) && $_SESSION["utype"]=='admin') {
                                     <td>
                                       
 
-                                        <button class="btn btn-sm btn-danger deleteBtn"
+                                        <button title="Delete" class="btn btn-sm btn-danger deleteBtn"
                                             data-id="<?= $row['con_id'] ?>">
-                                            Delete
+                                            <i class="bi bi-trash"></i>
                                         </button>
                                     </td>
 

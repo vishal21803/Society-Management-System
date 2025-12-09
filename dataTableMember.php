@@ -83,7 +83,7 @@ while($row = mysqli_fetch_assoc($res)){
     <td><?= $row['city_name'] ?></td>
 
     <td>
-        <button class="btn btn-sm btn-success"
+        <button title="Edit" class="btn btn-sm btn-primary"
 onclick="openMemberEditModal(
 <?= $row['member_id'] ?>,
 '<?= $row['fullname'] ?>',
@@ -98,13 +98,13 @@ onclick="openMemberEditModal(
 <?= $row['plan_id'] ?>
 )"
 >
-Edit
+<i class="bi bi-pencil"></i>
 </button>
 
 
-        <button class="btn btn-sm btn-danger"
+        <button title="Delete" class="btn btn-sm btn-danger"
             onclick="deleteMember(<?= $row['member_id'] ?>)">
-            Delete
+            <i class="bi bi-trash"></i>
         </button>
     </td>
 </tr>
@@ -147,8 +147,13 @@ Edit
 
           <div class="col-md-6 mb-3">
             <label>Phone</label>
-            <input type="text" id="edit_phone" class="form-control">
-          </div>
+    <input type="number" 
+       id="edit_phone" 
+       class="form-control" 
+       placeholder="Phone Number" 
+      
+       required 
+       oninput="if(this.value.length > 10) this.value = this.value.slice(0, 10);">             </div>
 
           <div class="col-md-6 mb-3">
             <label>Gender</label>

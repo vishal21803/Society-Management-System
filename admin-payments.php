@@ -40,7 +40,6 @@ include("connectdb.php");
                             <th>Name</th>
                             <th>City</th>
                             <th>Zone</th>
-                            <th>Email</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -69,25 +68,27 @@ include("connectdb.php");
 
                             <td><?= htmlspecialchars($row['zone_name']) ?></td>
 
-                            <td><?= htmlspecialchars($row['email']) ?></td>
 
                             <td>
-                                <button class="btn btn-sm btn-primary"
+                                <button title="History" class="btn btn-sm btn-primary"
                                     data-bs-toggle="modal"
                                     data-bs-target="#historyModal<?= $row['member_id'] ?>">
-                                    History
+                                    <i class="bi bi-clock-history"></i>
+
                                 </button>
 
-                                <button class="btn btn-sm btn-success"
+                                <button title="Bill" class="btn btn-sm btn-success"
                                     data-bs-toggle="modal"
                                     data-bs-target="#billModal<?= $row['member_id'] ?>">
-                                    Bill
+                                    <i class="bi bi-receipt"></i>
+
                                 </button>
 
-                                <button class="btn btn-sm btn-warning"
+                                <button title="Receipt" class="btn btn-sm btn-warning"
                                     data-bs-toggle="modal"
                                     data-bs-target="#receiptModal<?= $row['member_id'] ?>">
-                                    Receipt
+                                    <i class="bi bi-currency-rupee"></i>
+
                                 </button>
                             </td>
                         </tr>

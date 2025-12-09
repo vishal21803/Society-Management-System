@@ -43,7 +43,7 @@ while($row = mysqli_fetch_array($res)){
             <div>
                 <h6 class="mb-1 fw-bold"><?php echo $row['fullname']; ?></h6>
                 <small class="text-muted">
-                    <?php echo $age; ?> yrs • <?php echo $row['email']; ?>
+                   <?php echo $row['email']; ?>
                 </small>
             </div>
         </div>
@@ -90,8 +90,7 @@ while($row = mysqli_fetch_array($res)){
         <!-- Filled by AJAX -->
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-success" id="approveBtn">Approve</button>
-        <button type="button" class="btn btn-danger" id="rejectBtn">Reject</button>
+        
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
       </div>
     </div>
@@ -143,6 +142,39 @@ document.addEventListener("click", function(e){
     }
 
 });
+
+document.addEventListener("click", function(e){
+
+    /* -------------------------------
+       VIEW PROFILE CLICK
+    --------------------------------*/
+    if (e.target.classList.contains("viewProfileBtn")) {
+
+        let memberId = e.target.getAttribute("data-member");
+        let requestId = e.target.getAttribute("data-request");
+
+        // Load details via AJAX
+        fetch("fetchMemberDetails.php", {
+            method: "POST",
+            headers: {"Content-Type": "application/x-www-form-urlencoded"},
+            body: "member_id=" + memberId + "&request_id=" + requestId
+        })
+        .then(res => res.text())
+        .then(data => {
+            document.getElementById("memberDetails").innerHTML = data;
+
+            // Set request id for modal approve/reject buttons
+            // document.getElementById("approveBtn").setAttribute("data-request", requestId);
+            // document.getElementById("rejectBtn").setAttribute("data-request", requestId);
+
+            // Open modal
+            let myModal = new bootstrap.Modal(document.getElementById('memberModal'));
+            myModal.show();
+        });
+    }
+
+});
+
 
 </script>
 

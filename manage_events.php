@@ -27,7 +27,6 @@ include("connectdb.php");
                             <tr>
                                 <th>#</th>
                                 <th>Event Title</th>
-                                <th>Status</th>
                                 <th>Date</th>
                                 <th>Actions</th>
                             </tr>
@@ -44,26 +43,20 @@ include("connectdb.php");
                                 <td><?= $i++ ?></td>
                                 <td><?= $row['title'] ?></td>
 
-                                <td>
-                                    <span class="badge 
-                                        <?= $row['event_status']=='upcoming'?'bg-primary':
-                                            ($row['event_status']=='completed'?'bg-success':'bg-danger') ?>">
-                                        <?= ucfirst($row['event_status']) ?>
-                                    </span>
-                                </td>
+                              
 
                                 <td><?= date("d-m-Y", strtotime($row['event_date'])) ?></td>
 
                                 <td>
-                                    <button class="btn btn-sm btn-success" 
+                                    <button title="Edit" class="btn btn-sm btn-primary" 
                                         data-bs-toggle="modal" 
                                         data-bs-target="#editModal<?= $eid ?>">
-                                        Edit
+                                        <i class="bi bi-pencil"></i>
                                     </button>
 
-                                    <button class="btn btn-sm btn-danger"
+                                    <button title="Delete" class="btn btn-sm btn-danger"
                                         onclick="deleteEvent(<?= $eid ?>)">
-                                        Delete
+                                        <i class="bi bi-trash"></i>
                                     </button>
                                 </td>
                             </tr>

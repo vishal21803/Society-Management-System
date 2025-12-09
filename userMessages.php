@@ -65,8 +65,7 @@ if(isset($_SESSION["uname"]) && $_SESSION["utype"]=='user') {
 
                              
                                 <td>
-                                    <a href="userChat.php?id=<?= $row['sender_id'] ?>" 
-                                       class="btn btn-sm btn-success">Reply</a>
+                                  
 
                                     <a href="deleteMessage.php?id=<?= $row['id'] ?>" 
                                        class="btn btn-sm btn-danger"

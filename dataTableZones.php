@@ -46,30 +46,31 @@ include("connectdb.php");
                     <td><?= $i++ ?></td>
                     <td><?= $z['zone_name'] ?></td>
                     <td>
-                        <button class="btn btn-sm btn-success"
+                        <button title="Edit" class="btn btn-sm btn-primary"
                             onclick="editZone(<?= $z['zone_id'] ?>,'<?= $z['zone_name'] ?>')">
-                            Edit
+                            <i class="bi bi-pencil"></i>
                         </button>
 
-                        <button class="btn btn-sm btn-danger"
+                        <button title="Delete" class="btn btn-sm btn-danger"
                             onclick="deleteZone(<?= $z['zone_id'] ?>)">
-                            Delete
+                        <i class="bi bi-trash"></i>
+
                         </button>
 
 <?php if($z['zstatus'] == 1){ ?>
 
     <!-- ✅ ACTIVE → SHOW DEACTIVATE -->
-    <button class="btn btn-sm btn-danger"
+    <button title="Deactivate" class="btn btn-sm btn-danger"
         onclick="deactivateZone(<?= $z['zone_id'] ?>)">
-        Deactivate
+        <i class="bi bi-x"></i>
     </button>
 
 <?php } else { ?>
 
     <!-- ✅ INACTIVE → SHOW ACTIVATE -->
-    <button class="btn btn-sm btn-success"
+    <button title="Activate" class="btn btn-sm btn-success"
         onclick="activateZone(<?= $z['zone_id'] ?>)">
-        Activate
+        <i class="bi bi-check"></i>
     </button>
 
 <?php } ?>

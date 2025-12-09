@@ -54,30 +54,30 @@ include("connectdb.php");
                     <td><?= $c['zone_name'] ?></td>
 
                     <td>
-                        <button class="btn btn-sm btn-success"
+                        <button title="Edit" class="btn btn-sm btn-primary"
                             onclick="editCity(<?= $c['city_id'] ?>,'<?= $c['city_name'] ?>')">
-                            Edit
+                            <i class="bi bi-pencil"></i>
                         </button>
 
-                        <button class="btn btn-sm btn-danger"
+                        <button title="Delete" class="btn btn-sm btn-danger"
                             onclick="deleteCity(<?= $c['city_id'] ?>)">
-                            Delete
+                            <i class="bi bi-trash"></i>
                         </button>
 
 <?php if($c['cstatus'] == 1){ ?>
 
     <!-- ✅ ACTIVE → SHOW DEACTIVATE -->
-    <button class="btn btn-sm btn-danger"
+    <button title="Deactivate" class="btn btn-sm btn-danger"
         onclick="deactivateCity(<?= $c['city_id'] ?>)">
-        Deactivate
+        <i class="bi bi-x"></i>
     </button>
 
 <?php } else { ?>
 
     <!-- ✅ INACTIVE → SHOW ACTIVATE -->
-    <button class="btn btn-sm btn-success"
+    <button title="Activate" class="btn btn-sm btn-success"
         onclick="activateCity(<?= $c['city_id'] ?>)">
-        Activate
+        <i class="bi bi-check"></i>
     </button>
 
 <?php } ?>

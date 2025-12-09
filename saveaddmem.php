@@ -6,7 +6,6 @@ $uname=$_SESSION["uname"];
 // ===============================
 // ✅ BASIC USER DATA
 // ===============================
-$username = $_POST["username"];
 $email    = $_POST["email"];
 $fullname = $_POST["fullname"];
 $gender   = $_POST["gender"];
@@ -37,7 +36,7 @@ move_uploaded_file($file["tmp_name"], "upload/member/".$img);
 // ===============================
 mysqli_query($con,"
 INSERT INTO sens_users (name,email,role,created_at,onboarding,created_by) 
-VALUES ('$username', '$email','user',NOW(),1,'$uname')
+VALUES ('$fullname', '$email','user',NOW(),1,'$uname')
 ");
 
 $user_id = mysqli_insert_id($con);
@@ -49,20 +48,16 @@ $p = mysqli_fetch_assoc(mysqli_query($con,"SELECT * FROM sens_plans WHERE plan_i
 
 $plan_start = date('Y-m-d');
 
-if($p['duration_days'] != NULL){
-    $plan_end = date('Y-m-d', strtotime("+".$p['duration_days']." days"));
-}else{
-    $plan_end = NULL; // ✅ Lifetime
-}
+
 
 // ===============================
 // ✅ INSERT INTO MEMBERS
 // ===============================
 $insert = mysqli_query($con,"
 INSERT INTO sens_members 
-(user_id, zone_id, city_id, phone, address, photo, created_at, gender, dob, fullname, plan_id, membership_start, membership_end,created_by) 
+(user_id, zone_id, city_id, phone, address, photo, created_at, gender, dob, fullname, plan_id, membership_start,created_by) 
 VALUES 
-('$user_id', '$zone_id', '$city_id', '$phone', '$address', '$img', NOW(), '$gender','$dob','$fullname','$plan_id','$plan_start','$plan_end','$uname')
+('$user_id', '$zone_id', '$city_id', '$phone', '$address', '$img', NOW(), '$gender','$dob','$fullname','$plan_id','$plan_start','$uname')
 ");
 
 $member_id = mysqli_insert_id($con);

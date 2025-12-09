@@ -61,20 +61,28 @@ include("connectdb.php");
                     <input type="text" name="fullname" class="form-control" required>
                 </div>
 
-                <div class="col-md-6">
+                <!-- <div class="col-md-6">
                     <label>Login Name</label>
                     <input type="text" name="username" class="form-control" required>
-                </div>
+                </div> -->
 
                 <div class="col-md-6">
                     <label>Email</label>
                     <input type="email" name="email" class="form-control" required>
+                        <small id="emailMsg"></small>
+
                 </div>
 
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <label>Phone</label>
-                    <input type="number" name="phone" class="form-control" required>
-                </div>
+<input type="number" 
+       name="phone" 
+       class="form-control" 
+       placeholder="Phone Number" 
+       id="phoneInput"
+       required 
+       oninput="if(this.value.length > 10) this.value = this.value.slice(0, 10);">                </div>
+                
             </div>
 
             <div class="mb-3 animate-fade">
@@ -118,7 +126,7 @@ include("connectdb.php");
     </div>
 </div>
 
-            <button type="button" class="btn step-btn" onclick="goStep(2,'left')">Next →</button>
+<button type="button" class="btn step-btn" id="goToStep2Btn">Next →</button>
         </div>
 
         <!-- STEP 2 -->
@@ -221,6 +229,51 @@ document.addEventListener("DOMContentLoaded", function(){
 <?php } ?>
 
 
+
+<script>
+    let emailValid = false; // global flag
+
+document.addEventListener("DOMContentLoaded", () => {
+    let emailInput = document.querySelector("input[name='email']");
+    let nextBtn = document.querySelector("#goToStep2Btn");
+    let emailMsg = document.getElementById("emailMsg");
+
+    emailInput.addEventListener("keyup", function() {
+        let email = this.value.trim();
+        if(email === "") {
+            emailMsg.innerHTML = "";
+            emailValid = false;
+            return;
+        }
+
+        fetch("checkEmail.php", {
+            method: "POST",
+            headers: {"Content-Type": "application/x-www-form-urlencoded"},
+            body: "email=" + email
+        })
+        .then(res => res.text())
+        .then(data => {
+            if(data === "exists"){
+                emailMsg.innerHTML = "<span class='text-danger fw-bold'>❌ Email already registered</span>";
+                emailValid = false;
+            } else {
+                emailMsg.innerHTML = "<span class='text-success fw-bold'>✔️ Email available</span>";
+                emailValid = true;
+            }
+        });
+    });
+});
+
+document.getElementById("goToStep2Btn").addEventListener("click", function () {
+    if(emailValid){
+        goStep(2,'left');   // move to next step
+    } else {
+        alert("Email already registered! Please use another email.");
+    }
+});
+
+
+</script>
 <?php
 include("footer.php");
 }else{

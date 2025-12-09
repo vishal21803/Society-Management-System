@@ -44,8 +44,13 @@ include("connectdb.php");
                         <!-- PHONE -->
                         <div class="col-md-6 mb-3">
                             <label class="fw-semibold">Phone</label>
-                            <input type="text" name="fam_phone" class="form-control" maxlength="10">
-                        </div>
+    <input type="number" 
+    name="fam_phone"
+       class="form-control" 
+       placeholder="Phone Number" 
+       id="fam_phone"
+       required 
+       oninput="if(this.value.length > 10) this.value = this.value.slice(0, 10);">                           </div>
 
                         <div class="col-md-6 mb-3">
                             <label class="fw-semibold">DOB</label>
@@ -93,6 +98,34 @@ include("connectdb.php");
     </div>
 
 </div>
+
+<!-- SUCCESS MODAL -->
+<div class="modal fade" id="successModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-0 shadow-lg">
+
+      <div class="modal-header bg-success text-white">
+        <h5 class="modal-title">
+            <i class="bi bi-check-circle-fill me-2"></i> Success
+        </h5>
+        <button class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body text-center">
+        <h5 class="fw-bold text-success">Family Member Added Successfully!</h5>
+        <p class="text-muted">Your family details have been saved.</p>
+      </div>
+
+      <div class="modal-footer justify-content-center">
+        <button type="button" class="btn btn-success" data-bs-dismiss="modal">
+            OK
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
 </main>
 
 <script>
@@ -108,6 +141,16 @@ function checkRelation() {
         document.getElementById("other_relation").required = false;
     }
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+    const urlParams = new URLSearchParams(window.location.search);
+
+    if (urlParams.get("success") == "1") {
+        let myModal = new bootstrap.Modal(document.getElementById("successModal"));
+        myModal.show();
+    }
+});
+
 </script>
 
 <?php
