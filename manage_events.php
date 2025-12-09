@@ -1,220 +1,172 @@
-<?php @session_start();
-if(isset($_SESSION["uname"]) && $_SESSION["utype"]=='admin')
-{
+<?php 
+@session_start();
+if(isset($_SESSION["uname"]) && $_SESSION["utype"]=='admin') {
+
 include("header.php");
 include("connectdb.php");
 ?>
 
-
-
 <main>
 <div class="d-flex flex-column flex-lg-row">
     <?php include('adminDashboard.php'); ?>
+
     <div class="flex-grow-1 p-4">
 
+        <div class="card shadow border-0">
 
-        <div class="card shadow">
-             <div class="card-header bg-warning fw-bold text-dark d-flex justify-content-between align-items-center">
-        <span><i class="bi bi-calendar-event-fill me-2"></i> Manage Events</span>
-        
-        <a href="eventForm.php"> <button class="btn btn-success btn-sm"
-         >
-        + Add Events
-    </button></a>
-   
-    </div>
+            <div class="card-header bg-warning fw-bold text-dark d-flex justify-content-between align-items-center">
+                <span><i class="bi bi-calendar-event me-2"></i> Manage Events</span>
+                <a href="eventForm.php" class="btn btn-success btn-sm">+ Add Event</a>
+            </div>
 
-<div class="card-body">
-    <div class="table-responsive mobile-table">
-                <!-- ✅ TABLE ID ADDED -->
-                <table id="myTable" class="table table-bordered table-hover align-middle">
-                    <thead class="table-dark">
-                        <tr>
-                            <th>#</th>
-                            <th>Event Title</th>
-                            <th>Status</th>
-                            <th>Event Date</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    <?php
-                    $i=1;
-                    $q = mysqli_query($con,"SELECT * FROM sens_events ORDER BY event_id DESC");
-                    while($row = mysqli_fetch_assoc($q)){
-                    ?>
-                        <tr>
-                            <td><?= $i++ ?></td>
-                            <td><?= $row['title'] ?></td>
-                            <td>
-                                <span class="badge 
-                                <?= $row['event_status']=='upcoming'?'bg-primary':
-                                    ($row['event_status']=='completed'?'bg-success':'bg-danger') ?>">
-                                <?= ucfirst($row['event_status']) ?>
-                                </span>
-                            </td>
-                            <td><?= date("d-m-Y", strtotime($row['event_date'])) ?></td>
-                            <td>
-                                <button class="btn btn-sm btn-success"
-                                onclick="editEvent(<?= $row['event_id'] ?>)">
-                                Edit</button>
+            <div class="card-body">
 
-                                 <button class="btn btn-sm btn-danger"
-                                onclick="deleteEvent(<?= $row['event_id'] ?>)">
-                                Delete</button>
-                            </td>
-                           
-                        </tr>
-                    <?php } ?>
-                    </tbody>
-                </table>
+                <div class="table-responsive">
+                    <table id="myTable" class="table table-bordered table-hover align-middle">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>#</th>
+                                <th>Event Title</th>
+                                <th>Status</th>
+                                <th>Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <?php
+                            $i = 1;
+                            $q = mysqli_query($con,"SELECT * FROM sens_events ORDER BY event_id DESC");
+                            while($row = mysqli_fetch_assoc($q)){
+                            $eid = $row['event_id'];
+                            ?>
+                            <tr>
+                                <td><?= $i++ ?></td>
+                                <td><?= $row['title'] ?></td>
+
+                                <td>
+                                    <span class="badge 
+                                        <?= $row['event_status']=='upcoming'?'bg-primary':
+                                            ($row['event_status']=='completed'?'bg-success':'bg-danger') ?>">
+                                        <?= ucfirst($row['event_status']) ?>
+                                    </span>
+                                </td>
+
+                                <td><?= date("d-m-Y", strtotime($row['event_date'])) ?></td>
+
+                                <td>
+                                    <button class="btn btn-sm btn-success" 
+                                        data-bs-toggle="modal" 
+                                        data-bs-target="#editModal<?= $eid ?>">
+                                        Edit
+                                    </button>
+
+                                    <button class="btn btn-sm btn-danger"
+                                        onclick="deleteEvent(<?= $eid ?>)">
+                                        Delete
+                                    </button>
+                                </td>
+                            </tr>
+
+                            <!-- ================= EDIT EVENT MODAL ================ -->
+                            <div class="modal fade" id="editModal<?= $eid ?>" tabindex="-1">
+                              <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+
+                                  <form method="POST" action="update_event.php">
+
+                                    <input type="hidden" name="event_id" value="<?= $eid ?>">
+
+                                    <div class="modal-header bg-warning">
+                                      <h5 class="modal-title">Edit Event</h5>
+                                      <button class="btn-close" data-bs-dismiss="modal"></button>
+                                    </div>
+
+                                    <div class="modal-body">
+                                        <div class="row">
+
+                                            <div class="col-md-6 mb-2">
+                                                <label>Title</label>
+                                                <input type="text" name="title" 
+                                                    value="<?= $row['title'] ?>" 
+                                                    class="form-control">
+                                            </div>
+
+                                            <div class="col-md-6 mb-2">
+                                                <label>Status</label>
+                                                <select name="event_status" class="form-select">
+                                                    <option value="upcoming"   <?= $row['event_status']=='upcoming'?'selected':'' ?>>Upcoming</option>
+                                                    <option value="completed"  <?= $row['event_status']=='completed'?'selected':'' ?>>Completed</option>
+                                                    <option value="cancelled"  <?= $row['event_status']=='cancelled'?'selected':'' ?>>Cancelled</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="col-md-6 mb-2">
+                                                <label>Event Date</label>
+                                                <input type="date" name="event_date" 
+                                                       value="<?= $row['event_date'] ?>" 
+                                                       class="form-control">
+                                            </div>
+
+                                            <div class="col-md-6 mb-2">
+                                                <label>Event Time</label>
+                                                <input type="text" name="event_time" 
+                                                       value="<?= $row['event_time'] ?>" 
+                                                       class="form-control">
+                                            </div>
+
+                                            <div class="col-md-12 mb-2">
+                                                <label>Location</label>
+                                                <input type="text" name="event_location" 
+                                                       value="<?= $row['event_location'] ?>" 
+                                                       class="form-control">
+                                            </div>
+
+                                            <div class="col-md-12 mb-2">
+                                                <label>YouTube Link</label>
+                                                <input type="text" name="youtube_link" 
+                                                       value="<?= $row['video_link'] ?>" 
+                                                       class="form-control">
+                                            </div>
+
+                                            <div class="col-md-12 mb-2">
+                                                <label>Description</label>
+                                                <textarea name="description" class="form-control"><?= $row['description'] ?></textarea>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button class="btn btn-success" type="submit">Update Event</button>
+                                    </div>
+
+                                  </form>
+
+                                </div>
+                              </div>
+                            </div>
+                            <!-- ================= END EDIT MODAL ================ -->
+
+                            <?php } ?>
+                        </tbody>
+
+                    </table>
+                </div>
 
             </div>
+
         </div>
 
     </div>
 </div>
-
-<!-- ✅ EDIT EVENT MODAL (UNCHANGED) -->
-<div class="modal fade" id="editEventModal">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-
-      <div class="modal-header bg-warning">
-        <h5 class="modal-title">Edit Event</h5>
-        <button class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-
-      <div class="modal-body">
-        <input type="hidden" id="edit_event_id">
-
-        <div class="row">
-          <div class="col-md-6 mb-2">
-            <label>Title</label>
-            <input type="text" id="edit_title" class="form-control">
-          </div>
-
-          <div class="col-md-6 mb-2">
-            <label>Status</label>
-            <select id="edit_status" class="form-select">
-              <option value="upcoming">Upcoming</option>
-              <option value="completed">Completed</option>
-              <option value="cancelled">Cancelled</option>
-            </select>
-          </div>
-
-          <div class="col-md-6 mb-2">
-            <label>Event Date</label>
-            <input type="date" id="edit_date" class="form-control">
-          </div>
-
-          <div class="col-md-6 mb-2">
-            <label>Event Time</label>
-            <input type="time" id="edit_time" class="form-control">
-          </div>
-
-          <div class="col-md-12 mb-2">
-            <label>Event Location</label>
-            <input type="text" id="edit_location" class="form-control">
-          </div>
-
-          <div class="col-md-12 mb-2">
-            <label>Description</label>
-            <textarea id="newsText" class="form-control"></textarea>
-          </div>
-
-          <button type="button" onclick="hinglishToHindi()" class="btn btn-warning btn-sm">Hinglish → Hindi</button>
-          <button type="button" onclick="autoTranslateHindi()" class="btn btn-warning btn-sm">Translate to Hindi</button> 
-
-          <div class="col-md-6 mb-2">
-            <label class="fw-semibold">Show Event To</label>
-            <select id="edit_toshow_type" class="form-select" onchange="editTargetSelect()" required>
-                <option value="all">All Members</option>
-                <option value="zone">Specific Zone</option>
-                <option value="city">Specific City</option>
-                <option value="member">Specific Member</option>
-            </select>
-          </div>
-
-          <!-- ZONE -->
-          <div class="mb-3 d-none" id="zoneBox">
-            <label>Select Zone</label>
-            <select class="form-select">
-              <?php
-              $z = mysqli_query($con,"SELECT * FROM sens_zones ORDER BY zone_name ASC");
-              while($row = mysqli_fetch_assoc($z)){ ?>
-                <option value="<?= $row['zone_id'] ?>"><?= $row['zone_name'] ?></option>
-              <?php } ?>
-            </select>
-          </div>
-
-          <!-- CITY -->
-          <div class="mb-3 d-none" id="cityBox">
-            <label>Select City</label>
-            <select class="form-select">
-              <?php
-              $c = mysqli_query($con,"SELECT * FROM sens_cities ORDER BY city_name ASC");
-              while($row = mysqli_fetch_assoc($c)){ ?>
-                <option value="<?= $row['city_id'] ?>"><?= $row['city_name'] ?></option>
-              <?php } ?>
-            </select>
-          </div>
-
-          <!-- MEMBER -->
-          <div class="mb-3 d-none" id="memberBox">
-            <label>Select Member</label>
-            <select class="form-select">
-              <?php
-              $m = mysqli_query($con,"SELECT member_id, fullname FROM sens_members ORDER BY fullname ASC");
-              while($row = mysqli_fetch_assoc($m)){ ?>
-                <option value="<?= $row['member_id'] ?>"><?= $row['fullname'] ?></option>
-              <?php } ?>
-            </select>
-          </div>
-
-        </div>
-
-        <div class="modal-footer">
-          <button class="btn btn-success" onclick="updateEvent()">Update Event</button>
-        </div>
-
-        <div id="eventMsg"></div>
-
-    </div>
-  </div>
-</div>
-
 </main>
+
+
 
 <?php
 include("footer.php");
-}else{
+} else {
     include("index.php");
 }
 ?>
-
-
-
-
-
-
-
-
-
-<div class="modal fade" id="imageViewModal" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered modal-lg">
-    <div class="modal-content">
-
-      <div class="modal-header bg-dark text-white">
-        <h5 class="modal-title">News Image</h5>
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-      </div>
-
-      <div class="modal-body text-center">
-        <img id="fullImagePreview" src="" class="img-fluid rounded shadow">
-      </div>
-
-    </div>
-  </div>
-</div>
-

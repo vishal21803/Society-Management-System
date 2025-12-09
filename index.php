@@ -198,15 +198,12 @@ if($isLoggedIn){
     SELECT * FROM sens_gallery 
     WHERE
         visibility_type='all'
-
         OR (visibility_type='zone' AND zone_id='$myZone')
-
         OR (visibility_type='city' AND city_id='$myCity')
-
         OR (visibility_type='member' AND member_id='$member_id')
+    ORDER BY priority DESC, created_at DESC
+");
 
-    ORDER BY gallery_id DESC
-    ");
 
 }else{
 
@@ -289,7 +286,7 @@ if($isLoggedIn){
 <!-- ========== HERO SECTION ========== -->
 <section class="hero text-center">
     <div class="container">
-        <h1 class="fw-bold display-4">Welcome to Our Jain Society</h1>
+        <h1 class="fw-bold display-4">Welcome to Our Jain Khandelwal Sabha</h1>
         <p class="lead">Connecting Jain families, culture, values & community together.</p>
         <?php if(!isset($_SESSION["uname"])) { ?>
 

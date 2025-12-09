@@ -591,40 +591,6 @@ $("#editUserForm").submit(function(e){
 
 
 
-
-function editEvent(id){
-    $.post("fetch_event.php",{id:id},function(data){
-        let e = JSON.parse(data);
-
-        $("#edit_event_id").val(e.event_id);
-        $("#edit_title").val(e.title);
-        $("#edit_status").val(e.event_status);
-        $("#edit_date").val(e.event_date);
-        $("#edit_time").val(e.event_time);
-        $("#edit_location").val(e.event_location);
-        $("#newsText").val(e.description);
-        $("#edit_toshow_type").val(e.toshow_type);
-
-        $("#editEventModal").modal("show");
-    });
-}
-
-function updateEvent(){
-    $.post("update_event.php",{
-        id: $("#edit_event_id").val(),
-        title: $("#edit_title").val(),
-        desc: $("#newsText").val(),
-        date: $("#edit_date").val(),
-        time: $("#edit_time").val(),
-        location: $("#edit_location").val(),
-        status: $("#edit_status").val(),
-        showType: $("#edit_toshow_type").val()
-        
-    },function(){
-        location.reload();
-    });
-}
-
 function deleteEvent(event_id)
 {
     if(!event_id){

@@ -1,30 +1,35 @@
 <?php
 include("connectdb.php");
 
-$id        = $_POST['id'];
-$title     = $_POST['title'];
-$desc      = $_POST['desc'];
-$date      = $_POST['date'];
-$time      = $_POST['time'];
-$location  = $_POST['location'];
-$status    = $_POST['status'];
-$showType  = $_POST['showType'];
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-$q=mysqli_query($con,"UPDATE sens_events SET 
-title='$title',
-description='$desc',
-event_date='$date',
-event_time='$time',
-event_location='$location',
-event_status='$status',
-toshow_type='$showType'
-WHERE event_id='$id'");
+    $id         = $_POST['event_id'];
+    $title      = $_POST['title'];
+    $status     = $_POST['event_status'];
+    $date       = $_POST['event_date'];
+    $time       = $_POST['event_time'];
+    $location   = $_POST['event_location'];
+    $link       = $_POST['youtube_link'];
+    $desc       = $_POST['description'];
+    $toshow     = $_POST['toshow_type'];
 
+    $q = mysqli_query($con, "
+        UPDATE sens_events SET
+            title           = '$title',
+            event_status    = '$status',
+            event_date      = '$date',
+            event_time      = '$time',
+            event_location  = '$location',
+            video_link      = '$link',
+            description     = '$desc',
+            toshow_type     = '$toshow'
+        WHERE event_id = '$id'
+    ");
 
-if($q){
-    echo "success";
-}else{
-    echo "error";
+    if ($q) {
+        echo "<script>alert('Event Updated Successfully!'); window.location.href='manage_events.php';</script>";
+    } else {
+        echo "<script>alert('Failed to Update Event!'); history.back();</script>";
+    }
 }
 ?>
-

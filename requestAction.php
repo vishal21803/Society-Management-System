@@ -1,6 +1,7 @@
-<?php
-include("connectdb.php");
+<?php @session_start();
 
+include("connectdb.php");
+$uname=$_SESSION['uname'];
 if(isset($_POST['action'], $_POST['request_id'])){
 
     $action = $_POST['action'];
@@ -29,7 +30,7 @@ if(isset($_POST['action'], $_POST['request_id'])){
         // ✅ REQUEST STATUS APPROVED
         mysqli_query($con,"
             UPDATE sens_requests 
-            SET status='approved' 
+            SET status='approved' , created_by='$uname'
             WHERE request_id='$req_id'
         ");
 
@@ -42,7 +43,7 @@ if(isset($_POST['action'], $_POST['request_id'])){
 
         mysqli_query($con,"
             UPDATE sens_requests 
-            SET status='rejected' 
+            SET status='rejected' , created_by='$uname'
             WHERE request_id='$req_id'
         ");
 

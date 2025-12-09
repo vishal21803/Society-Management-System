@@ -69,6 +69,12 @@ include("header.php");
                             <label>Event Location</label>
                         </div>
 
+                        <div class="form-floating mb-3 animate__animated animate__fadeInUp">
+                            <input type="text" class="form-control" name="link" placeholder="Event Link" >
+                            <label>Event Link</label>
+                        </div>
+
+
                         <!-- STATUS -->
                         <div class="mb-3 animate__animated animate__fadeInUp">
                             <label class="form-label fw-semibold">Event Status</label>

@@ -159,6 +159,12 @@ if($isLoggedIn){
                                )'>
                    View Details
                 </a>
+<button class="btn btn-warning btn-sm" onclick="openVideo('<?= $event['video_link'] ?>')">
+    ▶ Play Video
+</button>
+
+
+
 
             </div>
         </div>
@@ -204,6 +210,20 @@ if($isLoggedIn){
 
 
 
+<div class="modal fade" id="videoModal">
+  <div class="modal-dialog modal-md modal-dialog-centered">
+    <div class="modal-content p-0 border-0 rounded-3 overflow-hidden">
+
+      <div class="ratio ratio-16x9">
+        <iframe id="videoFrame" src="" allow="autoplay" allowfullscreen></iframe>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
 </main>
 
 <script>
@@ -217,6 +237,37 @@ function openEventModal(title, desc, location, time, date){
     let modal = new bootstrap.Modal(document.getElementById('eventModal'));
     modal.show();
 }
+
+
+function openVideo(url){
+    let videoID = "";
+
+    // For short link: https://youtu.be/xxxxx
+    if(url.includes("youtu.be")){
+        videoID = url.split("youtu.be/")[1].split("?")[0];
+    }
+
+    // For normal link: https://www.youtube.com/watch?v=xxxxx
+    else if(url.includes("watch?v=")){
+        videoID = url.split("watch?v=")[1].split("&")[0];
+    }
+
+    // Set iframe source
+    let frame = document.getElementById("videoFrame");
+    frame.src = "https://www.youtube.com/embed/" + videoID + "?autoplay=1";
+
+    // Show Modal
+    var modal = new bootstrap.Modal(document.getElementById('videoModal'));
+    modal.show();
+
+    // Stop video on close
+    document.getElementById('videoModal').addEventListener('hidden.bs.modal', function () {
+        frame.src = "";
+    });
+}
+
+
+
 </script>
 
 

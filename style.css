@@ -593,3 +593,27 @@ td, th {
         font-size: 14px;
     }
 }
+
+<style>
+    /* Glass Effect */
+    .glass-box {
+        background: rgba(255, 255, 255, 0.25);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        transition: 0.3s ease;
+    }
+
+    .glass-box:hover {
+        background: rgba(255, 255, 255, 0.35);
+        transform: translateY(-4px);
+    }
+
+    .social-icons a:hover {
+        transform: scale(1.2);
+        transition: 0.3s;
+    }
+
+    .social-icons a {
+        transition: 0.3s;
+    }
+</style>
