@@ -49,11 +49,11 @@ style="background: linear-gradient(135deg, #ff914d, #ffca3a); position: relative
             <!-- DONATION (CENTER FIXED) -->
             <div class="col-md-4 mb-4 d-flex flex-column align-items-center">
 
-                <h5 class="fw-bold mb-3 text-center">🙏 Donation Details</h5>
+                <h5 class="fw-bold mb-3 text-center" style="color:black;">🙏 Donation Details</h5>
 
                 <div class="p-3 shadow-sm rounded-4 mb-2"
-                     style="background: rgba(255,255,255,0.20); backdrop-filter: blur(6px); width:100%; max-width:300px;">
-                    <b>Bank:</b> Central Bank of India <br>
+                     style="background: rgba(255,255,255,0.20); backdrop-filter: blur(6px); width:100%; max-width:300px; color:black;">
+                    <b>Bank:</b>  Central Bank of India <br>
                     <b>A/C No:</b> 1136216044 <br>
                     <b>IFSC:</b> CBIN0282102 <br>
                     <b>Branch:</b> Maskasath Nagpur Branch

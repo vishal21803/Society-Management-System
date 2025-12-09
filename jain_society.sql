@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Dec 08, 2025 at 04:29 PM
+-- Generation Time: Dec 09, 2025 at 01:09 PM
 -- Server version: 9.1.0
 -- PHP Version: 8.3.14
 
@@ -113,7 +113,7 @@ CREATE TABLE IF NOT EXISTS `sens_commity` (
   `comi_name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `comi_gender` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   `comi_post` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `comi_img` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `comi_img` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'default.png',
   `comi_zone` int NOT NULL,
   `comi_city` int NOT NULL,
   `comi_address` text COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -121,15 +121,37 @@ CREATE TABLE IF NOT EXISTS `sens_commity` (
   `comi_duration` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_by` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`comi_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `sens_commity`
 --
 
 INSERT INTO `sens_commity` (`comi_id`, `comi_name`, `comi_gender`, `comi_post`, `comi_img`, `comi_zone`, `comi_city`, `comi_address`, `comi_priority`, `comi_duration`, `created_by`) VALUES
-(1, 'Sandeep Kumar Singh', 'Male', 'President', '1765200157_flower.webp', 5, 3, 'Saket Nagar,Kohka', 9, '2021-Present', ''),
+(6, 'Sandeep Singh', 'Male', 'Minister', 'wallpaperflare.com_wallpaper (2).jpg', 11, 24, 'Near Jungle Area', 22, '2021-Present', 'admin'),
 (5, 'vish', 'Male', 'Teasurer', 'wallpaperflare.com_wallpaper.jpg', 5, 2, 'wdwt', 44, '2022-2023', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sens_contact`
+--
+
+DROP TABLE IF EXISTS `sens_contact`;
+CREATE TABLE IF NOT EXISTS `sens_contact` (
+  `con_id` int NOT NULL AUTO_INCREMENT,
+  `con_phone` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `con_name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `con_desc` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`con_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `sens_contact`
+--
+
+INSERT INTO `sens_contact` (`con_id`, `con_phone`, `con_name`, `con_desc`) VALUES
+(4, '9999912345', 'Success', 'The contact is working now ');
 
 -- --------------------------------------------------------
 
@@ -177,20 +199,45 @@ CREATE TABLE IF NOT EXISTS `sens_events` (
   `toshow_type` enum('all','zone','city','member') COLLATE utf8mb4_unicode_ci DEFAULT 'all',
   `toshow_id` int DEFAULT NULL,
   `created_by` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `video_link` text COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`event_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `sens_events`
 --
 
-INSERT INTO `sens_events` (`event_id`, `title`, `description`, `event_date`, `created_at`, `event_time`, `event_location`, `event_status`, `event_img`, `toshow_type`, `toshow_id`, `created_by`) VALUES
-(5, 'Annual Jain Dharma Pravachan', 'An inspirational spiritual discourse on positive living, self-control, and inner peace.', '2026-01-21', '2025-12-06 19:21:29', '6:30 PM – 8:30 PM', 'Jain Community Hall', 'upcoming', 'pray.jpg', 'city', 2, NULL),
-(6, 'Jain Matrimonial Meet 2026', 'A well-organized matrimonial interaction program for Jain youth from various cities.', '2026-03-08', '2025-12-06 19:26:18', '10:00 AM – 4:00 PM', 'Grand Banqut Hall', 'upcoming', '', 'zone', 5, NULL),
-(7, 'Jain Business Network Meet', 'A professional networking event for Jain entrepreneurs and business owners.', '2026-06-12', '2025-12-06 19:27:54', '11:00 AM - 5:00 PM', 'Jain Conference Center', 'upcoming', '', 'member', 10, NULL),
-(8, 'All India Jain Dharma Mahasangam 2026', 'A grand three-day national-level Jain spiritual gathering with Pravachans, cultural programs, youth activities, and social awareness sessions attended by Jain communities from across India.', '2026-01-24', '2025-12-06 19:32:25', '10:00 AM – 8:00 PM', 'National Convention Center, India', 'upcoming', '', 'all', 0, NULL),
-(9, 'National Jain Youth Leadership Summit', 'A leadership and personality development summit for Jain youth focused on entrepreneurship, ethics, career growth, and innovation.', '2026-05-15', '2025-12-06 19:33:20', '9:00 AM – 6:00 PM', 'India International Convention Venue', 'upcoming', '', 'all', 0, NULL),
-(10, 'All India Jain Business & Startup Expo', 'A nationwide business exhibition featuring Jain entrepreneurs, manufacturers, startups, and investors to promote trade and collaboration', '2026-09-20', '2025-12-06 19:34:08', '10:00 AM – 7:00 PM', 'India Expo Mart', 'upcoming', '', 'all', 0, NULL);
+INSERT INTO `sens_events` (`event_id`, `title`, `description`, `event_date`, `created_at`, `event_time`, `event_location`, `event_status`, `event_img`, `toshow_type`, `toshow_id`, `created_by`, `video_link`) VALUES
+(12, 'Diwali 2k25', 'Event', '2025-11-11', '2025-12-09 08:05:41', '', 'Club House', 'upcoming', '1764832607_a2.jpeg', 'all', 0, 'admin', 'https://youtu.be/LTeO_TNDJWI?si=-SqKVrHWk4T18cJl'),
+(13, 'Annual Samayik & Pravachan Day', 'A peaceful spiritual gathering where members participated in Samayik, followed by an enlightening Pravachan by respected Jain scholars.', '2025-08-08', '2025-12-09 12:18:21', '', 'Circus Ground', '', 'logo.png', 'all', 0, 'admin', ''),
+(14, 'Health Check-up Camp', 'A free community health camp organized to promote wellness, including general health tests and doctor consultations.', '2024-10-09', '2025-12-09 12:20:10', '', 'Jain Conference Cente', '', '1765095426_2171-blood-donation.jpg', 'all', 0, 'admin', 'https://youtu.be/jhBAUzoXj_A?si=qzF4dPoZX84XbD7D');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sens_family`
+--
+
+DROP TABLE IF EXISTS `sens_family`;
+CREATE TABLE IF NOT EXISTS `sens_family` (
+  `fam_id` int NOT NULL AUTO_INCREMENT,
+  `member_id` int NOT NULL,
+  `fam_name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `fam_gender` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `fam_phone` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `fam_relation` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_by` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `fam_dob` date NOT NULL,
+  `fam_education` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`fam_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `sens_family`
+--
+
+INSERT INTO `sens_family` (`fam_id`, `member_id`, `fam_name`, `fam_gender`, `fam_phone`, `fam_relation`, `created_by`, `fam_dob`, `fam_education`) VALUES
+(1, 18, 'Mary Jones', 'Female', '9874563318', 'Wife', 'jon', '1997-08-21', 'B.tech');
 
 -- --------------------------------------------------------
 
@@ -210,20 +257,21 @@ CREATE TABLE IF NOT EXISTS `sens_gallery` (
   `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
   `created_by` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `priority` int NOT NULL,
   PRIMARY KEY (`gallery_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `sens_gallery`
 --
 
-INSERT INTO `sens_gallery` (`gallery_id`, `title`, `description`, `visibility_type`, `zone_id`, `city_id`, `member_id`, `image`, `created_at`, `created_by`) VALUES
-(5, 'Mahavir Jayanti Celebration', 'A nationwide celebration of Lord Mahavir Jayanti observed with grand processions, special prayers, pravachans, bhajan sandhya, and community service activities across Jain temples in India. Devotees participated with devotion, peace, and spiritual enthusiasm.', 'all', 0, 0, 0, '1765093066_mahavir-jayanti-f.webp', '2025-12-07 13:07:46', NULL),
-(6, 'Diwali & Nirvan Divas Mahotsav', 'Diwali was celebrated across the Jain community as the Nirvan Divas of Lord Mahavir with deep spiritual significance. Temples were illuminated with diyas, special pujas were performed, and messages of non-violence, truth, and self-discipline were spread.', 'all', 0, 0, 0, '1765093175_diwal.jpg', '2025-12-07 13:09:35', NULL),
-(7, 'Festival of Colors – Holi Utsav', 'The festival of Holi was celebrated with joy, unity, and cultural programs. Community members enjoyed flower Holi, traditional music, dance performances, and social bonding while promoting harmony and brotherhood.', 'all', 0, 0, 0, '1765093215_holi.webp', '2025-12-07 13:10:15', NULL),
-(8, 'Zone Level Jain Sports Meet', '', 'zone', 5, 0, 0, '1765095294_sports.jpg', '2025-12-07 13:44:54', NULL),
-(9, ' City Jain Blood Donation Camp', '', 'city', 0, 12, 0, '1765095426_2171-blood-donation.jpg', '2025-12-07 13:47:06', NULL),
-(10, 'My Personal Membership Anniversary', '', 'member', 0, 0, 18, '1765095510_flower.webp', '2025-12-07 13:48:30', NULL);
+INSERT INTO `sens_gallery` (`gallery_id`, `title`, `description`, `visibility_type`, `zone_id`, `city_id`, `member_id`, `image`, `created_at`, `created_by`, `priority`) VALUES
+(5, 'Mahavir Jayanti Celebration', 'A nationwide celebration of Lord Mahavir Jayanti observed with grand processions, special prayers, pravachans, bhajan sandhya, and community service activities across Jain temples in India. Devotees participated with devotion, peace, and spiritual enthusiasm.', 'all', 0, 0, 0, '1765093066_mahavir-jayanti-f.webp', '2025-12-07 13:07:46', NULL, 100),
+(6, 'Diwali & Nirvan Divas Mahotsav', 'Diwali was celebrated across the Jain community as the Nirvan Divas of Lord Mahavir with deep spiritual significance. Temples were illuminated with diyas, special pujas were performed, and messages of non-violence, truth, and self-discipline were spread.', 'all', 0, 0, 0, '1765093175_diwal.jpg', '2025-12-07 13:09:35', NULL, 0),
+(7, 'Festival of Colors – Holi Utsav', 'The festival of Holi was celebrated with joy, unity, and cultural programs. Community members enjoyed flower Holi, traditional music, dance performances, and social bonding while promoting harmony and brotherhood.', 'all', 0, 0, 0, '1765093215_holi.webp', '2025-12-07 13:10:15', NULL, 0),
+(8, 'Zone Level Jain Sports Meet', '', 'zone', 5, 0, 0, '1765095294_sports.jpg', '2025-12-07 13:44:54', NULL, 0),
+(9, ' City Jain Blood Donation Camp', '', 'city', 0, 12, 0, '1765095426_2171-blood-donation.jpg', '2025-12-07 13:47:06', NULL, 0),
+(10, 'My Personal Membership Anniversary', '', 'member', 0, 0, 18, '1765095510_flower.webp', '2025-12-07 13:48:30', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -244,7 +292,7 @@ CREATE TABLE IF NOT EXISTS `sens_members` (
   `membership_end` date DEFAULT NULL,
   `phone` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `address` text COLLATE utf8mb4_unicode_ci,
-  `photo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `photo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT 'default.png',
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `fullname` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `balance_amount` float NOT NULL,
@@ -256,7 +304,7 @@ CREATE TABLE IF NOT EXISTS `sens_members` (
   KEY `zone_id` (`zone_id`),
   KEY `city_id` (`city_id`),
   KEY `plan_id` (`plan_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `sens_members`
@@ -264,14 +312,17 @@ CREATE TABLE IF NOT EXISTS `sens_members` (
 
 INSERT INTO `sens_members` (`member_id`, `user_id`, `zone_id`, `city_id`, `plan_id`, `gender`, `dob`, `membership_start`, `membership_end`, `phone`, `address`, `photo`, `created_at`, `fullname`, `balance_amount`, `created_by`, `business`, `education`) VALUES
 (11, 9, 5, 4, 2, 'Male', '1988-09-01', '2025-12-04', '2026-11-04', '7985122998', 'Near Puri ITI,kohka', '1764877535_logo.png', '2025-12-04 19:45:35', 'Surya Naik', 500, NULL, '', ''),
-(7, 5, 5, 5, 1, 'Male', '1999-05-17', '2025-12-04', '2026-12-04', '1234567890', 'Kurud', '1764855137_AEGON_I.jpg', '2025-12-04 13:32:17', 'Vish', 0, NULL, '', ''),
+(7, 5, 5, 5, 1, 'Male', '1999-05-17', '2025-12-04', '2026-12-04', '1234567890', 'Kurud', '1764855137_AEGON_I.jpg', '2025-12-04 13:32:17', 'Vish', 0, NULL, 'Web Developer Freelancing', 'B.Tech '),
 (10, 8, 7, 12, 1, 'Male', '2025-12-13', '2025-12-04', '2026-12-04', '8234567890', 'Near railway station,Kohka', '1764877201_wallpaperflare.com_wallpaper (2).jpg', '2025-12-04 19:40:01', 'Sonu kumar', 0, NULL, '', ''),
 (13, 12, 6, 6, 1, 'Male', '1991-11-19', '2025-12-05', '2026-12-05', '1234567890', 'Near magneto', '1764919049_logo.png', '2025-12-05 07:17:29', 'Rajiv', 0, NULL, '', ''),
-(18, 15, 7, 14, 1, 'Male', '1994-11-11', '2025-12-04', '2026-12-04', '1234567894', 'Near Station', '1764942326_wallpaperflare.com_wallpaper.jpg', '2025-12-05 13:45:26', 'Jon Snow', -500, NULL, '', ''),
+(18, 15, 7, 14, 1, 'Male', '1994-11-03', '2025-12-04', '2026-12-04', '1234567894', 'Near Station', '1764942326_wallpaperflare.com_wallpaper.jpg', '2025-12-05 13:45:26', 'Jon Snow', -500, NULL, 'CEO', 'B.tech_AI'),
 (19, 16, 5, 17, 1, 'Male', '2000-10-10', '2025-12-07', '2026-12-07', '7321456980', 'Avanti bai chowk,kohka,Bhilai', '1765115919pray.jpg', '2025-12-07 13:49:57', 'Shiv kumar', 100, NULL, '', ''),
 (20, 17, 7, 13, 1, 'Male', '1989-04-14', '2025-12-07', '2026-12-07', '7321456980', 'Near China Market', '1765121172_flower.webp', '2025-12-07 15:26:12', 'Rajendra Kumar', -1250, NULL, '', ''),
 (24, 22, 5, 4, 2, '', '0000-00-00', '2025-12-08', NULL, '1234567890', NULL, NULL, '2025-12-08 11:25:59', 'bb', 0, NULL, '', ''),
-(23, 21, 5, 17, 2, '', '1994-06-15', '2025-12-08', NULL, '9479031444', 'Near hanuman Madir', NULL, '2025-12-08 11:16:40', 'Ravi Kumar', 0, NULL, '', '');
+(23, 21, 5, 17, 2, '', '1994-06-15', '2025-12-08', NULL, '9479031444', 'Near hanuman Madir', NULL, '2025-12-08 11:16:40', 'Ravi Kumar', 0, NULL, 'dvd', 'dvd'),
+(25, 23, 7, 14, 2, '', '0000-00-00', '2025-12-08', NULL, '9479031444', NULL, 'default.png', '2025-12-08 18:30:10', 'ved', 0, NULL, '', ''),
+(26, 24, 7, 11, 2, '', '0000-00-00', '2025-12-08', NULL, '1234567894', 'fe', '1765219223default.png', '2025-12-08 18:30:33', 'jjj', 0, NULL, 'fe', 'fe'),
+(27, 25, 6, 7, 1, '', '0000-00-00', '2025-12-08', NULL, '8888844444', NULL, NULL, '2025-12-08 18:30:56', 'efefee', 0, NULL, '', '');
 
 -- --------------------------------------------------------
 
@@ -405,7 +456,7 @@ CREATE TABLE IF NOT EXISTS `sens_plans` (
 
 INSERT INTO `sens_plans` (`plan_id`, `name`, `price`, `duration_days`, `created_by`) VALUES
 (1, 'Yearly', 500.00, 365, NULL),
-(2, 'Lifetime', 5000.00, 0, NULL);
+(2, 'Lifetime', 5100.00, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -498,7 +549,7 @@ CREATE TABLE IF NOT EXISTS `sens_requests` (
   `approved_date` datetime DEFAULT NULL,
   `created_by` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`request_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `sens_requests`
@@ -519,7 +570,10 @@ INSERT INTO `sens_requests` (`request_id`, `member_id`, `status`, `request_date`
 (17, 21, 'approved', '2025-12-07 22:43:30', '2025-12-07 22:43:53', NULL),
 (18, 22, 'pending', '2025-12-07 23:27:49', NULL, NULL),
 (19, 23, 'approved', '2025-12-08 16:46:40', NULL, NULL),
-(20, 24, 'approved', '2025-12-08 16:55:59', '2025-12-08 16:57:16', NULL);
+(20, 24, 'approved', '2025-12-08 16:55:59', '2025-12-08 16:57:16', NULL),
+(21, 25, 'approved', '2025-12-09 00:00:10', NULL, NULL),
+(22, 26, 'approved', '2025-12-09 00:00:33', NULL, NULL),
+(23, 27, 'approved', '2025-12-09 00:00:56', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -567,7 +621,7 @@ CREATE TABLE IF NOT EXISTS `sens_users` (
   `created_by` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=MyISAM AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `sens_users`
@@ -588,7 +642,10 @@ INSERT INTO `sens_users` (`id`, `name`, `email`, `password`, `role`, `created_at
 (19, 'fe', 'jofe@gmail.com', 'fe', 'user', '2025-12-07 17:57:49', 0, NULL),
 (20, 'acc', 'acc@gmail,com', 'a', 'accountant', '2025-12-08 06:23:28', 1, 'admin'),
 (21, 'Ravi Kumar', 'ravi@gmail.com', '123456', 'user', '2025-12-08 11:16:40', 0, NULL),
-(22, 'bb', 'b@gmail.com', '123456', 'user', '2025-12-08 11:25:59', 0, NULL);
+(22, 'bb', 'b@gmail.com', '123456', 'user', '2025-12-08 11:25:59', 0, NULL),
+(23, 'ved', '123visffhal18910@gmail.com', '123456', 'user', '2025-12-08 18:30:10', 0, NULL),
+(24, 'jjj', 'jon@gmaildde.com', 'a', 'user', '2025-12-08 18:30:33', 0, NULL),
+(25, 'efefee', 'e@gmail.com', '123456', 'user', '2025-12-08 18:30:56', 0, NULL);
 
 -- --------------------------------------------------------
 

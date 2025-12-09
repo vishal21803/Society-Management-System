@@ -33,6 +33,40 @@ html, body {
     max-width: 100%;
     overflow-x: hidden !important;
 }
+/* --- Custom Hover Dropdown --- */
+.dropdown-custom {
+    position: relative;
+}
+
+.dropdown-custom-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    border-radius: 6px;
+    min-width: 180px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    display: none;
+    z-index: 999;
+    background-color:  #ffff12ff;
+}
+
+.dropdown-custom:hover .dropdown-custom-menu {
+    display: block;
+}
+
+.dropdown-item-custom {
+    display: block;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: black !important;
+    font-size: 15px;
+}
+
+.dropdown-item-custom:hover {
+    background: #f2f2f2;
+}
+
 </style>
 
 </head>
@@ -64,18 +98,19 @@ html, body {
   <a class="nav-link text-white <?= ($currentPage == 'about.php') ? 'active-link' : '' ?>" href="about.php">About Us</a>
 </li>
 
-<li class="nav-item">
-  <a class="nav-link text-white <?= ($currentPage == 'showGallery.php') ? 'active-link' : '' ?>" href="showGallery.php">Gallery</a>
+<li class="nav-item dropdown-custom">
+  <a class="nav-link text-white" href="#">Updates</a>
+<div class="dropdown-custom-menu">
+      <a class="dropdown-item-custom" href="showGallery.php">Gallery</a>
+      <a class="dropdown-item-custom" href="showNews.php">News</a>
+      <a class="dropdown-item-custom" href="showEvents.php">Events</a>
+  </div>
 </li>
-<li class="nav-item">
-  <a class="nav-link text-white <?= ($currentPage == 'showNews.php') ? 'active-link' : '' ?>" href="showNews.php">News</a>
-</li>
+
 <li class="nav-item">
   <a class="nav-link text-white <?= ($currentPage == 'showCommity.php') ? 'active-link' : '' ?>" href="showCommity.php">Commity</a>
 </li>
-<li class="nav-item">
-  <a class="nav-link text-white <?= ($currentPage == 'showEvents.php') ? 'active-link' : '' ?>" href="showEvents.php">Events</a>
-</li>
+
 
 <li class="nav-item">
   <a class="nav-link text-white <?= ($currentPage == 'showDownloads.php') ? 'active-link' : '' ?>" href="showDownloads.php">Downloads</a>

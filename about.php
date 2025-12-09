@@ -79,8 +79,7 @@
             <div class="about-box">
                 <h3 class="text-primary fw-bold">Our Vision</h3>
                 <p>
-                    To build a connected and empowered Jain community that honors its heritage, embraces modern values, and contributes positively to society.
-                </p>
+To build a connected and empowered Jain community that honors its heritage, embraces modern values, and contributes positively to society — fostering spiritual growth, promoting compassion, encouraging youth involvement, and supporting cultural preservation for future generations. We aim to create a environment where every member feels valued, inspired, and united in purpose.                </p>
             </div>
         </div>
     </div>
