@@ -25,7 +25,7 @@ style="background: linear-gradient(135deg, #ff914d, #ffca3a); position: relative
 
                 <h5 class="fw-bold mb-3 text-center">📍 Address</h5>
 
-                <p class="mb-1" style="letter-spacing:0;">इतवारी, भाजीमंडी, फुलअोली</p>
+                <p class="mb-1" style="letter-spacing:0;"> कार्यालय : इतवारी, भाजीमंडी, फूलओली</p>
                 <p class="mb-1">नागपुर - 440002</p>
 
                 <p class="mb-1">Email: digambarjainnagpurprantiya@gmail.com</p>
