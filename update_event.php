@@ -12,6 +12,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $link       = $_POST['youtube_link'];
     $desc       = $_POST['description'];
     $toshow     = $_POST['toshow_type'];
+    $toshowid     = $_POST['toshow_id'];
+
+    /* IMAGE UPLOAD CHECK */
+    $img = $_FILES['event_img']['name'];
+    $tmp = $_FILES['event_img']['tmp_name'];
+
+    if (!empty($img)) {
+        // user uploaded new image
+        move_uploaded_file($tmp, "upload/events/" . $img);
+        $imgQuery = ", event_img = '$img'";   
+    } else {
+        // no new image uploaded → don't update image column
+        $imgQuery = "";
+    }
 
     $q = mysqli_query($con, "
         UPDATE sens_events SET
@@ -23,6 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             video_link      = '$link',
             description     = '$desc',
             toshow_type     = '$toshow'
+            $imgQuery
         WHERE event_id = '$id'
     ");
 

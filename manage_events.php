@@ -73,7 +73,7 @@ include("connectdb.php");
                               <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
 
-                                  <form method="POST" action="update_event.php">
+                                  <form method="POST" action="update_event.php"  enctype="multipart/form-data">
 
                                     <input type="hidden" name="event_id" value="<?= $eid ?>">
 
@@ -92,14 +92,7 @@ include("connectdb.php");
                                                     class="form-control">
                                             </div>
 
-                                            <div class="col-md-6 mb-2">
-                                                <label>Status</label>
-                                                <select name="event_status" class="form-select">
-                                                    <option value="upcoming"   <?= $row['event_status']=='upcoming'?'selected':'' ?>>Upcoming</option>
-                                                    <option value="completed"  <?= $row['event_status']=='completed'?'selected':'' ?>>Completed</option>
-                                                    <option value="cancelled"  <?= $row['event_status']=='cancelled'?'selected':'' ?>>Cancelled</option>
-                                                </select>
-                                            </div>
+                                           
 
                                             <div class="col-md-6 mb-2">
                                                 <label>Event Date</label>
@@ -108,12 +101,7 @@ include("connectdb.php");
                                                        class="form-control">
                                             </div>
 
-                                            <div class="col-md-6 mb-2">
-                                                <label>Event Time</label>
-                                                <input type="text" name="event_time" 
-                                                       value="<?= $row['event_time'] ?>" 
-                                                       class="form-control">
-                                            </div>
+
 
                                             <div class="col-md-12 mb-2">
                                                 <label>Location</label>
@@ -129,10 +117,68 @@ include("connectdb.php");
                                                        class="form-control">
                                             </div>
 
+
                                             <div class="col-md-12 mb-2">
                                                 <label>Description</label>
                                                 <textarea name="description" class="form-control"><?= $row['description'] ?></textarea>
                                             </div>
+
+                                              <label for="">Visible to</label>
+        <select id="edit_toshow_type" name="toshow_type" class="form-control mb-2"  onchange="editTargetSelect()">
+            <option value="all">All</option>
+            <option value="zone">Zone</option>
+            <option value="city">City</option>
+            <option value="member">Member</option>
+        </select>
+
+        <input type="hidden" name="toshow_id" id="final_toshow_id" value="0">
+
+<!-- ZONE -->
+<div class="mb-3 d-none" id="zoneBox">
+  <label>Select Zone</label>
+  <select class="form-select" onchange="setTarget(this.value)">
+    <?php
+    $z = mysqli_query($con,"SELECT * FROM sens_zones");
+    while($row = mysqli_fetch_assoc($z)){ ?>
+      <option value="<?= $row['zone_id'] ?>"><?= $row['zone_name'] ?></option>
+    <?php } ?>
+  </select>
+</div>
+
+<!-- CITY -->
+<div class="mb-3 d-none" id="cityBox">
+  <label>Select City</label>
+  <select class="form-select" onchange="setTarget(this.value)">
+    <?php
+    $c = mysqli_query($con,"SELECT * FROM sens_cities");
+    while($row = mysqli_fetch_assoc($c)){ ?>
+      <option value="<?= $row['city_id'] ?>"><?= $row['city_name'] ?></option>
+    <?php } ?>
+  </select>
+</div>
+
+<!-- MEMBER -->
+<div class="mb-3 d-none" id="memberBox">
+  <label>Select Member</label>
+  <select class="form-select" onchange="setTarget(this.value)">
+    <?php
+    $m = mysqli_query($con,"SELECT member_id, fullname FROM sens_members");
+    while($row = mysqli_fetch_assoc($m)){ ?>
+      <option value="<?= $row['member_id'] ?>"><?= $row['fullname'] ?></option>
+    <?php } ?>
+  </select>
+</div>
+
+                                             <!-- IMAGE UPLOAD -->
+                        <div class="mb-4 animate__animated animate__zoomIn">
+                            <label class="form-label fw-semibold">Event Poster</label>
+                            <div class="upload-box" onclick="document.getElementById('fileInput').click()">
+                                <i class="bi bi-cloud-upload fs-2"></i>
+                                <p class="mb-0">Click to Upload</p>
+                                <img id="previewImg" style="width:250px;height:200px;">
+                            </div>
+                            <input type="file" id="fileInput" name="event_img" hidden onchange="previewImage(event)">
+                        </div>
 
                                         </div>
                                     </div>
@@ -162,7 +208,26 @@ include("connectdb.php");
 </div>
 </main>
 
+<script>
+    function editTargetSelect(){
+  let type = document.getElementById("edit_toshow_type").value;
 
+  document.getElementById("zoneBox").classList.add("d-none");
+  document.getElementById("cityBox").classList.add("d-none");
+  document.getElementById("memberBox").classList.add("d-none");
+
+  document.getElementById("final_toshow_id").value = 0;
+
+  if(type === "zone") document.getElementById("zoneBox").classList.remove("d-none");
+  if(type === "city") document.getElementById("cityBox").classList.remove("d-none");
+  if(type === "member") document.getElementById("memberBox").classList.remove("d-none");
+}
+
+function setTarget(val){
+  document.getElementById("final_toshow_id").value = val;
+}
+
+</script>
 
 <?php
 include("footer.php");

@@ -57,11 +57,11 @@ include("header.php");
                             </div>
 
                             <!-- TIME -->
-                            <div class="col-md-6 mb-3 animate__animated animate__fadeInRight">
+                            <!-- <div class="col-md-6 mb-3 animate__animated animate__fadeInRight">
                                 <label class="form-label fw-semibold">Event Time</label>
                                 <input type="text" class="form-control" name="event_time" required>
                             </div>
-                        </div>
+                        </div> -->
 
                         <!-- LOCATION -->
                         <div class="form-floating mb-3 animate__animated animate__fadeInUp">
@@ -76,14 +76,14 @@ include("header.php");
 
 
                         <!-- STATUS -->
-                        <div class="mb-3 animate__animated animate__fadeInUp">
+                        <!-- <div class="mb-3 animate__animated animate__fadeInUp">
                             <label class="form-label fw-semibold">Event Status</label>
                             <select name="event_status" class="form-select">
                                 <option value="upcoming">Upcoming</option>
                                 <option value="completed">Completed</option>
                                 <option value="cancelled">Cancelled</option>
                             </select>
-                        </div>
+                        </div> -->
 
                         <!-- IMAGE UPLOAD -->
                         <div class="mb-4 animate__animated animate__zoomIn">

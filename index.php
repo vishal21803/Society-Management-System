@@ -587,7 +587,7 @@ if($isLoggedIn){
             <div class="col-md-4">
                 <div class="p-4 bg-white shadow rounded text-center border border-success">
                     <h4 class="fw-bold">Lifetime Membership</h4>
-                    <p class="lead">₹5000 / once</p>
+                    <p class="lead">₹5100 / once</p>
                     <a href="register.php" class="btn btn-success">Join Now</a>
                 </div>
             </div>
