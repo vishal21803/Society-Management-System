@@ -28,9 +28,9 @@ include("header.php");
         </div> -->
 
          <!-- ADD MEMBER CARD -->
-        <div class="col-md-4">
+        <div class="col-md-6">
             <a href="dataTableCommity.php" class="text-decoration-none">
-                <div class="dashboard-square-card bg-secondary text-white shadow animate__animated animate__fadeInLeft">
+                <div class="dashboard-square-card bg-primary text-white shadow animate__animated animate__fadeInLeft">
                     <div class="text-center">
                         <i class="bi bi-pencil fs-1 mb-2"></i>
                         <h4 class="fw-bold">Manage Current Commity</h4>
@@ -42,7 +42,7 @@ include("header.php");
        
 
         <!-- PENDING REQUEST CARD -->
-        <div class="col-md-4">
+        <div class="col-md-6">
             <a href="dataTablePastCommity.php" class="text-decoration-none">
                 <div class="dashboard-square-card bg-warning text-dark shadow animate__animated animate__fadeInRight">
                     <div class="text-center">

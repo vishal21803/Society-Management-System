@@ -167,7 +167,11 @@ onclick="openComiEdit(
             <label>Address</label>
             <textarea id="edit_address" class="form-control"></textarea>
           </div>
+ <div class="col-md-12 mb-3">
+            <label>Photo</label>
+           <input type="file" id="edit_photo" class="form-control"></select>
 
+          </div>
         </div>
       </div>
 
@@ -208,26 +212,43 @@ function loadComiCities(zone, selectedCity = ""){
     });
 }
 
-function updateComi(){
-    $.post("updateComi.php",{
-        id: $("#edit_id").val(),
-        name: $("#edit_name").val(),
-        gender: $("#edit_gender").val(),
-        post: $("#edit_post").val(),
-        priority: $("#edit_priority").val(),   // ✅ ADDED
-        duration: $("#edit_duration").val(),   // ✅ ADDED
-        address: $("#edit_address").val(),
-        zone: $("#edit_zone").val(),
-        city: $("#edit_city").val()
-    },function(res){
-        if(res.trim()=="success"){
-            alert("Committee Updated");
-            location.reload();
-        }else{
-            alert("Update Failed");
+function updateComi() {
+
+    let formData = new FormData();
+    formData.append("id", $("#edit_id").val());
+    formData.append("name", $("#edit_name").val());
+    formData.append("gender", $("#edit_gender").val());
+    formData.append("post", $("#edit_post").val());
+    formData.append("priority", $("#edit_priority").val());
+    formData.append("duration", $("#edit_duration").val());
+    formData.append("address", $("#edit_address").val());
+    formData.append("zone", $("#edit_zone").val());
+    formData.append("city", $("#edit_city").val());
+
+    // ADD PHOTO
+    let file = $("#edit_photo")[0].files[0];
+    if (file) {
+        formData.append("photo", file);
+    }
+
+    $.ajax({
+        url: "updateComi.php",
+        type: "POST",
+        data: formData,
+        contentType: false,
+        processData: false,
+
+        success: function(res){
+            if(res.trim() == "success"){
+                alert("Committee Updated");
+                location.reload();
+            } else {
+                alert("Update Failed: " + res);
+            }
         }
     });
 }
+
 
 
 function deleteComi(id){

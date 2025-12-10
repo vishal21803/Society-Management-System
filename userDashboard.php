@@ -23,6 +23,11 @@
                 <i class="bi bi-people me-2"></i> My Family
             </a>
         </li>
+         <li class="nav-item mb-2">
+            <a href="show_downloads.php" class="nav-link admin-sidebar-link text-white fw-semibold">
+                <i class="bi bi-download me-2"></i>My Downloads
+            </a>
+        </li>
         <li class="nav-item mb-2">
             <a href="editProfile.php" class="nav-link admin-sidebar-link text-white fw-semibold">
                 <i class="bi bi-gear me-2"></i> Your Profile
@@ -60,6 +65,11 @@
         <li class="nav-item mb-2">
             <a href="manageFamily.php" class="nav-link admin-sidebar-link text-white fw-semibold">
                 <i class="bi bi-people me-2"></i> My Family
+            </a>
+        </li>
+         <li class="nav-item mb-2">
+            <a href="show_downloads.php" class="nav-link admin-sidebar-link text-white fw-semibold">
+                <i class="bi bi-download me-2"></i>My Downloads
             </a>
         </li>
         <li class="nav-item mb-2">
