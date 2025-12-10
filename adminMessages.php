@@ -4,6 +4,14 @@ if(isset($_SESSION["uname"]) && $_SESSION["utype"]=='admin') {
     include("header.php");
     include("connectdb.php");
 ?>
+<?php if(isset($_GET['sent']) && $_GET['sent'] == 1) { ?>
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+        var myModal = new bootstrap.Modal(document.getElementById("addedModal"));
+        myModal.show();
+    });
+</script>
+<?php } ?>
 
 <main>
 <div class="d-flex flex-column flex-lg-row">
@@ -76,6 +84,29 @@ $q = mysqli_query($con,"
         </div>
       </div>
     </div>
+</div>
+
+
+<!-- SUCCESS MODAL -->
+<div class="modal fade" id="addedModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header bg-success text-white">
+        <h5 class="modal-title">Success</h5>
+        <button class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+        Message sent successfully!
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-success" data-bs-dismiss="modal">OK</button>
+      </div>
+
+    </div>
+  </div>
 </div>
 </main>
 

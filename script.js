@@ -18,19 +18,25 @@ $(document).ready(function(){
         });
     });
 
-    // ZONE AJAX
-    $("#zoneFormAjax").submit(function(e){
-        e.preventDefault();
-        $.ajax({
-            url: "zones_save.php",
-            method: "POST",
-            data: $(this).serialize(),
-            success: function(resp){
-                $("#zoneMessage").html(resp);
-                $("#zoneFormAjax")[0].reset();
-            }
-        });
-    });
+// $("#zoneFormAjax").submit(function(e){
+//     e.preventDefault();
+//     $.ajax({
+//         url: "zones_save.php",
+//         method: "POST",
+//         data: $(this).serialize(),
+//         success: function(resp){
+
+//             if(resp.includes("redirect:")){
+//                 let url = resp.replace("redirect:", "");
+//                 window.location.href = url; // Redirect immediately
+//             } else {
+//                 $("#zoneMessage").html(resp);
+//             }
+//         }
+//     });
+// });
+
+
 
     // CITY AJAX
     $("#cityFormAjax").submit(function(e){
@@ -267,13 +273,13 @@ function updateZone(){
 
             $("#zoneModal").modal("hide");
 
-            $("#zoneMessage").html(`
+            $("#editMessage").html(`
                 <div class="alert alert-success animate__animated animate__fadeIn">
                     Zone updated successfully!
                 </div>
             `);
         } else {
-            $("#zoneMessage").html(`
+            $("#editMessage").html(`
                 <div class="alert alert-danger">Update Failed</div>
             `);
         }

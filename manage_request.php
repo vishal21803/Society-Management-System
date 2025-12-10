@@ -1,104 +1,154 @@
+<?php 
+@session_start();
+if(isset($_SESSION["uname"]) && $_SESSION["utype"]=='admin') {
 
-<?php @session_start();
-if(isset($_SESSION["uname"]) && $_SESSION["utype"]=='admin')
-{
 include("header.php");
 include("connectdb.php");
 ?>
 
 <main>
-<div class="d-flex">
+<div class="d-flex flex-column flex-lg-row">
+
     <?php include('adminDashboard.php'); ?>
+
     <div class="flex-grow-1 p-4">
-        <!-- Main content here -->
-         <div class="container my-5">
 
-    <h3 class="mb-4 animate__animated animate__fadeInDown">Pending Member Requests</h3>
+        <div class="card shadow border-0">
 
-    <div class="row" id="pendingList">
-
-        <?php
-        $res = mysqli_query($con,"
-            SELECT r.request_id, u.*, m.*
-            FROM sens_requests r 
-            JOIN sens_members m ON r.member_id = m.member_id
-            JOIN sens_users u ON u.id = m.user_id
-            WHERE r.status='pending'
-            ORDER BY r.request_date DESC
-        ");
-
-       ?>
-       <?php 
-while($row = mysqli_fetch_array($res)){
-    $age = date_diff(date_create($row['dob']), date_create('today'))->y;
-?>
-<div class="col-12 mb-3 animate__animated animate__fadeInUp">
-
-    <div class="insta-request-card d-flex align-items-center justify-content-between p-3 shadow-sm">
-
-        <!-- LEFT: PROFILE -->
-        <div class="d-flex align-items-center gap-3">
-            <img src="upload/member/<?php echo $row['photo']; ?>" class="insta-avatar">
-
-            <div>
-                <h6 class="mb-1 fw-bold"><?php echo $row['fullname']; ?></h6>
-                <small class="text-muted">
-                   <?php echo $row['email']; ?>
-                </small>
+            <div class="card-header bg-warning fw-bold text-dark d-flex justify-content-between align-items-center">
+                <span><i class="bi bi-people me-2"></i> Pending Member Requests</span>
             </div>
+
+            <div class="card-body">
+
+                <div class="table-responsive">
+                    <table id="myTable" class="table table-bordered table-hover align-middle">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                            
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                        <?php
+                        $i = 1;
+                        $res = mysqli_query($con,"
+                            SELECT r.request_id, u.*, m.*,z.*,c.*,p.*
+                            FROM sens_requests r 
+                            JOIN sens_members m ON r.member_id = m.member_id
+                            JOIN sens_users u ON u.id = m.user_id
+                            JOIN sens_zones z ON z.zone_id = m.zone_id
+                            JOIN sens_cities c ON c.city_id = m.city_id
+                            JOIN sens_plans p ON p.plan_id = m.plan_id
+
+
+                            WHERE r.status='pending'
+                            ORDER BY r.request_date DESC
+                        ");
+
+                        while($row = mysqli_fetch_assoc($res)){
+                            $age = date_diff(date_create($row['dob']), date_create('today'))->y;
+                        ?>
+                        <tr>
+
+                            <td><?= $i++ ?></td>
+
+                           
+
+                            <td><?= $row['fullname'] ?></td>
+
+                            <td><?= $row['email'] ?></td>
+
+
+                            <td>
+
+                                <!-- VIEW PROFILE -->
+                                <button class="btn btn-sm btn-info"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#viewModal<?= $row['request_id'] ?>">
+                                    View
+                                </button>
+
+                                <!-- APPROVE -->
+                                <button class="btn btn-sm btn-success approveBtn"
+                                        data-request="<?= $row['request_id'] ?>">
+                                    Approve
+                                </button>
+
+                                <!-- REJECT -->
+                                <button class="btn btn-sm btn-danger rejectBtn"
+                                        data-request="<?= $row['request_id'] ?>">
+                                    Reject
+                                </button>
+
+                            </td>
+
+                        </tr>
+
+                        <!-- ============= VIEW MODAL ============= -->
+                        <div class="modal fade" id="viewModal<?= $row['request_id'] ?>" tabindex="-1">
+                          <div class="modal-dialog modal-lg modal-dialog-centered">
+                            <div class="modal-content">
+
+                              <div class="modal-header bg-warning">
+                                <h5 class="modal-title">Member Details</h5>
+                                <button class="btn-close" data-bs-dismiss="modal"></button>
+                              </div>
+
+                              <div class="modal-body">
+
+                                <div class="row">
+
+                                    <div class="col-md-4 text-center">
+                                        <img src="upload/member/<?= $row['photo'] ?>" 
+                                             class="rounded-circle mb-3" 
+                                             style="width:130px; height:130px;">
+                                    </div>
+
+                                    <div class="col-md-8">
+                                        <h5><?= $row['fullname'] ?></h5>
+                                        <p><b>Email:</b> <?= $row['email'] ?></p>
+                                        <p><b>Phone:</b> <?= $row['phone'] ?></p>
+                                        <p><b>Zone:</b> <?= $row['zone_name'] ?></p>
+                                        <p><b>City:</b> <?= $row['city_name'] ?></p>
+                                        <p><b>Plan Details:</b> <?= $row['name'],"(Rs ".($row['price'].")") ?></p>
+
+
+                                    </div>
+
+                                </div>
+
+                              </div>
+
+                              <div class="modal-footer">
+                             
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                              </div>
+
+                            </div>
+                          </div>
+                        </div>
+                        <!-- ========== END VIEW MODAL ========== -->
+
+                        <?php } ?>
+
+                        </tbody>
+
+                    </table>
+                </div>
+
+            </div>
+
         </div>
 
-        <!-- RIGHT: BUTTONS -->
-        <div class="d-flex gap-2">
-            <button 
-                class="btn btn-sm btn-outline-primary viewProfileBtn"
-                data-member="<?php echo $row['member_id']; ?>" 
-                data-request="<?php echo $row['request_id']; ?>">
-                View Profile
-            </button>
-<button 
-    class="btn btn-success approveBtn"
-    data-request="<?php echo $row['request_id']; ?>">
-    Approve
-</button>
-
-<button 
-    class="btn btn-danger rejectBtn"
-    data-request="<?php echo $row['request_id']; ?>">
-    Reject
-</button>
-
-        </div>
-
     </div>
 
 </div>
-<?php } ?>
-
-    </div>
-</div>
-
-<!-- Modal for member details -->
-<div class="modal fade" id="memberModal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-centered">
-    <div class="modal-content animate__animated animate__zoomIn">
-      <div class="modal-header">
-        <h5 class="modal-title">Member Details</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-      <div class="modal-body" id="memberDetails">
-        <!-- Filled by AJAX -->
-      </div>
-      <div class="modal-footer">
-        
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-    </div>
-</div>
-
 </main>
 
 
@@ -178,10 +228,5 @@ document.addEventListener("click", function(e){
 
 </script>
 
+<?php include("footer.php"); } else { include("index.php"); } ?>
 
-<?php
-include("footer.php");
-}else{
-    include("index.php");
-}
-?>

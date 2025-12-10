@@ -40,7 +40,7 @@ $row = mysqli_fetch_assoc($res);
             <div id="zoneBox" class="d-none mb-2">
                 <select name="zone_id" class="form-select">
                     <option value="">Select Zone</option>
-                    <?php $z=mysqli_query($con,"SELECT * FROM sens_zones");
+                    <?php $z=mysqli_query($con,"SELECT * FROM sens_zones where zstatus=1");
                     while($r=mysqli_fetch_assoc($z)){
                         echo "<option value='{$r['zone_id']}'>{$r['zone_name']}</option>";
                     } ?>
@@ -50,7 +50,7 @@ $row = mysqli_fetch_assoc($res);
             <div id="cityBox" class="d-none mb-2">
                 <select name="city_id" class="form-select">
                     <option value="">Select City</option>
-                    <?php $c=mysqli_query($con,"SELECT * FROM sens_cities");
+                    <?php $c=mysqli_query($con,"SELECT * FROM sens_cities where cstatus=1");
                     while($r=mysqli_fetch_assoc($c)){
                         echo "<option value='{$r['city_id']}'>{$r['city_name']}</option>";
                     } ?>

@@ -35,10 +35,10 @@ include("header.php");
 
                             <h5 class="fw-bold mb-3">Bank Account Details</h5>
 
-                            <div class="info-row">
+                            <!-- <div class="info-row">
                                 <span>Account Name</span>
                                 <b>Jain Society Trust</b>
-                            </div>
+                            </div> -->
 
                             <div class="info-row">
                                 <span>Account Number</span>

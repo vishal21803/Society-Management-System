@@ -169,7 +169,7 @@ include("connectdb.php");
   <label>Select Zone</label>
   <select class="form-select" onchange="setTarget(this.value)">
     <?php
-    $z = mysqli_query($con,"SELECT * FROM sens_zones");
+    $z = mysqli_query($con,"SELECT * FROM sens_zones where zstatus=1");
     while($row = mysqli_fetch_assoc($z)){ ?>
       <option value="<?= $row['zone_id'] ?>"><?= $row['zone_name'] ?></option>
     <?php } ?>
@@ -181,7 +181,7 @@ include("connectdb.php");
   <label>Select City</label>
   <select class="form-select" onchange="setTarget(this.value)">
     <?php
-    $c = mysqli_query($con,"SELECT * FROM sens_cities");
+    $c = mysqli_query($con,"SELECT * FROM sens_cities where cstatus=1");
     while($row = mysqli_fetch_assoc($c)){ ?>
       <option value="<?= $row['city_id'] ?>"><?= $row['city_name'] ?></option>
     <?php } ?>

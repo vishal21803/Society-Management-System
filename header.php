@@ -48,7 +48,7 @@ html, body {
     box-shadow: 0 4px 10px rgba(0,0,0,0.15);
     display: none;
     z-index: 999;
-    background-color:  #ffff12ff;
+    background-color:   #FFB347;
 }
 
 .dropdown-custom:hover .dropdown-custom-menu {

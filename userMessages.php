@@ -12,7 +12,6 @@ if(isset($_SESSION["uname"]) && $_SESSION["utype"]=='user') {
 
     <div class="flex-grow-1 p-4">
 
-        <!-- ✅ CARD STYLE SAME AS ADMIN -->
         <div class="card shadow">
 
             <div class="card-header bg-warning fw-bold text-dark d-flex justify-content-between align-items-center">
@@ -45,28 +44,32 @@ if(isset($_SESSION["uname"]) && $_SESSION["utype"]=='user') {
 
                         $q = mysqli_query($con,"
                             SELECT * FROM sens_messages 
-                            WHERE receiver_id='$uid' AND receiver_type='user'
+                            WHERE receiver_id='$uid' 
+                                AND receiver_type='user'
                             ORDER BY id DESC
                         ");
 
                         if(mysqli_num_rows($q) > 0){
                         while($row = mysqli_fetch_assoc($q)) {
+
+                            // Who sent it?
+                            $from = ($row['sender_id'] == 0) ? "Admin" : "User";
                         ?>
                             <tr>
                                 <td><?= $i++ ?></td>
 
-                                <td><?= htmlspecialchars($row['sender_type']) ?></td>
+                                <td><?= $from ?></td>
 
                                 <td><?= htmlspecialchars($row['subject']) ?></td>
 
-                                <td><?= substr(htmlspecialchars($row['message']),0,50) ?>...</td>
+                                <td><?= strlen($row['message']) > 50 
+                                        ? htmlspecialchars(substr($row['message'],0,50)) . "..." 
+                                        : htmlspecialchars($row['message']); ?>
+                                </td>
 
-                                <td><?= date("d M Y H:i",strtotime($row['created_at'])) ?></td>
+                                <td><?= date("d M Y H:i", strtotime($row['created_at'])) ?></td>
 
-                             
                                 <td>
-                                  
-
                                     <a href="deleteMessage.php?id=<?= $row['id'] ?>" 
                                        class="btn btn-sm btn-danger"
                                        onclick="return confirm('Delete this message?');">
@@ -76,7 +79,7 @@ if(isset($_SESSION["uname"]) && $_SESSION["utype"]=='user') {
                             </tr>
                         <?php }} else { ?>
                             <tr>
-                                <td colspan="7" class="text-center text-danger">
+                                <td colspan="6" class="text-center text-danger">
                                     No Messages Found
                                 </td>
                             </tr>

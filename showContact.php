@@ -5,7 +5,6 @@
 
     .contact-section {
         padding: 60px 0;
-        background: linear-gradient(135deg, #f5f7fa 0%, #e8edf3 100%);
         min-height: 90vh;
         display: flex;
         align-items: center;

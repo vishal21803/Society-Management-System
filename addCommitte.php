@@ -68,7 +68,7 @@ include("connectdb.php");
                     <select name="zone" id="zoneDropdown" class="form-select" required onchange="loadCities()">
                         <option value="">-- Select Zone --</option>
                         <?php
-                        $rs = mysqli_query($con,"SELECT * FROM sens_zones ORDER BY zone_name ASC");
+                        $rs = mysqli_query($con,"SELECT * FROM sens_zones where zstatus=1 ORDER BY zone_name ASC");
                         while($z = mysqli_fetch_assoc($rs)){
                             echo "<option value='{$z['zone_id']}'>{$z['zone_name']}</option>";
                         }

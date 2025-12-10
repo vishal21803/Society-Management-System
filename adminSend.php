@@ -18,6 +18,6 @@ if(isset($_POST['send'])){
     VALUES 
     ('$sender_id','$sender_type','$receiver_id','$receiver_type','$subject','$message','$uname')");
 
-    header("Location: adminMessages.php");
+    header("Location: adminMessages.php?sent=1");
 }
 ?>
