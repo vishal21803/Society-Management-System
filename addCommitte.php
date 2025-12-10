@@ -38,11 +38,15 @@ include("connectdb.php");
   <label>Post / Designation</label>
   <select name="post" class="form-select" required>
     <option value="">Select Post</option>
-    <option value="President">President</option>
-    <option value="Vice President">Vice President</option>
-    <option value="Minister">Minister</option>
-     <option value="Secretary">Secretary</option>
-  <option value="Teasurer">Treasurer</option>
+    <option value="Sabhapati">Sabhapati</option>
+    <option value="Karya Adhyaksh">Karya Adhyaksh</option>
+    <option value="Sah Sabhapati">Sah Sabhapati</option>
+     <option value="Mahamantri">Mahamantri</option>
+     <option value="Sah Mantri">Sah Mantri</option>
+  <option value="Koshadhyaksh">Koshadhyaksh</option>
+    <option value="Karyakarini">Karyakarini</option>
+    
+
   </select>
 </div>
 

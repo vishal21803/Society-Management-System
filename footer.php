@@ -90,16 +90,42 @@ style="background: linear-gradient(135deg, #ff914d, #ffca3a); position: relative
 
 
 
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
+<!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="./dataTables.min.js"></script>
 
+<!-- DataTables Core -->
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+
+<!-- DataTables Buttons Extension -->
+<script src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css">
+
+<!-- JSZip (Excel Export) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+
+<!-- PDFMake (PDF Export) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+
+<script>
+$(document).ready(function() {
+    $('#myTable').DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+            'excelHtml5',
+            'csvHtml5',
+            'pdfHtml5',
+            'print'
+        ]
+    });
+});
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="./script.js"></script>
-
-
-
-
 
 </body>
 </html>

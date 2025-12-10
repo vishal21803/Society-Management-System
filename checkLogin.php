@@ -1,12 +1,12 @@
 <?php 
 @session_start();
 
-$loginInput = $_REQUEST["name"];   // user yahan email ya username dono daal sakta hai
-$password = $_REQUEST["password"];
+$loginInput = $_REQUEST["name"];   // email OR username
+$password   = $_REQUEST["password"];
 
 include("connectdb.php");
 
-/* ✅ EMAIL SE USER FETCH */
+/* FETCH USER BY EMAIL OR USERNAME */
 $rsCust = mysqli_query($con,"
     SELECT * FROM sens_users 
     WHERE BINARY email='$loginInput' 
@@ -14,55 +14,73 @@ $rsCust = mysqli_query($con,"
 ");
 
 if(mysqli_num_rows($rsCust) == 0){
-    // ❌ Email not found
-    header("location:login.php?regmsg=1");
+    header("location:login.php?regmsg=1"); // Invalid Username
     exit;
 }
-else{
-    $row = mysqli_fetch_array($rsCust);
 
-    /* ✅ PASSWORD MATCH */
-    if($row["password"] == $password){
+$row = mysqli_fetch_assoc($rsCust);
 
-        // ✅ SESSION ME NAME SAVE HOGA (EMAIL NAHI)
-        $_SESSION['uname'] = $row["name"];   // ✅ NAME STORE
-        $_SESSION['uid']   = $row["id"];
+/* PASSWORD CHECK */
+if($row["password"] != $password){
+    header("location:login.php?regmsg=2"); // Invalid Password
+    exit;
+}
 
-        $memid = $row["id"];
+/* USER FOUND → STORE BASIC SESSION */
+$_SESSION['uname'] = $row["name"];
+$_SESSION['uid']   = $row["id"];
+$userid = $row["id"];
 
-        /* ✅ MEMBER ID FETCH */
-        $rsmem = mysqli_query($con,"
-            SELECT * FROM sens_members 
-            WHERE user_id='$memid'
-        ");
+/* FETCH MEMBER INFO */
+$rsmem = mysqli_query($con,"
+    SELECT * FROM sens_members 
+    WHERE user_id='$userid'
+");
 
-        if(mysqli_num_rows($rsmem) > 0){
-            $row5 = mysqli_fetch_assoc($rsmem);
-            $_SESSION["member_id"] = $row5["member_id"];
-        }
+if(mysqli_num_rows($rsmem) > 0){
+    $memData = mysqli_fetch_assoc($rsmem);
+    $_SESSION["member_id"] = $memData["member_id"];
 
-        /* ✅ ROLE BASED REDIRECTION */
-        if($row["role"] == 'user'){
-            $_SESSION['utype'] = 'user';
-            header("location:userPage.php");
+    $member_id = $memData["member_id"];
+
+    /* CHECK IF REQUEST IS APPROVED */
+    $rsReq = mysqli_query($con,"
+        SELECT * FROM sens_requests
+        WHERE member_id='$member_id'
+        ORDER BY request_id DESC
+        LIMIT 1
+    ");
+
+    if(mysqli_num_rows($rsReq) > 0){
+        $req = mysqli_fetch_assoc($rsReq);
+
+        if($req["status"] == "pending"){
+            // ❌ BLOCK LOGIN
+            header("location:login.php?regmsg=3");
             exit;
         }
-        elseif($row["role"] == 'admin'){
-            $_SESSION['utype'] = 'admin';
-            header("location:adminPage.php");
-            exit;
-        }
-        elseif($row["role"] == 'accountant'){
-            $_SESSION['utype'] = 'accountant';
-            header("location:accountantPage.php");
-            exit;
-        }
 
+        if($req["status"] == "rejected"){
+            header("location:login.php?regmsg=4");
+            exit;
+        }
     }
-    else{
-        // ❌ Wrong Password
-        header("location:login.php?regmsg=2");
-        exit;
-    }
+}
+
+/* ROLE-BASED REDIRECT */
+if($row["role"] == 'user'){
+    $_SESSION['utype'] = 'user';
+    header("location:userPage.php");
+    exit;
+}
+elseif($row["role"] == 'admin'){
+    $_SESSION['utype'] = 'admin';
+    header("location:adminPage.php");
+    exit;
+}
+elseif($row["role"] == 'accountant'){
+    $_SESSION['utype'] = 'accountant';
+    header("location:accountantPage.php");
+    exit;
 }
 ?>

@@ -24,7 +24,6 @@ $currentPage = basename($_SERVER['PHP_SELF']);
     <!-- Animate.css -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="dataTables.dataTables.min.css">
     
     <link rel="stylesheet" href="style.css">
 
@@ -127,41 +126,32 @@ html, body {
 
 
         <li class="nav-item"><a class="nav-link text-white" href="https://www.matrimonysoftware.in">Matrimony</a></li>
-     
-<?php if(isset($_SESSION["uname"]) && $_SESSION["utype"] == "user"){ ?>
+<?php if(isset($_SESSION["uname"], $_SESSION["utype"]) && $_SESSION["utype"] == "user"){ ?>
 
-    <!-- ✅ USER LOGGED IN -->
     <li class="nav-item">
-      <a class="nav-link text-white <?= ($currentPage == 'userPage.php') ? 'active-link' : '' ?>" href="userPage.php">
-        Dashboard
-      </a>
+      <a class="nav-link text-white <?= ($currentPage == 'userPage.php') ? 'active-link' : '' ?>" 
+         href="userPage.php">Dashboard</a>
     </li>
 
-<?php } else if(isset($_SESSION["uname"]) && $_SESSION["utype"] == "admin"){ ?>
+<?php } else if(isset($_SESSION["uname"], $_SESSION["utype"]) && $_SESSION["utype"] == "admin"){ ?>
 
-    <!-- ✅ ADMIN LOGGED IN -->
     <li class="nav-item">
-      <a class="nav-link text-white <?= ($currentPage == 'adminPage.php') ? 'active-link' : '' ?>" href="adminPage.php">
-        Dashboard
-      </a>
+      <a class="nav-link text-white <?= ($currentPage == 'adminPage.php') ? 'active-link' : '' ?>" 
+         href="adminPage.php">Dashboard</a>
     </li>
 
-<?php } else if(isset($_SESSION["uname"]) && $_SESSION["utype"] == "accountant"){ ?>
+<?php } else if(isset($_SESSION["uname"], $_SESSION["utype"]) && $_SESSION["utype"] == "accountant"){ ?>
 
-    <!-- ✅ ACCOUNTANT LOGGED IN -->
     <li class="nav-item">
-      <a class="nav-link text-white <?= ($currentPage == 'accountantPage.php') ? 'active-link' : '' ?>" href="accountantPage.php">
-        Dashboard
-      </a>
+      <a class="nav-link text-white <?= ($currentPage == 'accountantPage.php') ? 'active-link' : '' ?>" 
+         href="accountantPage.php">Dashboard</a>
     </li>
 
 <?php } else { ?>
 
-    <!-- ✅ NOT LOGGED IN -->
     <li class="nav-item">
-      <a class="nav-link text-white <?= ($currentPage == 'login.php') ? 'active-link' : '' ?>" href="login.php">
-        Login
-      </a>
+      <a class="nav-link text-white <?= ($currentPage == 'login.php') ? 'active-link' : '' ?>" 
+         href="login.php">Login</a>
     </li>
 
 <?php } ?>

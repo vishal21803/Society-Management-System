@@ -6,16 +6,28 @@
         <h3 class="text-white mb-4">🔐 Login</h3>
 
         <!-- ✅ ERROR MESSAGE SECTION -->
-        <?php
-        if(isset($_GET['regmsg'])){
-            if($_GET['regmsg'] == 1){
-                echo '<div id="loginAlert" class="alert alert-danger py-2">❌ Invalid Username</div>';
-            }
-            if($_GET['regmsg'] == 2){
-                echo '<div id="loginAlert" class="alert alert-warning py-2">❌ Invalid Password</div>';
-            }
-        }
-        ?>
+      <?php
+if(isset($_GET['regmsg'])){
+    
+    if($_GET['regmsg'] == 1){
+        echo '<div id="loginAlert" class="alert alert-danger py-2">❌ Invalid Username</div>';
+    }
+    if($_GET['regmsg'] == 2){
+        echo '<div id="loginAlert" class="alert alert-warning py-2">❌ Invalid Password</div>';
+    }
+    if($_GET['regmsg'] == 3){
+        echo '<div id="loginAlert" class="alert alert-info py-2">
+                ⏳ Your membership request is still <b>pending approval</b>.
+              </div>';
+    }
+    if($_GET['regmsg'] == 4){
+        echo '<div id="loginAlert" class="alert alert-danger py-2">
+                ❌ Your membership request was <b>rejected</b>. Please contact admin.
+              </div>';
+    }
+}
+?>
+
 
         <form method="POST" action="checkLogin.php">
 

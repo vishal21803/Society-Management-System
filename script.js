@@ -860,17 +860,17 @@ $(document).ready(function(){
     filterCities();
 });
 
-$(document).ready(function(){
-  let table = new DataTable('#myTable',{
-     searching:true,
-     paging:true,
-     sort:true
+// $(document).ready(function(){
+//   let table = new DataTable('#myTable',{
+//      searching:true,
+//      paging:true,
+//      sort:true
 
-  });
+//   });
        
 
 
-  });
+//   });
 
   function deactivateZone(zid){
 
@@ -955,7 +955,7 @@ function viewImage(imgPath)
 
 $(document).ready(function() {
     // Initialize DataTable
-    $('#myTable').DataTable();
+
 
     // DELETE button
     $('#myTable').on('click', '.deleteBtn', function(){
