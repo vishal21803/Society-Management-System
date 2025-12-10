@@ -499,7 +499,7 @@ if($isLoggedIn){
                             <h5 class="fw-bold"><?= htmlspecialchars($event['title']) ?></h5>
                             <p class="text-muted mb-1">
                                 <i class="bi bi-calendar-event"></i> <?= date("d M Y", strtotime($event['event_date'])) ?> 
-                                | <i class="bi bi-clock"></i> <?= $event['event_time'] ?>
+                                 <i class="bi "></i> <?= $event['event_time'] ?>
                             </p>
                             <p class="text-muted mb-2">
                                 <i class="bi bi-geo-alt"></i> <?= htmlspecialchars($event['event_location']) ?>
@@ -551,7 +551,7 @@ if($isLoggedIn){
       <div class="modal-body">
         <p class="text-muted mb-1">
             <i class="bi bi-calendar-event"></i> <span id="eventModalDate"></span>
-            | <i class="bi bi-clock"></i> <span id="eventModalTime"></span>
+             <i class="bi "></i> <span id="eventModalTime"></span>
         </p>
         <p class="text-muted mb-2">
             <i class="bi bi-geo-alt"></i> <span id="eventModalLocation"></span>

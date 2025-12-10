@@ -184,7 +184,7 @@ $status = $user['request_status']; // pending / approved / rejected
                     <div class="row g-4">
 
                           <div class="col-md-6">
-                            <p class="fw-bold mb-1">Email</p>
+                            <p class="fw-bold mb-1">Name</p>
                             <div class="form-control bg-white">
                                 <?php echo $user['fullname']; ?>
                             </div>

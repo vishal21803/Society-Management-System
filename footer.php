@@ -11,17 +11,17 @@ style="background: linear-gradient(135deg, #ff914d, #ffca3a); position: relative
         <div class="row text-center text-md-start align-items-start justify-content-between">
 
             <!-- LOGO + REGISTRATION -->
-            <div class="col-md-4 mb-4 d-flex flex-column align-items-center">
+            <div class="col-md-4 mb-4 d-flex flex-column align-items-center" style="color:black;">
                 <img src="upload/logo2.png" 
                      alt="Jain Society Logo" 
-                     style="width:370px; margin-bottom:15px;">
+                     style="width:370px; margin-bottom:15px; ">
 
                 <p class="fw-bold mb-1">पंजीकृत कार्यालय: छिंदवाड़ा (म.प्र.)</p>
                 <p class="fw-bold">पंजीकृत क्रमांक: 173/53/54</p>
             </div>
 
             <!-- ADDRESS + MAP (CENTER FIXED) -->
-            <div class="col-md-4 mb-4 d-flex flex-column align-items-center">
+            <div class="col-md-4 mb-4 d-flex flex-column align-items-center" style="color:black;">
 
                 <h5 class="fw-bold mb-3 text-center">📍 Address</h5>
 
@@ -60,7 +60,7 @@ style="background: linear-gradient(135deg, #ff914d, #ffca3a); position: relative
                 </div>
 
                 <div class="p-3 shadow-sm rounded-4 text-center"
-                     style="background: rgba(255,255,255,0.20); backdrop-filter: blur(6px); width:100%; max-width:300px;">
+                     style="background: rgba(255,255,255,0.20); backdrop-filter: blur(6px); width:100%; max-width:300px; color:black;">
                     <b>UPI ID:</b> 10951209@cbin <br>
                     <img src="upload/qrcode.png" 
                          alt="Donate QR"

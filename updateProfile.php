@@ -40,7 +40,7 @@ if(isset($_POST['update'])){
         WHERE member_id='$uid'
     ");
 
-    mysqli_query($con,"UPDATE sens_users SET email='$email' 
+    mysqli_query($con,"UPDATE sens_users SET name='$fullname' , email='$email' 
         WHERE id=(SELECT user_id FROM sens_members WHERE member_id='$uid')
     ");
 

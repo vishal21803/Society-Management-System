@@ -26,6 +26,7 @@ include("connectdb.php");
                         <thead class="table-dark">
                             <tr>
                                 <th>#</th>
+                                <th>Image</th>
                                 <th>Event Title</th>
                                 <th>Date</th>
                                 <th>Actions</th>
@@ -41,6 +42,17 @@ include("connectdb.php");
                             ?>
                             <tr>
                                 <td><?= $i++ ?></td>
+                                 <td>
+                                    <?php if($row['event_img']) { ?>
+                                        <button title="View" class="btn btn-sm btn-info viewImageBtn"
+                                            data-src="upload/events/<?= $row['event_img'] ?>">
+                                            <i class="bi bi-eye-fill"></i>
+
+                                        </button>
+                                    <?php } else { ?>
+                                        <span class="text-muted">No Image</span>
+                                    <?php } ?>
+                                </td>
                                 <td><?= $row['title'] ?></td>
 
                               
@@ -198,6 +210,25 @@ include("connectdb.php");
         </div>
 
     </div>
+</div>
+
+
+<!-- ✅ IMAGE VIEW MODAL (UNCHANGED, CLEAN LOOK) -->
+<div class="modal fade" id="imageViewModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+
+      <div class="modal-header bg-dark text-white">
+        <h5 class="modal-title">Image</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body text-center">
+        <img id="fullImagePreview" src="" class="img-fluid rounded shadow">
+      </div>
+
+    </div>
+  </div>
 </div>
 </main>
 
