@@ -106,9 +106,15 @@ html, body {
   </div>
 </li>
 
-<li class="nav-item">
-  <a class="nav-link text-white <?= ($currentPage == 'showCommity.php') ? 'active-link' : '' ?>" href="showCommity.php">Commity</a>
+<li class="nav-item dropdown-custom">
+  <a class="nav-link text-white" href="#">Commity</a>
+<div class="dropdown-custom-menu">
+      <a class="dropdown-item-custom" href="currentCommity.php">Current Commity</a>
+      <a class="dropdown-item-custom" href="pastCommity.php">Past Commity</a>
+  </div>
 </li>
+
+
 
 
 <li class="nav-item">

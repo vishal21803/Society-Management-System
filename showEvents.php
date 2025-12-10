@@ -139,26 +139,27 @@ if(mysqli_num_rows($eventQuery) > 0){
 
             <p><?= substr($event['description'], 0, 100) ?>...</p>
 
-            <a href="javascript:void(0)"
-               class="event-btn"
-               onclick='openEventModal(
-                   <?= json_encode($event["title"]) ?>,
-                   <?= json_encode($event["description"]) ?>,
-                   <?= json_encode($event["event_location"]) ?>,
-                   <?= json_encode($event["event_time"]) ?>,
-                   <?= json_encode($event["event_date"]) ?>,
-                   <?= json_encode($img) ?>
-               )'>
-               View Details
-            </a>
+          <div class="d-flex justify-content-between align-items-center mt-3">
+    <a href="javascript:void(0)"
+       class="event-btn"
+       onclick='openEventModal(
+           <?= json_encode($event["title"]) ?>,
+           <?= json_encode($event["description"]) ?>,
+           <?= json_encode($event["event_location"]) ?>,
+           <?= json_encode($event["event_time"]) ?>,
+           <?= json_encode($event["event_date"]) ?>,
+           <?= json_encode($img) ?>
+       )'>
+       View Details
+    </a>
 
-            <?php if($event['video_link'] != ""){ ?>
-            <button class="btn btn-primary btn-sm position-absolute" 
-                    style="top: 400px; right: 10px;" 
-                    onclick="openVideo('<?= $event['video_link'] ?>')">
-            Play Video
-            </button>
-            <?php } ?>
+    <?php if($event['video_link'] != ""){ ?>
+    <button class="btn btn-primary btn-sm"
+            onclick="openVideo('<?= $event['video_link'] ?>')">
+        Play Video
+    </button>
+    <?php } ?>
+</div>
 
         </div>
     </div>

@@ -28,7 +28,7 @@
             </a>
         </li>
         <li class="nav-item mb-2">
-            <a href="dataTableCommity.php" class="nav-link admin-sidebar-link text-white fw-semibold">
+            <a href="manageCommity.php" class="nav-link admin-sidebar-link text-white fw-semibold">
                 <i class="bi bi-people-fill me-2"></i> Manage Commity
             </a>
         </li>
@@ -108,7 +108,7 @@
             </a>
         </li>
             <li class="nav-item mb-2">
-            <a href="dataTableCommity.php" class="nav-link admin-sidebar-link text-white fw-semibold">
+            <a href="manageCommity.php" class="nav-link admin-sidebar-link text-white fw-semibold">
                 <i class="bi bi-people-fill me-2"></i> Manage Commity
             </a>
         </li>

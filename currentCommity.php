@@ -83,7 +83,7 @@ include("connectdb.php");
 <div class="container">
 
   <div class="text-center mb-5">
-    <h1 class="fw-bold">Our Committee Members</h1>
+    <h1 class="fw-bold">Our Current Committee Members</h1>
     <p class="text-muted">Leadership That Leads With Values</p>
   </div>
 
