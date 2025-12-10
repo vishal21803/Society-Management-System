@@ -6,14 +6,6 @@ include("header.php");
 include("connectdb.php");
 ?>
 
-<?php if(isset($_GET['add']) && $_GET['add'] == 1) { ?>
-<script>
-    document.addEventListener("DOMContentLoaded", function(){
-        var myModal = new bootstrap.Modal(document.getElementById("addedModal"));
-        myModal.show();
-    });
-</script>
-<?php } ?>
 
 
 <main>
@@ -27,7 +19,7 @@ include("connectdb.php");
         
     <button class="btn btn-success btn-sm"
             data-bs-toggle="modal"
-            data-bs-target="#addZoneModal">
+            data-bs-target="#addCityModal">
         + Add City
     </button>
     </div>
@@ -134,7 +126,7 @@ include("connectdb.php");
 </div>
 
 <!-- ✅ ADD ZONE MODAL -->
-<div class="modal fade" id="addZoneModal" tabindex="-1">
+<div class="modal fade" id="addCityModal" tabindex="-1">
   <div class="modal-dialog modal-sm modal-dialog-centered">
     <div class="modal-content">
 
@@ -145,7 +137,7 @@ include("connectdb.php");
 
       <div class="modal-body">
         
-         <form action="cities_save.php" method="post">
+         <form id="cityform">
                                 <!-- <div class="mb-3">
                                     <label class="form-label">Select State</label>
                                     <select id="stateDropdown" class="form-select" onchange="loadZones();" required>
@@ -160,7 +152,7 @@ include("connectdb.php");
                                 </div> -->
                                 <div class="mb-3">
                                     <label class="form-label">Select Zone</label>
-                                    <select id="zoneDropdown" name="zone_id" class="form-select" required>
+                                    <select id="zoneDropdown"  name="zone_id" class="form-select" required>
                                         <option value="">Select Zone</option>
                                          <?php
                                             $res2 = mysqli_query($con,"SELECT * FROM sens_zones where zstatus=1 ORDER BY zone_name ASC");
@@ -172,9 +164,11 @@ include("connectdb.php");
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">City Name</label>
-                                    <input type="text" name="city_name" class="form-control" required>
+                                    <input type="text" name="city_name" id="city_name" class="form-control" required>
                                 </div>
-                                <button type="submit" class="btn btn-warning">Save City</button>
+                                <button type="button"  onclick="saveCit()" class="btn btn-warning">Save City</button>
+                                    <div id="citMessage" class="mt-2"></div>
+
                             </form>
       </div>
 
@@ -184,27 +178,7 @@ include("connectdb.php");
 
 
 
-<!-- SUCCESS MODAL -->
-<div class="modal fade" id="addedModal">
-  <div class="modal-dialog">
-    <div class="modal-content">
 
-      <div class="modal-header bg-success text-white">
-        <h5 class="modal-title">Success</h5>
-        <button class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-
-      <div class="modal-body">
-        City added successfully!
-      </div>
-
-      <div class="modal-footer">
-        <button class="btn btn-success" data-bs-dismiss="modal">OK</button>
-      </div>
-
-    </div>
-  </div>
-</div>
 
 </main>
 
@@ -213,6 +187,53 @@ function showForm(id){
     var tabEl = new bootstrap.Tab(document.querySelector('#' + id + '-tab'));
     tabEl.show();
 }
+
+function saveCit(){
+
+    let cityName = $("#city_name").val().trim();
+    let zoneID   = $("#zoneDropdown").val().trim();
+
+    if(zoneID === ""){
+        $("#citMessage").html('<span class="text-danger">Please select a zone.</span>');
+        return;
+    }
+
+    if(cityName === ""){
+        $("#citMessage").html('<span class="text-danger">Please enter city name.</span>');
+        return;
+    }
+
+    $.post("cities_save.php", { 
+        zone_id: zoneID,
+        city_name: cityName
+    }, function(res){
+
+        if(res.trim() === "success"){
+            $("#citMessage").html('<span class="text-success fw-bold">✔ City added successfully!</span>');
+            $("#city_name").val("");
+            $("#zoneDropdown").val("");
+
+            // Show success modal
+            var myModal = new bootstrap.Modal(document.getElementById('addedModal'));
+            myModal.show();
+        }
+        else if(res.trim() === "exists"){
+            $("#citMessage").html('<span class="text-warning fw-bold">⚠ City already exists!</span>');
+        }
+        else{
+            $("#citMessage").html('<span class="text-danger">Error saving city.</span>');
+        }
+
+        setTimeout(() => { $("#citMessage").html(""); }, 3000);
+
+    });
+}
+
+document.getElementById('addCityModal').addEventListener('hidden.bs.modal', function () {
+    location.reload();
+});
+
+
 </script>
 
 

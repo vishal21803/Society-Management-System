@@ -138,15 +138,17 @@ include("connectdb.php");
 
       <div class="modal-body">
         
-        <form action="zones_save.php" method="post">
-                               
-                                <div class="mb-3">
-                                    <label class="form-label">Zone Name</label>
-                                    <input type="text" name="zone_name" class="form-control" required>
-                                </div>
-                                <button type="submit" class="btn btn-warning">Save Zone</button>
-                                <div id="zoneMessage"></div>
-                            </form>
+        <form id="addZoneForm">
+    <div class="mb-3">
+        <label class="form-label">Zone Name</label>
+        <input type="text" name="zone_name" id="zone_name" class="form-control" required>
+    </div>
+
+    <button type="button" class="btn btn-warning" onclick="saveZone()">Save Zone</button>
+
+    <div id="zoneMessage" class="mt-2"></div>
+</form>
+
       </div>
 
     </div>
@@ -189,6 +191,45 @@ function showForm(id){
     var tabEl = new bootstrap.Tab(document.querySelector('#' + id + '-tab'));
     tabEl.show();
 }
+
+function saveZone(){
+    let zoneName = $("#zone_name").val().trim();
+
+    if(zoneName === ""){
+        $("#zoneMessage").html('<span class="text-danger">Please enter zone name.</span>');
+
+        setTimeout(() => { $("#zoneMessage").html(""); }, 3000);
+        return;
+    }
+
+    $.post("zones_save.php", { zone_name: zoneName }, function(res){
+
+        if(res.trim() === "success"){
+            $("#zoneMessage").html('<span class="text-success fw-bold">✔ Zone added successfully!</span>');
+            $("#zone_name").val("");  
+        }
+        else if(res.trim() === "exists"){
+            $("#zoneMessage").html('<span class="text-warning fw-bold">⚠ Zone already exists!</span>');
+        }
+        else{
+            $("#zoneMessage").html('<span class="text-danger">Error saving zone.</span>');
+        }
+
+        // 🕒 Auto fade message after 3 seconds
+        setTimeout(() => { 
+            $("#zoneMessage").fadeOut(400, function(){
+                $(this).html("").show(); 
+            });
+        }, 3000);
+
+    });
+}
+
+document.getElementById('addZoneModal').addEventListener('hidden.bs.modal', function () {
+    location.reload();
+});
+
+
 </script>
 
 

@@ -39,19 +39,19 @@ $(document).ready(function(){
 
 
     // CITY AJAX
-    $("#cityFormAjax").submit(function(e){
-        e.preventDefault();
-        $.ajax({
-            url: "cities_save.php",
-            method: "POST",
-            data: $(this).serialize(),
-            success: function(resp){
-                $("#cityMessage").html(resp);
-                $("#cityFormAjax")[0].reset();
-                $("#zoneDropdown").html("<option value=''>Select Zone</option>");
-            }
-        });
-    });
+    // $("#cityFormAjax").submit(function(e){
+    //     e.preventDefault();
+    //     $.ajax({
+    //         url: "cities_save.php",
+    //         method: "POST",
+    //         data: $(this).serialize(),
+    //         success: function(resp){
+    //             $("#cityMessage").html(resp);
+    //             $("#cityFormAjax")[0].reset();
+    //             $("#zoneDropdown").html("<option value=''>Select Zone</option>");
+    //         }
+    //     });
+    // });
 
 });
 
