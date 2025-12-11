@@ -22,10 +22,15 @@ if(isset($_SESSION["uname"]) && $_SESSION["utype"]=='admin') {
 
             <div class="card-body">
                 <div class="table-responsive mobile-table">
+                      <button class="btn btn-danger mb-3" id="deleteSelected">
+    Delete Selected
+</button>
 
                     <table id="myTable" class="table table-bordered table-hover align-middle w-100">
                         <thead class="table-dark">
                             <tr>
+                                            <th><input type="checkbox" id="selectAll"></th>
+
                                 <th>#</th>
                                 <th>Name</th>
                                 <th>Phone</th>
@@ -41,27 +46,21 @@ if(isset($_SESSION["uname"]) && $_SESSION["utype"]=='admin') {
                             $result = mysqli_query($con, $query);
 
                             while($row = mysqli_fetch_assoc($result)) { ?>
-                                <tr>
-                                    <td><?= $i++ ?></td>
+                               <tr>
+    <td><input type="checkbox" class="row-check" value="<?= $row['con_id'] ?>"></td>
+    <td><?= $i++ ?></td>
+    <td><?= htmlspecialchars($row['con_name']) ?></td>
+    <td><?= htmlspecialchars($row['con_phone']) ?></td>
+    <td><?= substr(htmlspecialchars($row['con_desc']), 0, 40) ?>...</td>
 
-                                    <td><?= htmlspecialchars($row['con_name']) ?></td>
+    <td>
+        <button title="Delete" class="btn btn-sm btn-danger singleDelete"
+            data-id="<?= $row['con_id'] ?>">
+            <i class="bi bi-trash"></i>
+        </button>
+    </td>
+</tr>
 
-                                    <td><?= htmlspecialchars($row['con_phone']) ?></td>
-
-                                    <td>
-                                        <?= substr(htmlspecialchars($row['con_desc']), 0, 40) ?>...
-                                    </td>
-
-                                    <td>
-                                      
-
-                                        <button title="Delete" class="btn btn-sm btn-danger deleteBtn"
-                                            data-id="<?= $row['con_id'] ?>">
-                                            <i class="bi bi-trash"></i>
-                                        </button>
-                                    </td>
-
-                                </tr>
                             <?php } ?>
                         </tbody>
 
@@ -117,20 +116,65 @@ document.addEventListener("DOMContentLoaded", function() {
     // });
 
     // DELETE FUNCTION
-    document.querySelectorAll('.deleteBtn').forEach(btn => {
-        btn.addEventListener('click', function() {
+    // document.querySelectorAll('.deleteBtn').forEach(btn => {
+    //     btn.addEventListener('click', function() {
 
-            if(confirm("Are you sure you want to delete this message?")) {
+    //         if(confirm("Are you sure you want to delete this message?")) {
 
-                let id = this.dataset.id;
+    //             let id = this.dataset.id;
 
-                window.location.href = "delete_contact.php?id=" + id;
-            }
+    //             window.location.href = "delete_contact.php?id=" + id;
+    //         }
 
+    //     });
+    // });
+    $(document).ready(function() {
+
+    // Select / Unselect All
+    $("#selectAll").click(function () {
+        $(".row-check").prop('checked', this.checked);
+    });
+
+    $(".row-check").change(function(){
+        if ($(".row-check:checked").length == $(".row-check").length) {
+            $("#selectAll").prop("checked", true);
+        } else {
+            $("#selectAll").prop("checked", false);
+        }
+    });
+
+    // Bulk Delete
+    $("#deleteSelected").click(function () {
+
+        let ids = [];
+        $(".row-check:checked").each(function () {
+            ids.push($(this).val());
         });
+
+        if (ids.length === 0) {
+            alert("Please select at least one record!");
+            return;
+        }
+
+        if (!confirm("Delete " + ids.length + " selected records?")) return;
+
+        window.location.href = "deleteMultipleContact.php?ids=" + ids.join(",");
+    });
+
+    // Single delete button
+    $(".singleDelete").click(function () {
+        if (confirm("Delete this message?")) {
+            let id = $(this).data("id");
+            window.location.href = "delete_contact.php?id=" + id;
+        }
     });
 
 });
+
+
+});
+
+
 </script>
 
 <?php

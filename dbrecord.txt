@@ -1,0 +1,2 @@
+table:sens_past_commit is created.
+one new column (recdate) is added to sens_receipt table.

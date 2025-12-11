@@ -110,10 +110,14 @@ style="background: linear-gradient(135deg, #ff914d, #ffca3a); position: relative
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
 
+<!-- <link rel="stylesheet" href="https://cdn.datatables.net/select/1.7.0/css/select.dataTables.min.css">
+<script src="https://cdn.datatables.net/select/1.7.0/js/dataTables.select.min.js"></script> -->
+
 <script>
 $(document).ready(function () {
 
     var table = $('#myTable').DataTable({
+     
         dom:
             "<'row'<'col-sm-6'l><'col-sm-6'f>>" +
             "<'row'<'col-sm-12'tr>>" +
