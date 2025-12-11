@@ -280,8 +280,7 @@ while($h = mysqli_fetch_assoc($historyResult)){
 
         <div class="modal-body">
           <input type="hidden" name="member_id" value="<?= $member_id ?>">
-          <!-- <label for="">Receipt Date</label>
-          <input type="date" name="receipt_date" class="form-control mb-2" required> -->
+    
           <label for=""> Amount</label>
           <input type="number" name="receipt_amount" class="form-control mb-2" required>
            <label for="">Bill Type</label>
@@ -299,6 +298,10 @@ while($h = mysqli_fetch_assoc($historyResult)){
           <input type="text" name="purpose" class="form-control mb-2" required>
           <label for="">Receipt ID</label>
           <input type="text" name="receipt_id" class="form-control" required>
+                <label for="">Receipt Date</label>
+<input type="date" name="receipt_date" class="form-control mb-2"
+       value="<?php echo date('Y-m-d'); ?>" required>
+         
         </div>
 
         <div class="modal-footer">

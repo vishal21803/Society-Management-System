@@ -7,14 +7,15 @@ $receipt_amount = $_POST['receipt_amount'];
 $purpose        = $_POST['purpose'];
 $receipt_id     = $_POST['receipt_id'];
 $type     = $_POST['type'];
+$rdate=$_POST['receipt_date'];
 
 // ✅ CURRENT DATE + TIME AUTO
 $receipt_date = date("Y-m-d H:i:s");
 
 /* ✅ INSERT INTO RECEIPT */
 $insert = mysqli_query($con, "
-    INSERT INTO sens_receipt (manualID, member_id, receipt_date, receipt_amount, purpose,created_by,receipt_type)
-    VALUES ('$receipt_id', '$member_id', '$receipt_date', '$receipt_amount', '$purpose','$uname','$type')
+    INSERT INTO sens_receipt (manualID, member_id, receipt_date, receipt_amount, purpose,created_by,receipt_type,recdate)
+    VALUES ('$receipt_id', '$member_id', '$receipt_date', '$receipt_amount', '$purpose','$uname','$type','$rdate')
 ");
 
 if($insert){
