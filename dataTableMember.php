@@ -14,7 +14,7 @@ include("connectdb.php");
     <div class="card shadow-lg border-0">
         <div class="card-header bg-warning fw-bold text-dark d-flex justify-content-between align-items-center">
             <span><i class="bi bi-people-fill me-2"></i> Manage Members</span>
-            <a href="adminaddmem.php">
+            <a href="adminRegisForm.php">
                 <button class="btn btn-success btn-sm">+ Add Member</button>
             </a>
         </div>
@@ -168,7 +168,11 @@ onclick="openMemberEditModal(
             <select id="edit_zone" class="form-select" onchange="loadMemberCities(this.value)">
               <option value="">Select Zone</option>
               <?php
-              $z=mysqli_query($con,"SELECT * FROM sens_zones WHERE zstatus=1");
+$z = mysqli_query($con,
+    "SELECT * FROM sens_zones 
+     WHERE zstatus = 1 
+     ORDER BY CAST(REGEXP_SUBSTR(zone_name, '[0-9]+') AS UNSIGNED)"
+);
               while($r=mysqli_fetch_assoc($z)){
               ?>
                 <option value="<?= $r['zone_id'] ?>"><?= $r['zone_name'] ?></option>

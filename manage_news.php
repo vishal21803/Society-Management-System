@@ -145,7 +145,7 @@ include("connectdb.php");
         <input type="text" id="edit_title" name="title" class="form-control mb-2" placeholder="Title" required>
 
         <label for="">News description</label>
-        <textarea id="edit_description" name="description" class="form-control mb-2" required></textarea>
+        <textarea id="edit_description" rows="6" name="description" class="form-control mb-2" required></textarea>
         <button type="button" onclick="hinglishToHindi()" class="btn btn-warning btn-sm">
     Hinglish → Hindi
 </button>
@@ -169,7 +169,11 @@ include("connectdb.php");
   <label>Select Zone</label>
   <select class="form-select" onchange="setTarget(this.value)">
     <?php
-    $z = mysqli_query($con,"SELECT * FROM sens_zones where zstatus=1");
+$z = mysqli_query($con,
+    "SELECT * FROM sens_zones 
+     WHERE zstatus = 1 
+     ORDER BY CAST(REGEXP_SUBSTR(zone_name, '[0-9]+') AS UNSIGNED)"
+);
     while($row = mysqli_fetch_assoc($z)){ ?>
       <option value="<?= $row['zone_id'] ?>"><?= $row['zone_name'] ?></option>
     <?php } ?>

@@ -32,7 +32,7 @@ if(isset($_GET['regmsg'])){
         <form method="POST" action="checkLogin.php">
 
             <div class="mb-3">
-                <input type="text" name="name" class="form-control" placeholder="👤 Email" required>
+                <input type="text" name="name" class="form-control" placeholder="👤 Email/Phone Number" required>
             </div>
 
             <!-- ✅ PASSWORD WITH SHOW/HIDE -->

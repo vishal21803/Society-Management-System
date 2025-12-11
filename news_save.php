@@ -8,7 +8,7 @@ $date    = $_POST['news_date'];
 $status  = $_POST['status'];
 
 /* ================= VISIBILITY LOGIC ================= */
-$toshow_type = $_POST['toshow_type'];   // all | zone | city | member
+$toshow_type = $_POST['toshow_type'];   // all | zone | city | membe
 $toshow_id   = NULL;
 
 if($toshow_type == "zone"){

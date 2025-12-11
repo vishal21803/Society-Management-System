@@ -76,6 +76,12 @@
                 <i class="bi bi-chat-dots me-2"></i> Chat
             </a>
         </li>
+
+        <li class="nav-item mb-2">
+            <a href="manageReports.php" class="nav-link admin-sidebar-link text-white fw-semibold">
+                <i class="bi bi-chat-dots me-2"></i> Manage Reports
+            </a>
+        </li>
         <li class="nav-item">
             <a href="logout.php" class="nav-link admin-sidebar-link text-white fw-semibold">
                 <i class="bi bi-box-arrow-right me-2"></i> Logout
@@ -155,7 +161,11 @@
                 <i class="bi bi-chat-dots me-2"></i> Chat
             </a>
         </li>
-
+         <li class="nav-item mb-2">
+            <a href="manageReports.php" class="nav-link admin-sidebar-link text-white fw-semibold">
+                <i class="bi bi-chat-dots me-2"></i> Manage Reports
+            </a>
+        </li>
         <li class="nav-item">
             <a href="logout.php" class="nav-link admin-sidebar-link text-white fw-semibold">
                 <i class="bi bi-box-arrow-right me-2"></i> Logout

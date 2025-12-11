@@ -111,17 +111,64 @@ style="background: linear-gradient(135deg, #ff914d, #ffca3a); position: relative
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
 
 <script>
-$(document).ready(function() {
-    $('#myTable').DataTable({
-        dom: 'Bfrtip',
-        buttons: [
-            'excelHtml5',
-            'csvHtml5',
-            'pdfHtml5',
-            'print'
-        ]
+$(document).ready(function () {
+
+    var table = $('#myTable').DataTable({
+        dom:
+            "<'row'<'col-sm-6'l><'col-sm-6'f>>" +
+            "<'row'<'col-sm-12'tr>>" +
+            "<'row'<'col-sm-5'i><'col-sm-7'p>>" +
+            "<'row'<'col-sm-12'B>>",
+
+        bLengthChange: true,
+        pageLength: 10,
+        lengthMenu: [10, 25, 50, 100],
+        buttons: ['excelHtml5', 'csvHtml5', 'pdfHtml5', 'print']
     });
+
+    // ⭐ DATE FILTER
+  $.fn.dataTable.ext.search.push(function (settings, data) {
+
+    let start = $('#startDate').val();
+    let end = $('#endDate').val();
+    let billDate = data[1];  // Bill Date = column index 1
+
+    let zone = $('#filterZone').val();
+    let city = $('#filterCity').val();
+    let type = $('#filterType').val(); // NEW BILL TYPE FILTER
+
+    let rowCity = data[3];  // City column
+    let rowZone = data[4];  // Zone column
+    let rowType = data[6];  // Bill Type column
+
+    // ---- DATE FILTER ----
+    if (start) start = new Date(start);
+    if (end) end = new Date(end);
+    if (billDate) billDate = new Date(billDate);
+
+    if (start && billDate < start) return false;
+    if (end && billDate > end) return false;
+
+    // ---- ZONE FILTER ----
+    if (zone && zone !== rowZone) return false;
+
+    // ---- CITY FILTER ----
+    if (city && city !== rowCity) return false;
+
+    // ---- BILL TYPE FILTER ----
+    if (type && type !== rowType) return false;
+
+    return true;
 });
+
+
+ $('#startDate, #endDate, #filterZone, #filterCity, #filterType').on('change', function () {
+    table.draw();
+});
+
+
+});
+
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

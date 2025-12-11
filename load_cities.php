@@ -3,7 +3,7 @@ include("connectdb.php");
 
 $zone_id = $_POST['zone_id'];
 
-$q = mysqli_query($con,"SELECT * FROM sens_cities WHERE zone_id='$zone_id' ORDER BY city_name ASC");
+$q = mysqli_query($con,"SELECT * FROM sens_cities WHERE zone_id='$zone_id' AND cstatus=1 ORDER BY city_name ASC");
 
 echo "<option value=''>Select City</option>";
 

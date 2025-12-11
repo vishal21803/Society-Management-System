@@ -18,10 +18,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $img = $_FILES['event_img']['name'];
     $tmp = $_FILES['event_img']['tmp_name'];
 
+    $imgName = time()."_".$img;
+
+
     if (!empty($img)) {
         // user uploaded new image
-        move_uploaded_file($tmp, "upload/events/" . $img);
-        $imgQuery = ", event_img = '$img'";   
+        move_uploaded_file($tmp, "upload/events/" . $imgName);
+        $imgQuery = ", event_img = '$imgName'";   
     } else {
         // no new image uploaded → don't update image column
         $imgQuery = "";

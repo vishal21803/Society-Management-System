@@ -1,20 +1,23 @@
 <?php 
 @session_start();
 
-$loginInput = $_REQUEST["name"];   // email OR username
+$loginInput = $_REQUEST["name"];   // email OR username OR phone
 $password   = $_REQUEST["password"];
 
 include("connectdb.php");
 
-/* FETCH USER BY EMAIL OR USERNAME */
+/* FETCH USER BY EMAIL OR USERNAME OR PHONE */
 $rsCust = mysqli_query($con,"
-    SELECT * FROM sens_users 
-    WHERE BINARY email='$loginInput' 
-       OR BINARY name='$loginInput'
+    SELECT u.* 
+    FROM sens_users u
+    LEFT JOIN sens_members m ON u.id = m.user_id
+    WHERE BINARY u.email='$loginInput' 
+       OR BINARY u.name='$loginInput'
+       OR BINARY m.phone='$loginInput'
 ");
 
 if(mysqli_num_rows($rsCust) == 0){
-    header("location:login.php?regmsg=1"); // Invalid Username
+    header("location:login.php?regmsg=1"); // Invalid Username/Email/Phone
     exit;
 }
 

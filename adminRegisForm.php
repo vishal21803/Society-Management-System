@@ -1,12 +1,41 @@
-<?php 
-@session_start();
+
+<?php @session_start();
+if(isset($_SESSION["uname"]) && $_SESSION["utype"]=='admin')
+{
 include("header.php");
 include("connectdb.php");
 ?>
 
-<br><br>
 <main>
-<div class="container my-5">
+
+<!-- ✅ Success Modal -->
+<div class="modal fade" id="successModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content shadow-lg border-0">
+      <div class="modal-header bg-success text-white">
+        <h5 class="modal-title">✅ Success</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body text-center">
+        <img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="90">
+        <h5 class="mt-3 fw-bold text-success">Member Added Successfully!</h5>
+        <p class="text-muted">New member has been registered and plan assigned.</p>
+      </div>
+      <div class="modal-footer justify-content-center">
+        <button type="button" class="btn btn-success" data-bs-dismiss="modal">OK</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="d-flex">
+    <?php include('adminDashboard.php'); ?>
+    <div class="flex-grow-1 p-4">
+        <!-- Main content here -->
+
+        <div class="container my-5">
 
     <div class="card shadow-lg border-0">
         <div class="card-header bg-warning text-dark fw-bold text-center fs-4">
@@ -15,7 +44,7 @@ include("connectdb.php");
 
         <div class="card-body p-4">
 
-            <form action="saveusermem.php" method="POST" id="myForm">
+            <form action="saveaddmem.php" method="POST" enctype="multipart/form-data" id="myForm">
 
                 <!-- ✅ Full Name -->
                 <div class="mb-3">
@@ -94,9 +123,22 @@ $rs = mysqli_query($con,
 
         </div>
     </div>
-
 </div>
+
+
+
 </main>
+<?php if(isset($_GET['success']) && $_GET['success']==1){ ?>
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+    var myModal = new bootstrap.Modal(document.getElementById('successModal'));
+    myModal.show();
+});
+</script>
+<?php } ?>
+
+
+
 <script>
 
 let phoneValid = false; // global flag
@@ -212,4 +254,11 @@ function loadCities() {
 </script>
 
 
-<?php include("footer.php"); ?>
+
+
+<?php
+include("footer.php");
+}else{
+    include("index.php");
+}
+?>

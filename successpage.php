@@ -109,7 +109,7 @@
 
         <h1>Account Created Successfully 🎉</h1>
 
-        <p>Your account has been created. You can now safely login.</p>
+        <p>Your account has been created. You will be able to log in once your request is approved.</p>
 
         <a href="login.php" class="success-btn" style="text-decoration: none;color:white;">Go to Login</a>
 

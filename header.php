@@ -106,13 +106,6 @@ html, body {
   </div>
 </li>
 
-<li class="nav-item dropdown-custom">
-  <a class="nav-link text-white" href="#">Commity</a>
-<div class="dropdown-custom-menu">
-      <a class="dropdown-item-custom" href="currentCommity.php">Current Commity</a>
-      <a class="dropdown-item-custom" href="pastCommity.php">Past Commity</a>
-  </div>
-</li>
 
 
 
@@ -128,6 +121,13 @@ html, body {
   <a class="nav-link text-white <?= ($currentPage == 'showContact.php') ? 'active-link' : '' ?>" href="showContact.php">Contact Us</a>
 </li>
 
+<li class="nav-item dropdown-custom">
+  <a class="nav-link text-white" href="#">Commity</a>
+<div class="dropdown-custom-menu">
+      <a class="dropdown-item-custom" href="currentCommity.php">Current Commity</a>
+      <a class="dropdown-item-custom" href="pastCommity.php">Past Commity</a>
+  </div>
+</li>
 
 
 

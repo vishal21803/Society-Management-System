@@ -140,7 +140,11 @@ onclick="openComiEdit(
             <label>Zone</label>
             <select id="edit_zone" class="form-select" onchange="loadComiCities(this.value)">
               <?php
-              $z=mysqli_query($con,"SELECT * FROM sens_zones");
+$z = mysqli_query($con,
+    "SELECT * FROM sens_zones 
+     WHERE zstatus = 1 
+     ORDER BY CAST(REGEXP_SUBSTR(zone_name, '[0-9]+') AS UNSIGNED)"
+);
               while($r=mysqli_fetch_assoc($z)){
               ?>
                 <option value="<?= $r['zone_id'] ?>"><?= $r['zone_name'] ?></option>

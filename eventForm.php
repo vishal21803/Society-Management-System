@@ -18,8 +18,8 @@ include("header.php");
     <div class="row justify-content-center">
         <div class="col-md-8">
 
-            <div class="card event-card animate__animated animate__fadeInUp">
-                
+            <div class="card  animate__animated animate__fadeInUp">
+
                 <!-- HEADER -->
                 <div class="event-header text-center">
                     <h4 class="mb-0"><i class="bi bi-calendar-event"></i> Add New Event</h4>
@@ -119,7 +119,11 @@ include("header.php");
         <select name="toshow_zone" class="form-select">
             <option value="">Select Zone</option>
             <?php
-            $z = mysqli_query($con,"SELECT * FROM sens_zones where zstatus=1 ORDER BY zone_name ASC");
+$z = mysqli_query($con,
+    "SELECT * FROM sens_zones 
+     WHERE zstatus = 1 
+     ORDER BY CAST(REGEXP_SUBSTR(zone_name, '[0-9]+') AS UNSIGNED)"
+);
             while($row = mysqli_fetch_assoc($z)){
             ?>
                 <option value="<?= $row['zone_id'] ?>"><?= $row['zone_name'] ?></option>

@@ -31,7 +31,7 @@ include("header.php");
 
                         <!-- NEWS TITLE -->
                         <div class="form-floating mb-3 animate__animated animate__fadeInLeft">
-                            <input type="text" class="form-control" name="title" placeholder="News Title" required>
+                            <input type="text" class="form-control" name="title" placeholder="News Title" >
                             <label>News Title</label>
                         </div>
 
@@ -120,7 +120,11 @@ include("header.php");
         <select name="toshow_zone" class="form-select">
             <option value="">Select Zone</option>
             <?php
-            $z = mysqli_query($con,"SELECT * FROM sens_zones where zstatus=1 ORDER BY zone_name ASC");
+$z = mysqli_query($con,
+    "SELECT * FROM sens_zones 
+     WHERE zstatus = 1 
+     ORDER BY CAST(REGEXP_SUBSTR(zone_name, '[0-9]+') AS UNSIGNED)"
+);
             while($row = mysqli_fetch_assoc($z)){
             ?>
                 <option value="<?= $row['zone_id'] ?>"><?= $row['zone_name'] ?></option>

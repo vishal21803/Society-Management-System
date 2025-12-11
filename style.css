@@ -594,7 +594,7 @@ td, th {
     }
 }
 
-<style>
+
     /* Glass Effect */
     .glass-box {
         background: rgba(255, 255, 255, 0.25);
@@ -616,4 +616,5 @@ td, th {
     .social-icons a {
         transition: 0.3s;
     }
-</style>
+
+    

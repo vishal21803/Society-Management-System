@@ -155,7 +155,11 @@ include("connectdb.php");
                                     <select id="zoneDropdown"  name="zone_id" class="form-select" required>
                                         <option value="">Select Zone</option>
                                          <?php
-                                            $res2 = mysqli_query($con,"SELECT * FROM sens_zones where zstatus=1 ORDER BY zone_name ASC");
+$res2 = mysqli_query($con,
+    "SELECT * FROM sens_zones 
+     WHERE zstatus = 1 
+     ORDER BY CAST(REGEXP_SUBSTR(zone_name, '[0-9]+') AS UNSIGNED)"
+);
                                             while($row2 = mysqli_fetch_array($res2)){
                                                 echo "<option value='{$row2['zone_id']}'>{$row2['zone_name']}</option>";
                                             }

@@ -68,7 +68,11 @@ include("connectdb.php");
                             <select name="zone_id" class="form-select">
                                 <option value="">Select Zone</option>
                                 <?php
-                                $z = mysqli_query($con,"SELECT * FROM sens_zones where zstatus=1");
+$z = mysqli_query($con,
+    "SELECT * FROM sens_zones 
+     WHERE zstatus = 1 
+     ORDER BY CAST(REGEXP_SUBSTR(zone_name, '[0-9]+') AS UNSIGNED)"
+);
                                 while($r=mysqli_fetch_assoc($z)){
                                     echo "<option value='{$r['zone_id']}'>{$r['zone_name']}</option>";
                                 }

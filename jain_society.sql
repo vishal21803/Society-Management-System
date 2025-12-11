@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Dec 09, 2025 at 01:09 PM
+-- Generation Time: Dec 11, 2025 at 08:34 AM
 -- Server version: 9.1.0
 -- PHP Version: 8.3.14
 
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `sens_bills` (
   `created_by` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `bill_type` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`bill_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `sens_bills`
@@ -70,7 +70,7 @@ CREATE TABLE IF NOT EXISTS `sens_cities` (
   `created_by` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`city_id`),
   KEY `zone_id` (`zone_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `sens_cities`
@@ -89,7 +89,7 @@ INSERT INTO `sens_cities` (`city_id`, `zone_id`, `city_name`, `cstatus`, `create
 (10, 6, 'Naya Raipur', 1, ''),
 (11, 7, 'Bilaspur', 1, ''),
 (12, 7, 'Ratanpur', 1, ''),
-(13, 7, 'Takhtapur', 1, ''),
+(35, 7, 'Takhtapur', 1, 'admin'),
 (14, 7, 'Koni', 1, ''),
 (16, 8, 'Korba', 1, ''),
 (17, 5, 'Katghora', 1, ''),
@@ -121,15 +121,18 @@ CREATE TABLE IF NOT EXISTS `sens_commity` (
   `comi_duration` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_by` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`comi_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `sens_commity`
 --
 
 INSERT INTO `sens_commity` (`comi_id`, `comi_name`, `comi_gender`, `comi_post`, `comi_img`, `comi_zone`, `comi_city`, `comi_address`, `comi_priority`, `comi_duration`, `created_by`) VALUES
-(6, 'Sandeep Singh', 'Male', 'Minister', 'wallpaperflare.com_wallpaper (2).jpg', 11, 24, 'Near Jungle Area', 22, '2021-Present', 'admin'),
-(5, 'vish', 'Male', 'Teasurer', 'wallpaperflare.com_wallpaper.jpg', 5, 2, 'wdwt', 44, '2022-2023', '');
+(6, 'Sandeep Singh', 'Male', 'Karya Adhyaksh', 'comi_1765380804.png', 11, 24, 'Near Jungle Area', 22, '2021-Present', 'admin'),
+(5, 'vish', 'Male', 'Sah Mantri', 'wallpaperflare.com_wallpaper.jpg', 5, 2, 'wdwt', 44, '2022-2023', ''),
+(7, 'Ramesh Jain', 'Male', 'Koshadhyaksh', 'default.png', 5, 5, '123 Main Street', 1, '2025-2028', '1'),
+(8, 'Sita Mehta', 'Female', 'Mahamantri', 'default.png', 11, 23, '45 Park Avenue', 2, '2025-2028', '1'),
+(9, 'Ajay Sharma', 'Male', 'Sah Sabhapati', 'default.png', 6, 8, '78 Elm Street', 3, '2025-2028', '1');
 
 -- --------------------------------------------------------
 
@@ -208,9 +211,9 @@ CREATE TABLE IF NOT EXISTS `sens_events` (
 --
 
 INSERT INTO `sens_events` (`event_id`, `title`, `description`, `event_date`, `created_at`, `event_time`, `event_location`, `event_status`, `event_img`, `toshow_type`, `toshow_id`, `created_by`, `video_link`) VALUES
-(12, 'Diwali 2k25', 'Event', '2025-11-11', '2025-12-09 08:05:41', '', 'Club House', 'upcoming', '1764832607_a2.jpeg', 'all', 0, 'admin', 'https://youtu.be/LTeO_TNDJWI?si=-SqKVrHWk4T18cJl'),
-(13, 'Annual Samayik & Pravachan Day', 'A peaceful spiritual gathering where members participated in Samayik, followed by an enlightening Pravachan by respected Jain scholars.', '2025-08-08', '2025-12-09 12:18:21', '', 'Circus Ground', '', 'logo.png', 'all', 0, 'admin', ''),
-(14, 'Health Check-up Camp', 'A free community health camp organized to promote wellness, including general health tests and doctor consultations.', '2024-10-09', '2025-12-09 12:20:10', '', 'Jain Conference Cente', '', '1765095426_2171-blood-donation.jpg', 'all', 0, 'admin', 'https://youtu.be/jhBAUzoXj_A?si=qzF4dPoZX84XbD7D');
+(12, 'Diwali 2k25', 'A peaceful spiritual gathering where members participated in Samayik, followed by an enlightening Pravachan by respected Jain scholars.', '2025-11-11', '2025-12-09 08:05:41', '', 'Club House', 'upcoming', '1764832607_a2.jpeg', 'all', 0, 'admin', 'https://youtu.be/LTeO_TNDJWI?si=-SqKVrHWk4T18cJl'),
+(13, 'Annual Samayik & Pravachan Day', 'A peaceful spiritual gathering where members participated in Samayik, followed by an enlightening Pravachan by respected Jain scholars.', '2025-08-08', '2025-12-09 12:18:21', '', 'Circus Ground', '', 'logo.png', 'all', 0, 'admin', 'https://youtu.be/LTeO_TNDJWI?si=-SqKVrHWk4T18cJl'),
+(14, 'Health Check-up Camp', 'A free community health camp organized to promote wellness, including general health tests and doctor consultations.  A free community health camp organized to promote wellness, including general health tests and doctor consultations.  A free community health camp organized to promote wellness, including general health tests and doctor consultations.  A free community health camp organized to promote wellness, including general health tests and doctor consultations.', '2024-10-09', '2025-12-09 12:20:10', '', 'Jain Conference Cente', '', '1765095426_2171-blood-donation.jpg', 'all', 0, 'admin', 'https://youtu.be/jhBAUzoXj_A?si=qzF4dPoZX84XbD7D');
 
 -- --------------------------------------------------------
 
@@ -230,14 +233,14 @@ CREATE TABLE IF NOT EXISTS `sens_family` (
   `fam_dob` date NOT NULL,
   `fam_education` text COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`fam_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `sens_family`
 --
 
 INSERT INTO `sens_family` (`fam_id`, `member_id`, `fam_name`, `fam_gender`, `fam_phone`, `fam_relation`, `created_by`, `fam_dob`, `fam_education`) VALUES
-(1, 18, 'Mary Jones', 'Female', '9874563318', 'Wife', 'jon', '1997-08-21', 'B.tech');
+(1, 18, 'Mary Jones', 'Female', '9874563311', 'Wife', 'jon', '1997-08-21', 'B.tech');
 
 -- --------------------------------------------------------
 
@@ -304,7 +307,7 @@ CREATE TABLE IF NOT EXISTS `sens_members` (
   KEY `zone_id` (`zone_id`),
   KEY `city_id` (`city_id`),
   KEY `plan_id` (`plan_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `sens_members`
@@ -317,12 +320,14 @@ INSERT INTO `sens_members` (`member_id`, `user_id`, `zone_id`, `city_id`, `plan_
 (13, 12, 6, 6, 1, 'Male', '1991-11-19', '2025-12-05', '2026-12-05', '1234567890', 'Near magneto', '1764919049_logo.png', '2025-12-05 07:17:29', 'Rajiv', 0, NULL, '', ''),
 (18, 15, 7, 14, 1, 'Male', '1994-11-03', '2025-12-04', '2026-12-04', '1234567894', 'Near Station', '1764942326_wallpaperflare.com_wallpaper.jpg', '2025-12-05 13:45:26', 'Jon Snow', -500, NULL, 'CEO', 'B.tech_AI'),
 (19, 16, 5, 17, 1, 'Male', '2000-10-10', '2025-12-07', '2026-12-07', '7321456980', 'Avanti bai chowk,kohka,Bhilai', '1765115919pray.jpg', '2025-12-07 13:49:57', 'Shiv kumar', 100, NULL, '', ''),
-(20, 17, 7, 13, 1, 'Male', '1989-04-14', '2025-12-07', '2026-12-07', '7321456980', 'Near China Market', '1765121172_flower.webp', '2025-12-07 15:26:12', 'Rajendra Kumar', -1250, NULL, '', ''),
-(24, 22, 5, 4, 2, '', '0000-00-00', '2025-12-08', NULL, '1234567890', NULL, NULL, '2025-12-08 11:25:59', 'bb', 0, NULL, '', ''),
+(20, 17, 7, 14, 1, 'Male', '1989-04-14', '2025-12-07', '2026-12-07', '7321456980', 'Near China Market', '1765121172_flower.webp', '2025-12-07 15:26:12', 'Rajendra Kumar', -1250, NULL, '', ''),
 (23, 21, 5, 17, 2, '', '1994-06-15', '2025-12-08', NULL, '9479031444', 'Near hanuman Madir', NULL, '2025-12-08 11:16:40', 'Ravi Kumar', 0, NULL, 'dvd', 'dvd'),
-(25, 23, 7, 14, 2, '', '0000-00-00', '2025-12-08', NULL, '9479031444', NULL, 'default.png', '2025-12-08 18:30:10', 'ved', 0, NULL, '', ''),
-(26, 24, 7, 11, 2, '', '0000-00-00', '2025-12-08', NULL, '1234567894', 'fe', '1765219223default.png', '2025-12-08 18:30:33', 'jjj', 0, NULL, 'fe', 'fe'),
-(27, 25, 6, 7, 1, '', '0000-00-00', '2025-12-08', NULL, '8888844444', NULL, NULL, '2025-12-08 18:30:56', 'efefee', 0, NULL, '', '');
+(27, 25, 6, 7, 1, '', '0000-00-00', '2025-12-08', NULL, '8888844444', NULL, NULL, '2025-12-08 18:30:56', 'efefee', 0, NULL, '', ''),
+(35, 33, 7, 11, 2, '', '0000-00-00', '2025-12-11', NULL, '123', NULL, 'default.png', '2025-12-11 06:16:01', 'Ravi kumar patni', 0, NULL, '', ''),
+(28, 26, 5, 4, 2, '', '0000-00-00', '2025-12-09', NULL, '7896412307', NULL, 'default.png', '2025-12-09 16:50:09', 'pp', 0, NULL, '', ''),
+(29, 27, 5, 3, 1, 'Male', '1955-05-11', '2025-12-09', NULL, '8877799999', 'Casterly Rock,Westelands', '1765301392_1764875203_wallpaperflare.com_wallpaper.jpg', '2025-12-09 17:29:52', 'Tywin Lanister', 0, 'admin', '', ''),
+(31, 29, 7, 14, 2, '', '0000-00-00', '2025-12-09', NULL, '8788787454', NULL, 'default.png', '2025-12-09 17:44:10', 'Cersie', 0, NULL, '', ''),
+(33, 31, 5, 5, 2, '', '0000-00-00', '2025-12-10', '0000-00-00', '1234567890', 'Dragonstone', 'default.png', '2025-12-10 12:36:05', 'Aegon Targaryen', 0, NULL, '', '');
 
 -- --------------------------------------------------------
 
@@ -343,7 +348,7 @@ CREATE TABLE IF NOT EXISTS `sens_messages` (
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `created_by` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `sens_messages`
@@ -351,9 +356,15 @@ CREATE TABLE IF NOT EXISTS `sens_messages` (
 
 INSERT INTO `sens_messages` (`id`, `sender_id`, `sender_type`, `receiver_id`, `receiver_type`, `subject`, `message`, `status`, `created_at`, `created_by`) VALUES
 (8, 15, 'user', 1, 'admin', 'Payment issue', 'update my dashboard', 'unread', '2025-12-07 13:01:10', NULL),
-(9, 15, 'user', 1, 'admin', 'ok', 'talk to me', 'unread', '2025-12-07 17:04:14', NULL),
+(12, 15, 'user', 1, 'admin', 'hmm', 'thik h', 'unread', '2025-12-09 18:00:35', 'jon'),
 (6, 1, 'admin', 15, 'user', 'We hear your Complain.', 'We will soon update your payment in your dashboard', 'unread', '2025-12-07 12:54:33', NULL),
-(11, 15, 'user', 1, 'admin', 'hi', 'hello', 'unread', '2025-12-08 08:52:48', 'jon');
+(11, 15, 'user', 1, 'admin', 'hi', 'hello', 'unread', '2025-12-08 08:52:48', 'jon'),
+(13, 1, 'admin', 15, 'user', 'ok', 'ahoy', 'unread', '2025-12-09 18:01:13', 'admin'),
+(14, 1, 'admin', 15, 'user', 'tu samjha ', 'ya ni', 'unread', '2025-12-09 18:01:27', 'admin'),
+(15, 1, 'admin', 15, 'user', 'nh', 'hh', 'unread', '2025-12-10 07:29:08', 'admin'),
+(16, 1, 'admin', 15, 'user', 'ff', 'kj', 'unread', '2025-12-10 07:32:35', 'admin'),
+(17, 30, 'user', 1, 'admin', 'Payment issue', 'update my dashboard', 'unread', '2025-12-10 07:38:06', 'toren'),
+(18, 1, 'admin', 30, 'user', 'Reply to toren', 'we will soon update your dashboard', 'unread', '2025-12-10 07:38:56', 'admin');
 
 -- --------------------------------------------------------
 
@@ -387,6 +398,37 @@ INSERT INTO `sens_news` (`news_id`, `title`, `description`, `created_at`, `news_
 (7, 'Urgent Medical Help Required for Society Member', 'Our respected society member is currently undergoing critical medical treatment and urgently requires financial and emotional support. The Jain Society has initiated a special assistance drive for this purpose. All members are requested to come forward with whatever contribution they can make. Even a small help can save a life. Society will ensure complete transparency in fund utilization and regular health updates will be shared with contributors.', '2025-12-07 09:20:38', '2026-09-25', 'active', '1765099238_wallpaperflare.com_wallpaper.jpg', 'zone', 0, NULL),
 (8, 'Water Supply & Cleanliness Issue Raised in City Area', 'Several society members from the city have raised concerns regarding irregular water supply and poor sanitation conditions in residential areas. The Jain Society local committee has officially submitted a complaint to the municipal corporation. A city-level inspection will be conducted soon. Residents are requested to cooperate with officials and report any further issues for faster resolution.', '2025-12-07 09:21:36', '2026-03-12', 'active', '1765099296_wallpaperflare.com_wallpaper (2).jpg', 'city', 14, NULL),
 (9, 'Illegal Construction & Noise Pollution Issue Reported in Zone', 'Multiple complaints regarding illegal construction activities and late-night noise pollution have been received from different cities within the zone. The Jain Society Zone Committee has taken this matter seriously and has scheduled a joint action meeting with local authorities. Strict action will be taken against violations. Members are advised to maintain discipline and report such issues responsibly.', '2025-12-07 09:22:41', '2026-02-01', 'active', '1765099361_flower.webp', 'member', 18, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sens_past_commity`
+--
+
+DROP TABLE IF EXISTS `sens_past_commity`;
+CREATE TABLE IF NOT EXISTS `sens_past_commity` (
+  `comi_id` int NOT NULL AUTO_INCREMENT,
+  `comi_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `comi_gender` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `comi_post` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `comi_img` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `comi_zone` int DEFAULT NULL,
+  `comi_city` int DEFAULT NULL,
+  `comi_address` text COLLATE utf8mb4_unicode_ci,
+  `comi_priority` int DEFAULT '0',
+  `comi_duration` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_by` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`comi_id`),
+  KEY `comi_zone` (`comi_zone`),
+  KEY `comi_city` (`comi_city`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `sens_past_commity`
+--
+
+INSERT INTO `sens_past_commity` (`comi_id`, `comi_name`, `comi_gender`, `comi_post`, `comi_img`, `comi_zone`, `comi_city`, `comi_address`, `comi_priority`, `comi_duration`, `created_by`) VALUES
+(2, 'Surya Pratap', 'Male', 'Karya Adhyaksh', 'comi_1765381125.jpg', 8, 19, 'Near Railway Station', 10, '1919-1921', 'admin');
 
 -- --------------------------------------------------------
 
@@ -473,7 +515,7 @@ CREATE TABLE IF NOT EXISTS `sens_plan_requests` (
   `status` enum('pending','approved','rejected') COLLATE utf8mb4_unicode_ci DEFAULT 'pending',
   `created_by` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`req_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `sens_plan_requests`
@@ -500,7 +542,8 @@ INSERT INTO `sens_plan_requests` (`req_id`, `user_id`, `plan_id`, `request_date`
 (26, '', 0, NULL, 'approved', 'admin'),
 (27, '', 0, NULL, 'approved', 'admin'),
 (28, '', 0, NULL, 'approved', 'admin'),
-(29, '', 0, NULL, 'approved', 'admin');
+(29, '', 0, NULL, 'approved', 'admin'),
+(30, '29', 1, '2025-12-09', 'approved', 'admin');
 
 -- --------------------------------------------------------
 
@@ -549,7 +592,7 @@ CREATE TABLE IF NOT EXISTS `sens_requests` (
   `approved_date` datetime DEFAULT NULL,
   `created_by` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`request_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `sens_requests`
@@ -568,12 +611,15 @@ INSERT INTO `sens_requests` (`request_id`, `member_id`, `status`, `request_date`
 (15, 19, 'approved', '2025-12-07 19:19:57', '2025-12-07 19:19:57', NULL),
 (14, 18, 'approved', '2025-12-05 19:15:26', '2025-12-06 00:19:47', NULL),
 (17, 21, 'approved', '2025-12-07 22:43:30', '2025-12-07 22:43:53', NULL),
-(18, 22, 'pending', '2025-12-07 23:27:49', NULL, NULL),
+(18, 22, 'approved', '2025-12-07 23:27:49', NULL, NULL),
 (19, 23, 'approved', '2025-12-08 16:46:40', NULL, NULL),
-(20, 24, 'approved', '2025-12-08 16:55:59', '2025-12-08 16:57:16', NULL),
-(21, 25, 'approved', '2025-12-09 00:00:10', NULL, NULL),
-(22, 26, 'approved', '2025-12-09 00:00:33', NULL, NULL),
-(23, 27, 'approved', '2025-12-09 00:00:56', NULL, NULL);
+(31, 35, 'approved', '2025-12-11 11:46:01', NULL, 'admin'),
+(23, 27, 'approved', '2025-12-09 00:00:56', NULL, NULL),
+(24, 28, 'approved', '2025-12-09 22:20:09', NULL, 'admin'),
+(25, 29, 'approved', '2025-12-09 22:59:52', '2025-12-09 22:59:52', 'admin'),
+(26, 30, 'approved', '2025-12-09 23:08:08', NULL, NULL),
+(27, 31, 'approved', '2025-12-09 23:14:10', NULL, 'admin'),
+(29, 33, 'approved', '2025-12-10 18:06:05', NULL, 'admin');
 
 -- --------------------------------------------------------
 
@@ -621,7 +667,7 @@ CREATE TABLE IF NOT EXISTS `sens_users` (
   `created_by` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `sens_users`
@@ -629,7 +675,7 @@ CREATE TABLE IF NOT EXISTS `sens_users` (
 
 INSERT INTO `sens_users` (`id`, `name`, `email`, `password`, `role`, `created_at`, `onboarding`, `created_by`) VALUES
 (1, 'admin', 'admin@example.com', 'a', 'admin', '2025-12-03 05:32:57', 1, NULL),
-(5, 'vish', '123vishal18910@gmail.com', 'a', 'user', '2025-12-03 06:13:43', 1, NULL),
+(5, 'vish', '123vishal18910@gmail.co', 'a', 'user', '2025-12-03 06:13:43', 1, NULL),
 (6, 'vinujie', 'vishal2104821003patil@gmail.com', '123456', 'user', '2025-12-04 14:48:26', 1, NULL),
 (7, 'ram', 'ram@gmail.com', '123456', 'user', '2025-12-04 19:35:49', 1, NULL),
 (8, 'sonu', 'sonu@gmail.com', '123456', 'user', '2025-12-04 19:40:01', 1, NULL),
@@ -643,9 +689,13 @@ INSERT INTO `sens_users` (`id`, `name`, `email`, `password`, `role`, `created_at
 (20, 'acc', 'acc@gmail,com', 'a', 'accountant', '2025-12-08 06:23:28', 1, 'admin'),
 (21, 'Ravi Kumar', 'ravi@gmail.com', '123456', 'user', '2025-12-08 11:16:40', 0, NULL),
 (22, 'bb', 'b@gmail.com', '123456', 'user', '2025-12-08 11:25:59', 0, NULL),
-(23, 'ved', '123visffhal18910@gmail.com', '123456', 'user', '2025-12-08 18:30:10', 0, NULL),
-(24, 'jjj', 'jon@gmaildde.com', 'a', 'user', '2025-12-08 18:30:33', 0, NULL),
-(25, 'efefee', 'e@gmail.com', '123456', 'user', '2025-12-08 18:30:56', 0, NULL);
+(33, 'Ravi kumar patni', 'ravi23@gmail.com', '123456', 'user', '2025-12-11 06:16:01', 0, NULL),
+(25, 'efefee', 'e@gmail.com', '123456', 'user', '2025-12-08 18:30:56', 0, NULL),
+(26, 'pp', 'p@gmail.com', '123456', 'user', '2025-12-09 16:50:09', 0, NULL),
+(27, 'Tywin Lanister', '123vishal184910@gmail.com', '123456', 'user', '2025-12-09 17:29:52', 1, 'admin'),
+(29, 'Cersie', '123vis7hal18910@gmail.com', '123456', 'user', '2025-12-09 17:44:10', 0, NULL),
+(30, 'toren', 'to@gmail.com', '123456', 'user', '2025-12-10 07:12:09', 0, NULL),
+(31, 'Aegon Targaryen', '123vis55hal18910@gmail.com', '123456', 'user', '2025-12-10 12:36:05', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -697,7 +747,7 @@ CREATE TABLE IF NOT EXISTS `sens_zones` (
   `created_by` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`zone_id`),
   UNIQUE KEY `name` (`zone_name`)
-) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `sens_zones`
@@ -706,10 +756,10 @@ CREATE TABLE IF NOT EXISTS `sens_zones` (
 INSERT INTO `sens_zones` (`zone_id`, `zone_name`, `zstatus`, `created_by`) VALUES
 (5, 'Durg/Bhilai-Zone 1', 1, NULL),
 (6, 'Raipur-Zone 2', 1, NULL),
-(7, 'Bilaspur-Zone 3', 1, NULL),
+(7, 'Bilaspur-Zone 5', 1, 'admin'),
 (8, 'Korba-Zone 4', 1, NULL),
 (9, 'Raigarh-Zone 5', 1, NULL),
-(11, 'Jagdalpur-Zone 7', 1, NULL),
+(11, 'Jagdalpur-Zone 7', 1, 'admin'),
 (13, 'zone 67', 1, NULL);
 COMMIT;
 

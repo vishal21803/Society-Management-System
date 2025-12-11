@@ -17,14 +17,17 @@ $address  = $_POST['address'];
 $img = $_FILES['img']['name'];
 $tmp = $_FILES['img']['tmp_name'];
 
-$path = "upload/committee/".$img;
+$imgName = time()."_".$img;
+
+
+$path = "upload/committee/".$imgName;
 move_uploaded_file($tmp, $path);
 
 // ✅ Insert Query
 $q = "INSERT INTO sens_past_commity 
 (comi_name, comi_gender, comi_post, comi_priority, comi_duration, comi_zone, comi_city,comi_address,comi_img,created_by)
 VALUES 
-('$name','$gender','$post','$priority','$duration','$zone','$city','$address','$img','$uname')";
+('$name','$gender','$post','$priority','$duration','$zone','$city','$address','$imgName','$uname')";
 
 $res = mysqli_query($con, $q);
 

@@ -84,7 +84,7 @@ include("connectdb.php");
 
                                     <div class="modal-header bg-warning">
                                       <h5 class="modal-title">Edit Event</h5>
-                                      <button class="btn-close" data-bs-dismiss="modal"></button>
+                                      <!-- <button class="btn-close" data-bs-dismiss="modal"></button> -->
                                     </div>
 
                                     <div class="modal-body">
@@ -125,7 +125,7 @@ include("connectdb.php");
 
                                             <div class="col-md-12 mb-2">
                                                 <label>Description</label>
-                                                <textarea name="description" class="form-control"><?= $row['description'] ?></textarea>
+<textarea name="description" class="form-control" rows="6"><?= $row['description'] ?></textarea>
                                             </div>
 
                                               <label for="">Visible to</label>
@@ -143,7 +143,11 @@ include("connectdb.php");
   <label>Select Zone</label>
   <select class="form-select" onchange="setTarget(this.value)">
     <?php
-    $z = mysqli_query($con,"SELECT * FROM sens_zones where zstatus=1");
+$z = mysqli_query($con,
+    "SELECT * FROM sens_zones 
+     WHERE zstatus = 1 
+     ORDER BY CAST(REGEXP_SUBSTR(zone_name, '[0-9]+') AS UNSIGNED)"
+);
     while($row = mysqli_fetch_assoc($z)){ ?>
       <option value="<?= $row['zone_id'] ?>"><?= $row['zone_name'] ?></option>
     <?php } ?>
