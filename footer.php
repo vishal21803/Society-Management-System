@@ -173,6 +173,53 @@ $(document).ready(function () {
 
 });
 
+$(document).ready(function () {
+
+    var table = $('#myEventTable').DataTable({
+        dom:
+            "<'row'<'col-sm-6'l><'col-sm-6'f>>" +
+            "<'row'<'col-sm-12'tr>>" +
+            "<'row'<'col-sm-5'i><'col-sm-7'p>>" +
+            "<'row'<'col-sm-12'B>>",
+
+        bLengthChange: true,
+        pageLength: 10,
+        lengthMenu: [10, 25, 50, 100],
+        buttons: ['excelHtml5', 'csvHtml5', 'pdfHtml5', 'print']
+    });
+
+    // ⭐ FILTER — Start Date, End Date, Show Type Only
+    $.fn.dataTable.ext.search.push(function (settings, data) {
+
+        let start = $('#startDate').val();
+        let end = $('#endDate').val();
+        let created = data[1]; // Created At
+
+        let showType = $('#filterShow').val();
+        let rowShowType = data[3]; // toshow_type column value
+
+        // ---- DATE FILTER ----
+        if (start) start = new Date(start);
+        if (end) end = new Date(end);
+        created = new Date(created);
+
+        if (start && created < start) return false;
+        if (end && created > end) return false;
+
+        // ---- SHOW TYPE FILTER ----
+        if (showType && rowShowType !== showType) return false;
+
+        return true;
+    });
+
+    // Re-draw table on change
+    $('#startDate, #endDate, #filterShow').on('change', function () {
+        table.draw();
+    });
+
+});
+
+
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

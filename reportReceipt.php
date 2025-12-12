@@ -18,7 +18,7 @@ include("connectdb.php");
         <div class="card shadow">
 
             <div class="card-header bg-warning fw-bold text-dark d-flex justify-content-between align-items-center">
-                <span><i class="bi bi-receipt-cutoff me-2"></i> Bills Report</span>
+                <span><i class="bi bi-receipt-cutoff me-2"></i> Receipt Report</span>
 
                 <!-- Agar future me add bill button chahiye ho -->
                 <!-- <a href="billForm.php">
@@ -74,7 +74,7 @@ include("connectdb.php");
 
     <!-- BILL TYPE FILTER -->
 <div class="col-md-3 mt-3">
-    <label>Bill Type</label>
+    <label>Receipt Type</label>
     <select id="filterType" class="form-control">
         <option value="">All Types</option>
         <option value="New Membership">New Membership</option>
@@ -95,14 +95,15 @@ include("connectdb.php");
                     <thead class="table-dark">
                         <tr>
                             <th>#</th>
-                            <th>Bill Date</th>
+                            <th>Receipt Date</th>
 
                             <th>Name</th>
                             <th>City</th>
                             <th>Zone</th>
-                            <th>Bill Amount</th>
-                            <th>Bill Type</th>
-                            <th>Bill Purpose</th>
+                            <th>Receipt Amount</th>
+                            <th>Receipt Type</th>
+                            <th>Receipt Purpose</th>
+                            <th>View </th>
                         </tr>
                     </thead>
 
@@ -110,12 +111,12 @@ include("connectdb.php");
                         <?php
                         $i=1;
                         $query = "
-                        SELECT m.member_id, m.fullname, u.email, c.city_name, z.zone_name, b.*
+                        SELECT m.member_id, m.fullname, u.email, c.city_name, z.zone_name, r.*
                         FROM sens_members m
                         JOIN sens_users u ON m.user_id = u.id
                         JOIN sens_cities c ON m.city_id = c.city_id
                         JOIN sens_zones z ON m.zone_id = z.zone_id
-                        JOIN sens_bills b ON b.member_id=m.member_id
+                        JOIN sens_receipt r ON m.member_id=r.member_id
                         ORDER BY m.member_id DESC
                         ";
                         $result = mysqli_query($con, $query);
@@ -124,7 +125,7 @@ include("connectdb.php");
                         ?>
                         <tr>
                             <td><?= $i++ ?></td>
-                            <td><?= date('Y-m-d', strtotime($row['bill_date'])) ?></td>
+                            <td><?= date('Y-m-d', strtotime($row['recdate'])) ?></td>
 
 
                             <td><?= htmlspecialchars($row['fullname']) ?></td>
@@ -132,9 +133,14 @@ include("connectdb.php");
                             <td><?= htmlspecialchars($row['city_name']) ?></td>
 
                             <td><?= htmlspecialchars($row['zone_name']) ?></td>
-                            <td><?= htmlspecialchars($row['bill_amount']) ?></td>
-                            <td><?= htmlspecialchars($row['bill_type']) ?></td>
-                            <td><?= htmlspecialchars($row['bill_purpose']) ?></td>
+                            <td><?= htmlspecialchars($row['receipt_amount']) ?></td>
+                            <td><?= htmlspecialchars($row['receipt_type']) ?></td>
+                            <td><?= htmlspecialchars($row['purpose']) ?></td>
+                            <td> 
+                                <a href="tempReceipt.php?receipt_id=<?= $row['receipt_id'] ?>">
+                               <span class="badge bg-warning">Print</span>
+                                </a>
+                            </td>
 
 
 

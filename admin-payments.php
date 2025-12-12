@@ -131,6 +131,7 @@ $member_id = $row['member_id'];
               <th>Purpose</th>
               <th>Type</th>
               <th>Receipt ID</th>
+              <th>Print</th>
             </tr>
           </thead>
           <tbody>
@@ -144,7 +145,8 @@ $historyQuery = "
    '' AS receipt_amt,
    bill_purpose AS purpose,
    'Bill' AS type,
-   '' AS manual_id
+   '' AS manual_id,
+   '' AS rid
  FROM sens_bills
  WHERE member_id='$member_id'
 )
@@ -156,7 +158,8 @@ UNION ALL
    receipt_amount AS receipt_amt,
    purpose,
    'Receipt' AS type,
-   manualID AS manual_id
+   manualID AS manual_id,
+   receipt_id AS rid
  FROM sens_receipt
  WHERE member_id='$member_id'
 )
@@ -199,11 +202,23 @@ while($h = mysqli_fetch_assoc($historyResult)){
   <td>
     <?= $h['manual_id']!='' ? htmlspecialchars($h['manual_id']) : '-' ?>
   </td>
+
+  <td>
+    <?= ($h['type'] == 'Bill') 
+        ? '' 
+        : '<a href="tempReceipt.php?receipt_id=' . $h["rid"] . '">
+                <span class="badge bg-warning">Print</span>
+           </a>' 
+    ?>
+</td>
+
+
+    
 </tr>
 <?php 
 }} else { ?>
 <tr>
-  <td colspan="6" class="text-danger">No History Found</td>
+  <td colspan="7" class="text-danger">No History Found</td>
 </tr>
 <?php } ?>
 
@@ -212,7 +227,7 @@ while($h = mysqli_fetch_assoc($historyResult)){
   <td>Total</td>
   <td>₹<?= $totalBill ?></td>
   <td>₹<?= $totalReceipt ?></td>
-  <td colspan="2">Balance ₹<?= ($totalBill - $totalReceipt) ?></td>
+  <td colspan="3">Balance ₹<?= ($totalBill - $totalReceipt) ?></td>
   <td></td>
 </tr>
 

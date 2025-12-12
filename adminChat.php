@@ -14,7 +14,7 @@ $id=$_REQUEST["id"];
 
 
 <div class="d-flex">
-    <?php include('userDashboard.php'); ?>
+    <?php include('adminDashboard.php'); ?>
 
     <div class="flex-grow-1 p-4">
 
