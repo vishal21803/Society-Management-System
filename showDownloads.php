@@ -90,6 +90,43 @@ $query = mysqli_query($con,$sql);
     from{opacity:0; transform:translateY(40px);}
     to{opacity:1; transform:translateY(0);}
 }
+
+/* 📱 MOBILE RESPONSIVE FIX */
+@media (max-width: 768px){
+
+    .download-card{
+        width: 100%;
+        height: auto;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 18px;
+        gap: 12px;
+    }
+
+    .download-left h5{
+        font-size: 1rem;
+        line-height: 1.4;
+    }
+
+    .download-badge{
+        font-size: 10px;
+        padding: 4px 10px;
+        margin-left: 6px;
+    }
+
+    .download-date{
+        font-size: 12px;
+    }
+
+    .download-btn{
+        width: 100%;
+        text-align: center;
+        padding: 12px;
+        border-radius: 12px;
+        margin-top: 10px;
+    }
+}
+
 </style>
 
 

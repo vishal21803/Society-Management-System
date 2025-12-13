@@ -1,9 +1,15 @@
 <!-- admin_sidebar.php -->
 
 <!-- Toggle button for small screens -->
-<button class="btn btn-warning d-lg-none  " type="button" data-bs-toggle="offcanvas" data-bs-target="#adminSidebarOffcanvas" aria-controls="adminSidebarOffcanvas">
+<button 
+  class="btn btn-warning d-lg-none admin-mobile-toggle"
+  type="button"
+  data-bs-toggle="offcanvas"
+  data-bs-target="#adminSidebarOffcanvas"
+>
     <i class="bi bi-list"></i> Admin Panel
 </button>
+
 
 <!-- Sidebar for large screens -->
 <div class="d-none d-lg-flex admin-sidebar flex-column p-3 text-white">
@@ -201,4 +207,18 @@
 .offcanvas .nav-link {
     padding: 0.75rem 1rem;
 }
+/* 📱 MOBILE FIXED TOP BUTTON */
+.admin-mobile-toggle{
+    position: relative;
+    top: -54px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+}
+
+/* 📱 Mobile content spacing so button doesn't overlap */
+@media (max-width: 991px){
+    main{
+        padding-top: 60px;
+    }
+}
+
 </style>

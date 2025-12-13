@@ -10,6 +10,8 @@ $currentPage = basename($_SERVER['PHP_SELF']);
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Jain Society</title>
 
     <!-- Bootstrap CSS -->
@@ -109,7 +111,6 @@ html, body {
 
 
 
-
 <li class="nav-item">
   <a class="nav-link text-white <?= ($currentPage == 'showDownloads.php') ? 'active-link' : '' ?>" href="showDownloads.php">Downloads</a>
 </li>
@@ -125,7 +126,8 @@ html, body {
   <a class="nav-link text-white" href="#">Commity</a>
 <div class="dropdown-custom-menu">
       <a class="dropdown-item-custom" href="currentCommity.php">Current Commity</a>
-      <a class="dropdown-item-custom" href="pastCommity.php">Past Commity</a>
+      <a class="dropdown-item-custom" href="pastCommity.php">Past Commity</a> 
+      <a class="dropdown-item-custom" href="showMembers.php">Members</a>
   </div>
 </li>
 

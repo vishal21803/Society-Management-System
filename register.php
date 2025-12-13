@@ -23,14 +23,7 @@ include("connectdb.php");
                     <input type="text" name="fullname" class="form-control" placeholder="Full Name" required>
                 </div>
 
-                <!-- ✅ Email -->
-                <div class="mb-3">
-                    <label class="fw-bold">Email </label>
-                    <input type="email" name="email" placeholder="Email (Optional)" class="form-control" >
-                        <small id="emailMsg"></small>
-
-                </div>
-                <div class="mb-3">
+                  <div class="mb-3">
            <label class="fw-bold" for="">Phone <span style="color:red">*</span></label>
                 <!-- ✅ Phone -->
               <input type="number" 
@@ -43,6 +36,15 @@ include("connectdb.php");
                                <small id="phoneMsg"></small>
 
        </div>
+
+                <!-- ✅ Email -->
+                <div class="mb-3">
+                    <label class="fw-bold">Email </label>
+                    <input type="email" name="email" placeholder="Email (Optional)" class="form-control" >
+                        <small id="emailMsg"></small>
+
+                </div>
+              
 
                 <!-- ✅ Zone -->
                 <div class="mb-3">

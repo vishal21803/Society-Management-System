@@ -219,6 +219,40 @@ $(document).ready(function () {
 
 });
 
+$(document).ready(function () {
+
+    var table = $('#myMemberTable').DataTable({
+        pageLength: 10,
+        lengthMenu: [10, 25, 50, 100]
+    });
+
+    // ✅ Custom Zone + City filter
+    $.fn.dataTable.ext.search.push(function (settings, data) {
+
+        let zone = $('#filterzone').val();
+        let city = $('#filtercity').val();
+
+        let rowZone = data[4]; // Zone column index
+        let rowCity = data[5]; // City column index
+
+        if (zone && rowZone !== zone) {
+            return false;
+        }
+
+        if (city && rowCity !== city) {
+            return false;
+        }
+
+        return true;
+    });
+
+    // 🔁 Re-draw on change
+    $('#filterzone, #filtercity').on('change', function () {
+        table.draw();
+    });
+
+});
+
 
 </script>
 
