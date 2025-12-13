@@ -22,7 +22,7 @@ $plan = mysqli_fetch_assoc($planQuery);
 <div class="d-flex">
     <?php include('userDashboard.php'); ?>
 
-    <div class="flex-grow-1 p-4">
+    <div class="flex-grow-1 p-4" >
 
         <!-- ✅ Membership / Plan Info Card -->
         <div class="membership-card mb-4 p-4 bg-white shadow rounded d-flex justify-content-between align-items-center">

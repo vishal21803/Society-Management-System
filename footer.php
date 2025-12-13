@@ -181,7 +181,16 @@ $(document).ready(function () {
 $(document).ready(function () {
 
     let table = $('#myNewsTable').DataTable({
-        pageLength: 10
+          dom:
+            "<'row'<'col-sm-6'l><'col-sm-6'f>>" +
+            "<'row'<'col-sm-12'tr>>" +
+            "<'row'<'col-sm-5'i><'col-sm-7'p>>" +
+            "<'row'<'col-sm-12'B>>",
+
+        bLengthChange: true,
+        pageLength: 10,
+        lengthMenu: [10, 25, 50, 100],
+        buttons: ['excelHtml5', 'csvHtml5', 'pdfHtml5', 'print']
     });
 
     $.fn.dataTable.ext.search.push(function (settings, data) {
@@ -232,8 +241,16 @@ $(document).ready(function () {
 
     // ✅ INIT DATATABLE
     let table = $('#myGalleryTable').DataTable({
-        order: [[1, 'desc']],
-        pageLength: 10
+         dom:
+            "<'row'<'col-sm-6'l><'col-sm-6'f>>" +
+            "<'row'<'col-sm-12'tr>>" +
+            "<'row'<'col-sm-5'i><'col-sm-7'p>>" +
+            "<'row'<'col-sm-12'B>>",
+
+        bLengthChange: true,
+        pageLength: 10,
+        lengthMenu: [10, 25, 50, 100],
+        buttons: ['excelHtml5', 'csvHtml5', 'pdfHtml5', 'print']
     });
 
     // 🔥 CUSTOM FILTER LOGIC
@@ -286,7 +303,16 @@ $(document).ready(function () {
 $(document).ready(function(){
 
 let table = $('#myMessageTable').DataTable({
-    order:[[1,'desc']]
+     dom:
+            "<'row'<'col-sm-6'l><'col-sm-6'f>>" +
+            "<'row'<'col-sm-12'tr>>" +
+            "<'row'<'col-sm-5'i><'col-sm-7'p>>" +
+            "<'row'<'col-sm-12'B>>",
+
+        bLengthChange: true,
+        pageLength: 10,
+        lengthMenu: [10, 25, 50, 100],
+        buttons: ['excelHtml5', 'csvHtml5', 'pdfHtml5', 'print']
 });
 
 $.fn.dataTable.ext.search.push(function(settings, data){
@@ -331,7 +357,16 @@ $('#filter_from_date,#filter_to_date,#filter_sender_type,#filter_sender,#filter_
 $(document).ready(function(){
 
 let table = $('#myDownloadTable').DataTable({
-    order:[[2,'desc']]
+     dom:
+            "<'row'<'col-sm-6'l><'col-sm-6'f>>" +
+            "<'row'<'col-sm-12'tr>>" +
+            "<'row'<'col-sm-5'i><'col-sm-7'p>>" +
+            "<'row'<'col-sm-12'B>>",
+
+        bLengthChange: true,
+        pageLength: 10,
+        lengthMenu: [10, 25, 50, 100],
+        buttons: ['excelHtml5', 'csvHtml5', 'pdfHtml5', 'print']
 });
 
 $.fn.dataTable.ext.search.push(function(settings, data){
@@ -367,7 +402,16 @@ $('#filter_from_date,#filter_to_date,#filter_downshow,#filter_create_by')
 $(document).ready(function(){
 
 let table = $('#myReqTable').DataTable({
-    order:[[1,'desc']]
+    dom:
+            "<'row'<'col-sm-6'l><'col-sm-6'f>>" +
+            "<'row'<'col-sm-12'tr>>" +
+            "<'row'<'col-sm-5'i><'col-sm-7'p>>" +
+            "<'row'<'col-sm-12'B>>",
+
+        bLengthChange: true,
+        pageLength: 10,
+        lengthMenu: [10, 25, 50, 100],
+        buttons: ['excelHtml5', 'csvHtml5', 'pdfHtml5', 'print']
 });
 $.fn.dataTable.ext.search.push(function(settings, data){
     if (settings.nTable.id !== 'myReqTable') return true;
@@ -414,7 +458,16 @@ $(document).ready(function(){
 
 let table = $('#myEventTable').DataTable({
     pageLength:10,
-    order:[[1,'desc']]
+    dom:
+            "<'row'<'col-sm-6'l><'col-sm-6'f>>" +
+            "<'row'<'col-sm-12'tr>>" +
+            "<'row'<'col-sm-5'i><'col-sm-7'p>>" +
+            "<'row'<'col-sm-12'B>>",
+
+        bLengthChange: true,
+        pageLength: 10,
+        lengthMenu: [10, 25, 50, 100],
+        buttons: ['excelHtml5', 'csvHtml5', 'pdfHtml5', 'print']
 });
 
 $.fn.dataTable.ext.search.push(function(settings,data){

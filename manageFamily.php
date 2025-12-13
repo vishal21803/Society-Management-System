@@ -61,7 +61,7 @@ include("connectdb.php");
                                 <td><?= $row['fam_relation'] ?></td>
 
                                 <td>
-                                    <button class="btn btn-sm btn-success"
+                                    <button title="Edit" class="btn btn-sm btn-primary"
                                        onclick="openFamEditModal(
     <?= $row['fam_id'] ?>,
     <?= $row['member_id'] ?>,
@@ -73,12 +73,12 @@ include("connectdb.php");
     '<?= $row['fam_relation'] ?>'
 )"
 >
-                                        Edit
+                                        <i class="bi bi-pencil"></i>
                                     </button>
 
-                                    <button class="btn btn-sm btn-danger"
+                                    <button title="Delete" class="btn btn-sm btn-danger"
                                         onclick="deleteFamily(<?= $row['fam_id'] ?>)">
-                                        Delete
+                                        <i class="bi bi-trash"></i>
                                     </button>
                                 </td>
                             </tr>

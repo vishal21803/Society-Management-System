@@ -50,8 +50,11 @@ include("connectdb.php");
             <!-- ✅ TABLE BODY -->
             <tbody>
                 <?php
-                $resZ = mysqli_query($con,"SELECT * FROM sens_zones where zstatus=0 or zstatus=1 ORDER BY zone_name ASC");
-                $i=1;
+$resZ = mysqli_query($con,
+    "SELECT * FROM sens_zones 
+     
+     ORDER BY CAST(REGEXP_SUBSTR(zone_name, '[0-9]+') AS UNSIGNED)"
+);                $i=1;
                 while($z = mysqli_fetch_assoc($resZ)){
                 ?>
                 <tr id="zoneRow<?= $z['zone_id'] ?>">

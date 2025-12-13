@@ -39,6 +39,21 @@ if($member_id){
     }
 }
 
+// ✅ Balance Amount
+$balanceAmount = 0;
+
+if($member_id){
+    $b = mysqli_fetch_assoc(mysqli_query(
+        $con,
+        "SELECT balance_amount FROM sens_members WHERE member_id='$member_id'"
+    ));
+
+    if(isset($b['balance_amount'])){
+        $balanceAmount = max(0, floatval($b['balance_amount']));
+    }
+}
+
+
 
 ?>
 
@@ -57,39 +72,52 @@ if($member_id){
     <!-- ✅ Status + Quick Links -->
     <div class="row g-4 mb-4">
 
-        <!-- ✅ Membership Status -->
-        <div class="col-md-4">
-            <div class="card shadow text-center border-0">
-                <div class="card-body">
-                    <h5 class="fw-bold">Membership Status</h5>
-                    <span class="badge bg-<?= $statusColor ?> fs-6 px-3 py-2">
-                        <?= $statusText ?>
-                    </span>
-                </div>
+    <!-- ✅ Membership Status -->
+    <div class="col-md-3">
+        <div class="card shadow text-center border-0">
+            <div class="card-body">
+                <h5 class="fw-bold">Membership Status</h5>
+                <span class="badge bg-<?= $statusColor ?> fs-6 px-3 py-2">
+                    <?= $statusText ?>
+                </span>
             </div>
         </div>
-
-        <!-- ✅ My Messages -->
-        <div class="col-md-4">
-            <div class="card shadow text-center border-0">
-                <div class="card-body">
-                    <h5 class="fw-bold">My Messages</h5>
-                    <a href="userMessages.php" class="btn btn-warning btn-sm mt-2">Open Inbox</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- ✅ Transaction History -->
-        <div class="col-md-4">
-            <div class="card shadow text-center border-0">
-                <div class="card-body">
-                    <h5 class="fw-bold">My Transactions</h5>
-                    <a href="purchaseHistory.php" class="btn btn-primary btn-sm mt-2">View History</a>
-                </div>
-            </div>
-        </div>
-
     </div>
+
+    <!-- ✅ Wallet Balance (NEW CARD) -->
+    <div class="col-md-3">
+        <div class="card shadow text-center border-0">
+            <div class="card-body">
+                <h5 class="fw-bold">Pay Amount</h5>
+                <h3 class="fw-bold text-success ">
+                    ₹ <?= number_format($balanceAmount, 2) ?>
+                </h3>
+            </div>
+        </div>
+    </div>
+
+    <!-- ✅ My Messages -->
+    <div class="col-md-3">
+        <div class="card shadow text-center border-0">
+            <div class="card-body">
+                <h5 class="fw-bold">My Messages</h5>
+                <a href="userMessages.php" class="btn btn-warning btn-sm mt-2">Open Inbox</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ✅ Transaction History -->
+    <div class="col-md-3">
+        <div class="card shadow text-center border-0">
+            <div class="card-body">
+                <h5 class="fw-bold">My Transactions</h5>
+                <a href="purchaseHistory.php" class="btn btn-primary btn-sm mt-2">View History</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
 
     <!-- ✅ User Info Section -->
     <div class="row">

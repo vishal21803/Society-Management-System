@@ -50,8 +50,11 @@ include("connectdb.php");
         <select id="filterZone" class="form-control">
             <option value="">All Zones</option>
             <?php
-            $zones = mysqli_query($con, "SELECT zone_name FROM sens_zones");
-            while ($z = mysqli_fetch_assoc($zones)) {
+$zones= mysqli_query($con,
+    "SELECT * FROM sens_zones 
+     WHERE zstatus = 1 
+     ORDER BY CAST(REGEXP_SUBSTR(zone_name, '[0-9]+') AS UNSIGNED)"
+);            while ($z = mysqli_fetch_assoc($zones)) {
                 echo "<option>{$z['zone_name']}</option>";
             }
             ?>
