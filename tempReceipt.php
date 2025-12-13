@@ -28,7 +28,7 @@ if(!$receipt){
 
 $amount  = $receipt['receipt_amount'];
 $purpose = $receipt['receipt_type'];
-$date    = date("d-m-Y", strtotime($receipt['receipt_date']));
+$date    = date("d-m-Y", strtotime($receipt['recdate']));
 $member  = $receipt['fullname'];
 $city    = $receipt['city_name'];
 $manID= $receipt['manualID'];

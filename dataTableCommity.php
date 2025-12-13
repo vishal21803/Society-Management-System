@@ -159,7 +159,7 @@ $z = mysqli_query($con,
 
           <div class="col-md-6 mb-3">
             <label>Priority</label>
-            <input type="text"  id="edit_priority" class="form-control"></select>
+            <input type="number"  id="edit_priority" class="form-control"></select>
           </div>
 
           <div class="col-md-6 mb-3">

@@ -6,145 +6,141 @@ include("header.php");
 include("connectdb.php");
 ?>
 
+
 <main>
 <div class="d-flex flex-column flex-lg-row">
 
-    <?php include('adminDashboard.php'); ?>
+<?php include('adminDashboard.php'); ?>
 
-    <div class="flex-grow-1 p-4">
+<div class="flex-grow-1 p-4">
 
+<div class="card shadow">
 
-        <!-- ✅ SAME CARD DESIGN AS EVENTS -->
-        <div class="card shadow">
-
-            <div class="card-header bg-warning fw-bold text-dark d-flex justify-content-between align-items-center">
-                <span><i class="bi bi-receipt-cutoff me-2"></i> Receipt Report</span>
-
-                <!-- Agar future me add bill button chahiye ho -->
-                <!-- <a href="billForm.php">
-                    <button class="btn btn-success btn-sm">
-                        + Add Bill
-                    </button>
-                </a> -->
-            </div>
-
+<div class="card-header bg-warning fw-bold text-dark d-flex justify-content-between align-items-center">
+    <span><i class="bi bi-calendar-event me-2"></i> Events Report</span>
+</div>
 
 <div class="card-body">
-    <div class="table-responsive mobile-table">
-      <div class="row mb-3">
+<div class="table-responsive mobile-table">
 
-    <!-- DATE RANGE -->
-    <div class="col-md-3">
-        <label>Start Date</label>
-        <input type="date" id="startDate" class="form-control">
-    </div>
+<!-- 🔹 FILTERS -->
+<div class="row mb-3">
 
-    <div class="col-md-3">
-        <label>End Date</label>
-        <input type="date" id="endDate" class="form-control">
-    </div>
+<div class="col-md-2">
+    <label>Start Date</label>
+    <input type="date" id="ev_start" class="form-control">
+</div>
 
+<div class="col-md-2">
+    <label>End Date</label>
+    <input type="date" id="ev_end" class="form-control">
+</div>
 
-      <div class="col-md-3">
-        <label>Show Type</label>
-        <select id="filterShow" class="form-control">
-            <?php
-            $type = mysqli_query($con, "SELECT distinct toshow_type FROM sens_events");
-            while ($z = mysqli_fetch_assoc($type)) {
-                echo "<option>{$z['toshow_type']}</option>";
-            }
-            ?>
-        </select>
-    </div>
+<div class="col-md-2">
+    <label>Zone</label>
+    <select id="ev_zone" class="form-control">
+        <option value="">All</option>
+        <?php
+        $z=mysqli_query($con,"SELECT zone_name FROM sens_zones");
+        while($r=mysqli_fetch_assoc($z)) echo "<option>{$r['zone_name']}</option>";
+        ?>
+    </select>
+</div>
 
+<div class="col-md-2">
+    <label>City</label>
+    <select id="ev_city" class="form-control">
+        <option value="">All</option>
+        <?php
+        $c=mysqli_query($con,"SELECT city_name FROM sens_cities");
+        while($r=mysqli_fetch_assoc($c)) echo "<option>{$r['city_name']}</option>";
+        ?>
+    </select>
+</div>
 
+<div class="col-md-2">
+    <label>Member</label>
+    <select id="ev_member" class="form-control">
+        <option value="">All</option>
+        <?php
+        $m=mysqli_query($con,"SELECT fullname FROM sens_members");
+        while($r=mysqli_fetch_assoc($m)) echo "<option>{$r['fullname']}</option>";
+        ?>
+    </select>
+</div>
 
+<div class="col-md-2">
+    <label>Created By</label>
+    <select id="ev_created" class="form-control">
+        <option value="">All</option>
+        <?php
+        $u=mysqli_query($con,"SELECT DISTINCT created_by FROM sens_events");
+        while($r=mysqli_fetch_assoc($u)) echo "<option>{$r['created_by']}</option>";
+        ?>
+    </select>
+</div>
 
 </div>
 
-               <table class="table table-bordered table-hover align-middle text-center w-100" id="myEventTable">
-
+<!-- 🔹 EVENTS TABLE -->
+<table id="myEventTable" class="table table-bordered table-hover align-middle w-100">
 <thead class="table-dark">
-    <tr>
-        <th>#</th>
-                <th>Created At</th>
-
-        <th>Title</th>
-        <th>Visibility To</th>
-      
-        <th>To Show Type</th>
-       
-    </tr>
+<tr>
+    <th>#</th>
+    <th>Event Date</th>
+    <th>Title</th>
+    <th>Show To</th>
+    <th>Created By</th>
+</tr>
 </thead>
+
 <tbody>
 <?php
-$i = 1;
-$query = "SELECT * FROM sens_events ORDER BY event_id DESC";
-$result = mysqli_query($con, $query);
+$i=1;
+$q=mysqli_query($con,"
+SELECT 
+    e.*,
+    z.zone_name,
+    c.city_name,
+    m.fullname AS member_name,
+    e.created_by AS created_by_name
+FROM sens_events e
+LEFT JOIN sens_zones z ON (e.toshow_type='zone' AND e.toshow_id=z.zone_id)
+LEFT JOIN sens_cities c ON (e.toshow_type='city' AND e.toshow_id=c.city_id)
+LEFT JOIN sens_members m ON (e.toshow_type='member' AND e.toshow_id=m.member_id)
+ORDER BY e.event_id DESC
+");
 
-while($row = mysqli_fetch_assoc($result)) {
+while($row=mysqli_fetch_assoc($q)){
 
-    // Default:
-    $displayName = "-";
-
-    // ✔ If visibility is for Zone
-    if ($row['toshow_type'] == "zone") {
-        $z = mysqli_query($con, "SELECT zone_name FROM sens_zones WHERE zone_id = '".$row['toshow_id']."'");
-        $zname = mysqli_fetch_assoc($z);
-        $displayName = $zname['zone_name'] ?? "-";
-    }
-
-    // ✔ If visibility is for City
-    else if ($row['toshow_type'] == "city") {
-        $c = mysqli_query($con, "SELECT city_name FROM sens_cities WHERE city_id = '".$row['toshow_id']."'");
-        $cname = mysqli_fetch_assoc($c);
-        $displayName = $cname['city_name'] ?? "-";
-    }
-
-    // ✔ If visibility is for Member
-    else if ($row['toshow_type'] == "member") {
-        $m = mysqli_query($con, "SELECT fullname FROM sens_members WHERE member_id = '".$row['toshow_id']."'");
-        $mname = mysqli_fetch_assoc($m);
-        $displayName = $mname['fullname'] ?? "-";
-    }
-
-    // ✔ If visible to all
-    else if ($row['toshow_type'] == "all") {
-        $displayName = "All Members";
-    }
-
-    // ✔ Other types
-    else {
-        $displayName = "-";
+    if($row['toshow_type']=='all'){
+        $showTo="All Members";
+    }elseif($row['toshow_type']=='zone'){
+        $showTo=$row['zone_name'];
+    }elseif($row['toshow_type']=='city'){
+        $showTo=$row['city_name'];
+    }elseif($row['toshow_type']=='member'){
+        $showTo="Member: ".$row['member_name'];
     }
 ?>
 <tr>
     <td><?= $i++ ?></td>
-    <td><?= date('Y-m-d', strtotime($row['created_at'])) ?></td>
-
+    <td><?= date("Y-m-d",strtotime($row['event_date'])) ?></td>
     <td><?= htmlspecialchars($row['title']) ?></td>
-
-    <td><?= htmlspecialchars($row['toshow_type']) ?></td>
-
-    <!-- 👇 Here we show related names -->
-    <td><?= htmlspecialchars($displayName) ?></td>
-
+    <td><?= htmlspecialchars($showTo) ?></td>
+    <td><?= htmlspecialchars($row['created_by_name']) ?></td>
 </tr>
 <?php } ?>
 </tbody>
-
 </table>
 
-               </div>
-            </div>
-        </div>
-
-    </div>
 </div>
-
-
-
+</div>
+</div>
+</div>
+</div>
 </main>
 
-
-<?php include("footer.php"); } else { include("index.php"); } ?>
+<?php include("footer.php"); }
+else{ include("index.php"); }
+?>

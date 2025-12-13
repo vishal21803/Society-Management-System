@@ -133,6 +133,9 @@ $(document).ready(function () {
     // ⭐ DATE FILTER
   $.fn.dataTable.ext.search.push(function (settings, data) {
 
+    if (settings.nTable.id !== 'myTable') return true;
+
+
     let start = $('#startDate').val();
     let end = $('#endDate').val();
     let billDate = data[1];  // Bill Date = column index 1
@@ -173,83 +176,277 @@ $(document).ready(function () {
 
 });
 
+
+
 $(document).ready(function () {
 
-    var table = $('#myEventTable').DataTable({
-        dom:
-            "<'row'<'col-sm-6'l><'col-sm-6'f>>" +
-            "<'row'<'col-sm-12'tr>>" +
-            "<'row'<'col-sm-5'i><'col-sm-7'p>>" +
-            "<'row'<'col-sm-12'B>>",
-
-        bLengthChange: true,
-        pageLength: 10,
-        lengthMenu: [10, 25, 50, 100],
-        buttons: ['excelHtml5', 'csvHtml5', 'pdfHtml5', 'print']
+    let table = $('#myNewsTable').DataTable({
+        pageLength: 10
     });
 
-    // ⭐ FILTER — Start Date, End Date, Show Type Only
     $.fn.dataTable.ext.search.push(function (settings, data) {
+     
+        if (settings.nTable.id !== 'myNewsTable') {
+        return true;
+    }
 
-        let start = $('#startDate').val();
-        let end = $('#endDate').val();
-        let created = data[1]; // Created At
+        let start = $('#startn').val();
+        let end = $('#endn').val();
 
-        let showType = $('#filterShow').val();
-        let rowShowType = data[3]; // toshow_type column value
+        let date = data[1];        // News Date
+        let showTo = data[2];      // Show To
+        let createdBy = data[3];   // Created By
 
-        // ---- DATE FILTER ----
-        if (start) start = new Date(start);
-        if (end) end = new Date(end);
-        created = new Date(created);
+        let zone = $('#zonen').val();
+        let city = $('#cityn').val();
+        let member = $('#membern').val();
+        let created = $('#crn').val();
 
-        if (start && created < start) return false;
-        if (end && created > end) return false;
+        // DATE FILTER
+        if (start && new Date(date) < new Date(start)) return false;
+        if (end && new Date(date) > new Date(end)) return false;
 
-        // ---- SHOW TYPE FILTER ----
-        if (showType && rowShowType !== showType) return false;
+        // ZONE FILTER (IMPORTANT FIX)
+        if (zone && showTo !==  zone) return false;
+
+        // CITY FILTER (IMPORTANT FIX)
+        if (city && showTo !==  city) return false;
+
+        // MEMBER FILTER
+        if (member && showTo !== "Member: " + member) return false;
+
+        // CREATED BY FILTER
+        if (created && createdBy !== created) return false;
 
         return true;
     });
 
-    // Re-draw table on change
-    $('#startDate, #endDate, #filterShow').on('change', function () {
-        table.draw();
-    });
+    $('#startn, #endn, #zonen, #cityn, #membern, #crn')
+        .on('change', function () {
+            table.draw();
+        });
 
 });
 
 $(document).ready(function () {
 
-    var table = $('#myMemberTable').DataTable({
-        pageLength: 10,
-        lengthMenu: [10, 25, 50, 100]
+    // ✅ INIT DATATABLE
+    let table = $('#myGalleryTable').DataTable({
+        order: [[1, 'desc']],
+        pageLength: 10
     });
 
-    // ✅ Custom Zone + City filter
-    $.fn.dataTable.ext.search.push(function (settings, data) {
+    // 🔥 CUSTOM FILTER LOGIC
+    $.fn.dataTable.ext.search.push(function (settings, data, dataIndex) {
+        if (settings.nTable.id !== 'myGalleryTable') return true;
 
-        let zone = $('#filterzone').val();
-        let city = $('#filtercity').val();
 
-        let rowZone = data[4]; // Zone column index
-        let rowCity = data[5]; // City column index
+        let fromDate   = $('#filter_from_date').val();
+        let toDate     = $('#filter_to_date').val();
+        let zone       = $('#filter_zone').val();
+        let city       = $('#filter_city').val();
+        let member     = $('#filter_member').val();
+        let createdBy  = $('#filter_created_by').val();
 
-        if (zone && rowZone !== zone) {
-            return false;
+        let tableDate  = data[1]; // Date column
+        let showTo     = data[2]; // Zone / City / Member text
+        let createdCol = data[3]; // Created By
+
+        // 📅 DATE FILTER
+        if (fromDate) {
+            if (new Date(tableDate) < new Date(fromDate)) return false;
+        }
+        if (toDate) {
+            if (new Date(tableDate) > new Date(toDate)) return false;
         }
 
-        if (city && rowCity !== city) {
-            return false;
-        }
+        // 🗺️ ZONE FILTER
+        if (zone && !showTo.includes(zone)) return false;
+
+        // 🏙️ CITY FILTER
+        if (city && !showTo.includes(city)) return false;
+
+        // 👤 MEMBER FILTER
+        if (member && !showTo.includes(member)) return false;
+
+        // 🧑 CREATED BY FILTER
+        if (createdBy && createdCol !== createdBy) return false;
 
         return true;
     });
 
-    // 🔁 Re-draw on change
-    $('#filterzone, #filtercity').on('change', function () {
-        table.draw();
-    });
+    // 🔄 TRIGGER FILTER ON CHANGE
+    $('#filter_from_date, #filter_to_date, #filter_zone, #filter_city, #filter_member, #filter_created_by')
+        .on('change', function () {
+            table.draw();
+        });
+
+});
+
+$(document).ready(function(){
+
+let table = $('#myMessageTable').DataTable({
+    order:[[1,'desc']]
+});
+
+$.fn.dataTable.ext.search.push(function(settings, data){
+    if (settings.nTable.id !== 'myMessageTable') return true;
+
+
+    let fromDate = $('#filter_from_date').val();
+    let toDate   = $('#filter_to_date').val();
+    let senderType = $('#filter_sender_type').val();
+    let sender  = $('#filter_sender').val();
+    let receiver = $('#filter_receiver').val();
+    let createdBy = $('#filter_created_by').val();
+    let receiverType=$('#filter_receiver_type').val();
+
+    let tableDate = data[1];
+    let tSenderType = data[2];
+    let tSender = data[3];
+    let tReceiverType = data[4];
+    let tReceiver = data[5];
+    let tCreatedBy = data[7];
+
+    if(fromDate && new Date(tableDate) < new Date(fromDate)) return false;
+    if(toDate && new Date(tableDate) > new Date(toDate)) return false;
+
+    if(senderType && tSenderType !== senderType) return false;
+    if(sender && !tSender.includes(sender)) return false;
+        if(receiverType && tReceiverType !== receiverType) return false;
+
+    if(receiver && !tReceiver.includes(receiver)) return false;
+    if(createdBy && !tCreatedBy.includes(createdBy)) return false;
+
+    return true;
+});
+
+$('#filter_from_date,#filter_to_date,#filter_sender_type,#filter_sender,#filter_receiver_type,#filter_receiver,#filter_created_by')
+.on('change keyup', function(){
+    table.draw();
+});
+
+});
+
+$(document).ready(function(){
+
+let table = $('#myDownloadTable').DataTable({
+    order:[[2,'desc']]
+});
+
+$.fn.dataTable.ext.search.push(function(settings, data){
+    if (settings.nTable.id !== 'myDownloadTable') return true;
+
+
+    let fromDate = $('#filter_from_date').val();
+    let toDate   = $('#filter_to_date').val();
+    let downshow = $('#filter_downshow').val();
+    let createdBy = $('#filter_create_by').val();
+
+    let tableDate = data[2]; // Created At
+    let tDownshow = data[3]; // Downshow
+    let tCreatedBy = data[4];
+
+    if(fromDate && new Date(tableDate) < new Date(fromDate)) return false;
+    if(toDate && new Date(tableDate) > new Date(toDate)) return false;
+
+    if(downshow && !tDownshow.toLowerCase().includes(downshow)) return false;
+    if(createdBy && !tCreatedBy.includes(createdBy)) return false;
+
+    return true;
+});
+
+$('#filter_from_date,#filter_to_date,#filter_downshow,#filter_create_by')
+.on('change keyup', function(){
+    table.draw();
+});
+
+});
+
+
+$(document).ready(function(){
+
+let table = $('#myReqTable').DataTable({
+    order:[[1,'desc']]
+});
+$.fn.dataTable.ext.search.push(function(settings, data){
+    if (settings.nTable.id !== 'myReqTable') return true;
+
+
+    let rf = $('#reqs').val();
+    let rt = $('#reqt').val();
+    let af = $('#apps').val();
+    let at = $('#appt').val();
+    let zone = $('#zoer').val();
+    let city = $('#cityr').val();
+    let plan = $('#planr').val();
+    let stat = $('#statusr').val();
+
+    let reqDate = data[5];
+    let appDate = data[6];
+
+    if(rf && new Date(reqDate) < new Date(rf)) return false;
+    if(rt && new Date(reqDate) > new Date(rt)) return false;
+
+    if(af && appDate !== '-' && new Date(appDate) < new Date(af)) return false;
+    if(at && appDate !== '-' && new Date(appDate) > new Date(at)) return false;
+
+    if(zone && data[2] !== zone) return false;
+    if(city && data[3] !== city) return false;
+    if(plan && data[4] !== plan) return false;
+
+    // ✅ STATUS FIX
+    let statusText = data[7].replace(/<[^>]*>/g,'').trim().toLowerCase();
+    if(stat && statusText !== stat.toLowerCase()) return false;
+
+    return true;
+});
+
+
+$('#reqs,#reqt,#apps,#appt,#zoer,#cityr,#planr,#statusr')
+.on('change', function(){
+    table.draw();
+});
+
+});
+
+$(document).ready(function(){
+
+let table = $('#myEventTable').DataTable({
+    pageLength:10,
+    order:[[1,'desc']]
+});
+
+$.fn.dataTable.ext.search.push(function(settings,data){
+
+    if(settings.nTable.id!=='myEventTable') return true;
+
+    let start=$('#ev_start').val();
+    let end=$('#ev_end').val();
+    let zone=$('#ev_zone').val();
+    let city=$('#ev_city').val();
+    let member=$('#ev_member').val();
+    let created=$('#ev_created').val();
+
+    let date=data[1];
+    let showTo=data[3];
+    let createdBy=data[4];
+
+    if(start && new Date(date)<new Date(start)) return false;
+    if(end && new Date(date)>new Date(end)) return false;
+
+    if(zone && showTo!==zone) return false;
+    if(city && showTo!==city) return false;
+    if(member && showTo!=="Member: "+member) return false;
+    if(created && createdBy!==created) return false;
+
+    return true;
+});
+
+$('#ev_start,#ev_end,#ev_zone,#ev_city,#ev_member,#ev_created')
+.on('change',function(){
+    table.draw();
+});
 
 });
 

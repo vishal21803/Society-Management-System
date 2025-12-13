@@ -65,7 +65,7 @@ if(isset($_POST['action'], $_POST['request_id'])){
             // Update request status
             mysqli_query($con,"
                 UPDATE sens_requests 
-                SET status='approved', created_by='$uname'
+                SET status='approved', approved_date=NOW(),created_by='$uname'
                 WHERE request_id='$req_id'
             ");
 

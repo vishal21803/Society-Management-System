@@ -52,7 +52,7 @@ include("connectdb.php");
 
 <div class="col-md-6 mb-3">
             <label>Priority</label>
-            <input type="text"  name="priority" class="form-control">
+            <input type="number"  name="priority" class="form-control">
           </div>
 
           <div class="col-md-6 mb-3">
@@ -64,7 +64,7 @@ include("connectdb.php");
 
 <div class="col-md-6 mb-3">
 <label>Photo</label>
-<input type="file" name="img" class="form-control" required>
+<input type="file" name="img" class="form-control">
 </div>
    <!-- ✅ Zone -->
                 <div class="mb-3">

@@ -12,7 +12,6 @@ $member = $_POST['member_id'] ?? null;
 
 $img = $_FILES['image']['name'];
 $tmp = $_FILES['image']['tmp_name'];
-
 $imgName = time()."_".$img;
 move_uploaded_file($tmp,"upload/gallery/".$imgName);
 
