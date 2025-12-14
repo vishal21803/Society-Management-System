@@ -114,6 +114,7 @@ style="background: linear-gradient(135deg, #ff914d, #ffca3a); position: relative
 <script src="https://cdn.datatables.net/select/1.7.0/js/dataTables.select.min.js"></script> -->
 
 <script>
+
 $(document).ready(function () {
 
     var table = $('#myTable').DataTable({
@@ -130,10 +131,32 @@ $(document).ready(function () {
         buttons: ['excelHtml5', 'csvHtml5', 'pdfHtml5', 'print']
     });
 
+   
+
+
+});
+
+
+$(document).ready(function () {
+
+    var table = $('#myBTable').DataTable({
+     
+        dom:
+            "<'row'<'col-sm-6'l><'col-sm-6'f>>" +
+            "<'row'<'col-sm-12'tr>>" +
+            "<'row'<'col-sm-5'i><'col-sm-7'p>>" +
+            "<'row'<'col-sm-12'B>>",
+
+        bLengthChange: true,
+        pageLength: 10,
+        lengthMenu: [10, 25, 50, 100],
+        buttons: ['excelHtml5', 'csvHtml5', 'pdfHtml5', 'print']
+    });
+
     // ⭐ DATE FILTER
   $.fn.dataTable.ext.search.push(function (settings, data) {
 
-    if (settings.nTable.id !== 'myTable') return true;
+    if (settings.nTable.id !== 'myBTable') return true;
 
 
     let start = $('#startDate').val();
@@ -143,10 +166,12 @@ $(document).ready(function () {
     let zone = $('#filterZone').val();
     let city = $('#filterCity').val();
     let type = $('#filterType').val(); // NEW BILL TYPE FILTER
+    let crftype=$('#createBill').val();
 
     let rowCity = data[3];  // City column
     let rowZone = data[4];  // Zone column
     let rowType = data[6];  // Bill Type column
+    let creatype= data[8];
 
     // ---- DATE FILTER ----
     if (start) start = new Date(start);
@@ -165,11 +190,14 @@ $(document).ready(function () {
     // ---- BILL TYPE FILTER ----
     if (type && type !== rowType) return false;
 
+    if (crftype && crftype !== creatype) return false;
+
+
     return true;
 });
 
 
- $('#startDate, #endDate, #filterZone, #filterCity, #filterType').on('change', function () {
+ $('#startDate, #endDate, #filterZone, #filterCity, #filterType,#createBill').on('change', function () {
     table.draw();
 });
 
@@ -500,6 +528,35 @@ $('#ev_start,#ev_end,#ev_zone,#ev_city,#ev_member,#ev_created')
 .on('change',function(){
     table.draw();
 });
+
+});
+
+$(document).ready(function () {
+
+    let table = $('#myDisplayTable').DataTable({
+        pageLength: 10,
+        lengthMenu: [10, 25, 50, 100]
+    });
+
+    $.fn.dataTable.ext.search.push(function (settings, data) {
+
+        if (settings.nTable.id !== 'myDisplayTable') return true;
+
+        let zone = $('#flterzone').val();
+        let city = $('#fltercity').val();
+
+        let rowZone = data[4];
+        let rowCity = data[5];
+
+        if (zone && zone !== rowZone) return false;
+        if (city && city !== rowCity) return false;
+
+        return true;
+    });
+
+    $('#flterzone, #fltercity').on('change', function () {
+        table.draw();
+    });
 
 });
 

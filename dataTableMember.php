@@ -38,20 +38,9 @@ include("connectdb.php");
 <?php
 $res = mysqli_query($con,"
 SELECT 
-    m.member_id,
-    m.user_id,
-    m.fullname,
-    m.phone,
-    m.gender,
-    m.dob,
-    m.address,
-    m.membership_start,
-    m.membership_end,
-    m.zone_id,
-    m.city_id,
-    m.plan_id,
-    z.zone_name,
-    c.city_name,
+    m.*,
+    z.*,
+    c.*,
     u.email,
     r.status AS request_status
 FROM sens_members m
@@ -74,13 +63,14 @@ while($row = mysqli_fetch_assoc($res)){
     <td><?= htmlspecialchars($row['city_name']) ?></td>
     <td>
         <!-- Edit Button -->
-        <button title="Edit" class="btn btn-sm btn-primary"
+       <button title="Edit" class="btn btn-sm btn-primary"
 onclick="openMemberEditModal(
 <?= $row['member_id'] ?>,
 '<?= addslashes($row['fullname']) ?>',
 '<?= $row['phone'] ?>',
 '<?= $row['gender'] ?>',
 '<?= $row['dob'] ?>',
+'<?= $row['address'] ?>',
 '<?= $row['membership_start'] ?>',
 '<?= $row['membership_end'] ?>',
 <?= $row['zone_id'] ?>,
@@ -89,6 +79,7 @@ onclick="openMemberEditModal(
 )">
 <i class="bi bi-pencil"></i>
 </button>
+
 
         <!-- Delete Button -->
         <button title="Delete" class="btn btn-sm btn-danger"
@@ -226,6 +217,7 @@ function openMemberEditModal(id,name,phone,gender,dob,address,start,end,zone,cit
     loadMemberCities(zone, city);
     $("#memberEditModalUnique").modal("show");
 }
+
 
 function loadMemberCities(zone, selectedCity = ""){
     $.post("loadCities.php",{zone_id:zone},function(res){

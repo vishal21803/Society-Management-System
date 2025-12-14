@@ -19,11 +19,14 @@ include("connectdb.php");
                 <div class="row mb-3">
     <div class="col-md-3">
         <label>Zone</label>
-        <select id="filterzone" class="form-control">
+        <select id="flterzone" class="form-control">
             <option value="">All Zones</option>
             <?php
-            $zones = mysqli_query($con,"SELECT zone_name FROM sens_zones ORDER BY zone_name");
-            while($z = mysqli_fetch_assoc($zones)){
+$zones= mysqli_query($con,
+    "SELECT * FROM sens_zones 
+     WHERE zstatus = 1 
+     ORDER BY CAST(REGEXP_SUBSTR(zone_name, '[0-9]+') AS UNSIGNED)"
+);            while($z = mysqli_fetch_assoc($zones)){
                 echo "<option>{$z['zone_name']}</option>";
             }
             ?>
@@ -32,7 +35,7 @@ include("connectdb.php");
 
     <div class="col-md-3">
         <label>City</label>
-        <select id="filtercity" class="form-control">
+        <select id="fltercity" class="form-control">
             <option value="">All Cities</option>
             <?php
             $cities = mysqli_query($con,"SELECT city_name FROM sens_cities ORDER BY city_name");
@@ -44,7 +47,7 @@ include("connectdb.php");
     </div>
 </div>
 
-                <table class="table table-bordered table-hover align-middle text-center" id="myMemberTable">
+                <table class="table table-bordered table-hover align-middle text-center" id="myDisplayTable">
                     <thead class="table-dark">
                         <tr>
                             <th>ID</th>

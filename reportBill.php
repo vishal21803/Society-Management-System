@@ -89,11 +89,25 @@ $zones= mysqli_query($con,
     </select>
 </div>
 
+ <div class="col-md-3 mt-3">
+        <label>Created By</label>
+        <select id="createBill" class="form-control">
+            <option value="">Select</option>
+            <?php
+            $cr = mysqli_query($con, "SELECT distinct created_by FROM sens_bills");
+            while ($cb = mysqli_fetch_assoc($cr)) {
+                echo "<option>{$cb['created_by']}</option>";
+            }
+            ?>
+        </select>
+    </div>
+
+
 
 </div>
 
                 <!-- ✅ SAME TABLE STYLE -->
-                <table class="table table-bordered table-hover align-middle text-center w-100" id="myTable">
+                <table class="table table-bordered table-hover align-middle text-center w-100" id="myBTable">
 
                     <thead class="table-dark">
                         <tr>
@@ -106,6 +120,7 @@ $zones= mysqli_query($con,
                             <th>Bill Amount</th>
                             <th>Bill Type</th>
                             <th>Bill Purpose</th>
+                            <th>Created By</th>
                         </tr>
                     </thead>
 
@@ -138,6 +153,8 @@ $zones= mysqli_query($con,
                             <td><?= htmlspecialchars($row['bill_amount']) ?></td>
                             <td><?= htmlspecialchars($row['bill_type']) ?></td>
                             <td><?= htmlspecialchars($row['bill_purpose']) ?></td>
+                            <td><?= htmlspecialchars($row['created_by']) ?></td>
+
 
 
 

@@ -57,7 +57,7 @@ include("connectdb.php");
     <select id="filter_create_by" class="form-control">
         <option value="">All</option>
         <?php
-        $u=mysqli_query($con,"SELECT created_by FROM sens_downloads");
+        $u=mysqli_query($con,"SELECT distinct created_by FROM sens_downloads");
         while($r=mysqli_fetch_assoc($u))
             echo "<option>{$r['created_by']}</option>";
         ?>

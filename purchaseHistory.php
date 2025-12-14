@@ -19,10 +19,10 @@ $plan = mysqli_fetch_assoc($planQuery);
 ?>
 
 <main>
-<div class="d-flex">
+<div class="d-flex flex-column flex-lg-row">
     <?php include('userDashboard.php'); ?>
 
-    <div class="flex-grow-1 p-4" >
+    <div class="flex-grow-1 p-3 p-lg-4 w-100 overflow-hidden" >
 
         <!-- ✅ Membership / Plan Info Card -->
         <div class="membership-card mb-4 p-4 bg-white shadow rounded d-flex justify-content-between align-items-center">
@@ -72,7 +72,7 @@ if(
 
             <h4 class="mb-3 fw-bold">📜 Transaction History</h4>
 
-            <div class="table-responsive" >
+            <div class="table-responsive mobile-table" >
                 <table class="table table-bordered table-striped text-center mb-0">
                   <thead class="table-dark position-sticky top-0">
                     <tr>
@@ -202,7 +202,10 @@ while($h = mysqli_fetch_assoc($historyResult)){
     padding: 0.5rem;
     max-height: 350px; /* height kam kar di */
     overflow-y: auto;
+        overflow-x: auto;
+
 }
+
 
 
 /* Sticky table header */
@@ -213,6 +216,43 @@ while($h = mysqli_fetch_assoc($historyResult)){
     background: #343a40;
     color: #fff;
 }
+/* ✅ Mobile overflow fix */
+@media (max-width: 768px){
+
+    /* Prevent horizontal overflow */
+    body, main {
+        overflow-x: hidden;
+    }
+
+    /* Table font & spacing */
+    .mobile-table table{
+        font-size: 13px;
+    }
+
+    .mobile-table th,
+    .mobile-table td{
+        padding: 6px;
+        white-space: nowrap;
+    }
+
+    /* Hide less important columns on phone */
+    .mobile-table th:nth-child(5),
+    .mobile-table td:nth-child(5), /* Bill type */
+
+    .mobile-table th:nth-child(7),
+    .mobile-table td:nth-child(7)  /* Receipt ID */
+    {
+        display: none;
+    }
+
+    /* Membership card stacking */
+    .membership-card{
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+}
+
 </style>
 
 <?php
