@@ -68,6 +68,15 @@ html, body {
     background: #f2f2f2;
 }
 
+.nav-profile-img{
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid white;
+}
+
+
 </style>
 
 </head>
@@ -89,7 +98,7 @@ html, body {
     </button>
 
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto">
+      <ul class="navbar-nav ms-auto ">
 
         <!-- ✅ COMMON LINKS -->
       <li class="nav-item">
@@ -136,17 +145,108 @@ html, body {
         <li class="nav-item"><a class="nav-link text-white" href="https://www.matrimonysoftware.in">Matrimony</a></li>
 <?php if(isset($_SESSION["uname"], $_SESSION["utype"]) && $_SESSION["utype"] == "user"){ ?>
 
-    <li class="nav-item">
-      <a class="nav-link text-white <?= ($currentPage == 'userPage.php') ? 'active-link' : '' ?>" 
-         href="userPage.php">Dashboard</a>
-    </li>
+   <li class="nav-item dropdown-custom">
+  <a class="nav-link text-white" href="#">Dashboard</a>
+<div class="dropdown-custom-menu">
+      <a class="dropdown-item-custom" href="purchaseHistory.php">Membership History</a>
+      <a class="dropdown-item-custom" href="manageFamily.php">My Family</a> 
+      <a class="dropdown-item-custom" href="show_downloads.php">My Downloads</a>
+      <a class="dropdown-item-custom" href="userMessages.php">Chat</a>
+
+  </div>
+</li>
+
+
+
+      <li class="nav-item dropdown-custom">
+  <a class="nav-link text-white fw-semibold dropdown-toggle-custom d-flex align-items-center gap-2"
+     href="javascript:void(0)">
+          <?php
+          if(isset($_SESSION["member_id"])){
+                     $imgiD=$_SESSION["member_id"];
+
+           include("connectdb.php");
+           $rsImg=mysqli_query($con,"select photo from sens_members where member_id='$imgiD'");
+           while($imgr=mysqli_fetch_array($rsImg)){
+            $pic=$imgr["photo"];
+
+           
+          
+          ?>
+    <!-- 👤 Profile Image -->
+    <img src="upload/member/<?php echo $pic ; ?>" class="nav-profile-img">
+    <?php }}?>
+
+    Profile
+  </a>
+
+  <div class="dropdown-custom-menu">
+      <a class="dropdown-item-custom" href="editProfile.php">Edit Profile</a>
+      <a class="dropdown-item-custom" href="logout.php">Logout</a>
+  </div>
+</li>
 
 <?php } else if(isset($_SESSION["uname"], $_SESSION["utype"]) && $_SESSION["utype"] == "admin"){ ?>
 
-    <li class="nav-item">
+    <!-- <li class="nav-item">
       <a class="nav-link text-white <?= ($currentPage == 'adminPage.php') ? 'active-link' : '' ?>" 
          href="adminPage.php">Dashboard</a>
-    </li>
+    </li> -->
+
+    <li class="nav-item dropdown-custom">
+  <a class="nav-link text-white fw-semibold dropdown-toggle-custom" href="javascript:void(0)">
+   Dashboard
+  </a>
+  <div class="dropdown-custom-menu">
+          <a class="dropdown-item-custom" href="dataTableZones.php">Manage Zones</a>
+          <a class="dropdown-item-custom" href="dataTableCities.php">Manage Cities</a>
+          <a class="dropdown-item-custom" href="dataTableMember.php">Manage Members</a>
+          <a class="dropdown-item-custom" href="manageCommity.php">Manage Commity</a>
+          <a class="dropdown-item-custom" href="manage_events.php">Manage Events</a>
+          <a class="dropdown-item-custom" href="manage_news.php">Manage News</a>
+          <a class="dropdown-item-custom" href="admin-payments.php">Bill/Receipt History</a>
+          <a class="dropdown-item-custom" href="manageBills.php">Manage Bills</a>
+          <a class="dropdown-item-custom" href="manageReceipt.php">Manage Receipt</a>
+          <a class="dropdown-item-custom" href="contactQueries.php">Contact Queries</a>
+          <a class="dropdown-item-custom" href="dataTableDownload.php">Manage Downloads</a>
+          <a class="dropdown-item-custom" href="adminMessages.php">Manage Messages</a>
+          <a class="dropdown-item-custom" href="manageReports.php">Manage Reports</a>
+
+
+
+
+  </div>
+</li>
+
+  <li class="nav-item dropdown-custom">
+  <a class="nav-link text-white fw-semibold dropdown-toggle-custom d-flex align-items-center gap-2"
+     href="javascript:void(0)">
+          <?php
+          if(isset($_SESSION["member_id"])){
+                     $imgiD=$_SESSION["member_id"];
+
+           include("connectdb.php");
+           $rsImg=mysqli_query($con,"select photo from sens_members where member_id='$imgiD'");
+           while($imgr=mysqli_fetch_array($rsImg)){
+            $pic=$imgr["photo"];
+
+           
+          
+          ?>
+    <!-- 👤 Profile Image -->
+    <img src="upload/.<?php $pic?>" class="nav-profile-img">
+    <?php }}?>
+
+    Profile
+  </a>
+
+  <div class="dropdown-custom-menu">
+      <a class="dropdown-item-custom" href="#">Edit Profile</a>
+      <a class="dropdown-item-custom" href="logout.php">Logout</a>
+  </div>
+</li>
+
+
 
 <?php } else if(isset($_SESSION["uname"], $_SESSION["utype"]) && $_SESSION["utype"] == "accountant"){ ?>
 

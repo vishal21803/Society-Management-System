@@ -1,12 +1,12 @@
 <!-- admin_sidebar.php -->
 
 <!-- Toggle button for small screens -->
-<button class="btn btn-warning d-lg-none  " type="button" data-bs-toggle="offcanvas" data-bs-target="#adminSidebarOffcanvas" aria-controls="adminSidebarOffcanvas">
+<!-- <button class="btn btn-warning d-lg-none  " type="button" data-bs-toggle="offcanvas" data-bs-target="#adminSidebarOffcanvas" aria-controls="adminSidebarOffcanvas">
     <i class="bi bi-list"></i> User Panel
-</button>
+</button> -->
 
 <!-- Sidebar for large screens -->
-<div class="d-none d-lg-flex admin-sidebar flex-column p-3 text-white">
+<!-- <div class="d-none d-lg-flex admin-sidebar flex-column p-3 text-white">
     <a href="#" class="admin-sidebar-brand d-flex align-items-center mb-3 text-white text-decoration-none">
         <span class="fs-4 fw-bold">User Panel</span>
     </a>
@@ -46,10 +46,10 @@
             </a>
         </li>
     </ul>
-</div>
+</div> -->
 
 <!-- Offcanvas sidebar for small screens -->
-<div class="offcanvas offcanvas-start text-white" tabindex="-1" id="adminSidebarOffcanvas" aria-labelledby="adminSidebarLabel" style="background: linear-gradient(to bottom, #ded7ccff, #363225ff);">
+<!-- <div class="offcanvas offcanvas-start text-white" tabindex="-1" id="adminSidebarOffcanvas" aria-labelledby="adminSidebarLabel" style="background: linear-gradient(to bottom, #ded7ccff, #363225ff);">
   <div class="offcanvas-header">
     <h5 class="offcanvas-title text-dark fw-bold" id="adminSidebarLabel">Admin Panel</h5>
     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -90,7 +90,7 @@
         </li>
     </ul>
   </div>
-</div>
+</div> -->
 
 <style>
 .admin-sidebar {

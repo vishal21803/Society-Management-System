@@ -1,18 +1,18 @@
-<!-- admin_sidebar.php -->
+<!-- admin_sidebar.php
 
-<!-- Toggle button for small screens -->
-<button 
+ Toggle button for small screens -->
+<!-- <button 
   class="btn btn-warning d-lg-none admin-mobile-toggle"
   type="button"
   data-bs-toggle="offcanvas"
   data-bs-target="#adminSidebarOffcanvas"
 >
     <i class="bi bi-list"></i> Admin Panel
-</button>
+</button> -->
 
 
 <!-- Sidebar for large screens -->
-<div class="d-none d-lg-flex admin-sidebar flex-column p-3 text-white">
+<!-- <div class="d-none d-lg-flex admin-sidebar flex-column p-3 text-white">
     <a href="#" class="admin-sidebar-brand d-flex align-items-center mb-3 text-white text-decoration-none">
         <span class="fs-4 fw-bold">Admin Panel</span>
     </a>
@@ -60,9 +60,20 @@
             </a>
         </li>
        
-        <li class="nav-item mb-2">
+       <li class="nav-item mb-2">
             <a href="admin-payments.php" class="nav-link admin-sidebar-link text-white fw-semibold">
-                <i class="bi bi-receipt-cutoff me-2"></i> Manage Bills
+                <i class="bi bi-receipt-cutoff me-2"></i> Manage Bill/Receipt History
+            </a>
+        </li>
+
+          <li class="nav-item mb-2">
+            <a href="manageBills.php" class="nav-link admin-sidebar-link text-white fw-semibold">
+                <i class="bi bi-receipt-cutoff me-2"></i> Manage Bill
+            </a>
+        </li>
+          <li class="nav-item mb-2">
+            <a href="manageReceipt.php" class="nav-link admin-sidebar-link text-white fw-semibold">
+                <i class="bi bi-receipt-cutoff me-2"></i> Manage Receipt 
             </a>
         </li>
             <li class="nav-item mb-2">
@@ -94,10 +105,10 @@
             </a>
         </li>
     </ul>
-</div>
+</div> -->
 
 <!-- Offcanvas sidebar for small screens -->
-<div class="offcanvas offcanvas-start text-white" tabindex="-1" id="adminSidebarOffcanvas" aria-labelledby="adminSidebarLabel" style="background: linear-gradient(to bottom, #ded7ccff, #363225ff);">
+<!-- <div class="offcanvas offcanvas-start text-white" tabindex="-1" id="adminSidebarOffcanvas" aria-labelledby="adminSidebarLabel" style="background: linear-gradient(to bottom, #ded7ccff, #363225ff);">
   <div class="offcanvas-header">
     <h5 class="offcanvas-title text-dark fw-bold" id="adminSidebarLabel">Admin Panel</h5>
     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -148,7 +159,18 @@
        
         <li class="nav-item mb-2">
             <a href="admin-payments.php" class="nav-link admin-sidebar-link text-white fw-semibold">
-                <i class="bi bi-receipt-cutoff me-2"></i> Manage Bills
+                <i class="bi bi-receipt-cutoff me-2"></i> Manage Bill/Receipt History
+            </a>
+        </li>
+
+          <li class="nav-item mb-2">
+            <a href="manageBills.php" class="nav-link admin-sidebar-link text-white fw-semibold">
+                <i class="bi bi-receipt-cutoff me-2"></i> Manage Bill
+            </a>
+        </li>
+          <li class="nav-item mb-2">
+            <a href="manageReceipt.php" class="nav-link admin-sidebar-link text-white fw-semibold">
+                <i class="bi bi-receipt-cutoff me-2"></i> Manage Receipt 
             </a>
         </li>
          <li class="nav-item mb-2">
@@ -179,7 +201,7 @@
         </li>
     </ul>
   </div>
-</div>
+</div> --> 
 
 <style>
 .admin-sidebar {
@@ -212,6 +234,23 @@
     position: relative;
     top: -54px;
     box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+}
+
+
+/* 👇 SCROLLABLE NAV */
+.admin-sidebar-nav {
+    overflow-y:scroll;
+    max-height: calc(100vh - 110px); /* brand + hr adjust */
+    padding-right: 6px;
+}
+
+/* smooth scrollbar (optional) */
+.admin-sidebar-nav::-webkit-scrollbar {
+    width: 6px;
+}
+.admin-sidebar-nav::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.4);
+    border-radius: 10px;
 }
 
 /* 📱 Mobile content spacing so button doesn't overlap */
