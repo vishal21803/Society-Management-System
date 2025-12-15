@@ -82,18 +82,41 @@ $status = $user['request_status']; // pending / approved / rejected
 
   <div class="col-md-6">
     <label class="fw-bold">Full Name</label>
-    <input type="text" name="fullname" class="form-control" value="<?= $user['fullname'] ?>" required>
+    <input type="text" name="fullname" class="form-control" value="<?= $user['fullname'] ?>" readonly>
   </div>
 
-  <div class="col-md-6">
-    <label class="fw-bold">Email</label>
-    <input type="email" name="email" class="form-control" value="<?= $user['email'] ?>" required>
-  </div>
+ <div class="col-md-6">
+  <label class="fw-bold">Email</label>
 
-  <div class="col-md-6">
-    <label class="fw-bold">Mobile</label>
-    <input type="text" name="phone" class="form-control" value="<?= $user['phone'] ?>" required>
-  </div>
+  <input type="email"
+         name="email"
+         id="emailInput"
+         class="form-control"
+         value="<?= $user['email'] ?>"
+         required>
+
+  <input type="hidden" id="currentEmail" value="<?= $user['email'] ?>">
+
+  <small id="emailMsg"></small>
+</div>
+
+
+ <div class="col-md-6">
+  <label class="fw-bold">Mobile</label>
+
+  <input type="number" 
+         name="phone" 
+         value="<?= $user['phone'] ?>"
+         class="form-control" 
+         placeholder="Phone Number" 
+         id="phoneInput"
+         required
+         oninput="if(this.value.length > 10) this.value = this.value.slice(0, 10);">
+
+  <input type="hidden" id="currentPhone" value="<?= $user['phone'] ?>">
+
+  <small id="phoneMsg"></small>
+</div>
 
   <div class="col-md-6">
     <label class="fw-bold">Date of Birth</label>
@@ -285,6 +308,7 @@ $status = $user['request_status']; // pending / approved / rejected
 </main>
 
 
+
 <?php if(isset($_GET['updated'])){ ?>
 <script>
 document.addEventListener("DOMContentLoaded", function(){
@@ -292,6 +316,139 @@ document.addEventListener("DOMContentLoaded", function(){
 });
 </script>
 <?php } ?>
+
+<script>
+let phoneValid = true;
+
+document.addEventListener("DOMContentLoaded", function(){
+
+    let modal = document.getElementById('editProfileModal');
+
+    modal.addEventListener('shown.bs.modal', function () {
+
+        let phoneInput   = document.getElementById("phoneInput");
+        let phoneMsg     = document.getElementById("phoneMsg");
+        let currentPhone = document.getElementById("currentPhone").value.trim();
+
+        phoneInput.addEventListener("input", function () {
+
+            let phone = this.value.trim();
+
+            if(phone.length < 10){
+                phoneMsg.innerHTML = "";
+                phoneValid = false;
+                return;
+            }
+
+            /* ✅ SAME NUMBER (NO AJAX) */
+            if(phone === currentPhone){
+                phoneMsg.innerHTML =
+                  "<span class='text-warning fw-bold'>⚠ This phone number is already used by you</span>";
+                phoneValid = true;
+                return; // ❗ THIS RETURN IS CRITICAL
+            }
+
+            /* ❌ CHECK OTHER USERS */
+            fetch("checkProfilePhone.php", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded"
+                },
+                body: "phone=" + encodeURIComponent(phone)
+            })
+            .then(res => res.text())
+            .then(data => {
+
+                if(data === "other"){
+                    phoneMsg.innerHTML =
+                      "<span class='text-danger fw-bold'>❌ This phone number is already used by another user</span>";
+                    phoneValid = false;
+                }else{
+                    phoneMsg.innerHTML =
+                      "<span class='text-success fw-bold'>✔ Phone number is available</span>";
+                    phoneValid = true;
+                }
+            });
+        });
+    });
+
+    document.querySelector("#editProfileModal form")
+      .addEventListener("submit", function(e){
+        if(!phoneValid){
+            e.preventDefault();
+            alert("❌ Please enter a valid phone number before updating.");
+        }
+    });
+});
+
+
+let emailValid = true;
+
+document.addEventListener("DOMContentLoaded", function(){
+
+    let modal = document.getElementById('editProfileModal');
+
+    modal.addEventListener('shown.bs.modal', function () {
+
+        let emailInput   = document.getElementById("emailInput");
+        let emailMsg     = document.getElementById("emailMsg");
+        let currentEmail = document.getElementById("currentEmail").value.trim().toLowerCase();
+
+        emailInput.addEventListener("input", function () {
+
+            let email = this.value.trim().toLowerCase();
+
+            if(email === ""){
+                emailMsg.innerHTML = "";
+                emailValid = false;
+                return;
+            }
+
+            /* ✅ SAME EMAIL (NO AJAX) */
+            if(email === currentEmail){
+                emailMsg.innerHTML =
+                  "<span class='text-warning fw-bold'>⚠ This email is already used by you</span>";
+                emailValid = true;
+                return;
+            }
+
+            /* ❌ CHECK OTHER USERS */
+            fetch("checkProfileEmail.php", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded"
+                },
+                body: "email=" + encodeURIComponent(email)
+            })
+            .then(res => res.text())
+            .then(data => {
+
+                if(data === "other"){
+                    emailMsg.innerHTML =
+                      "<span class='text-danger fw-bold'>❌ This email is already used by another user</span>";
+                    emailValid = false;
+                }else{
+                    emailMsg.innerHTML =
+                      "<span class='text-success fw-bold'>✔ Email is available</span>";
+                    emailValid = true;
+                }
+            });
+        });
+    });
+
+    /* ❗ FORM SUBMIT BLOCK */
+    document.querySelector("#editProfileModal form")
+      .addEventListener("submit", function(e){
+        if(!emailValid){
+            e.preventDefault();
+            alert("❌ Please enter a valid email before updating.");
+        }
+    });
+});
+
+</script>
+
+
 
 
 <?php
