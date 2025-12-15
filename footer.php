@@ -560,6 +560,60 @@ $(document).ready(function () {
 
 });
 
+$(document).ready(function(){
+
+    let table = $('#expenseTable').DataTable();
+
+    // Show/hide custom input for "Other"
+    $('#filter_expense_type').on('change', function(){
+        if(this.value === 'Other'){
+            $('#filter_expense_other').show().val('');
+        } else {
+            $('#filter_expense_other').hide();
+            table.column(1).search(this.value).draw();
+        }
+    });
+
+    // Custom text input filter
+    $('#filter_expense_other').on('keyup change', function(){
+        table.column(1).search(this.value).draw();
+    });
+
+    // Created By Filter
+    $('#filter_created_by').on('change', function(){
+        table.column(5).search(this.value).draw();
+    });
+
+    // Date Range Filter
+    $.fn.dataTable.ext.search.push(function(settings, data){
+        if (settings.nTable.id !== 'expenseTable') return true;
+
+        let from = $('#filter_from_date').val();
+        let to   = $('#filter_to_date').val();
+        let date = data[3]; // expense_date column
+
+        if(from) from = new Date(from);
+        if(to)   to   = new Date(to);
+
+        let rowDate = new Date(date);
+
+        if(
+            (!from && !to) ||
+            (!from && rowDate <= to) ||
+            (from && !to && rowDate >= from) ||
+            (rowDate >= from && rowDate <= to)
+        ){
+            return true;
+        }
+        return false;
+    });
+
+    $('#filter_from_date, #filter_to_date').on('change', function(){
+        table.draw();
+    });
+
+});
+
 
 </script>
 
