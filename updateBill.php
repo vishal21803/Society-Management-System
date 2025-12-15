@@ -7,6 +7,7 @@ $old_amount  = $_POST['old_amount'];
 $new_amount  = $_POST['new_amount'];
 $purpose     = $_POST['purpose'];
 $type=$_POST['type'];
+$bdate=$_POST['bildate'];
 
 mysqli_begin_transaction($con);
 
@@ -15,7 +16,7 @@ try {
   // 1️⃣ Update bill
   mysqli_query($con,"
     UPDATE sens_bills
-    SET bill_amount='$new_amount', bill_purpose='$purpose', bill_type='$type'
+    SET bill_amount='$new_amount', bill_purpose='$purpose', bill_type='$type',bdate='$bdate'
     WHERE bill_id='$bill_id'
   ");
 

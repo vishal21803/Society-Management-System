@@ -134,7 +134,7 @@ $member_id = $row['member_id'];
 $historyQuery = "
 
  SELECT 
-  bill_id,bill_type,
+  bill_id,bill_type,bdate,
    bill_date AS trans_date,
    bill_amount AS bill_amt,
    '' AS receipt_amt,
@@ -166,7 +166,7 @@ while($h = mysqli_fetch_assoc($historyResult)){
   
 ?>
 <tr>
-  <td><?= date("d-m-Y", strtotime($h['trans_date'])) ?></td>
+  <td><?= date("d-m-Y", strtotime($h['bdate'])) ?></td>
 
   <td><?= $h['bill_amt']!='' ? '₹'.$h['bill_amt'] : '-' ?></td>
 
@@ -263,6 +263,13 @@ while($h = mysqli_fetch_assoc($historyResult)) {
             <option value="Others">Others</option>
 
   </select>
+
+   <label for="">Bill Date</label>
+<input type="date" name="bildate"
+                 value="<?= htmlspecialchars($h['bdate']) ?>"
+                 class="form-control" required>
+         
+        
         </div>
 
         <div class="modal-footer">
@@ -307,7 +314,10 @@ while($h = mysqli_fetch_assoc($historyResult)) {
             <option value="Others">Others</option>
 
   </select>
-        <!-- #region -->
+
+   <label for="">Bill Date</label>
+<input type="date" name="bill_date" class="form-control mb-2"
+       value="<?php echo date('Y-m-d'); ?>" required>        <!-- #region -->
 
 
         </div>

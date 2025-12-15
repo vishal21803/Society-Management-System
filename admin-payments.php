@@ -141,6 +141,7 @@ $historyQuery = "
 (
  SELECT 
    bill_date AS trans_date,
+   bdate AS ogdate,
    bill_amount AS bill_amt,
    '' AS receipt_amt,
    bill_purpose AS purpose,
@@ -154,6 +155,7 @@ UNION ALL
 (
  SELECT 
    receipt_date AS trans_date,
+   recdate AS ogdate,
    '' AS bill_amt,
    receipt_amount AS receipt_amt,
    purpose,
@@ -185,7 +187,7 @@ while($h = mysqli_fetch_assoc($historyResult)){
     }
 ?>
 <tr>
-  <td><?= date("d-m-Y", strtotime($h['trans_date'])) ?></td>
+  <td><?= date("d-m-Y", strtotime($h['ogdate'])) ?></td>
 
   <td><?= $h['bill_amt']!='' ? '₹'.$h['bill_amt'] : '-' ?></td>
 
