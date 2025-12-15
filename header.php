@@ -299,6 +299,8 @@ li{
           <a class="dropdown-item-custom" href="manageCommity.php">Manage Commity</a>
           <a class="dropdown-item-custom" href="manage_events.php">Manage Events</a>
           <a class="dropdown-item-custom" href="manage_news.php">Manage News</a>
+          <a class="dropdown-item-custom" href="manage_gallery.php">Manage Gallery</a>
+
           <a class="dropdown-item-custom" href="admin-payments.php">Bill/Receipt History</a>
           <a class="dropdown-item-custom" href="manageBills.php">Manage Bills</a>
           <a class="dropdown-item-custom" href="manageReceipt.php">Manage Receipt</a>
