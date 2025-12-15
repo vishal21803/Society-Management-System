@@ -13,9 +13,15 @@
     border: 1px solid #ccc;
 }
 
+a.forgot-link:hover {
+    text-decoration: underline;
+    opacity: 0.85;
+}
+
+
 </style>
 <main id="loginbody">
-    <div class="glass-card text-center position-relative">
+    <div class="glass-card text-center position-relative" id="loginBox">
 
         <h3 class="text-white mb-4">🔐 Login</h3>
 
@@ -77,6 +83,14 @@ if(isset($_GET['regmsg'])){
             <button type="submit" class="btn btn-dark w-100 animate-btn">
                 Login Securely
             </button>
+            <div class="text-end mt-2">
+    <a href="javascript:void(0)"
+   class="text-white small fw-semibold forgot-link"
+   onclick="showForgot()">
+    Forgot Password?
+</a>
+
+</div>
 
         </form>
 
@@ -86,6 +100,39 @@ if(isset($_GET['regmsg'])){
         </div>
 
     </div>
+
+    <!-- FORGOT PASSWORD CARD -->
+<div id="forgotBox" class="glass-card text-center d-none">
+
+    <h4 class="text-white mb-3">🔑 Forgot Password</h4>
+
+    <input type="email" id="forgotEmail" class="form-control mb-2"
+           placeholder="Enter Registered Email">
+
+    <div id="forgotMsg" class="text-white small mb-2"></div>
+
+    <button class="btn btn-secondary w-100 mb-2" onclick="checkEmail()">
+        Check Email
+    </button>
+
+    <button class="btn btn-success w-100 d-none" id="sendPassBtn"
+            onclick="sendPassword()">
+        Get Password
+    </button>
+
+    <div id="spinner" class="mt-2 d-none">
+    <div class="spinner-border text-light spinner-border-sm" role="status"></div>
+    <span class="text-white ms-2">Sending password...</span>
+</div>
+
+
+    <div class="mt-3">
+        <a href="javascript:void(0)" class="text-white fw-semibold"
+           onclick="backToLogin()">← Back to Login</a>
+    </div>
+
+</div>
+
 </main>
 
 <!-- ✅ AUTO HIDE ALERT (3 Seconds) -->
@@ -142,6 +189,82 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 });
+
+function showForgot(){
+    document.getElementById("loginBox").classList.add("d-none");
+    document.getElementById("forgotBox").classList.remove("d-none");
+}
+
+function backToLogin(){
+    document.getElementById("forgotBox").classList.add("d-none");
+    document.getElementById("loginBox").classList.remove("d-none");
+}
+
+function checkEmail(){
+    let email = document.getElementById("forgotEmail").value;
+
+    if(email === ""){
+        document.getElementById("forgotMsg").innerHTML = "❌ Enter email first";
+        return;
+    }
+
+    fetch("checkEmail.php",{
+        method:"POST",
+        headers:{"Content-Type":"application/x-www-form-urlencoded"},
+        body:"email="+email
+    })
+    .then(res => res.text())
+    .then(data => {
+        if(data.trim() === "exists"){
+            document.getElementById("forgotMsg").innerHTML =
+                "✅ Email registered. Click Get Password";
+            document.getElementById("sendPassBtn").classList.remove("d-none");
+        }else{
+            document.getElementById("forgotMsg").innerHTML =
+                "❌ Email not registered";
+            document.getElementById("sendPassBtn").classList.add("d-none");
+        }
+    });
+}
+
+function sendPassword(){
+    let email = document.getElementById("forgotEmail").value;
+
+    let spinner = document.getElementById("spinner");
+    let btn = document.getElementById("sendPassBtn");
+    let msg = document.getElementById("forgotMsg");
+
+    // UI states
+    spinner.classList.remove("d-none"); // 🔄 show spinner
+    btn.disabled = true;
+    msg.innerHTML = "";
+
+    fetch("ajaxSendPassword.php",{
+        method:"POST",
+        headers:{"Content-Type":"application/x-www-form-urlencoded"},
+        body:"email="+email
+    })
+    .then(res => res.text())
+    .then(data => {
+
+        spinner.classList.add("d-none"); // ❌ hide spinner
+        btn.disabled = false;
+
+        msg.innerHTML = data;
+
+        // success ke baad button hide
+        if(data.includes("✅")){
+            btn.classList.add("d-none");
+        }
+    })
+    .catch(err=>{
+        spinner.classList.add("d-none");
+        btn.disabled = false;
+        msg.innerHTML = "❌ Something went wrong. Try again.";
+    });
+}
+
+
 
 </script>
 
