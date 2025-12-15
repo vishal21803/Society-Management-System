@@ -302,6 +302,8 @@ li{
           <a class="dropdown-item-custom" href="admin-payments.php">Bill/Receipt History</a>
           <a class="dropdown-item-custom" href="manageBills.php">Manage Bills</a>
           <a class="dropdown-item-custom" href="manageReceipt.php">Manage Receipt</a>
+          <a class="dropdown-item-custom" href="manageExpenses.php">Manage Expenses</a>
+
           <a class="dropdown-item-custom" href="contactQueries.php">Contact Queries</a>
           <a class="dropdown-item-custom" href="datatTableDownload.php">Manage Downloads</a>
           <a class="dropdown-item-custom" href="adminMessages.php">Manage Messages</a>
