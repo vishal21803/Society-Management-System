@@ -79,9 +79,74 @@ table,th,td{ border:1px solid black;padding:6px; }
 }
 
 .signature{ margin-top:40px;text-align:right;font-weight:bold; }
+.receipt-actions{
+    text-align:center;
+    margin:20px 0;
+}
+
+/* COMMON BUTTON STYLE */
+.receipt-actions button{
+    border: none;
+    padding: 12px 28px;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 30px;
+    cursor: pointer;
+    margin: 0 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
+
+/* PRINT BUTTON */
+.btn-print{
+    background: linear-gradient(135deg,#2196f3,#0d47a1);
+    color: #fff;
+}
+
+.btn-print:hover{
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 8px 20px rgba(33,150,243,0.5);
+}
+
+/* DOWNLOAD BUTTON */
+.btn-download{
+    background: linear-gradient(135deg,#4caf50,#1b5e20);
+    color: #fff;
+}
+
+.btn-download:hover{
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 8px 20px rgba(76,175,80,0.5);
+}
+
+/* PRINT MODE – HIDE BUTTONS */
+@media print{
+    .receipt-actions{
+        display:none;
+    }
+}
+
+@media print {
+    button {
+        display: none;
+    }
+}
+
 </style>
 </head>
 <body>
+
+<div class="receipt-actions">
+    <button class="btn-print" onclick="printReceipt()">
+        🖨️ Print Receipt
+    </button>
+
+    <button class="btn-download" onclick="downloadPDF()">
+        ⬇️ Download PDF
+    </button>
+</div>
+
+
 
 <div class="receipt-box">
 
@@ -89,7 +154,7 @@ table,th,td{ border:1px solid black;padding:6px; }
 || श्री महावीराय नमः || <br>
 श्री नागपुर प्रांतीय दिगम्बर जैन खण्डेलवाल सभा <br>
 पंजीयन ऑफिस - छिंदवाड़ा, पंजीयन नं. 173/53/54 <br>
-कार्यालय - फल ऑत्री, इतवारी, नागपुर (महाराष्ट्र) - 440002
+कार्यालय : इतवारी, भाजीमंडी, फूलओली  नागपुर (महाराष्ट्र)- 440002
 </div>
 
 <table class="no-border">
@@ -153,9 +218,30 @@ table,th,td{ border:1px solid black;padding:6px; }
 
 </div>
 
+
+<!-- html2pdf library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
 <script>
-// window.print();
+function printReceipt(){
+    window.print();
+}
+
+function downloadPDF(){
+    const element = document.querySelector('.receipt-box');
+
+    const opt = {
+        margin:       0.3,
+        filename:     'receipt_<?= $receipt_id ?>.pdf',
+        image:        { type: 'jpeg', quality: 0.98 },
+        html2canvas:  { scale: 2 },
+        jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
+    };
+
+    html2pdf().set(opt).from(element).save();
+}
 </script>
+
 
 </body>
 </html>
