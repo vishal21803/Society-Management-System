@@ -5,11 +5,13 @@ include("connectdb.php");
 <style>
     .profile-card {
     width: 300px;
-    background: linear-gradient(145deg, #f7971e,white);
+    /*background: linear-gradient(145deg, #f7971e, #ffd200); */
+    background: linear-gradient(145deg,  #ffd200,white); 
+    
     border-radius: 20px;
     text-align: center;
     padding: 25px 20px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
     transition: all 0.4s ease;
     position: relative;
     overflow: visible;  /* 🔥 VERY IMPORTANT */
@@ -56,8 +58,8 @@ include("connectdb.php");
 }
 
 .post {
-    font-size: 16px;
-    color: black;
+    font-size: 14px;
+    color: #666;
     margin-bottom: 12px;
 }
 
@@ -84,7 +86,7 @@ include("connectdb.php");
 
   <div class="text-center mb-5">
     <h1 class="fw-bold">Our Current Committee Members</h1>
-    <p class="text-muted">Leadership That Leads With Values</p>
+    <h5 class="text-muted">Uplifting the Community Through Parampara & Purity</h5>
   </div>
 
   <div class="row g-4">
@@ -101,7 +103,7 @@ SELECT
 FROM sens_commity c
 LEFT JOIN sens_zones z ON c.comi_zone = z.zone_id
 LEFT JOIN sens_cities ct ON c.comi_city = ct.city_id
-ORDER BY FIELD(c.comi_post,'President','Vice President','Minister')
+ORDER BY comi_priority desc
 ");
 
 
@@ -115,7 +117,7 @@ while($row = mysqli_fetch_assoc($res)){
 
      <div class="profile-card">
     <div class="profile-image">
-        <img src="upload/committee/<?=$img?>" alt="Profile">
+        <img src="upload/Committee/<?=$img?>" alt="Profile">
     </div>
 
     <div class="profile-content">

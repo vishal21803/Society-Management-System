@@ -340,7 +340,17 @@ let table = $('#myMessageTable').DataTable({
         bLengthChange: true,
         pageLength: 10,
         lengthMenu: [10, 25, 50, 100],
-        buttons: ['excelHtml5', 'csvHtml5', 'pdfHtml5', 'print']
+        buttons: ['excelHtml5', 'csvHtml5', 'pdfHtml5', 'print'],
+
+         // ✅ HIGHLIGHT ROW
+    // rowCallback: function(row, data) {
+
+    //     let tSenderType = data[2]; // sender_type column
+
+    //     if (tSenderType.toLowerCase() === 'admin') {
+    //         $(row).addClass('table-danger'); // Bootstrap red
+    //     }
+    // }
 });
 
 $.fn.dataTable.ext.search.push(function(settings, data){
@@ -395,6 +405,8 @@ let table = $('#myDownloadTable').DataTable({
         pageLength: 10,
         lengthMenu: [10, 25, 50, 100],
         buttons: ['excelHtml5', 'csvHtml5', 'pdfHtml5', 'print']
+
+        
 });
 
 $.fn.dataTable.ext.search.push(function(settings, data){

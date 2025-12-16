@@ -271,6 +271,12 @@ while($h = mysqli_fetch_assoc($historyResult)){
             <option value="Others">Others</option>
 
   </select>
+
+    <label for="">Bill Date</label>
+<input type="date" name="bill_date" class="form-control mb-2"
+       value="<?php echo date('Y-m-d'); ?>" required>  
+
+
         <!-- #region -->
 
 

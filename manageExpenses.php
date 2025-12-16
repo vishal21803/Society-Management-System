@@ -91,8 +91,9 @@ include("connectdb.php");
             <label>Expense Type</label>
             <select class="form-select"
                     onchange="editCheckOther(this, <?= $row['expense_id'] ?>)">
-                <option value="Rent" <?= $row['expense_type']=="Rent"?"selected":"" ?>>Rent</option>
                 <option value="Electricity" <?= $row['expense_type']=="Electricity"?"selected":"" ?>>Electricity</option>
+                <option value="Rent" <?= $row['expense_type']=="Rent"?"selected":"" ?>>Rent</option>
+                <option value="Salary" <?= $row['expense_type']=="Salary"?"selected":"" ?>>Salary</option>
                 <option value="Maintenance" <?= $row['expense_type']=="Maintenance"?"selected":"" ?>>Maintenance</option>
                 <option value="Other">Other</option>
             </select>
@@ -183,8 +184,9 @@ include("connectdb.php");
             <select id="expense_type" class="form-select"
                     onchange="checkOtherExpense()" required>
                 <option value="">-- Select Expense Type --</option>
-                <option value="Rent">Rent</option>
                 <option value="Electricity">Electricity</option>
+                <option value="Rent">Rent</option>
+                <option value="Salary">Salary</option>
                 <option value="Maintenance">Maintenance</option>
                 <option value="Other">Other</option>
             </select>

@@ -302,7 +302,7 @@ if($isLoggedIn){
     <div class="container">
         <h2 class="text-center fw-bold mb-4">About Us</h2>
         <p class="text-center w-75 mx-auto">
-           The Shri Nagpur Prantiya Khandelwal Digambar Jain Sabha was founded in 1916 with a noble vision — to bring together families of the Khandela Gram (Rajasthan) who had spread across different parts of India, and to keep alive the shared values, culture, and spiritual heritage of our community.
+           The <b>Shri Nagpur Prantiya Digambar Jain Khandelwal Sabha </b> was founded in 1916 with a noble vision — to bring together families of the Khandela Gram (Rajasthan) who had spread across different parts of India, and to keep alive the shared values, culture, and spiritual heritage of our community.
         </p>
     </div>
 </section>

@@ -9,7 +9,7 @@ include("connectdb.php");
 <main>
 <div class="d-flex flex-column flex-lg-row">
 
-    <?php include('accountantDashboard.php'); ?>
+    <?php include('adminDashboard.php'); ?>
 
     <div class="flex-grow-1 p-4">
 
@@ -18,7 +18,7 @@ include("connectdb.php");
         <div class="card shadow">
 
             <div class="card-header bg-warning fw-bold text-dark d-flex justify-content-between align-items-center">
-                <span><i class="bi bi-receipt-cutoff me-2"></i> Manage Bills</span>
+                <span><i class="bi bi-receipt-cutoff me-2"></i> Manage Bill/Receipt History</span>
 
                 <!-- Agar future me add bill button chahiye ho -->
                 <!-- <a href="billForm.php">
@@ -40,7 +40,6 @@ include("connectdb.php");
                             <th>Name</th>
                             <th>City</th>
                             <th>Zone</th>
-                            <th>Email</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -69,25 +68,27 @@ include("connectdb.php");
 
                             <td><?= htmlspecialchars($row['zone_name']) ?></td>
 
-                            <td><?= htmlspecialchars($row['email']) ?></td>
 
                             <td>
-                                <button class="btn btn-sm btn-primary"
+                                <button title="History" class="btn btn-sm btn-primary"
                                     data-bs-toggle="modal"
                                     data-bs-target="#historyModal<?= $row['member_id'] ?>">
-                                    History
+                                    <i class="bi bi-clock-history"></i>
+
                                 </button>
 
-                                <button class="btn btn-sm btn-success"
+                                <button title="Bill" class="btn btn-sm btn-success"
                                     data-bs-toggle="modal"
                                     data-bs-target="#billModal<?= $row['member_id'] ?>">
-                                    Bill
+                                    <i class="bi bi-receipt"></i>
+
                                 </button>
 
-                                <button class="btn btn-sm btn-warning"
+                                <button title="Receipt" class="btn btn-sm btn-warning"
                                     data-bs-toggle="modal"
                                     data-bs-target="#receiptModal<?= $row['member_id'] ?>">
-                                    Receipt
+                                    <i class="bi bi-currency-rupee"></i>
+
                                 </button>
                             </td>
                         </tr>
@@ -130,6 +131,7 @@ $member_id = $row['member_id'];
               <th>Purpose</th>
               <th>Type</th>
               <th>Receipt ID</th>
+              <th>Print</th>
             </tr>
           </thead>
           <tbody>
@@ -139,11 +141,13 @@ $historyQuery = "
 (
  SELECT 
    bill_date AS trans_date,
+   bdate AS ogdate,
    bill_amount AS bill_amt,
    '' AS receipt_amt,
    bill_purpose AS purpose,
    'Bill' AS type,
-   '' AS manual_id
+   '' AS manual_id,
+   '' AS rid
  FROM sens_bills
  WHERE member_id='$member_id'
 )
@@ -151,11 +155,13 @@ UNION ALL
 (
  SELECT 
    receipt_date AS trans_date,
+   recdate AS ogdate,
    '' AS bill_amt,
    receipt_amount AS receipt_amt,
    purpose,
    'Receipt' AS type,
-   manualID AS manual_id
+   manualID AS manual_id,
+   receipt_id AS rid
  FROM sens_receipt
  WHERE member_id='$member_id'
 )
@@ -181,7 +187,7 @@ while($h = mysqli_fetch_assoc($historyResult)){
     }
 ?>
 <tr>
-  <td><?= date("d-m-Y", strtotime($h['trans_date'])) ?></td>
+  <td><?= date("d-m-Y", strtotime($h['ogdate'])) ?></td>
 
   <td><?= $h['bill_amt']!='' ? '₹'.$h['bill_amt'] : '-' ?></td>
 
@@ -198,11 +204,23 @@ while($h = mysqli_fetch_assoc($historyResult)){
   <td>
     <?= $h['manual_id']!='' ? htmlspecialchars($h['manual_id']) : '-' ?>
   </td>
+
+  <td>
+    <?= ($h['type'] == 'Bill') 
+        ? '' 
+        : '<a href="tempReceipt.php?receipt_id=' . $h["rid"] . '">
+                <span class="badge bg-warning">Print</span>
+           </a>' 
+    ?>
+</td>
+
+
+    
 </tr>
 <?php 
 }} else { ?>
 <tr>
-  <td colspan="6" class="text-danger">No History Found</td>
+  <td colspan="7" class="text-danger">No History Found</td>
 </tr>
 <?php } ?>
 
@@ -211,7 +229,7 @@ while($h = mysqli_fetch_assoc($historyResult)){
   <td>Total</td>
   <td>₹<?= $totalBill ?></td>
   <td>₹<?= $totalReceipt ?></td>
-  <td colspan="2">Balance ₹<?= ($totalBill - $totalReceipt) ?></td>
+  <td colspan="3">Balance ₹<?= ($totalBill - $totalReceipt) ?></td>
   <td></td>
 </tr>
 
@@ -239,8 +257,29 @@ while($h = mysqli_fetch_assoc($historyResult)){
           <input type="date" name="bill_date" class="form-control mb-2" required> -->
           <label for="">Bill Amount</label>
           <input type="number" name="bill_amount" class="form-control mb-2" required>
-          <label for="">Bill Purpose</label>
+          <label for="">Bill Description</label>
           <input type="text" name="purpose" class="form-control" required>
+
+           <label for="">Bill Type</label>
+  <select name="type" class="form-control" required>
+    <option value="">-- Select Purpose --</option>
+    <option value="New Membership">New Membership</option>
+    <option value="Yearly Fee">Yearly Fee</option>
+    <option value="Lifetime Fee">Lifetime Fee</option>
+    <option value="Scholarship">Scholarship</option>
+    <option value="Donation">Donation</option>
+            <option value="Others">Others</option>
+
+  </select>
+
+    <label for="">Bill Date</label>
+<input type="date" name="bill_date" class="form-control mb-2"
+       value="<?php echo date('Y-m-d'); ?>" required>  
+
+
+        <!-- #region -->
+
+
         </div>
 
         <div class="modal-footer">
@@ -264,14 +303,28 @@ while($h = mysqli_fetch_assoc($historyResult)){
 
         <div class="modal-body">
           <input type="hidden" name="member_id" value="<?= $member_id ?>">
-          <!-- <label for="">Receipt Date</label>
-          <input type="date" name="receipt_date" class="form-control mb-2" required> -->
+    
           <label for=""> Amount</label>
           <input type="number" name="receipt_amount" class="form-control mb-2" required>
+           <label for="">Bill Type</label>
+  <select name="type" class="form-control" required>
+    <option value="">-- Select Purpose --</option>
+    <option value="New Membership">New Membership</option>
+    <option value="Yearly Fee">Yearly Fee</option>
+    <option value="Lifetime Fee">Lifetime Fee</option>
+    <option value="Scholarship">Scholarship</option>
+    <option value="Donation">Donation</option>
+        <option value="Others">Others</option>
+
+  </select>
           <label for="">Receipt purpose</label>
           <input type="text" name="purpose" class="form-control mb-2" required>
           <label for="">Receipt ID</label>
           <input type="text" name="receipt_id" class="form-control" required>
+                <label for="">Receipt Date</label>
+<input type="date" name="receipt_date" class="form-control mb-2"
+       value="<?php echo date('Y-m-d'); ?>" required>
+         
         </div>
 
         <div class="modal-footer">

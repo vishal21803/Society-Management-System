@@ -53,12 +53,12 @@ if(isset($_SESSION["uname"]) && $_SESSION["utype"]=='user') {
                         while($row = mysqli_fetch_assoc($q)) {
 
                             // Who sent it?
-                            $from = ($row['sender_id'] == 0) ? "Admin" : "User";
+                           
                         ?>
                             <tr>
                                 <td><?= $i++ ?></td>
 
-                                <td><?= $from ?></td>
+                                <td><?= $row['created_by'] ?></td>
 
                                 <td><?= htmlspecialchars($row['subject']) ?></td>
 
@@ -79,10 +79,13 @@ if(isset($_SESSION["uname"]) && $_SESSION["utype"]=='user') {
                             </tr>
                         <?php }} else { ?>
                             <tr>
-                                <td colspan="6" class="text-center text-danger">
-                                    No Messages Found
-                                </td>
-                            </tr>
+    <td></td>
+    <td></td>
+    <td class="text-center text-danger fw-bold">No Messages Found</td>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr>
                         <?php } ?>
                         </tbody>
 

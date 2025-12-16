@@ -34,7 +34,7 @@ if(isset($_SESSION["uname"]) && $_SESSION["utype"]=='admin') {
                     <thead class="table-dark">
                         <tr>
                             <th>#</th>
-                            <th>User ID</th>
+                            <th>Sender Name</th>
                             <th>Subject</th>
                             <th>Message</th>
                             <th>Date</th>

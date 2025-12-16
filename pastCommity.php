@@ -5,7 +5,7 @@ include("connectdb.php");
 <style>
     .profile-card {
     width: 300px;
-    background: linear-gradient(145deg, #f7971e, #ffd200);
+    background: linear-gradient(145deg, #f7971e,white);
     border-radius: 20px;
     text-align: center;
     padding: 25px 20px;
@@ -56,8 +56,8 @@ include("connectdb.php");
 }
 
 .post {
-    font-size: 14px;
-    color: #666;
+    font-size: 16px;
+    color: black;
     margin-bottom: 12px;
 }
 
@@ -115,11 +115,11 @@ while($row = mysqli_fetch_assoc($res)){
 
      <div class="profile-card">
     <div class="profile-image">
-        <img src="upload/Committee/<?=$img?>" alt="Profile">
+        <img src="upload/committee/<?=$img?>" alt="Profile">
     </div>
 
     <div class="profile-content">
-        <h3 class="name"><?=$row["comi_name"]?></h3>
+        <h3 class="name">Shri <?=$row["comi_name"]?></h3>
         <p class="post"><?=$row["comi_post"]?></p>
 
         <div class="info">

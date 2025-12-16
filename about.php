@@ -5,7 +5,7 @@
 <!-- ✅ HERO SECTION -->
 <section class="about-hero text-center text-white d-flex align-items-center">
     <div class="container animate-fade-up">
-        <h1 class="fw-bold">Shri Nagpur Prantiya Khandelwal Digambar Jain Sabha</h1>
+        <h1 class="fw-bold"><b>Shri Nagpur Prantiya Digambar Jain Khandelwal Sabha </b></h1>
         <p class="lead">Established in 1916 — A Legacy of Unity, Seva & Sanskar</p>
     </div>
 </section>
@@ -16,7 +16,7 @@
         <div class="col-md-12 animate-left">
             <h2 class="fw-bold text-warning mb-3">About Our Sabha</h2>
             <p>
-                The Shri Nagpur Prantiya Khandelwal Digambar Jain Sabha was founded in 1916 with a noble vision — to bring together families of the Khandela Gram (Rajasthan) who had spread across different parts of India, and to keep alive the shared values, culture, and spiritual heritage of our community.
+                The <b>Shri Nagpur Prantiya Digambar Jain Khandelwal Sabha </b> was founded in 1916 with a noble vision — to bring together families of the Khandela Gram (Rajasthan) who had spread across different parts of India, and to keep alive the shared values, culture, and spiritual heritage of our community.
             </p>
             <p>
                 For more than a century, our Sabha has remained a trusted platform for connecting people, preserving traditions, and promoting community welfare. Today, our members are settled across India, yet our roots keep us united.

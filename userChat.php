@@ -59,12 +59,33 @@ include("connectdb.php");
     <?php include('userDashboard.php'); ?>
 
     <div class="flex-grow-1 p-4">
+        <?php
+$rolesQ = mysqli_query($con,"
+    SELECT id, role 
+    FROM sens_users 
+    WHERE role IN ('admin','accountant')
+");
+?>
+
 
         <div class="send-message-card p-4 rounded shadow bg-white">
 
             <h3 class="fw-bold mb-4 text-center">✉️ Send a Message</h3>
 
             <form method="POST" action="sendMessage.php">
+                <div class="mb-3">
+    <select name="receiver_id" class="form-control form-input" required>
+        <option value="">-- Select Receiver --</option>
+
+        <?php while($r = mysqli_fetch_assoc($rolesQ)){ ?>
+            <option value="<?= $r['id'] ?>">
+                <?= ucfirst($r['role']) ?>
+            </option>
+        <?php } ?>
+
+    </select>
+</div>
+
                 <div class="mb-3">
                     <input type="text" name="subject" class="form-control form-input" placeholder="Subject" required>
                 </div>

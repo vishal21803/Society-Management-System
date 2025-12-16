@@ -5,7 +5,22 @@ if(isset($_SESSION["uname"]) && $_SESSION["utype"]=='admin')
 include("header.php");
 include("connectdb.php");
 
-$id=$_REQUEST["id"];
+$id = $_REQUEST["id"]; 
+
+$uq = mysqli_query($con,"
+    SELECT 
+        u.name AS user_name,
+        m.member_id,
+        z.zone_name,
+        c.city_name
+    FROM sens_users u
+    JOIN sens_members m ON u.id = m.user_id
+    JOIN sens_zones z ON m.zone_id = z.zone_id
+    JOIN sens_cities c ON m.city_id = c.city_id
+    WHERE u.id = '$id'
+");
+
+$userData = mysqli_fetch_assoc($uq);
 ?>
 
 <main>
@@ -23,6 +38,14 @@ $id=$_REQUEST["id"];
             <h3 class="fw-bold mb-4 text-center">✉️ Send a Message</h3>
 
        <form method="POST" action="adminSend.php?id=<?= $id; ?>">
+        <div class="mb-3">
+    <label class="fw-bold">To</label>
+    <input type="text" 
+           class="form-control form-input" 
+           value="<?= htmlspecialchars($userData['user_name'] ) , ' ('.htmlspecialchars($userData['zone_name']) , ', '.htmlspecialchars($userData['city_name']).')'?>"
+           readonly>
+</div>
+
                 <div class="mb-3">
                     <input type="text" name="subject" class="form-control form-input" placeholder="Subject" required>
                 </div>

@@ -237,7 +237,7 @@ li{
 
 
 
-        <li class="nav-item"><a class="nav-link text-white" href="https://www.matrimonysoftware.in">Matrimony</a></li>
+        <li class="nav-item"><a class="nav-link text-white" href="https://jainkhandelwal.org/matrimony/">Matrimony</a></li>
 <?php if(isset($_SESSION["uname"], $_SESSION["utype"]) && $_SESSION["utype"] == "user"){ ?>
 
    <li class="nav-item dropdown-custom">
@@ -427,6 +427,8 @@ li{
     <li><a href="manageCommity.php">Manage Commity</a></li>
     <li><a href="manage_events.php">Manage Events</a></li>
     <li><a href="manage_news.php">Manage News</a></li>
+     <li> <a href="manage_gallery.php">Manage Gallery</a></li>        
+
     <li><a href="admin-payments.php">Bill/Receipt History</a></li>
     <li><a href="manageBills.php">Manage Bills</a></li>
     <li><a href="manageReceipt.php">Manage Receipt</a></li>
