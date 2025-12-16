@@ -153,7 +153,7 @@ while($h = mysqli_fetch_assoc($historyResult)){
         <span class="badge bg-success">Bill</span>
     </a>
 <?php } else { ?>
-    <a href="tempReceipt.php?receipt_id=<?= $h['ref_id'] ?>">
+    <a target="_blank" href="tempReceipt.php?receipt_id=<?= $h['ref_id'] ?>" >
         <span class="badge bg-warning">Receipt</span>
     </a>
 <?php } ?>

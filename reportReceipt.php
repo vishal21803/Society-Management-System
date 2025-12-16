@@ -157,7 +157,7 @@ $zones= mysqli_query($con,
                             <td><?= htmlspecialchars($row['created_by']) ?></td>
 
                             <td> 
-                                <a href="tempReceipt.php?receipt_id=<?= $row['receipt_id'] ?>">
+                                <a target="_blank" href="tempReceipt.php?receipt_id=<?= $row['receipt_id'] ?>">
                                <span class="badge bg-warning">Print</span>
                                 </a>
                             </td>

@@ -208,7 +208,7 @@ while($h = mysqli_fetch_assoc($historyResult)){
   <td>
     <?= ($h['type'] == 'Bill') 
         ? '' 
-        : '<a href="tempReceipt.php?receipt_id=' . $h["rid"] . '">
+        : '<a target="_blank" href="tempReceipt.php?receipt_id=' . $h["rid"] . '">
                 <span class="badge bg-warning">Print</span>
            </a>' 
     ?>
