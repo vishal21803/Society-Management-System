@@ -298,6 +298,8 @@ li{
           <a class="dropdown-item-custom" href="dataTableZones.php">Manage Zones</a>
           <a class="dropdown-item-custom" href="dataTableCities.php">Manage Cities</a>
           <a class="dropdown-item-custom" href="dataTableMember.php">Manage Members</a>
+          <a class="dropdown-item-custom" href="manage_req.php">Manage Request</a>
+
           <a class="dropdown-item-custom" href="manageCommity.php">Manage Commity</a>
           <a class="dropdown-item-custom" href="manage_events.php">Manage Events</a>
           <a class="dropdown-item-custom" href="manage_news.php">Manage News</a>
@@ -426,6 +428,7 @@ li{
      <li><a href="dataTableZones.php">Manage Zones</a></li>
     <li><a href="dataTableCities.php">Manage Cities</a></li>
     <li><a href="dataTableMember.php">Manage Members</a></li>
+    <li><a href="manage_req.php">Manage Request</a></li>
     <li><a href="manageCommity.php">Manage Commity</a></li>
     <li><a href="manage_events.php">Manage Events</a></li>
     <li><a href="manage_news.php">Manage News</a></li>

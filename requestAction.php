@@ -2,7 +2,6 @@
 @session_start();
 include("connectdb.php");
 
-// Load PHPMailer
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
@@ -17,7 +16,7 @@ if(isset($_POST['action'], $_POST['request_id'])){
     $action = $_POST['action'];
     $req_id = $_POST['request_id'];
 
-    // ✅ FETCH REQUEST, MEMBER, AND USER EMAIL
+    // Fetch request + email
     $q = mysqli_fetch_assoc(mysqli_query($con, "
         SELECT r.*, m.user_id, u.email, m.fullname 
         FROM sens_requests r
@@ -30,87 +29,102 @@ if(isset($_POST['action'], $_POST['request_id'])){
     $user_email = $q['email'];
     $user_name = $q['fullname'];
 
-    // Initialize PHPMailer
-    $mail = new PHPMailer(true);
 
-    try {
-        // SMTP SETTINGS
-        $mail->isSMTP();
-        $mail->Host       = 'smtp.gmail.com';
-        $mail->SMTPAuth   = true;
-        $mail->Username   = 'vishal21082003patil@gmail.com';
-        $mail->Password   = 'durynjnibluwgfor'; // ← Replace with your app password
-        $mail->SMTPSecure = 'tls';
-        $mail->Port       = 587;
+    // approve
+    if($action == "approve"){
 
-        // SENDER
-        $mail->setFrom('vishal21082003patil@gmail.com', 'Society Management');
-        $mail->addAddress($user_email, $user_name); // Receiver email
+        $start = date('Y-m-d');
 
-        // EMAIL CONTENT
-        $mail->isHTML(true);
+        mysqli_query($con,"
+            UPDATE sens_members 
+            SET membership_start='$start'
+            WHERE member_id='$member_id'
+        ");
 
-        // ✅ APPROVE REQUEST
-        if($action == "approve"){
+        mysqli_query($con,"
+            UPDATE sens_requests
+            SET status='approved', approved_date=NOW(), created_by='$uname'
+            WHERE request_id='$req_id'
+        ");
 
-            $start = date('Y-m-d');
+        // only send mail if email exists
+        if(!empty($user_email)){
 
-            // Update membership start
-            mysqli_query($con,"
-                UPDATE sens_members 
-                SET membership_start='$start'
-                WHERE member_id='$member_id'
-            ");
+            $mail = new PHPMailer(true);
 
-            // Update request status
-            mysqli_query($con,"
-                UPDATE sens_requests 
-                SET status='approved', approved_date=NOW(),created_by='$uname'
-                WHERE request_id='$req_id'
-            ");
+            try {
+                $mail->isSMTP();
+                $mail->Host       = 'smtp.gmail.com';
+                $mail->SMTPAuth   = true;
+                $mail->Username   = 'vishal21082003patil@gmail.com';
+                $mail->Password   = 'durynjnibluwgfor'; 
+                $mail->SMTPSecure = 'tls';
+                $mail->Port       = 587;
 
-            // Prepare email content
-            $mail->Subject = 'Membership Approved';
-            $mail->Body = "
-                <h3>Hello $user_name,</h3>
-                <p>Your membership request has been <b>approved</b>!</p>
-                <p>Welcome to our society.</p>
-                <p>Regards,<br>Society Admin</p>
-            ";
+                $mail->setFrom('vishal21082003patil@gmail.com', 'Society Management');
+                $mail->addAddress($user_email, $user_name);
 
-            $mail->send();
+                $mail->isHTML(true);
+                $mail->Subject = 'Membership Approved';
+                $mail->Body = "
+                    <h3>Hello $user_name,</h3>
+                    <p>Your membership request has been <b>approved</b>!</p>
+                ";
 
-            echo "✅ Member Approved & Membership Activated! Email Sent ✔";
-            exit;
+                $mail->send();
+
+                echo "Approved + Email Sent ✔";
+                exit;
+
+            } catch (Exception $e) {}
         }
 
-        // ❌ REJECT REQUEST
-        if($action == "reject"){
+        echo "Approved ✔ (No Email Sent)";
+        exit;
+    }
 
-            // Update request status
-            mysqli_query($con,"
-                UPDATE sens_requests 
-                SET status='rejected', created_by='$uname'
-                WHERE request_id='$req_id'
-            ");
 
-            // Prepare email content
-            $mail->Subject = 'Membership Request Rejected';
-            $mail->Body = "
-                <h3>Hello $user_name,</h3>
-                <p>We regret to inform you that your membership request has been <b>rejected</b>.</p>
-                <p>Regards,<br>Society Admin</p>
-            ";
+    // reject
+    if($action == "reject"){
 
-            $mail->send();
+        mysqli_query($con,"
+            UPDATE sens_requests
+            SET status='rejected', created_by='$uname'
+            WHERE request_id='$req_id'
+        ");
 
-            echo "❌ Member Request Rejected! Email Sent ✔";
-            exit;
+        if(!empty($user_email)){
+
+            $mail = new PHPMailer(true);
+
+            try {
+                $mail->isSMTP();
+                $mail->Host       = 'smtp.gmail.com';
+                $mail->SMTPAuth   = true;
+                $mail->Username   = 'vishal21082003patil@gmail.com';
+                $mail->Password   = '';
+                $mail->SMTPSecure = 'tls';
+                $mail->Port       = 587;
+
+                $mail->setFrom('vishal21082003patil@gmail.com', 'Society Management');
+                $mail->addAddress($user_email, $user_name);
+
+                $mail->isHTML(true);
+                $mail->Subject = 'Membership Rejected';
+                $mail->Body = "
+                    <h3>Hello $user_name,</h3>
+                    <p>Your membership request has been rejected.</p>
+                ";
+
+                $mail->send();
+
+                echo "Rejected + Email Sent ✔";
+                exit;
+
+            } catch (Exception $e) {}
         }
 
-    } catch (Exception $e) {
-        // If email fails, still update DB
-        echo "⚠️ Member action done but email failed: {$mail->ErrorInfo}";
+        echo "Rejected ✔ (No Email Sent)";
         exit;
     }
 
