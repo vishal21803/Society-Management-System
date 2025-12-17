@@ -146,8 +146,8 @@ table,th,td{ border:1px solid black;padding:6px; }
     </button>
 </div>
 
-
-
+<!-- <a href=""></a> -->
+ 
 <div class="receipt-box">
 
 <div class="center">
