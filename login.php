@@ -264,6 +264,28 @@ function sendPassword(){
     });
 }
 
+document.querySelector("form").addEventListener("submit", function (e) {
+
+    let remember = document.getElementById("remember");
+    let username = document.querySelector("input[name='name']").value.trim();
+    let password = document.querySelector("input[name='password']").value.trim();
+
+    // ❗ VALIDATION MIN 4 CHAR
+    if(username.length < 4 ) {
+        alert("Minimum 4 characters required");
+        e.preventDefault();   // stop form submit  
+        return;
+    }
+
+    // existing localStorage code
+    if (remember.checked) {
+        localStorage.setItem("jain_username", username);
+        localStorage.setItem("jain_password", password);
+    } else {
+        localStorage.removeItem("jain_username");
+        localStorage.removeItem("jain_password");
+    }
+});
 
 
 </script>

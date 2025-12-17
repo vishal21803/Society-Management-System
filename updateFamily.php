@@ -9,6 +9,8 @@ $fam_phone     = $_POST['fam_phone'];
 $fam_relation  = $_POST['fam_relation'];
 $fam_dob       = $_POST['fam_dob'];
 $fam_education = $_POST['fam_education'];
+$fam_marry = $_POST['fam_marry'];
+
 
 $q = mysqli_query($con,"
     UPDATE sens_family SET 
@@ -18,7 +20,8 @@ $q = mysqli_query($con,"
         fam_phone     = '$fam_phone',
         fam_relation  = '$fam_relation',
         fam_dob       = '$fam_dob',
-        fam_education = '$fam_education'
+        fam_education = '$fam_education',
+        marry_status= '$fam_marry'
     WHERE fam_id = '$id'
 ");
 

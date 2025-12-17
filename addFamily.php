@@ -36,8 +36,8 @@ include("connectdb.php");
                             <label class="fw-semibold">Gender</label>
                             <select name="fam_gender" class="form-select" required>
                                 <option value="">Select Gender</option>
-                                <option>Male</option>
-                                <option>Female</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
                             </select>
                         </div>
 
@@ -60,6 +60,15 @@ include("connectdb.php");
                         <div class="col-md-6 mb-3">
                             <label class="fw-semibold">Education</label>
                             <input type="text" name="fam_edu" class="form-control" >
+                        </div>
+
+                         <div class="col-md-6 mb-3">
+                            <label class="fw-semibold">Marital Status</label>
+                               <select name="fam_marry" class="form-select" required>
+                                <option value="">Select Status</option>
+                                <option value="Married">Married</option>
+                                <option value="Unmarried">Unmarried</option>
+                            </select>
                         </div>
 
                        <div class="col-md-12 mb-3">

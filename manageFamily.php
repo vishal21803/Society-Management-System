@@ -70,7 +70,8 @@ include("connectdb.php");
     '<?= $row['fam_phone'] ?>',
     '<?= $row['fam_dob'] ?>',
     '<?= $row['fam_education'] ?>',
-    '<?= $row['fam_relation'] ?>'
+    '<?= $row['fam_relation'] ?>',
+    '<?= $row['marry_status'] ?>'
 )"
 >
                                         <i class="bi bi-pencil"></i>
@@ -145,6 +146,15 @@ include("connectdb.php");
             <input type="text" id="fam_education" class="form-control" placeholder="Eg. B.Com, B.Tech, 12th...">
         </div>
 
+          <div class="mb-2">
+                            <label class="fw-semibold">Marital Status</label>
+                               <select id="fam_marry" class="form-select" required>
+                                <option value="">Select Status</option>
+                                <option value="Married">Married</option>
+                                <option value="Unmarried">Unmarried</option>
+                            </select>
+                        </div>
+
         <div class="mb-2">
             <label>Relation</label>
 
@@ -181,7 +191,7 @@ include("connectdb.php");
 
 
 <script>
-    function openFamEditModal(id, member_id, name, gender, phone, dob, education, relation){
+    function openFamEditModal(id, member_id, name, gender, phone, dob, education, relation,marry){
     $("#fam_id").val(id);
     $("#fam_member_id").val(member_id);
     $("#fam_name").val(name);
@@ -190,6 +200,7 @@ include("connectdb.php");
     $("#fam_dob").val(dob);
     $("#fam_education").val(education);
     $("#fam_relation").val(relation);
+    $("#fam_marry").val(marry);
 
     $("#famEditModal").modal("show");
 }
@@ -209,7 +220,8 @@ function updateFamily(){
         fam_phone: $("#fam_phone").val(),
         fam_relation: relation,
         fam_dob: $("#fam_dob").val(),
-        fam_education: $("#fam_education").val()
+        fam_education: $("#fam_education").val(),
+        fam_marry: $("#fam_marry").val()
     },function(res){
         if(res.trim()=="success"){
             alert("Updated Successfully!");
