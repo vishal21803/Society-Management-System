@@ -543,34 +543,7 @@ $('#ev_start,#ev_end,#ev_zone,#ev_city,#ev_member,#ev_created')
 
 });
 
-$(document).ready(function () {
 
-    let table = $('#myDisplayTable').DataTable({
-        pageLength: 10,
-        lengthMenu: [10, 25, 50, 100]
-    });
-
-    $.fn.dataTable.ext.search.push(function (settings, data) {
-
-        if (settings.nTable.id !== 'myDisplayTable') return true;
-
-        let zone = $('#flterzone').val();
-        let city = $('#fltercity').val();
-
-        let rowZone = data[4];
-        let rowCity = data[5];
-
-        if (zone && zone !== rowZone) return false;
-        if (city && city !== rowCity) return false;
-
-        return true;
-    });
-
-    $('#flterzone, #fltercity').on('change', function () {
-        table.draw();
-    });
-
-});
 
 $(document).ready(function(){
 
@@ -623,6 +596,65 @@ $(document).ready(function(){
     $('#filter_from_date, #filter_to_date').on('change', function(){
         table.draw();
     });
+
+});
+
+
+$(document).ready(function(){
+
+    let table = $('#myDisplayTable').DataTable({
+        pageLength: 10,
+        lengthMenu: [10,25,50,100]
+    });
+
+    // Load cities on zone change
+    $("#flterzone").on("change", function(){
+
+        let zoneID = $(this).val();
+        $("#fltercity").html('<option value="">All Cities</option>');
+
+        $.ajax({
+            url: "getCity.php",
+            type: "GET",
+            data: { zone_id: zoneID },
+            success: function(data){
+                $("#fltercity").append(data);
+            }
+        });
+
+        table.draw(); // filter table also
+
+    });
+
+    // filter table on city change
+    $("#fltercity").on("change", function(){
+        table.draw();
+    });
+
+    // CUSTOM FILTER for zone + city
+   $.fn.dataTable.ext.search.push(function(settings, data){
+
+            if (settings.nTable.id !== 'myDisplayTable') return true;
+
+
+    let selectedZone = $("#flterzone").val();
+    let selectedCity = $("#fltercity").val();
+
+    let rowZoneID = data[6]; // zone id column
+    let rowCityID = data[7]; // city id col
+
+    if(selectedZone && selectedZone != rowZoneID){
+        return false;
+    }
+
+    if(selectedCity && selectedCity != rowCityID){
+        return false;
+    }
+
+    return true;
+});
+
+
 
 });
 

@@ -99,6 +99,20 @@ onclick="openMemberEditModal(
                 <i class="bi bi-x"></i>
             </button>
         <?php } ?>
+
+         <!-- New / Old button -->
+<?php if($row['mstatus'] == 1){ ?>
+    <button class="btn btn-sm btn-info"
+            onclick="updateMemberStatus(<?= $row['member_id'] ?>,0)">
+        N
+    </button>
+<?php } else { ?>
+    <button class="btn btn-sm btn-warning"
+            onclick="updateMemberStatus(<?= $row['member_id'] ?>,1)">
+        O
+    </button>
+<?php } ?>
+
     </td>
 </tr>
 <?php } ?>
@@ -286,6 +300,17 @@ $(document).ready(function(){
         }
     });
 });
+
+function updateMemberStatus(id,status){
+    $.post("updateMemberStatus.php",{member_id:id, mstatus:status},function(res){
+        if(res.trim()=="success"){
+            location.reload();
+        }else{
+            alert("Status update failed!");
+        }
+    });
+}
+
 </script>
 
 <?php

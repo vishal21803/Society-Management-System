@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Dec 16, 2025 at 03:53 AM
+-- Generation Time: Dec 17, 2025 at 03:34 PM
 -- Server version: 9.1.0
 -- PHP Version: 8.3.14
 
@@ -36,28 +36,37 @@ CREATE TABLE IF NOT EXISTS `sens_bills` (
   `bill_purpose` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_by` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `bill_type` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `bdate` date NOT NULL,
+  `bdate` datetime NOT NULL,
   PRIMARY KEY (`bill_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `sens_bills`
 --
 
 INSERT INTO `sens_bills` (`bill_id`, `member_id`, `bill_date`, `bill_amount`, `bill_purpose`, `created_by`, `bill_type`, `bdate`) VALUES
-(12, 18, '2025-12-06 11:19:30', 200, 'diwali event', 'dany', '', '2025-12-06'),
-(11, 18, '2025-12-06 11:18:29', 500, 'Membership yearly fees', 'acc', 'Yearly Fee', '2025-12-06'),
-(13, 18, '2025-12-06 11:19:55', 100, 'Monthly Cleaning', 'admin', '', '2025-12-06'),
-(14, 18, '2025-12-06 11:37:29', 150, 'Holi Celebration 2k26', 'dany', '', '2025-12-06'),
-(15, 18, '2025-12-07 13:32:35', 500, 'Monthly maintainance ', 'admin', '', '2025-12-07'),
-(16, 18, '2025-12-07 13:33:00', 100, 'Tree plantation fee', 'acc', '', '2025-12-07'),
-(17, 11, '2025-12-08 06:17:45', 500, 'yearly Membership fees', 'admin', '', '2025-12-08'),
-(18, 19, '2025-12-08 06:28:01', 100, 'Monthly Cleaning Fee ', 'acc', '', '2025-12-08'),
-(19, 20, '2025-12-08 06:47:14', 400, 'yearly Membership fees', 'admin', 'Yearly Fee', '2025-12-08'),
-(20, 18, '2025-12-08 08:39:13', 500, 'ye aapka 500 rs ka yearly membership fee h jisse apko pay krna h ', 'admin', 'Yearly Fee', '2025-12-08'),
-(23, 33, '2025-12-14 10:09:24', 400, 'For testing', 'admin', 'Lifetime Fee', '2025-12-14'),
-(25, 33, '2025-12-14 10:10:01', 100, 'Maintenance', 'admin', 'New Membership', '2025-12-14'),
-(26, 33, '2025-12-15 16:40:29', 150, 'kuch toh h', 'admin', 'Donation', '2025-12-04');
+(12, 18, '2025-12-06 11:19:30', 200, 'diwali event', 'dany', '', '2025-12-06 00:00:00'),
+(11, 18, '2025-12-06 11:18:29', 500, 'Membership yearly fees', 'acc', 'Yearly Fee', '2025-12-06 00:00:00'),
+(13, 18, '2025-12-06 11:19:55', 100, 'Monthly Cleaning', 'admin', '', '2025-12-06 00:00:00'),
+(14, 18, '2025-12-06 11:37:29', 150, 'Holi Celebration 2k26', 'dany', '', '2025-12-06 00:00:00'),
+(15, 18, '2025-12-07 13:32:35', 500, 'Monthly maintainance ', 'admin', '', '2025-12-07 00:00:00'),
+(16, 18, '2025-12-07 13:33:00', 100, 'Tree plantation fee', 'acc', '', '2025-12-07 00:00:00'),
+(17, 11, '2025-12-08 06:17:45', 500, 'yearly Membership fees', 'admin', '', '2025-12-08 00:00:00'),
+(18, 19, '2025-12-08 06:28:01', 100, 'Monthly Cleaning Fee ', 'acc', '', '2025-12-08 00:00:00'),
+(19, 20, '2025-12-08 06:47:14', 400, 'yearly Membership fees', 'admin', 'Yearly Fee', '2025-12-08 00:00:00'),
+(20, 18, '2025-12-08 08:39:13', 500, 'ye aapka 500 rs ka yearly membership fee h jisse apko pay krna h ', 'admin', 'Yearly Fee', '2025-12-08 00:00:00'),
+(23, 33, '2025-12-14 10:09:24', 400, 'For testing', 'admin', 'Lifetime Fee', '2025-12-14 00:00:00'),
+(25, 33, '2025-12-14 10:10:01', 100, 'Maintenance', 'admin', 'New Membership', '2025-12-14 00:00:00'),
+(26, 33, '2025-12-15 16:40:29', 150, 'kuch toh h', 'admin', 'Donation', '2025-12-04 00:00:00'),
+(27, 33, '2025-12-16 07:37:31', 70, 'random Bill', 'admin', 'Others', '2025-12-13 00:00:00'),
+(28, 33, '2025-12-17 07:56:51', 1500, 'random1', 'admin', 'Lifetime Fee', '2025-12-17 00:00:00'),
+(29, 33, '2025-12-17 08:00:25', 150, 'random2', 'admin', 'Others', '0000-00-00 00:00:00'),
+(30, 33, '2025-12-17 13:32:48', 140, 'random4', 'admin', 'Others', '2025-12-17 08:02:48'),
+(31, 35, '2025-12-17 13:33:45', 500, 'bill 1', 'admin', 'New Membership', '2025-12-17 13:38:48'),
+(32, 35, '2025-12-17 13:34:15', 1000, 'bill 2', 'admin', 'Yearly Fee', '2025-12-17 13:39:12'),
+(33, 37, '2025-12-17 13:38:48', 500, 'Bill 1', 'admin', 'New Membership', '2025-12-17 13:38:48'),
+(34, 37, '2025-12-17 13:39:12', 1500, 'Bill 2', 'admin', 'Donation', '2025-12-17 13:39:12'),
+(35, 35, '2025-12-17 13:52:20', 80, 'Monthly Cleaning', 'admin', 'Others', '2025-12-17 13:52:20');
 
 -- --------------------------------------------------------
 
@@ -277,15 +286,17 @@ CREATE TABLE IF NOT EXISTS `sens_family` (
   `created_by` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   `fam_dob` date NOT NULL,
   `fam_education` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `marry_status` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`fam_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `sens_family`
 --
 
-INSERT INTO `sens_family` (`fam_id`, `member_id`, `fam_name`, `fam_gender`, `fam_phone`, `fam_relation`, `created_by`, `fam_dob`, `fam_education`) VALUES
-(1, 18, 'Mary Jones', 'Female', '9874563311', 'Wife', 'jon', '1997-08-21', 'B.tech');
+INSERT INTO `sens_family` (`fam_id`, `member_id`, `fam_name`, `fam_gender`, `fam_phone`, `fam_relation`, `created_by`, `fam_dob`, `fam_education`, `marry_status`) VALUES
+(1, 18, 'Mary Jones', 'Female', '9874563311', 'Wife', 'jon', '1997-08-21', 'B.tech', 'Married'),
+(6, 33, 'Sonal', 'Female', '9874563310', 'Sister', 'Aegon Targaryen', '2025-12-03', 'BA pass', 'Unmarried');
 
 -- --------------------------------------------------------
 
@@ -347,6 +358,7 @@ CREATE TABLE IF NOT EXISTS `sens_members` (
   `created_by` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `business` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `education` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `mstatus` int NOT NULL DEFAULT '1',
   PRIMARY KEY (`member_id`),
   KEY `user_id` (`user_id`),
   KEY `zone_id` (`zone_id`),
@@ -358,26 +370,26 @@ CREATE TABLE IF NOT EXISTS `sens_members` (
 -- Dumping data for table `sens_members`
 --
 
-INSERT INTO `sens_members` (`member_id`, `user_id`, `zone_id`, `city_id`, `plan_id`, `gender`, `dob`, `membership_start`, `membership_end`, `phone`, `address`, `photo`, `created_at`, `fullname`, `balance_amount`, `created_by`, `business`, `education`) VALUES
-(11, 9, 5, 4, 2, 'Male', '1988-09-01', '2025-12-04', '2026-11-04', '6666666666', 'Near Puri ITI,kohka', '1764877535_logo.png', '2025-12-04 19:45:35', 'Surya Naik', 500, NULL, '', ''),
-(7, 5, 5, 5, 1, 'Male', '1999-05-17', '2025-12-04', '2026-12-04', '1234567890', 'Kurud', '1764855137_AEGON_I.jpg', '2025-12-04 13:32:17', 'Vish', 0, NULL, 'Web Developer Freelancing', 'B.Tech '),
-(10, 8, 7, 12, 1, 'Male', '2025-12-13', '2025-12-04', '2026-12-04', '8234567890', 'Near railway station,Kohka', '1764877201_wallpaperflare.com_wallpaper (2).jpg', '2025-12-04 19:40:01', 'Sonu kumar', 0, NULL, '', ''),
-(13, 12, 6, 6, 1, 'Male', '1991-11-19', '2025-12-05', '2026-12-05', '1234567890', 'Near magneto', '1764919049_logo.png', '2025-12-05 07:17:29', 'Rajiv', 0, NULL, '', ''),
-(18, 15, 7, 12, 1, 'Male', '1994-11-03', '2025-12-04', '2026-12-04', '8234567890', 'Near Station', '1764942326_wallpaperflare.com_wallpaper.jpg', '2025-12-05 13:45:26', 'jon', 650, NULL, 'CEO', 'B.tech_AI'),
-(19, 16, 5, 17, 1, 'Male', '2000-10-10', '2025-12-07', '2026-12-07', '7321456980', 'Avanti bai chowk,kohka,Bhilai', '1765115919pray.jpg', '2025-12-07 13:49:57', 'Shiv kumar', 100, NULL, '', ''),
-(20, 17, 7, 14, 1, 'Male', '1989-04-14', '2025-12-07', '2026-12-07', '7321456980', 'Near China Market', '1765121172_flower.webp', '2025-12-07 15:26:12', 'Rajendra Kumar', -1250, NULL, '', ''),
-(37, 35, 5, 5, 2, 'Male', '1993-02-03', '0000-00-00', '0000-00-00', '1234567898', 'Middle Earth', 'default.png', '2025-12-11 15:36:40', 'Legolas', 0, NULL, '', ''),
-(23, 21, 5, 17, 2, '', '1994-06-15', '2025-12-08', NULL, '9479031444', 'Near hanuman Madir', NULL, '2025-12-08 11:16:40', 'Ravi Kumar', 0, NULL, 'dvd', 'dvd'),
-(27, 25, 6, 7, 1, '', '0000-00-00', '2025-12-08', NULL, '8888844444', NULL, NULL, '2025-12-08 18:30:56', 'efefee', 0, NULL, '', ''),
-(35, 33, 7, 11, 2, '', '0000-00-00', '2025-12-11', NULL, '123', NULL, 'default.png', '2025-12-11 06:16:01', 'Ravi kumar patni', 0, NULL, '', ''),
-(28, 26, 5, 4, 2, '', '0000-00-00', '2025-12-09', NULL, '7896412307', NULL, 'default.png', '2025-12-09 16:50:09', 'pp', 0, NULL, '', ''),
-(29, 27, 5, 3, 1, 'Male', '1955-05-11', '2025-12-09', NULL, '8877799999', 'Casterly Rock,Westelands', '1765301392_1764875203_wallpaperflare.com_wallpaper.jpg', '2025-12-09 17:29:52', 'Tywin Lanister', -200, 'admin', '', ''),
-(31, 29, 7, 14, 2, '', '0000-00-00', '2025-12-09', NULL, '8788787454', NULL, 'default.png', '2025-12-09 17:44:10', 'Cersie', 0, NULL, '', ''),
-(38, 36, 7, 11, 2, '', '0000-00-00', NULL, NULL, '1478520000', NULL, 'default.png', '2025-12-11 15:44:33', 'ahoy', 0, NULL, '', ''),
-(33, 31, 5, 5, 1, 'Male', '2003-08-21', '0000-00-00', '0000-00-00', '7777777777', 'Dragonstone,Westeros', 'default.png', '2025-12-10 12:36:05', 'Aegon Targaryen', 550, NULL, '', ''),
-(36, 34, 5, 5, 2, '', '0000-00-00', NULL, NULL, '4440004400', NULL, 'default.png', '2025-12-11 15:24:37', 'end', 0, NULL, '', ''),
-(39, 38, 7, 11, 2, 'Female', '1996-06-10', '2025-12-11', '0000-00-00', '1234567885', 'Near Rani ganj,Bilaspur', 'default.png', '2025-12-11 15:57:13', 'Sujata', 0, 'admin', '', ''),
-(40, 39, 7, 14, 2, 'Ravi Husain', '0000-00-00', '2025-12-11', NULL, '1839721354', NULL, 'default.png', '2025-12-11 16:02:20', '', 0, 'admin', '', '');
+INSERT INTO `sens_members` (`member_id`, `user_id`, `zone_id`, `city_id`, `plan_id`, `gender`, `dob`, `membership_start`, `membership_end`, `phone`, `address`, `photo`, `created_at`, `fullname`, `balance_amount`, `created_by`, `business`, `education`, `mstatus`) VALUES
+(11, 9, 5, 4, 2, 'Male', '1988-09-01', '2025-12-04', '2026-11-04', '6666666666', 'Near Puri ITI,kohka', '1764877535_logo.png', '2025-12-04 19:45:35', 'Surya Naik', 500, NULL, '', '', 1),
+(7, 5, 5, 5, 1, 'Male', '1999-05-17', '2025-12-04', '2026-12-04', '1234567890', 'Kurud', '1764855137_AEGON_I.jpg', '2025-12-04 13:32:17', 'Vish', 0, NULL, 'Web Developer Freelancing', 'B.Tech ', 1),
+(10, 8, 7, 12, 1, 'Male', '2025-12-13', '2025-12-04', '2026-12-04', '8234567890', 'Near railway station,Kohka', '1764877201_wallpaperflare.com_wallpaper (2).jpg', '2025-12-04 19:40:01', 'Sonu kumar', 0, NULL, '', '', 0),
+(13, 12, 6, 6, 1, 'Male', '1991-11-19', '2025-12-05', '2026-12-05', '1234567890', 'Near magneto', '1764919049_logo.png', '2025-12-05 07:17:29', 'Rajiv', 0, NULL, '', '', 1),
+(18, 15, 7, 12, 1, 'Male', '1994-11-03', '2025-12-04', '2026-12-04', '8234567890', 'Near Station', '1764942326_wallpaperflare.com_wallpaper.jpg', '2025-12-05 13:45:26', 'jon', 650, NULL, 'CEO', 'B.tech_AI', 0),
+(19, 16, 5, 17, 1, 'Male', '2000-10-10', '2025-12-07', '2026-12-07', '7321456980', 'Avanti bai chowk,kohka,Bhilai', '1765115919pray.jpg', '2025-12-07 13:49:57', 'Shiv kumar', 100, NULL, '', '', 1),
+(20, 17, 7, 14, 1, 'Male', '1989-04-14', '2025-12-07', '2026-12-07', '7321456980', 'Near China Market', '1765121172_flower.webp', '2025-12-07 15:26:12', 'Rajendra Kumar', -1250, NULL, '', '', 1),
+(37, 35, 5, 5, 2, 'Male', '1993-02-03', '0000-00-00', '0000-00-00', '1234567898', 'Middle Earth', 'default.png', '2025-12-11 15:36:40', 'Legolas', 0, NULL, '', '', 1),
+(23, 21, 5, 17, 2, '', '1994-06-15', '2025-12-08', NULL, '9479031444', 'Near hanuman Madir', NULL, '2025-12-08 11:16:40', 'Ravi Kumar', 0, NULL, 'dvd', 'dvd', 1),
+(27, 25, 6, 7, 1, '', '0000-00-00', '2025-12-08', NULL, '8888844444', NULL, NULL, '2025-12-08 18:30:56', 'efefee', 0, NULL, '', '', 1),
+(35, 33, 7, 11, 2, '', '0000-00-00', '2025-12-11', NULL, '123', NULL, 'default.png', '2025-12-11 06:16:01', 'Ravi kumar patni', 80, NULL, '', '', 1),
+(28, 26, 5, 4, 2, '', '0000-00-00', '2025-12-09', NULL, '7896412307', NULL, 'default.png', '2025-12-09 16:50:09', 'pp', 0, NULL, '', '', 1),
+(29, 27, 5, 3, 1, 'Male', '1955-05-11', '2025-12-09', NULL, '8877799999', 'Casterly Rock,Westelands', '1765301392_1764875203_wallpaperflare.com_wallpaper.jpg', '2025-12-09 17:29:52', 'Tywin Lanister', -200, 'admin', '', '', 1),
+(31, 29, 7, 14, 2, '', '0000-00-00', '2025-12-09', NULL, '8788787454', NULL, 'default.png', '2025-12-09 17:44:10', 'Cersie', 0, NULL, '', '', 1),
+(38, 36, 7, 11, 2, '', '0000-00-00', NULL, NULL, '1478520000', NULL, 'default.png', '2025-12-11 15:44:33', 'ahoy', 0, NULL, '', '', 1),
+(33, 31, 5, 5, 1, 'Male', '2003-08-21', '0000-00-00', '0000-00-00', '7777777777', 'Dragonstone,Westeros', '1765974920wallpaperflare.com_wallpaper.jpg', '2025-12-10 12:36:05', 'Aegon Targaryen', 1, NULL, '', '', 1),
+(36, 34, 5, 5, 2, '', '0000-00-00', NULL, NULL, '4440004400', NULL, 'default.png', '2025-12-11 15:24:37', 'end', 0, NULL, '', '', 1),
+(39, 38, 7, 11, 2, 'Female', '1996-06-10', '2025-12-11', '0000-00-00', '1234567885', 'Near Rani ganj,Bilaspur', 'default.png', '2025-12-11 15:57:13', 'Sujata', 0, 'admin', '', '', 1),
+(40, 39, 7, 14, 2, 'Ravi Husain', '0000-00-00', '2025-12-11', NULL, '1839721354', NULL, 'default.png', '2025-12-11 16:02:20', '', 0, 'admin', '', '', 1);
 
 -- --------------------------------------------------------
 
@@ -398,23 +410,23 @@ CREATE TABLE IF NOT EXISTS `sens_messages` (
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `created_by` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `sens_messages`
 --
 
 INSERT INTO `sens_messages` (`id`, `sender_id`, `sender_type`, `receiver_id`, `receiver_type`, `subject`, `message`, `status`, `created_at`, `created_by`) VALUES
-(8, 15, 'user', 1, 'admin', 'Payment issue', 'update my dashboard', 'unread', '2025-12-07 13:01:10', 'admin'),
-(12, 15, 'user', 1, 'admin', 'hmm', 'thik h', 'unread', '2025-12-09 18:00:35', 'jon'),
+(20, 1, 'admin', 31, 'user', 'ok', 'ddw', 'unread', '2025-12-16 07:46:05', 'admin'),
 (6, 1, 'admin', 15, 'user', 'We hear your Complain.', 'We will soon update your payment in your dashboard', 'unread', '2025-12-07 12:54:33', 'admin'),
-(11, 15, 'user', 1, 'admin', 'hi', 'hello', 'unread', '2025-12-08 08:52:48', 'jon'),
+(21, 31, 'user', 1, 'admin', 'Test Message', 'This is a Sample Message .', 'unread', '2025-12-16 08:05:09', 'Aegon Targaryen'),
 (13, 1, 'admin', 15, 'user', 'ok', 'ahoy', 'unread', '2025-12-09 18:01:13', 'admin'),
 (14, 1, 'admin', 15, 'user', 'tu samjha ', 'ya ni', 'unread', '2025-12-09 18:01:27', 'admin'),
 (15, 1, 'admin', 15, 'user', 'nh', 'hh', 'unread', '2025-12-10 07:29:08', 'admin'),
 (16, 1, 'admin', 15, 'user', 'ff', 'kj', 'unread', '2025-12-10 07:32:35', 'admin'),
-(17, 30, 'user', 1, 'admin', 'Payment issue', 'update my dashboard', 'unread', '2025-12-10 07:38:06', 'toren'),
-(18, 1, 'admin', 30, 'user', 'Reply to toren', 'we will soon update your dashboard', 'unread', '2025-12-10 07:38:56', 'admin');
+(18, 1, 'admin', 30, 'user', 'Reply to toren', 'we will soon update your dashboard', 'unread', '2025-12-10 07:38:56', 'admin'),
+(19, 31, 'user', 1, 'admin', 'hi', 'fedf', 'unread', '2025-12-16 07:45:50', 'Aegon Targaryen'),
+(22, 1, 'admin', 31, 'user', 'ok', 'i got your message', 'unread', '2025-12-16 08:16:28', 'admin');
 
 -- --------------------------------------------------------
 
@@ -613,26 +625,29 @@ CREATE TABLE IF NOT EXISTS `sens_receipt` (
   `manualID` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_by` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `receipt_type` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `recdate` date NOT NULL,
+  `recdate` datetime NOT NULL,
   PRIMARY KEY (`receipt_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=167 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=170 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `sens_receipt`
 --
 
 INSERT INTO `sens_receipt` (`receipt_id`, `member_id`, `receipt_date`, `receipt_amount`, `purpose`, `manualID`, `created_by`, `receipt_type`, `recdate`) VALUES
-(155, 18, '2025-12-06 11:19:02', 500, 'Membership yearly fees received-Cash', '186', 'dany', '', '2025-12-06'),
-(156, 18, '2025-12-06 11:20:41', 100, 'Monthly Cleaning Fee received', '188', 'admit', '', '2025-12-06'),
-(157, 18, '2025-12-06 11:38:39', 350, 'Payment received for both diwali event 2k25 and up', '236', 'dany', '', '2025-12-06'),
-(158, 18, '2025-12-07 13:33:21', 100, 'plantation fee received', '568', 'dany', '', '2025-12-07'),
-(159, 20, '2025-12-08 09:00:19', 1500, 'mujhe aapka 3 saal ka paisa mil chuka h', '5645', 'admin', 'Yearly Fee', '2025-12-08'),
-(160, 18, '2025-12-08 09:01:11', 1500, 'mujhe aapka 3 saal ka paisa mil chuka h', '999', 'admin', 'Yearly Fee', '2025-12-08'),
-(161, 20, '2025-12-08 09:26:13', 150, 'ye fee society k personal reasons se kata h', '54', 'admin', 'Others', '2025-12-08'),
-(162, 29, '2025-12-11 10:09:03', 200, 'Money received by Tywin', '8753', 'admin', 'Yearly Fee', '2025-12-11'),
-(163, 18, '2025-12-11 18:04:06', 100, 'Monthly Cleaning', '4102', 'admin', 'Others', '2025-12-11'),
-(164, 18, '2025-12-11 18:05:11', 50, 'holi chanda', '780', 'admin', 'Others', '2025-12-09'),
-(165, 33, '2025-12-14 10:53:02', 100, 'yearly Membership fees', '1089', 'admin', 'Yearly Fee', '2025-12-11');
+(155, 18, '2025-12-06 11:19:02', 500, 'Membership yearly fees received-Cash', '186', 'dany', '', '2025-12-06 00:00:00'),
+(156, 18, '2025-12-06 11:20:41', 100, 'Monthly Cleaning Fee received', '188', 'admit', '', '2025-12-06 00:00:00'),
+(157, 18, '2025-12-06 11:38:39', 350, 'Payment received for both diwali event 2k25 and up', '236', 'dany', '', '2025-12-06 00:00:00'),
+(158, 18, '2025-12-07 13:33:21', 100, 'plantation fee received', '568', 'dany', '', '2025-12-07 00:00:00'),
+(159, 20, '2025-12-08 09:00:19', 1500, 'mujhe aapka 3 saal ka paisa mil chuka h', '5645', 'admin', 'Yearly Fee', '2025-12-08 00:00:00'),
+(160, 18, '2025-12-08 09:01:11', 1500, 'mujhe aapka 3 saal ka paisa mil chuka h', '999', 'admin', 'Yearly Fee', '2025-12-08 00:00:00'),
+(161, 20, '2025-12-08 09:26:13', 150, 'ye fee society k personal reasons se kata h', '54', 'admin', 'Others', '2025-12-08 00:00:00'),
+(162, 29, '2025-12-11 10:09:03', 200, 'Money received by Tywin', '8753', 'admin', 'Yearly Fee', '2025-12-11 00:00:00'),
+(163, 18, '2025-12-11 18:04:06', 100, 'Monthly Cleaning', '4102', 'admin', 'Others', '2025-12-11 00:00:00'),
+(164, 18, '2025-12-11 18:05:11', 50, 'holi chanda', '780', 'admin', 'Others', '2025-12-09 00:00:00'),
+(165, 33, '2025-12-14 10:53:02', 100, 'yearly Membership fees', '1089', 'admin', 'Yearly Fee', '2025-12-11 00:00:00'),
+(167, 33, '2025-12-17 13:36:33', 500, 'Bill is payed', '787', 'admin', 'New Membership', '2025-12-17 08:06:33'),
+(168, 37, '2025-12-17 13:40:03', 2000, 'Bill 1 and Bill2 both are baid', '798', 'admin', 'New Membership', '2025-12-17 13:40:03'),
+(169, 35, '2025-12-17 13:54:00', 1500, 'For both new membership and yearly fee', '103', 'admin', 'New Membership', '2025-12-17 13:54:00');
 
 -- --------------------------------------------------------
 
@@ -760,7 +775,7 @@ INSERT INTO `sens_users` (`id`, `name`, `email`, `password`, `role`, `created_at
 (31, 'Aegon Targaryen', '123vishal18910@gmail.com', '12345', 'user', '2025-12-10 12:36:05', 0, NULL),
 (35, 'efefef', '', '123456', 'user', '2025-12-11 15:36:40', 0, NULL),
 (36, 'ahoy', '', '123456', 'user', '2025-12-11 15:44:33', 0, NULL),
-(37, 'okadda', '', '123456', 'user', '2025-12-11 15:56:24', 1, 'admin'),
+(37, 'Legolas', '', '123456', 'user', '2025-12-11 15:56:24', 1, 'admin'),
 (38, 'okadda44', '', '123456', 'user', '2025-12-11 15:57:13', 1, 'admin'),
 (39, 'Ravi Husain', '', '123456', 'user', '2025-12-11 16:02:20', 1, 'admin');
 

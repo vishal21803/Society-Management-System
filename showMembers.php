@@ -27,7 +27,7 @@ $zones= mysqli_query($con,
      WHERE zstatus = 1 
      ORDER BY CAST(REGEXP_SUBSTR(zone_name, '[0-9]+') AS UNSIGNED)"
 );            while($z = mysqli_fetch_assoc($zones)){
-                echo "<option>{$z['zone_name']}</option>";
+echo "<option value='{$z['zone_id']}'>{$z['zone_name']}</option>";
             }
             ?>
         </select>
@@ -37,12 +37,7 @@ $zones= mysqli_query($con,
         <label>City</label>
         <select id="fltercity" class="form-control">
             <option value="">All Cities</option>
-            <?php
-            $cities = mysqli_query($con,"SELECT city_name FROM sens_cities ORDER BY city_name");
-            while($c = mysqli_fetch_assoc($cities)){
-                echo "<option>{$c['city_name']}</option>";
-            }
-            ?>
+          
         </select>
     </div>
 </div>
@@ -56,6 +51,8 @@ $zones= mysqli_query($con,
                             <th>Phone</th>
                             <th>Zone</th>
                             <th>City</th>
+                            <th style="display:none;">ZoneID</th>
+<th style="display:none;">CityID</th>
                         </tr>
                     </thead>
 
@@ -64,6 +61,7 @@ $zones= mysqli_query($con,
 $res = mysqli_query($con,"
 SELECT 
     m.member_id,
+    m.mstatus,
     m.user_id,
     m.fullname,
     m.phone,
@@ -89,16 +87,19 @@ ORDER BY m.fullname ASC
 
 $i = 1;
 while($row = mysqli_fetch_assoc($res)){
+
+    $redClass = ($row['mstatus'] == 0) ? "table-danger" : "";
 ?>
-<tr id="memberRow<?= $row['member_id'] ?>">
+<tr id="memberRow<?= $row['member_id'] ?>" class="<?= $redClass ?>">
     <td><?= $row["member_id"] ?></td>
-    
     <td><?= htmlspecialchars($row['fullname']) ?></td>
     <td><?= htmlspecialchars($row['email']) ?></td>
     <td><?= htmlspecialchars($row['phone']) ?></td>
     <td><?= htmlspecialchars($row['zone_name']) ?></td>
     <td><?= htmlspecialchars($row['city_name']) ?></td>
-   
+    <td style="display:none;"><?= $row['zone_id'] ?></td>
+<td style="display:none;"><?= $row['city_id'] ?></td>
+
 </tr>
 <?php } ?>
                     </tbody>
@@ -116,10 +117,9 @@ while($row = mysqli_fetch_assoc($res)){
 
 </main>
 
-<!-- JS -->
-<script>
 
-</script>
+
+
 
 <?php
 include("footer.php");
