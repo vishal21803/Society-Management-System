@@ -145,7 +145,7 @@ SELECT
  FROM sens_receipt
  WHERE member_id='$member_id'
 
-ORDER BY trans_date ASC
+ORDER BY recdate desc
 ";
 
 

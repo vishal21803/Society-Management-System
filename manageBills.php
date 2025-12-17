@@ -146,7 +146,7 @@ $historyQuery = "
  WHERE member_id='$member_id'
 
 
-ORDER BY trans_date DESC
+ORDER BY bdate DESC
 ";
 
 

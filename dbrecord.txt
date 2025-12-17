@@ -2,3 +2,4 @@
 2.one new column (recdate) is added to sens_receipt table.
 3.table:sens_expenses is created.
 4.one new column (bdate) is added to sens_bills table.
+5.datatype of bdate(sens_bills) and recdate(sens_receipt) has been changed from date to datetime.

@@ -1,5 +1,6 @@
 <?php
 include("connectdb.php");
+date_default_timezone_set("Asia/Kolkata"); // ⭐ add this line
 
 $bill_id     = $_POST['bill_id'];
 $member_id   = $_POST['member_id'];
@@ -8,6 +9,9 @@ $new_amount  = $_POST['new_amount'];
 $purpose     = $_POST['purpose'];
 $type=$_POST['type'];
 $bdate=$_POST['bildate'];
+$time       = date("H:i:s");
+$bill_date  = $bdate . " " . $time;
+
 
 mysqli_begin_transaction($con);
 
@@ -16,7 +20,7 @@ try {
   // 1️⃣ Update bill
   mysqli_query($con,"
     UPDATE sens_bills
-    SET bill_amount='$new_amount', bill_purpose='$purpose', bill_type='$type',bdate='$bdate'
+    SET bill_amount='$new_amount', bill_purpose='$purpose', bill_type='$type',bdate='$bill_date'
     WHERE bill_id='$bill_id'
   ");
 

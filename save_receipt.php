@@ -1,4 +1,6 @@
 <?php @session_start();
+date_default_timezone_set("Asia/Kolkata"); // ⭐ add this line
+
 include("connectdb.php");
 $uname=$_SESSION["uname"];
 
@@ -12,10 +14,13 @@ $rdate=$_POST['receipt_date'];
 // ✅ CURRENT DATE + TIME AUTO
 $receipt_date = date("Y-m-d H:i:s");
 
+$time       = date("H:i:s");
+$reci_date  = $rdate . " " . $time;
+
 /* ✅ INSERT INTO RECEIPT */
 $insert = mysqli_query($con, "
     INSERT INTO sens_receipt (manualID, member_id, receipt_date, receipt_amount, purpose,created_by,receipt_type,recdate)
-    VALUES ('$receipt_id', '$member_id', '$receipt_date', '$receipt_amount', '$purpose','$uname','$type','$rdate')
+    VALUES ('$receipt_id', '$member_id', NOW(), '$receipt_amount', '$purpose','$uname','$type','$reci_date')
 ");
 
 if($insert){
