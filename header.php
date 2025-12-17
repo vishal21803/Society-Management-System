@@ -246,6 +246,8 @@ li{
       <a class="dropdown-item-custom" href="purchaseHistory.php">Membership History</a>
       <a class="dropdown-item-custom" href="manageFamily.php">My Family</a> 
       <a class="dropdown-item-custom" href="show_downloads.php">My Downloads</a>
+         <a class="dropdown-item-custom" href="userId.php">My I-Card</a>
+
       <a class="dropdown-item-custom" href="userMessages.php">Chat</a>
 
   </div>
@@ -462,6 +464,7 @@ li{
      <li><a  href="purchaseHistory.php">Membership History</a></li>
     <li><a  href="manageFamily.php">My Family</a></li>
     <li><a  href="show_downloads.php">My Downloads</a></li>
+    <li><a href="userId.php">My I-Card</a></li>
     <li><a  href="userMessages.php">Chat</a></li>
    
         </ul>
