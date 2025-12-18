@@ -174,98 +174,159 @@ li{
 
   <div class="container">
 
-    <!-- ✅ LOGO -->
+    <!-- LOGO -->
     <a class="navbar-brand fw-bold text-white" href="index.php">
-      <img src="upload/logo2.png" alt="" style="width:300px;" >
-      
+      <img src="upload/logo2.png" style="width:300px;">
     </a>
 
-    <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-      <span class="navbar-toggler-icon"></span>
-    </button> -->
-
+    <!-- mobile button -->
     <button class="btn text-dark d-lg-none"
         type="button"
         data-bs-toggle="offcanvas"
         data-bs-target="#mobileMenu" >
-    <i class="bi bi-list fs-1"></i>
-</button>
-
+      <i class="bi bi-list fs-1"></i>
+    </button>
 
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto ">
+      <ul class="navbar-nav ms-auto">
 
-        <!-- ✅ COMMON LINKS -->
-      <li class="nav-item">
-  <a class="nav-link text-white <?= ($currentPage == 'index.php') ? 'active-link' : '' ?>" href="index.php">Home</a>
-</li>
-     <li class="nav-item">
-  <a class="nav-link text-white <?= ($currentPage == 'about.php') ? 'active-link' : '' ?>" href="about.php">About Us</a>
-</li>
+ <?php if(!isset($_SESSION["uname"])) { ?> 
 
-<li class="nav-item dropdown-custom">
-  <a class="nav-link text-white" href="#">Updates</a>
-<div class="dropdown-custom-menu">
-      <a class="dropdown-item-custom" href="showGallery.php">Gallery</a>
-      <a class="dropdown-item-custom" href="showNews.php">News</a>
-      <a class="dropdown-item-custom" href="showEvents.php">Events</a>
-  </div>
-</li>
+        <!-- PUBLIC MENU ONLY -->
+        <li class="nav-item">
+            <a class="nav-link text-white <?= ($currentPage == 'index.php') ? 'active-link' : '' ?>" href="index.php">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-white <?= ($currentPage == 'about.php') ? 'active-link' : '' ?>" href="about.php">About Us</a>
+        </li>
 
+        <li class="nav-item dropdown-custom">
+            <a class="nav-link text-white" href="#">Updates</a>
+            <div class="dropdown-custom-menu">
+                <a class="dropdown-item-custom" href="showNews.php">News</a>
+                <a class="dropdown-item-custom" href="showEvents.php">Events</a>
+                <a class="dropdown-item-custom" href="showGallery.php">Gallery</a>
+                
+            </div>
+        </li>
 
+        <li class="nav-item">
+            <a class="nav-link text-white <?= ($currentPage == 'showDownloads.php') ? 'active-link' : '' ?>" href="showDownloads.php">Downloads</a>
+        </li>
 
+        <li class="nav-item">
+            <a class="nav-link text-white <?= ($currentPage == 'showDonate.php') ? 'active-link' : '' ?>" href="showDonate.php">Donation</a>
+        </li>
 
-<li class="nav-item">
-  <a class="nav-link text-white <?= ($currentPage == 'showDownloads.php') ? 'active-link' : '' ?>" href="showDownloads.php">Downloads</a>
-</li>
-<li class="nav-item">
-  <a class="nav-link text-white <?= ($currentPage == 'showDonate.php') ? 'active-link' : '' ?>" href="showDonate.php">Donation</a>
-</li>
+        <li class="nav-item">
+            <a class="nav-link text-white <?= ($currentPage == 'showContact.php') ? 'active-link' : '' ?>" href="showContact.php">Contact Us</a>
+        </li>
 
-<li class="nav-item">
-  <a class="nav-link text-white <?= ($currentPage == 'showContact.php') ? 'active-link' : '' ?>" href="showContact.php">Contact Us</a>
-</li>
+        <li class="nav-item dropdown-custom">
+            <a class="nav-link text-white" href="#">Committee</a>
+            <div class="dropdown-custom-menu">
+                <a class="dropdown-item-custom" href="currentCommity.php">Current Committee</a>
+                <a class="dropdown-item-custom" href="pastCommity.php">Past Committee</a>
+                <a class="dropdown-item-custom" href="showMembers.php">Our Members</a>
+                <a class="dropdown-item-custom" href="showServices.php">Our Services</a>
+                <a class="dropdown-item-custom" href="showNeed.php">Our Requirement</a>
+            </div>
+        </li>
 
-<li class="nav-item dropdown-custom">
-  <a class="nav-link text-white" href="#">Commity</a>
-<div class="dropdown-custom-menu">
-      <a class="dropdown-item-custom" href="currentCommity.php">Current Commity</a>
-      <a class="dropdown-item-custom" href="pastCommity.php">Past Commity</a> 
-      <a class="dropdown-item-custom" href="showMembers.php">Our Members</a>
-       <a class="dropdown-item-custom" href="showServices.php">Our Services</a>
-        <a class="dropdown-item-custom" href="showNeed.php">Our Requirement</a>
+        <li class="nav-item"><a class="nav-link text-white"  href="https://jainkhandelwal.org/matrimony/">Matrimony</a></li>
 
-  </div>
-</li>
-
-
-
-        <li class="nav-item"><a class="nav-link text-white" href="https://jainkhandelwal.org/matrimony/">Matrimony</a></li>
-<?php if(isset($_SESSION["uname"], $_SESSION["utype"]) && $_SESSION["utype"] == "user"){ ?>
-
-   <li class="nav-item dropdown-custom">
-  <a class="nav-link text-white" href="#">Dashboard</a>
-<div class="dropdown-custom-menu">
-      <a class="dropdown-item-custom" href="purchaseHistory.php">Membership History</a>
-      <a class="dropdown-item-custom" href="manageFamily.php">My Family</a> 
-      <a class="dropdown-item-custom" href="show_downloads.php">My Downloads</a>
-         <a class="dropdown-item-custom" href="userId.php">My I-Card</a>
-         <a class="dropdown-item-custom" href="manageServices.php">My Services</a>
-          <a class="dropdown-item-custom" href="manageNeed.php">My Requirement</a>
+<?php } ?>
 
 
 
-      <a class="dropdown-item-custom" href="userMessages.php">Chat</a>
+        <!-- =============================== -->
+        <!--        ROLE BASED MENUS        -->
+        <!-- =============================== -->
 
-  </div>
-</li>
+        <!-- ========== ADMIN MENUS ========== -->
+        <?php if(isset($_SESSION["uname"],$_SESSION["utype"]) && $_SESSION["utype"]=="admin"){ ?>
+
+            <!-- MASTER -->
+            <li class="nav-item dropdown-custom">
+                <a class="nav-link text-white" href="#">Master</a>
+                <div class="dropdown-custom-menu">
+                    <a class="dropdown-item-custom" href="dataTableZones.php">Manage Zones</a>
+                    <a class="dropdown-item-custom" href="dataTableCities.php">Manage Cities</a>
+                    <a class="dropdown-item-custom" href="dataTableMember.php">Manage Members</a>
+                    <a class="dropdown-item-custom" href="manageCommity.php">Manage Committee</a>
+                    <a class="dropdown-item-custom" href="manage_news.php">Manage News</a>
+                    <a class="dropdown-item-custom" href="manage_events.php">Manage Events</a>
+                    <a class="dropdown-item-custom" href="manage_gallery.php">Manage Gallery</a>
+                     <a class="dropdown-item-custom" href="datatTableDownload.php">Manage Download</a>
+
+                </div>
+            </li>
+
+            <!-- TRANSACTION -->
+            <li class="nav-item dropdown-custom">
+                <a class="nav-link text-white" href="#">Transaction</a>
+                <div class="dropdown-custom-menu">
+                   <a class="dropdown-item-custom" href="admin-payments.php">Bills/Receipt History</a>
+                    <a class="dropdown-item-custom" href="manageBills.php">Manage Bills</a>
+                    <a class="dropdown-item-custom" href="manageReceipt.php">Manage Receipt</a>
+                    <a class="dropdown-item-custom" href="manageExpenses.php"> Manage Expenses</a>
+                    <a class="dropdown-item-custom" href="manage_req.php">Manage Requests</a>
+                    <a class="dropdown-item-custom" href="contactQueries.php">Contact Queries</a>
+                    <a class="dropdown-item-custom" href="adminMessages.php">Chat</a>
+                </div>
+            </li>
+
+            <!-- REPORTS -->
+            <li class="nav-item dropdown-custom">
+                <a class="nav-link text-white" href="#">Reports</a>
+                <div class="dropdown-custom-menu">
+                    <a class="dropdown-item-custom" href="manageReports.php">All Reports</a>
+                       <a class="dropdown-item-custom" href="reportReceive.php">Receivable Report</a>
+                        <a class="dropdown-item-custom" href="reportBill.php">Bill Report</a>
+                </div>
+            </li>
+
+            <!-- PROFILE -->
+            <li class="nav-item dropdown-custom">
+                <a class="nav-link text-white fw-semibold dropdown-toggle-custom d-flex align-items-center gap-2" href="javascript:void(0)">
+                    Profile
+                </a>
+                <div class="dropdown-custom-menu">
+                    <a class="dropdown-item-custom" href="">Edit Profile</a>
+                    <a class="dropdown-item-custom" href="logout.php">Logout</a>
+                </div>
+            </li>
 
 
+        <!-- ========== USER MENUS ========== -->
+        <?php } elseif(isset($_SESSION["uname"],$_SESSION["utype"]) && $_SESSION["utype"]=="user"){ ?>
 
-      <li class="nav-item dropdown-custom">
-  <a class="nav-link text-white fw-semibold dropdown-toggle-custom d-flex align-items-center gap-2"
-     href="javascript:void(0)">
-          <?php
+            <li class="nav-item dropdown-custom">
+                <a class="nav-link text-white" href="#">Updates</a>
+                <div class="dropdown-custom-menu">
+                    <a class="dropdown-item-custom" href="showNews.php">News</a>
+                    <a class="dropdown-item-custom" href="showEvents.php">Events</a>
+                    <a class="dropdown-item-custom" href="showGallery.php">Gallery</a>
+                  
+                </div>
+            </li>
+
+            <!-- TRANSACTION -->
+            <li class="nav-item dropdown-custom">
+                <a class="nav-link text-white" href="#">Transactions</a>
+                <div class="dropdown-custom-menu">
+                    <a class="dropdown-item-custom" href="purchaseHistory.php">Membership History</a>
+                    <a class="dropdown-item-custom" href="manageFamily.php">My Family</a>
+                    <a class="dropdown-item-custom" href="userMessages.php">My Chat</a>
+                    <a class="dropdown-item-custom" href="userId.php">My I-Card</a>
+                    <a class="dropdown-item-custom" href="manageServices.php">My Services</a>
+                    <a class="dropdown-item-custom" href="manageNeed.php">My Requirement</a>
+                </div>
+            </li>
+
+            <!-- PROFILE -->
+            <li class="nav-item dropdown-custom">
+                <a class="nav-link text-white" href="#">   <?php
           if(isset($_SESSION["member_id"])){
                      $imgiD=$_SESSION["member_id"];
 
@@ -279,100 +340,18 @@ li{
           ?>
     <!-- 👤 Profile Image -->
     <img src="upload/member/<?php echo $pic ; ?>" class="nav-profile-img">
-    <?php }}?>
-
-    Profile
-  </a>
-
-  <div class="dropdown-custom-menu">
-      <a class="dropdown-item-custom" href="editProfile.php">Edit Profile</a>
-      <a class="dropdown-item-custom" href="logout.php">Logout</a>
-  </div>
-</li>
-
-<?php } else if(isset($_SESSION["uname"], $_SESSION["utype"]) && $_SESSION["utype"] == "admin"){ ?>
-
-    <!-- <li class="nav-item">
-      <a class="nav-link text-white <?= ($currentPage == 'adminPage.php') ? 'active-link' : '' ?>" 
-         href="adminPage.php">Dashboard</a>
-    </li> -->
-
-    <li class="nav-item dropdown-custom">
-  <a class="nav-link text-white fw-semibold dropdown-toggle-custom" href="javascript:void(0)">
-   Dashboard
-  </a>
-  <div class="dropdown-custom-menu">
-          <a class="dropdown-item-custom" href="dataTableZones.php">Manage Zones</a>
-          <a class="dropdown-item-custom" href="dataTableCities.php">Manage Cities</a>
-          <a class="dropdown-item-custom" href="dataTableMember.php">Manage Members</a>
-          <a class="dropdown-item-custom" href="manage_req.php">Manage Request</a>
-
-          <a class="dropdown-item-custom" href="manageCommity.php">Manage Commity</a>
-          <a class="dropdown-item-custom" href="manage_events.php">Manage Events</a>
-          <a class="dropdown-item-custom" href="manage_news.php">Manage News</a>
-          <a class="dropdown-item-custom" href="manage_gallery.php">Manage Gallery</a>
-
-          <a class="dropdown-item-custom" href="admin-payments.php">Bill/Receipt History</a>
-          <a class="dropdown-item-custom" href="manageBills.php">Manage Bills</a>
-          <a class="dropdown-item-custom" href="manageReceipt.php">Manage Receipt</a>
-          <a class="dropdown-item-custom" href="manageExpenses.php">Manage Expenses</a>
-
-          <a class="dropdown-item-custom" href="contactQueries.php">Contact Queries</a>
-          <a class="dropdown-item-custom" href="datatTableDownload.php">Manage Downloads</a>
-          <a class="dropdown-item-custom" href="adminMessages.php">Manage Messages</a>
-          <a class="dropdown-item-custom" href="manageReports.php">Manage Reports</a>
+    <?php }}?> Profile</a>
+                <div class="dropdown-custom-menu">
+                    <a class="dropdown-item-custom" href="editProfile.php">Edit Profile</a>
+                    <a class="dropdown-item-custom" href="logout.php">Logout</a>
+                </div>
+            </li>
 
 
-
-
-  </div>
-</li>
-
-  <li class="nav-item dropdown-custom">
-  <a class="nav-link text-white fw-semibold dropdown-toggle-custom d-flex align-items-center gap-2"
-     href="javascript:void(0)">
-          <?php
-          if(isset($_SESSION["member_id"])){
-                     $imgiD=$_SESSION["member_id"];
-
-           include("connectdb.php");
-           $rsImg=mysqli_query($con,"select photo from sens_members where member_id='$imgiD'");
-           while($imgr=mysqli_fetch_array($rsImg)){
-            $pic=$imgr["photo"];
-
-           
-          
-          ?>
-    <!-- 👤 Profile Image -->
-    <img src="upload/.<?php $pic?>" class="nav-profile-img">
-    <?php }}?>
-
-    Profile
-  </a>
-
-  <div class="dropdown-custom-menu">
-      <a class="dropdown-item-custom" href="#">Edit Profile</a>
-      <a class="dropdown-item-custom" href="logout.php">Logout</a>
-  </div>
-</li>
-
-
-
-<?php } else if(isset($_SESSION["uname"], $_SESSION["utype"]) && $_SESSION["utype"] == "accountant"){ ?>
-
-    <li class="nav-item">
-      <a class="nav-link text-white <?= ($currentPage == 'accountantPage.php') ? 'active-link' : '' ?>" 
-         href="accountantPage.php">Dashboard</a>
-    </li>
-
-<?php } else { ?>
-
-    <li class="nav-item">
-      <a class="nav-link text-white <?= ($currentPage == 'login.php') ? 'active-link' : '' ?>" 
-         href="login.php">Login</a>
-    </li>
-
-<?php } ?>
+        <!-- ========== NOT LOGGED IN ========== -->
+        <?php } else { ?>
+            <li><a class="nav-link text-white" href="login.php">Login</a></li>
+        <?php } ?>
 
       </ul>
     </div>
@@ -380,141 +359,150 @@ li{
   </div>
 </nav>
 
+
+
+<!-- ================= MOBILE MENU ================== -->
+
 <div class="offcanvas offcanvas-start" tabindex="-1" id="mobileMenu">
-  
-  <!-- Header -->
-  <div class="offcanvas-header">
-    <h5 class="offcanvas-title fw-bold">Menu</h5>
-    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
-  </div>
 
-  <!-- Body -->
-  <div class="offcanvas-body p-0">
+    <div class="offcanvas-header">
+        <h5 class="fw-bold">Menu</h5>
+        <button class="btn-close" data-bs-dismiss="offcanvas"></button>
+    </div>
 
-    <ul class="list-unstyled mobile-menu">
+    <div class="offcanvas-body p-0">
 
-      <li><a href="index.php">Home</a></li>
-      <li><a href="about.php">About Us</a></li>
-      <li class="menu-dropdown">
-        <a href="#" data-bs-toggle="collapse" data-bs-target="#updateMenu">
-          Update <span>▾</span>
-        </a>
-        <ul class="collapse" id="updateMenu">
-          <li><a href="showNews.php">News</a></li>
-          <li><a href="showEvents.php">Events</a></li>
-          <li><a href="showGallery.php">Gallery</a></li>
+        <ul class="list-unstyled mobile-menu">
+<?php if(!isset($_SESSION["uname"])) { ?>
+            <li><a href="index.php">Home</a></li>
+            <li><a href="about.php">About Us</a></li>
+
+            <li class="menu-dropdown">
+                <a data-bs-toggle="collapse" data-bs-target="#mobUpdate">Updates ▾</a>
+                <ul class="collapse" id="mobUpdate">
+                    <li><a href="showNews.php">News</a></li>
+                    <li><a href="showEvents.php">Events</a></li>
+                    <li><a href="showGallery.php">Gallery</a></li>
+                </ul>
+            </li>
+
+            <li><a href="showDownloads.php">Downloads</a></li>
+            <li><a href="showDonate.php">Donation</a></li>
+            <li><a href="showContact.php">Contact Us</a></li>
+
+            <li class="menu-dropdown">
+                <a data-bs-toggle="collapse" data-bs-target="#mobCommittee">Committee ▾</a>
+                <ul class="collapse" id="mobCommittee">
+                  <li><a  href="currentCommity.php">Current Committee</a></li>
+                  <li><a  href="pastCommity.php">Past Committee</a></li>
+                  <li><a  href="showMembers.php">Our Members</a></li>
+                  <li><a  href="showServices.php">Our Services</a></li>
+                  <li><a  href="showNeed.php">Our Requirement</a></li>
+                </ul>
+            </li>
+            <li><a  href="https://jainkhandelwal.org/matrimony/">Matrimony</a></li>
+            <?php } ?>
+            
+            
+
+            <!-- Admin Mob -->
+            <?php if(isset($_SESSION["utype"]) && $_SESSION["utype"]=="admin"){ ?>
+
+                <li class="menu-dropdown">
+                    <a data-bs-toggle="collapse" data-bs-target="#mobMaster">Master ▾</a>
+                    <ul class="collapse" id="mobMaster">
+                        <li><a href="dataTableZones.php">Manage Zones</a></li>
+                        <li><a href="dataTableCities.php">Manage Cities</a></li>
+                        <li><a href="dataTableMember.php">Manage Members</a></li>
+                        <li><a href="manageCommity.php">Manage Committee</a></li>
+                        <li><a  href="manage_news.php">Manage News</a></li>
+                         <li><a  href="manage_events.php">Manage Events</a></li>
+                         <li><a  href="manage_gallery.php">Manage Gallery</a></li>
+                         <li> <a  href="datatTableDownload.php">Manage Download</a></li>
+                    
+                    </ul>
+                </li>
+
+                <li class="menu-dropdown">
+                    <a data-bs-toggle="collapse" data-bs-target="#mobTrans">Transaction ▾</a>
+                    <ul class="collapse" id="mobTrans">
+                      <li><a  href="admin-payments.php">Bills/Receipt History</a></li>
+                        <li><a href="manageBills.php">Manage Bills</a></li>
+                        <li><a href="manageReceipt.php">Manage Receipt</a></li>
+                        <li><a href="manageExpenses.php">Manage Expenses</a></li>
+                        <li><a href="manage_req.php">Manage Requests</a></li>
+                        <li><a  href="contactQueries.php">Contact Queries</a></li>
+                         <li><a  href="adminMessages.php">Chat</a></li>
+                    
+                    </ul>
+                </li>
+
+                <li class="menu-dropdown">
+                    <a data-bs-toggle="collapse" data-bs-target="#mobReports">Reports ▾</a>
+                    <ul class="collapse" id="mobReports">
+                      <li> <a  href="manageReports.php">All Reports</a></li>
+                      <li><a  href="reportReceive.php">Receivable Report</a></li>
+                      <li><a  href="reportBill.php">Bill Report</a></li>
+                      
+                       
+                        
+                    </ul>
+                </li>
+
+                <li class="menu-dropdown">
+                    <a data-bs-toggle="collapse" data-bs-target="#mobProf">Profile ▾</a>
+                    <ul class="collapse" id="mobProf">
+                        <li><a href="">Edit Profile</a></li>
+                        <li><a href="logout.php">Logout</a></li>
+                    </ul>
+                </li>
+
+            <?php } elseif(isset($_SESSION["utype"]) && $_SESSION["utype"]=="user"){ ?>
+
+              
+                    
+                    
+
+                <li class="menu-dropdown">
+                    <a data-bs-toggle="collapse" data-bs-target="#mobUpdUser">Updates ▾</a>
+                    <ul class="collapse" id="mobUpdUser">
+                        <li><a  href="showNews.php">News</a></li>
+                        <li><a  href="showEvents.php">Events</a></li>
+                        <li><a  href="showGallery.php">Gallery</a></li>
+                       
+                    </ul>
+                </li>
+
+
+                <li class="menu-dropdown">
+                    <a data-bs-toggle="collapse" data-bs-target="#mobTransUser">Transaction ▾</a>
+                    <ul class="collapse" id="mobTransUser">
+                        <li><a href="purchaseHistory.php">Membership History</a></li>
+                        <li><a href="manageFamily.php">My Family</a></li>
+                        <li> <a  href="userMessages.php">My Chat</a></li>
+                        <li> <a  href="userId.php">My I-Card</a></li>
+                        <li><a href="manageServices.php">My Services</a></li>
+                        <li><a href="manageNeed.php">My Requirement</a></li>
+                    </ul>
+                </li>
+
+                <li class="menu-dropdown">
+                    <a data-bs-toggle="collapse" data-bs-target="#mobProfUser">Profile ▾</a>
+                    <ul class="collapse" id="mobProfUser">
+                        <li><a href="editProfile.php">Edit Profile</a></li>
+                        <li><a href="logout.php">Logout</a></li>
+                    </ul>
+                </li>
+
+            <?php } else { ?>
+                <li><a href="login.php">Login</a></li>
+            <?php } ?>
 
         </ul>
-      </li>
-      <li><a href="showDownloads.php">Downloads</a></li>
-      <li><a href="showDonate.php">Donation</a></li>
-      <li><a href="showContact.php">Contact Us</a></li>
-      
-      <li class="menu-dropdown">
-        <a href="#" data-bs-toggle="collapse" data-bs-target="#trainingMenu">
-          Commity <span>▾</span>
-        </a>
-        <ul class="collapse" id="trainingMenu">
-          <li><a href="currentCommity.php">Current Commity</a></li>
-          <li><a href="pastCommity.php">Past Commity</a></li>
-          <li><a href="showMembers.php">Members</a></li>
-           <li><a href="showServices.php">Our Services</a></li>
-            <li><a href="showNeed.php">Our Needs</a></li>
-        </ul>
-      </li>
 
-      <li><a href="https://www.matrimonysoftware.in">Matrimony</a></li>
-    
-<?php if(isset($_SESSION["uname"], $_SESSION["utype"]) && $_SESSION["utype"] == "admin"){ ?>
-
-     
-
-      <li class="menu-dropdown">
-        <a href="#" data-bs-toggle="collapse" data-bs-target="#adminDashMenu">
-          Dashboard <span>▾</span>
-        </a>
-        <ul class="collapse" id="adminDashMenu">
-     <li><a href="dataTableZones.php">Manage Zones</a></li>
-    <li><a href="dataTableCities.php">Manage Cities</a></li>
-    <li><a href="dataTableMember.php">Manage Members</a></li>
-    <li><a href="manage_req.php">Manage Request</a></li>
-    <li><a href="manageCommity.php">Manage Commity</a></li>
-    <li><a href="manage_events.php">Manage Events</a></li>
-    <li><a href="manage_news.php">Manage News</a></li>
-     <li> <a href="manage_gallery.php">Manage Gallery</a></li>        
-
-    <li><a href="admin-payments.php">Bill/Receipt History</a></li>
-    <li><a href="manageBills.php">Manage Bills</a></li>
-    <li><a href="manageReceipt.php">Manage Receipt</a></li>
-    <li><a href="contactQueries.php">Contact Queries</a></li>
-    <li><a href="datatTableDownload.php">Manage Downloads</a></li>
-    <li><a href="adminMessages.php">Manage Messages</a></li>
-    <li><a href="manageReports.php">Manage Reports</a></li>
-        </ul>
-      </li>
-
-
-      <li class="menu-dropdown">
-        <a href="#" data-bs-toggle="collapse" data-bs-target="#adminDashProf">
-          Profile <span>▾</span>
-        </a>
-        <ul class="collapse" id="adminDashProf">
-     <li><a href="">Edit Profile</a></li>
-    <li><a href="logout.php">Logout</a></li>
-    
-        </ul>
-      </li>
-
-      <?php } else if(isset($_SESSION["uname"], $_SESSION["utype"]) && $_SESSION["utype"] == "user") {?>
-      
-      
-          <li class="menu-dropdown">
-        <a href="#" data-bs-toggle="collapse" data-bs-target="#userDashMenu">
-          Dashboard <span>▾</span>
-        </a>
-        <ul class="collapse" id="userDashMenu">
-     <li><a  href="purchaseHistory.php">Membership History</a></li>
-    <li><a  href="manageFamily.php">My Family</a></li>
-    <li><a  href="show_downloads.php">My Downloads</a></li>
-    <li><a href="userId.php">My I-Card</a></li>
-    <li><a href="manageServices.php">My Services</a></li>
-    <li><a href="manageNeed.php">My Requirement</a></li>
-    
-    <li><a  href="userMessages.php">Chat</a></li>
-   
-        </ul>
-      </li>
-
-
-         <li class="menu-dropdown">
-        <a href="#" data-bs-toggle="collapse" data-bs-target="#userDashProf">
-          Profile <span>▾</span>
-        </a>
-        <ul class="collapse" id="userDashProf">
-     <li><a href="editProfile.php">Edit Profile</a></li>
-    <li><a href="logout.php">Logout</a></li>
-    
-        </ul>
-      </li>
-
-
-      <?php }  else if(isset($_SESSION["uname"], $_SESSION["utype"]) && $_SESSION["utype"] == "accountant") {?>
-      
-      
-      
-      
-      
-      <?php } else { ?>
-        <li><a href="login.php">Login</a></li>
-
-
-        <?php  } ?>
-      
-
-    </ul>
-
-  </div>
+    </div>
 </div>
+
 
 
 <script>
@@ -537,5 +525,8 @@ document.querySelectorAll('.dropdown-custom > a').forEach(link => {
     });
 });
 </script>
+
+
+
 
 
