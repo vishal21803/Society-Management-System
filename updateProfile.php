@@ -44,7 +44,7 @@ if(isset($_POST['update'])){
         WHERE id=(SELECT user_id FROM sens_members WHERE member_id='$uid')
     ");
 
-    header("Location: editprofile.php?updated=1");
+    header("Location: editProfile.php?updated=1");
     exit();
 }
 ?>

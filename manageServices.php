@@ -56,7 +56,7 @@ $i = 1;
                         <td><?= $row['service_desc'] ?></td>
 
                         <td>
-                            <button class="btn btn-sm btn-primary"
+                            <button title="Edit" class="btn btn-sm btn-primary"
                                 onclick="openServiceEditModal(
                                     <?= $row['service_id'] ?>,
                                     '<?= $row['service_type'] ?>',
@@ -65,7 +65,7 @@ $i = 1;
                                 <i class="bi bi-pencil"></i>
                             </button>
 
-                            <button class="btn btn-sm btn-danger"
+                            <button title="Delete" class="btn btn-sm btn-danger"
                                 onclick="deleteService(<?= $row['service_id'] ?>)">
                                 <i class="bi bi-trash"></i>
                             </button>

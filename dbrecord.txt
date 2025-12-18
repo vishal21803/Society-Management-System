@@ -5,3 +5,4 @@
 5.datatype of bdate(sens_bills) and recdate(sens_receipt) has been changed from date to datetime.
 6.one new column (marry_status) is added to sens_family table.
 7.one new column (mstatus) is added to sens_members table.
+8.table:sens_services is created.

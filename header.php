@@ -231,8 +231,9 @@ li{
 <div class="dropdown-custom-menu">
       <a class="dropdown-item-custom" href="currentCommity.php">Current Commity</a>
       <a class="dropdown-item-custom" href="pastCommity.php">Past Commity</a> 
-      <a class="dropdown-item-custom" href="showMembers.php">Members</a>
+      <a class="dropdown-item-custom" href="showMembers.php">Our Members</a>
        <a class="dropdown-item-custom" href="showServices.php">Our Services</a>
+        <a class="dropdown-item-custom" href="showNeed.php">Our Requirement</a>
 
   </div>
 </li>
@@ -418,7 +419,7 @@ li{
           <li><a href="pastCommity.php">Past Commity</a></li>
           <li><a href="showMembers.php">Members</a></li>
            <li><a href="showServices.php">Our Services</a></li>
-            <li><a href="">Our Needs</a></li>
+            <li><a href="showNeed.php">Our Needs</a></li>
         </ul>
       </li>
 
