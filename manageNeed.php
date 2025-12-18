@@ -3,26 +3,55 @@ if(isset($_SESSION["uname"]) && $_SESSION["utype"]=='user')
 {
 include("header.php");
 include("connectdb.php");
-
 ?>
+
+<style>
+
+/* 🟡 MODAL RESPONSIVE  */
+@media (max-width: 576px){
+    .modal-dialog{
+        max-width: 95% !important;
+        margin: auto !important;
+    }
+}
+
+/* 🟡 TABLE BREAK RESPONSIVE */
+.mobile-table table{
+    width: 100%;
+}
+
+.mobile-table td,
+.mobile-table th{
+    white-space: nowrap;
+}
+
+@media(max-width:576px){
+    .mobile-table{
+        overflow-x:auto;
+    }
+}
+
+</style>
 
 <main>
-<div class="d-flex">
+<div class="d-flex flex-column flex-lg-row"> <!-- updated -->
+    
     <?php include('userDashboard.php'); ?>
+    
     <div class="flex-grow-1 p-4">
-        <!-- Main content here -->
-         <?php
-$member_id = $_SESSION["member_id"];
 
-$q = mysqli_query($con,"
-    SELECT * 
-    FROM sens_required
-    WHERE member_id='$member_id'
-    ORDER BY require_id DESC
-");
+        <?php
+        $member_id = $_SESSION["member_id"];
 
-$i = 1;
-?>
+        $q = mysqli_query($con,"
+            SELECT * 
+            FROM sens_required
+            WHERE member_id='$member_id'
+            ORDER BY require_id DESC
+        ");
+
+        $i = 1;
+        ?>
 
 <div class="card shadow border-0">
 
@@ -35,6 +64,7 @@ $i = 1;
     </div>
 
     <div class="card-body">
+
         <div class="table-responsive mobile-table">
 
             <table id="myTable" class="table table-bordered table-hover align-middle">
@@ -75,7 +105,9 @@ $i = 1;
 
             </table>
 
-            <div class="modal fade" id="requireEditModal">
+<!-- ========= EDIT MODAL =========== -->
+
+<div class="modal fade" id="requireEditModal">
   <div class="modal-dialog modal-md modal-dialog-centered">
     <div class="modal-content">
 
@@ -84,7 +116,7 @@ $i = 1;
         <button class="btn-close" data-bs-dismiss="modal"></button>
       </div>
 
-      <div class="modal-body">
+<div class="modal-body">
 
     <input type="hidden" id="require_id">
 
@@ -109,97 +141,94 @@ $i = 1;
     </div>
 
     <div class="mb-2">
-        <label>Service Description</label>
+        <label>Requirement Description</label>
         <textarea id="require_desc" class="form-control" rows="3"></textarea>
     </div>
 
 </div>
 
-
-      <div class="modal-footer">
+ <div class="modal-footer">
         <button class="btn btn-success" onclick="updateRequirement()">Update</button>
-      </div>
-
-    </div>
-  </div>
-</div>
-
-
-        </div>
-    </div>
+ </div>
 
 </div>
+</div>
+</div>
 
-    </div>
+<!-- END MODAL -->
+
+</div>
+</div>
+</div>
+
+</div>
 </div>
 </main>
 
 <script>
-  function openRequirementEditModal(id, type, desc){
+
+function openRequirementEditModal(id,type,desc){
 
     $("#require_id").val(id);
     $("#require_desc").val(desc);
 
-    // if category exists in list
-    const select = document.getElementById("require_type");
-    const otherBox = document.getElementById("editOtherBox");
-    const otherInput = document.getElementById("edit_other_category");
+    const select=document.getElementById("require_type");
+    const otherBox=document.getElementById("editOtherBox");
+    const otherInput=document.getElementById("edit_other_category");
 
-    const options = [...select.options].map(o=>o.value);
+    const options=[...select.options].map(o=>o.value);
 
     if(options.includes(type)){
-        select.value = type;
+        select.value=type;
         otherBox.classList.add("d-none");
-        otherInput.value = "";
-    }
-    else{
-        select.value = "Other";
+        otherInput.value="";
+    }else{
+        select.value="Other";
         otherBox.classList.remove("d-none");
-        otherInput.value = type;
+        otherInput.value=type;
     }
 
     $("#requireEditModal").modal("show");
 }
 
-
 function updateRequirement(){
 
-    let cat = $("#require_type").val();
+    let cat=$("#require_type").val();
 
-    // if dropdown selected Other → take textbox value
-    if(cat === "Other"){
-        cat = $("#edit_other_category").val().trim();
+    if(cat==="Other"){
+        cat=$("#edit_other_category").val().trim();
     }
 
-    if(cat === ""){
+    if(cat===""){
         alert("Please enter require type");
         return;
     }
 
     $.post("updateRequire.php",{
-        require_id: $("#require_id").val(),
-        require_type: cat,
-        require_desc: $("#require_desc").val()
+        require_id:$("#require_id").val(),
+        require_type:cat,
+        require_desc:$("#require_desc").val()
     },function(res){
 
         if(res.trim()=="success"){
             alert("Updated Successfully");
             location.reload();
-        } else {
+        }else{
             alert("Update Failed");
         }
 
     });
 }
 
-
 function deleteRequirement(id){
-    if(confirm("Delete this service?")){
+
+    if(confirm("Delete this requirement?")){
+
         $.post("deleteRequire.php",{id:id},function(res){
 
             if(res.trim()=="success"){
                 $("#srvRow"+id).fadeOut();
-            } else{
+            }else{
                 alert("Delete Failed");
             }
 
@@ -209,24 +238,21 @@ function deleteRequirement(id){
 
 function checkEditCategory(){
 
-    let cat = document.getElementById("require_type").value;
-    let box = document.getElementById("editOtherBox");
+    let cat=document.getElementById("require_type").value;
+    let box=document.getElementById("editOtherBox");
 
-    if(cat === "Other"){
+    if(cat==="Other"){
         box.classList.remove("d-none");
-        document.getElementById("edit_other_category").required = true;
-    } else {
+    }else{
         box.classList.add("d-none");
-        document.getElementById("edit_other_category").required = false;
     }
 }
 
 </script>
 
-
 <?php
 include("footer.php");
 }else{
-    include("index.php");
+include("index.php");
 }
 ?>

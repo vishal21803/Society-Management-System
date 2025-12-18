@@ -30,6 +30,7 @@ include("connectdb.php");
                             <th>Phone</th>
                             <th>Zone</th>
                             <th>City</th>
+                            <th>Plan</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -41,6 +42,7 @@ SELECT
     m.*,
     z.*,
     c.*,
+    p.*,
     u.email,
     r.status AS request_status
 FROM sens_members m
@@ -48,6 +50,7 @@ LEFT JOIN sens_users u ON m.user_id = u.id
 LEFT JOIN sens_zones z ON m.zone_id = z.zone_id
 LEFT JOIN sens_cities c ON m.city_id = c.city_id
 LEFT JOIN sens_requests r ON r.member_id = m.member_id
+LEFT JOIN sens_plans p on p.plan_id = m.plan_id
 ORDER BY m.fullname ASC
 ");
 
@@ -61,6 +64,7 @@ while($row = mysqli_fetch_assoc($res)){
     <td><?= htmlspecialchars($row['phone']) ?></td>
     <td><?= htmlspecialchars($row['zone_name']) ?></td>
     <td><?= htmlspecialchars($row['city_name']) ?></td>
+    <td><?= htmlspecialchars($row['name']) ?></td>
     <td>
         <!-- Edit Button -->
        <button title="Edit" class="btn btn-sm btn-primary"
@@ -120,7 +124,7 @@ onclick="openMemberEditModal(
 
                     <tfoot class="table-secondary fw-bold">
                         <tr>
-                            <td colspan="6" class="text-end">Total Members</td>
+                            <td colspan="7" class="text-end">Total Members</td>
                             <td><?= $i-1 ?></td>
                         </tr>
                     </tfoot>

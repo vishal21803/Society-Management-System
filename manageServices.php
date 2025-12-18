@@ -1,23 +1,33 @@
-
 <?php @session_start();
 if(isset($_SESSION["uname"]) && $_SESSION["utype"]=='user')
 {
 include("header.php");
 include("connectdb.php");
-
 ?>
 
+<style>
+/* mobile responsive modal */
+@media (max-width: 576px){
+    .modal-dialog{
+        max-width: 95% !important;
+        margin: auto !important;
+    }
+}
+</style>
+
 <main>
-<div class="d-flex">
+
+<div class="d-flex flex-column flex-lg-row">
+
     <?php include('userDashboard.php'); ?>
+
     <div class="flex-grow-1 p-4">
-        <!-- Main content here -->
-         <?php
+
+<?php
 $member_id = $_SESSION["member_id"];
 
 $q = mysqli_query($con,"
-    SELECT * 
-    FROM sens_services
+    SELECT * FROM sens_services
     WHERE member_id='$member_id'
     ORDER BY service_id DESC
 ");
@@ -38,7 +48,7 @@ $i = 1;
     <div class="card-body">
         <div class="table-responsive mobile-table">
 
-            <table id="myTable" class="table table-bordered table-hover align-middle">
+            <table id="serviceTable" class="table table-bordered table-hover align-middle">
                 <thead class="table-dark">
                     <tr>
                         <th>#</th>
@@ -58,9 +68,9 @@ $i = 1;
                         <td>
                             <button title="Edit" class="btn btn-sm btn-primary"
                                 onclick="openServiceEditModal(
-                                    <?= $row['service_id'] ?>,
-                                    '<?= $row['service_type'] ?>',
-                                    `<?= $row['service_desc'] ?>`
+                                    '<?= $row['service_id'] ?>',
+                                    '<?= addslashes($row['service_type']) ?>',
+                                    `<?= addslashes($row['service_desc']) ?>`
                                 )">
                                 <i class="bi bi-pencil"></i>
                             </button>
@@ -76,46 +86,53 @@ $i = 1;
 
             </table>
 
-            <div class="modal fade" id="serviceEditModal">
+        </div>
+    </div>
+
+</div>
+
+    </div>
+</div>
+
+
+<!-- SERVICE EDIT MODAL -->
+<div class="modal fade" id="serviceEditModal">
   <div class="modal-dialog modal-md modal-dialog-centered">
     <div class="modal-content">
 
       <div class="modal-header bg-warning">
-        <h5>Edit Service</h5>
+        <h5 class="modal-title">Edit Service</h5>
         <button class="btn-close" data-bs-dismiss="modal"></button>
       </div>
 
       <div class="modal-body">
 
-    <input type="hidden" id="service_id">
+        <input type="hidden" id="service_id">
 
-    <div class="mb-2">
-        <label>Service Type / Category</label>
+        <div class="mb-2">
+            <label>Service Type / Category</label>
+            <select id="service_type" class="form-select" onchange="checkEditCategory()">
+                <option value="">Select</option>
+                <option value="Kirana">Kirana</option>
+                <option value="Restaurant">Restaurant</option>
+                <option value="Hotel">Hotel</option>
+                <option value="Sanitary">Sanitary</option>
+                <option value="Education">Education</option>
+                <option value="Other">Other</option>
+            </select>
+        </div>
 
-        <select id="service_type" class="form-select" onchange="checkEditCategory()">
-            <option value="">Select</option>
-            <option value="Kirana">Kirana</option>
-            <option value="Restaurant">Restaurant</option>
-            <option value="Hotel">Hotel</option>
-            <option value="Sanitary">Sanitary</option>
-            <option value="Education">Education</option>
-            <option value="Other">Other</option>
-        </select>
-    </div>
+        <div class="mb-2 d-none" id="editOtherBox">
+            <label>Enter Custom Category</label>
+            <input type="text" id="edit_other_category" class="form-control">
+        </div>
 
-    <!-- textbox hidden -->
-    <div class="mb-2 d-none" id="editOtherBox">
-        <label>Enter Custom Category</label>
-        <input type="text" id="edit_other_category" class="form-control">
-    </div>
+        <div class="mb-2">
+            <label>Service Description</label>
+            <textarea id="service_desc" class="form-control" rows="3"></textarea>
+        </div>
 
-    <div class="mb-2">
-        <label>Service Description</label>
-        <textarea id="service_desc" class="form-control" rows="3"></textarea>
-    </div>
-
-</div>
-
+      </div>
 
       <div class="modal-footer">
         <button class="btn btn-success" onclick="updateService()">Update</button>
@@ -126,54 +143,44 @@ $i = 1;
 </div>
 
 
-        </div>
-    </div>
-
-</div>
-
-    </div>
-</div>
 </main>
 
 <script>
-  function openServiceEditModal(id, type, desc){
+
+function openServiceEditModal(id, type, desc){
 
     $("#service_id").val(id);
     $("#service_desc").val(desc);
 
-    // if category exists in list
-    const select = document.getElementById("service_type");
-    const otherBox = document.getElementById("editOtherBox");
-    const otherInput = document.getElementById("edit_other_category");
+    let select = document.getElementById("service_type");
+    let box = document.getElementById("editOtherBox");
+    let input = document.getElementById("edit_other_category");
 
-    const options = [...select.options].map(o=>o.value);
+    let exists = [...select.options].map(o=>o.value).includes(type);
 
-    if(options.includes(type)){
+    if(exists){
         select.value = type;
-        otherBox.classList.add("d-none");
-        otherInput.value = "";
-    }
-    else{
+        box.classList.add("d-none");
+        input.value = "";
+    } else{
         select.value = "Other";
-        otherBox.classList.remove("d-none");
-        otherInput.value = type;
+        box.classList.remove("d-none");
+        input.value = type;
     }
 
     $("#serviceEditModal").modal("show");
 }
 
-
 function updateService(){
 
     let cat = $("#service_type").val();
 
-    // if dropdown selected Other → take textbox value
-    if(cat === "Other"){
+    if(cat==="Other"){
         cat = $("#edit_other_category").val().trim();
     }
 
-    if(cat === ""){
-        alert("Please enter service type");
+    if(cat===""){
+        alert("Please enter category");
         return;
     }
 
@@ -192,7 +199,6 @@ function updateService(){
 
     });
 }
-
 
 function deleteService(id){
     if(confirm("Delete this service?")){
@@ -213,7 +219,7 @@ function checkEditCategory(){
     let cat = document.getElementById("service_type").value;
     let box = document.getElementById("editOtherBox");
 
-    if(cat === "Other"){
+    if(cat==="Other"){
         box.classList.remove("d-none");
         document.getElementById("edit_other_category").required = true;
     } else {
@@ -224,10 +230,9 @@ function checkEditCategory(){
 
 </script>
 
-
 <?php
 include("footer.php");
 }else{
-    include("index.php");
+include("index.php");
 }
 ?>

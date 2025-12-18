@@ -11,7 +11,8 @@ include("connectdb.php");
 
     <div class="card shadow-lg border-0">
         <div class="card-header bg-warning fw-bold text-dark d-flex justify-content-between align-items-center">
-         
+                 <span>Our Members</span>
+
         </div>
 
         <div class="card-body">

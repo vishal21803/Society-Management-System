@@ -48,10 +48,10 @@ include("connectdb.php");
 
     <!-- Service Type -->
     <div class="col-md-3">
-    <label>Service Type</label>
+    <label>Requirement Type</label>
 
     <select id="filterService" class="form-control mb-2">
-        <option value="">All Services</option>
+        <option value="">All Requirement</option>
         <option value="Kirana">Kirana</option>
         <option value="Restaurant">Restaurant</option>
         <option value="Hotel">Hotel</option>
@@ -76,7 +76,7 @@ include("connectdb.php");
 <thead class="table-dark">
 <tr>
     <th>#</th>
-    <th>Service Type</th>
+    <th>Requirement Type</th>
     <th>Description</th>
     <th>Name</th>
     <th>Phone</th>
