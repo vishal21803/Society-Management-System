@@ -32,6 +32,7 @@ include("connectdb.php");
     gap:10px;
 
     position:relative;
+    top: -70px;
     animation:fade 0.4s ease;
 }
 
@@ -50,7 +51,7 @@ include("connectdb.php");
 }
 
 .org-name{
-    font-size:12px;
+    font-size:8px;
     text-align:right;
     font-weight:600;
     color:#444;
@@ -68,9 +69,10 @@ include("connectdb.php");
     object-fit:cover;
     border:2px solid #ffc107;
     box-shadow:0px 6px 14px rgba(0,0,0,0.18);
+    margin-top: 15px;
 }
 
-.info-area{
+/* .info-area{
     font-size:13px;
     color:#333;
     width:100%;
@@ -80,6 +82,36 @@ include("connectdb.php");
     margin:2px 0;
     text-align:left;
     line-height:15px;
+} */
+
+    .info-area{
+    font-size:13px;
+    color:#222;
+    width:100%;
+}
+
+.info-table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+.info-table td{
+    padding:3px 0;
+}
+
+.info-label{
+    width:38%;
+    font-weight:bold;
+    text-align:left;
+    padding-right:6px;
+}
+
+.info-value{
+    width:30%;
+    text-align:left;
+    word-break:break-word;
+    position: relative;
+    left: -215px;
 }
 
 /* auto height multi-line address */
@@ -148,6 +180,7 @@ include("connectdb.php");
 .header-text{
     display:flex;
     flex-direction:column; /* stacked text next to logo */
+    
 }
 
 .inline-text{
@@ -171,6 +204,46 @@ include("connectdb.php");
 }
 
 
+.dpbtn{
+    display:flex;
+    justify-content:center;
+    gap:18px;
+    margin-top:18px;
+    position: relative;
+    top: -270px;
+}
+
+.dpbtn button{
+    border:none;
+    padding:10px 28px;
+    font-size:14px;
+    font-weight:bold;
+    border-radius:28px;
+    cursor:pointer;
+    transition:0.25s ease;
+    color:white;
+    box-shadow:0px 6px 16px rgba(0,0,0,0.25);
+}
+
+/* Print btn */
+.dpbtn .btn-print{
+    background: linear-gradient(90deg,#035efc,#0036b5);
+}
+
+.dpbtn .btn-print:hover{
+    transform:translateY(-3px) scale(1.05);
+}
+
+/* PNG btn */
+.dpbtn .btn-download{
+    background: linear-gradient(90deg,#0fa52b,#064f15);
+}
+
+.dpbtn .btn-download:hover{
+    transform:translateY(-3px) scale(1.05);
+}
+
+
 
 </style>
 
@@ -179,7 +252,7 @@ include("connectdb.php");
 <?php
 $uid=$_SESSION['uid'];
 $q=mysqli_query($con,"
-SELECT m.phone,m.photo,m.address,u.email,m.fullname,  m.balance_amount,
+SELECT m.phone,m.photo,m.address,u.email,m.fullname,  m.balance_amount,m.member_id,
        z.zone_name,c.city_name 
 FROM sens_members m
 JOIN sens_users u ON m.user_id=u.id
@@ -188,6 +261,9 @@ JOIN sens_cities c ON m.city_id=c.city_id
 WHERE m.user_id='$uid'
 ");
 $row=mysqli_fetch_assoc($q);
+
+$uniqueID = strtolower(substr($row['fullname'],0,4)) . $row['member_id'];
+
 ?>
 
 <div class="page-wrapper">
@@ -200,8 +276,7 @@ $row=mysqli_fetch_assoc($q);
         <div class="header-text">
             <span class="inline-text text-danger">श्री नागपुर प्रान्तीय दिगंबर</span>
             <span class="below-text text-danger">जैन खंडेलवाल सभा</span>
-                        <span class="year-text text-dark">स्थापना वर्ष - 1916
-</span>
+            <span class="year-text text-dark">स्थापना वर्ष - 1916</span>
 
         </div>
     </div>
@@ -220,7 +295,7 @@ $img = ($row['photo']!="") ? $row['photo'] : "default.png";
 
 // condition for round / square style
 if($row['balance_amount'] == 0){
-    $shape = "border-radius:50%; width:90px; height:90px;";
+    $shape = "border-radius:50%; width:90px; height:100px;";
 }else{
     $shape = "border-radius:6px; width:90px; height:110px;";
 }
@@ -233,24 +308,45 @@ if($row['balance_amount'] == 0){
         <img  style="<?=$shape?>" src="upload/member/<?=($row['photo']?:'default.png')?>"
              class="profile-pic">
 
-        <div class="info-area">
-            <p><strong>Name:</strong> <?=$row['fullname']?></p>
-            <p><strong>Phone:</strong> <?=$row['phone']?></p>
-            <p><strong>Email:</strong> <?=$row['email']?></p>
-            <p><strong>Zone:</strong> <?=$row['zone_name']?></p>
-            <p><strong>City:</strong> <?=$row['city_name']?></p>
-            <p class="addr"><strong>Address:</strong> <?=$row['address']?></p>
-        </div>
+       <div class="info-area">
+<table class="info-table">
+    <tr>
+        <td class="info-label">Name</td>
+        <td class="info-value">: <?=$row['fullname']?></td>
+    </tr>
+    <tr>
+        <td class="info-label">Phone</td>
+        <td class="info-value">: <?=$row['phone']?></td>
+    </tr>
+    <tr>
+        <td class="info-label">Email</td>
+        <td class="info-value">:&nbsp;<?= $row['email']?></td>
+    </tr>
+    <tr>
+        <td class="info-label">Zone</td>
+        <td class="info-value">:&nbsp;<?=$row['zone_name']?></td>
+    </tr>
+    <tr>
+        <td class="info-label">City</td>
+        <td class="info-value">:&nbsp;<?=$row['city_name']?></td>
+    </tr>
+    <tr>
+        <td class="info-label" style="vertical-align:top;">Address :</td>
+        <td class="info-value addr"><?=$row['address']?></td>
+    </tr>
+</table>
+</div>
+
     </div>
 
-    <div class="footer-strip"> MEMBER ID CARD </div>
+    <div class="footer-strip"> MEMBER ID - <?=$uniqueID?> </div>
 
 </div>
 </div>
 
-<div style="margin-top:20px;text-align:center;">
-<button onclick="window.print()">Print</button>
-<button onclick="downloadPNG()">Download PNG</button>
+<div class="dpbtn" >
+<button class="btn btn-primary" onclick="window.print()">Print ID</button>
+<button class="btn btn-success" onclick="downloadPNG()">Download ID</button>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>

@@ -157,6 +157,11 @@ table,th,td{ border:1px solid black;padding:6px; }
     font-weight:bold;
 }
 
+.god-text{
+    position: relative;
+    top:-20px
+}
+
 
 </style>
 </head>
@@ -183,8 +188,9 @@ table,th,td{ border:1px solid black;padding:6px; }
     </div>
 
     <div class="center">
-        || श्री महावीराय नमः || <br>
-        श्री नागपुर प्रांतीय दिगम्बर जैन खण्डेलवाल सभा <br>
+       <span class="god-text">|| श्री महावीराय नमः ||</span>  <br>
+       
+      <span class="text-danger" style="font-size:20px">श्री नागपुर प्रांतीय दिगम्बर जैन खण्डेलवाल सभा</span>  <br>
         पंजीयन ऑफिस - छिंदवाड़ा, पंजीयन नं. 173/53/54 <br>
         कार्यालय : इतवारी, भाजीमंडी, फूलओली  नागपुर (महाराष्ट्र)- 440002
     </div>
@@ -232,8 +238,8 @@ table,th,td{ border:1px solid black;padding:6px; }
 
 <table>
     <tr>
-        <td>Purpose : </td>
-            <td><?= $desc ?></td>
+        <td class="fw-bold ">Purpose : </td>
+            <td class="fw-bold text-primary"><?= $desc ?></td>
 
     </tr>
 <tr>
