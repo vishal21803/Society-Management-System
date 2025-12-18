@@ -7,16 +7,19 @@ $password   = $_REQUEST["password"];
 include("connectdb.php");
 
 /* FETCH USER BY EMAIL OR USERNAME OR PHONE */
+$login = strtolower($loginInput);
+
 $rsCust = mysqli_query($con,"
     SELECT DISTINCT u.*
     FROM sens_users u
     LEFT JOIN sens_members m ON u.id = m.user_id
     WHERE 
-        BINARY u.email='$loginInput'
-        OR BINARY u.name='$loginInput'
-        OR BINARY m.phone='$loginInput'
-        OR CONCAT(LOWER(LEFT(m.fullname,4)), m.member_id) = '$loginInput'
+        LOWER(u.email)='$login'
+        OR LOWER(u.name)='$login'
+        OR LOWER(m.phone)='$login'
+        OR LOWER(CONCAT(LEFT(m.fullname,4), m.member_id))='$login'
 ");
+
 
 if(mysqli_num_rows($rsCust) == 0){
     header("location:login.php?regmsg=1"); // Invalid Username/Email/Phone
