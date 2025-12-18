@@ -1,6 +1,7 @@
 <?php
 include("connectdb.php");
 
+
 if(!isset($_GET['receipt_id'])){
     die("Invalid Receipt");
 }
@@ -60,6 +61,11 @@ if(isset($purposes[$purpose])){
 <head>
 <meta charset="UTF-8">
 <title>Receipt</title>
+<!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap JS Bundle -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <style>
 body{ font-family: Mangal, Arial, sans-serif; }
 .receipt-box{ width:700px;margin:auto;border:2px solid black;padding:10px; position: relative;}
@@ -132,6 +138,26 @@ table,th,td{ border:1px solid black;padding:6px; }
     }
 }
 
+.receipt-header{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:20px;
+    margin-bottom:10px;
+}
+
+.receipt-logo{
+    width:170px;
+    height:auto;
+}
+
+.center{
+    flex:1;
+    text-align:center;
+    font-weight:bold;
+}
+
+
 </style>
 </head>
 <body>
@@ -150,28 +176,36 @@ table,th,td{ border:1px solid black;padding:6px; }
  
 <div class="receipt-box">
 
-<div class="center">
-|| श्री महावीराय नमः || <br>
-श्री नागपुर प्रांतीय दिगम्बर जैन खण्डेलवाल सभा <br>
-पंजीयन ऑफिस - छिंदवाड़ा, पंजीयन नं. 173/53/54 <br>
-कार्यालय : इतवारी, भाजीमंडी, फूलओली  नागपुर (महाराष्ट्र)- 440002
+<div class="receipt-header">
+    
+    <div class="logo-left">
+        <img src="upload/reclogo.png" class="receipt-logo">
+    </div>
+
+    <div class="center">
+        || श्री महावीराय नमः || <br>
+        श्री नागपुर प्रांतीय दिगम्बर जैन खण्डेलवाल सभा <br>
+        पंजीयन ऑफिस - छिंदवाड़ा, पंजीयन नं. 173/53/54 <br>
+        कार्यालय : इतवारी, भाजीमंडी, फूलओली  नागपुर (महाराष्ट्र)- 440002
+    </div>
+
 </div>
 
 <table class="no-border">
 <tr>
-<td class="no-border left"><b>रसीद क्रमांक:</b> <?= $receipt_id ?></td>
-<td class="no-border right"><b>दिनांक:</b> <?= $date ?></td>
+<td class="no-border left"><b>रसीद क्रमांक:</b><span class="fw-bold text-danger"> <?= $receipt_id ?></span></td>
+<td class="no-border right"><b>दिनांक:</b> <span class="fw-bold text-danger"><?= $date ?></span> </td>
 </tr>
 </table>
 
 <table>
 <tr>
 <td width="15%" class="bold">श्रीमान:</td>
-<td><?= $member ?></td>
+<td class="fw-bold text-primary"><?= $member ?></td>
 </tr>
 <tr>
 <td class="bold">शहर:</td>
-<td><?= $city ?></td>
+<td class="fw-bold text-primary"><?= $city ?></td>
 </tr>
 </table>
 
@@ -182,17 +216,17 @@ table,th,td{ border:1px solid black;padding:6px; }
 <td width="30%">रकम</td>
 </tr>
 
-<tr><td>1</td><td>सालाना फीस</td><td class="right"><?= $purposes["Yearly Fee"] ?></td></tr>
-<tr><td>2</td><td>नई सदस्यता शुल्क</td><td class="right"><?= $purposes["New Membership"] ?></td></tr>
-<tr><td>3</td><td>आजीवन सदस्यता शुल्क</td><td class="right"><?= $purposes["Lifetime Fee"] ?></td></tr>
-<tr><td>4</td><td>छात्र वृत्ति की राशि</td><td class="right"><?= $purposes["Scholarship"] ?></td></tr>
-<tr><td>5</td><td><b>सहयोग राशि</b></td><td class="right"><?= $purposes["Donation"] ?></td></tr>
-<tr><td>6</td><td><b>अन्य शुल्क</b></td><td class="right"><?= $purposes["Others"] ?></td></tr>
+<tr><td>1</td><td>सालाना फीस</td><td class="right fw-bold text-danger"><?= $purposes["Yearly Fee"] ?></td></tr>
+<tr><td>2</td><td>नई सदस्यता शुल्क</td><td class="right fw-bold text-danger"><?= $purposes["New Membership"] ?></td></tr>
+<tr><td>3</td><td>आजीवन सदस्यता शुल्क</td><td class="right fw-bold text-danger"><?= $purposes["Lifetime Fee"] ?></td></tr>
+<tr><td>4</td><td>छात्र वृत्ति की राशि</td><td class="right fw-bold text-danger"><?= $purposes["Scholarship"] ?></td></tr>
+<tr><td>5</td><td><b>सहयोग राशि</b></td><td class="right fw-bold text-danger"><?= $purposes["Donation"] ?></td></tr>
+<tr><td>6</td><td><b>अन्य शुल्क</b></td><td class="right fw-bold text-danger"><?= $purposes["Others"] ?></td></tr>
 
 
 <tr>
 <td colspan="2" class="right bold">कुल राशि -</td>
-<td class="right bold"><?= number_format($amount,2) ?></td>
+<td class="right  fw-bold text-danger"><?= number_format($amount,2) ?></td>
 </tr>
 </table>
 
@@ -204,12 +238,12 @@ table,th,td{ border:1px solid black;padding:6px; }
     </tr>
 <tr>
 <td width="25%" class="bold">अक्षरी रुपया :</td>
-<td><?= amountInWords($amount) ?></td>
+<td class="fw-bold text-primary"><?= amountInWords($amount) ?></td>
 </tr>
 
 <tr>
     <td class="bold">Manual ID :</td>
-    <td><?= $manID ?></td>
+    <td class="fw-bold text-danger"><?= $manID ?></td>
 
 </tr>
 </table>
