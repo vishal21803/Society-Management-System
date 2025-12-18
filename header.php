@@ -232,6 +232,8 @@ li{
       <a class="dropdown-item-custom" href="currentCommity.php">Current Commity</a>
       <a class="dropdown-item-custom" href="pastCommity.php">Past Commity</a> 
       <a class="dropdown-item-custom" href="showMembers.php">Members</a>
+       <a class="dropdown-item-custom" href="showServices.php">Our Services</a>
+
   </div>
 </li>
 
@@ -247,6 +249,10 @@ li{
       <a class="dropdown-item-custom" href="manageFamily.php">My Family</a> 
       <a class="dropdown-item-custom" href="show_downloads.php">My Downloads</a>
          <a class="dropdown-item-custom" href="userId.php">My I-Card</a>
+         <a class="dropdown-item-custom" href="manageServices.php">My Services</a>
+          <a class="dropdown-item-custom" href="manageNeed.php">My Requirement</a>
+
+
 
       <a class="dropdown-item-custom" href="userMessages.php">Chat</a>
 
@@ -411,6 +417,8 @@ li{
           <li><a href="currentCommity.php">Current Commity</a></li>
           <li><a href="pastCommity.php">Past Commity</a></li>
           <li><a href="showMembers.php">Members</a></li>
+           <li><a href="showServices.php">Our Services</a></li>
+            <li><a href="">Our Needs</a></li>
         </ul>
       </li>
 
@@ -468,6 +476,9 @@ li{
     <li><a  href="manageFamily.php">My Family</a></li>
     <li><a  href="show_downloads.php">My Downloads</a></li>
     <li><a href="userId.php">My I-Card</a></li>
+    <li><a href="manageServices.php">My Services</a></li>
+    <li><a href="manageNeed.php">My Requirement</a></li>
+    
     <li><a  href="userMessages.php">Chat</a></li>
    
         </ul>

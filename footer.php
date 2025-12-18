@@ -657,6 +657,93 @@ $(document).ready(function(){
 
 
 });
+$(document).ready(function(){
+
+    let serviceTable = $('#serviceTable').DataTable({
+        pageLength: 10,
+        lengthMenu: [10,25,50,100]
+    });
+
+    // Load city dropdown onchange zone
+    $("#filterZone").on("change", function(){
+
+        let zoneID = $(this).val();
+        $("#filterCity").html('<option value="">All Cities</option>');
+
+        $.ajax({
+            url: "getCity.php",
+            type: "GET",
+            data: { zone_id: zoneID },
+            success: function(data){
+                $("#filterCity").append(data);
+            }
+        });
+
+        serviceTable.draw();
+    });
+
+    // City filter change
+    $("#filterCity").on("change", function(){
+        serviceTable.draw();
+    });
+
+    // Service type filter change
+    $("#filterService").on("change", function(){
+
+        // Show/hide custom input for "Other"
+        if($(this).val() == "Other"){
+            $("#customService").show();
+        } else {
+            $("#customService").hide();
+            $("#customService").val("");
+        }
+
+        serviceTable.draw();
+    });
+
+    // Custom Service text input filter
+    $("#customService").on("keyup", function(){
+        serviceTable.draw();
+    });
+
+    // Custom filter for DataTable
+    $.fn.dataTable.ext.search.push(function(settings, data){
+
+        if (settings.nTable.id !== 'serviceTable') return true;
+
+        let selectedZone = $("#filterZone").val();
+        let selectedCity = $("#filterCity").val();
+        let selectedService = $("#filterService").val();
+        let customService = $("#customService").val().trim().toLowerCase();
+
+        let rowZoneID = data[7];   // hidden zone_id
+        let rowCityID = data[8];   // hidden city_id
+        let rowServType = data[1].toLowerCase();  // service type column
+
+        // Zone filter
+        if(selectedZone && selectedZone != rowZoneID){
+            return false;
+        }
+
+        // City filter
+        if(selectedCity && selectedCity != rowCityID){
+            return false;
+        }
+
+        // Service Type filter
+        if(selectedService && selectedService != "Other" && selectedService.toLowerCase() != rowServType){
+            return false;
+        }
+
+        // Custom service filter for "Other"
+        if(selectedService == "Other" && customService && !rowServType.includes(customService)){
+            return false;
+        }
+
+        return true;
+    });
+
+});
 
 
 </script>
