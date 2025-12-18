@@ -18,7 +18,7 @@ include("connectdb.php");
         <div class="card shadow">
 
             <div class="card-header bg-warning fw-bold text-dark d-flex justify-content-between align-items-center">
-                <span><i class="bi bi-receipt-cutoff me-2"></i> Manage Bill/Receipt History</span>
+                <span><i class="bi bi-receipt-cutoff me-2"></i> Bill/Receipt History</span>
 
                 <!-- Agar future me add bill button chahiye ho -->
                 <!-- <a href="billForm.php">

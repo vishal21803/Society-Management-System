@@ -6,6 +6,10 @@ include("connectdb.php");
 ?>
 
 <main>
+    <br>
+     <div class="text-center mb-5">
+    <h1 class="fw-bold">Our Respected Members</h1>
+  </div>
 <div class="d-flex flex-column flex-lg-row">
     <div class="flex-grow-1 p-4">
 
