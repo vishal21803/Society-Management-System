@@ -193,7 +193,7 @@ li{
  <?php if(!isset($_SESSION["uname"])) { ?> 
 
         <!-- PUBLIC MENU ONLY -->
-        <li class="nav-item">
+        <!-- <li class="nav-item">
             <a class="nav-link text-white <?= ($currentPage == 'index.php') ? 'active-link' : '' ?>" href="index.php">Home</a>
         </li>
         <li class="nav-item">
@@ -233,7 +233,7 @@ li{
             </div>
         </li>
 
-        <li class="nav-item"><a class="nav-link text-white"  href="https://jainkhandelwal.org/matrimony/">Matrimony</a></li>
+        <li class="nav-item"><a class="nav-link text-white"  href="https://jainkhandelwal.org/matrimony/">Matrimony</a></li> -->
 
 <?php } ?>
 
@@ -350,7 +350,51 @@ li{
 
         <!-- ========== NOT LOGGED IN ========== -->
         <?php } else { ?>
-            <li><a class="nav-link text-white" href="login.php">Login</a></li>
+               <li class="nav-item">
+            <a class="nav-link text-white <?= ($currentPage == 'index.php') ? 'active-link' : '' ?>" href="index.php">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-white <?= ($currentPage == 'about.php') ? 'active-link' : '' ?>" href="about.php">About Us</a>
+        </li>
+
+        <li class="nav-item dropdown-custom">
+            <a class="nav-link text-white" href="#">Updates</a>
+            <div class="dropdown-custom-menu">
+                <a class="dropdown-item-custom" href="showNews.php">News</a>
+                <a class="dropdown-item-custom" href="showEvents.php">Events</a>
+                <a class="dropdown-item-custom" href="showGallery.php">Gallery</a>
+                
+            </div>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link text-white <?= ($currentPage == 'showDownloads.php') ? 'active-link' : '' ?>" href="showDownloads.php">Downloads</a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link text-white <?= ($currentPage == 'showDonate.php') ? 'active-link' : '' ?>" href="showDonate.php">Donation</a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link text-white <?= ($currentPage == 'showContact.php') ? 'active-link' : '' ?>" href="showContact.php">Contact Us</a>
+        </li>
+
+        <li class="nav-item dropdown-custom">
+            <a class="nav-link text-white" href="#">Committee</a>
+            <div class="dropdown-custom-menu">
+                <a class="dropdown-item-custom" href="currentCommity.php">Current Committee</a>
+                <a class="dropdown-item-custom" href="pastCommity.php">Past Committee</a>
+                <a class="dropdown-item-custom" href="showMembers.php">Our Members</a>
+                <a class="dropdown-item-custom" href="showServices.php">Our Services</a>
+                <a class="dropdown-item-custom" href="showNeed.php">Our Requirement</a>
+            </div>
+        </li>
+
+        <li class="nav-item"><a class="nav-link text-white"  href="https://jainkhandelwal.org/matrimony/">Matrimony</a></li>
+         
+         <li class="nav-item">
+            <a class="nav-link text-white <?= ($currentPage == 'login.php') ? 'active-link' : '' ?>" href="login.php">Login</a>
+        </li>
         <?php } ?>
 
       </ul>
@@ -374,7 +418,7 @@ li{
 
         <ul class="list-unstyled mobile-menu">
 <?php if(!isset($_SESSION["uname"])) { ?>
-            <li><a href="index.php">Home</a></li>
+            <!-- <li><a href="index.php">Home</a></li>
             <li><a href="about.php">About Us</a></li>
 
             <li class="menu-dropdown">
@@ -400,7 +444,7 @@ li{
                   <li><a  href="showNeed.php">Our Requirement</a></li>
                 </ul>
             </li>
-            <li><a  href="https://jainkhandelwal.org/matrimony/">Matrimony</a></li>
+            <li><a  href="https://jainkhandelwal.org/matrimony/">Matrimony</a></li> -->
             <?php } ?>
             
             
@@ -495,6 +539,33 @@ li{
                 </li>
 
             <?php } else { ?>
+                   <li><a href="index.php">Home</a></li>
+            <li><a href="about.php">About Us</a></li>
+
+            <li class="menu-dropdown">
+                <a data-bs-toggle="collapse" data-bs-target="#mobUpdate">Updates ▾</a>
+                <ul class="collapse" id="mobUpdate">
+                    <li><a href="showNews.php">News</a></li>
+                    <li><a href="showEvents.php">Events</a></li>
+                    <li><a href="showGallery.php">Gallery</a></li>
+                </ul>
+            </li>
+
+            <li><a href="showDownloads.php">Downloads</a></li>
+            <li><a href="showDonate.php">Donation</a></li>
+            <li><a href="showContact.php">Contact Us</a></li>
+
+            <li class="menu-dropdown">
+                <a data-bs-toggle="collapse" data-bs-target="#mobCommittee">Committee ▾</a>
+                <ul class="collapse" id="mobCommittee">
+                  <li><a  href="currentCommity.php">Current Committee</a></li>
+                  <li><a  href="pastCommity.php">Past Committee</a></li>
+                  <li><a  href="showMembers.php">Our Members</a></li>
+                  <li><a  href="showServices.php">Our Services</a></li>
+                  <li><a  href="showNeed.php">Our Requirement</a></li>
+                </ul>
+            </li>
+            <li><a  href="https://jainkhandelwal.org/matrimony/">Matrimony</a></li>
                 <li><a href="login.php">Login</a></li>
             <?php } ?>
 

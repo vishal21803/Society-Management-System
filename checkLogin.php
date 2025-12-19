@@ -51,6 +51,13 @@ if(mysqli_num_rows($rsmem) > 0){
 
     $member_id = $memData["member_id"];
 
+    /* ❌ BLOCK IF MEMBER STATUS INACTIVE */
+    if($memData["mstatus"] == 0){
+        header("location:login.php?regmsg=5"); // contact admin
+        exit;
+    }
+
+
     /* CHECK IF REQUEST IS APPROVED */
     $rsReq = mysqli_query($con,"
         SELECT * FROM sens_requests

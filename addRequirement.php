@@ -52,7 +52,7 @@ include("connectdb.php");
 
                         <div class="col-md-12 mb-3">
                             <label class="form-label">Requirement Description</label>
-                            <textarea class="form-control" name="details" rows="3" placeholder="About service..." required></textarea>
+                            <textarea class="form-control" name="details" rows="3" placeholder="About Requirement..." required></textarea>
                         </div>
 
                       <div class="col-md-6 mb-3">

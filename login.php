@@ -45,6 +45,16 @@ if(isset($_GET['regmsg'])){
                 ❌ Your membership request was <b>rejected</b>. Please contact admin.
               </div>';
     }
+     if($_GET['regmsg'] == 5){
+        echo '<div id="loginAlert" class="alert alert-danger py-2">
+                Contact <b>Admin</b> to access your account.
+              </div>';
+    }
+  
+  
+  
+
+
 }
 ?>
 
