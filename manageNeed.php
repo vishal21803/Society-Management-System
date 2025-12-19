@@ -89,7 +89,8 @@ include("connectdb.php");
                                 onclick="openRequirementEditModal(
                                     <?= $row['require_id'] ?>,
                                     '<?= $row['require_type'] ?>',
-                                    `<?= $row['require_desc'] ?>`
+                                    `<?= $row['require_desc'] ?>`,
+                                    `<?= $row['require_date'] ?>`
                                 )">
                                 <i class="bi bi-pencil"></i>
                             </button>
@@ -144,6 +145,15 @@ include("connectdb.php");
         <label>Requirement Description</label>
         <textarea id="require_desc" class="form-control" rows="3"></textarea>
     </div>
+     <div class="col-md-6 mb-3">
+    <label class="form-label">Requirement Date</label>
+    <input type="date" 
+           id="require_date" 
+           
+         
+           class="form-control"
+           required>
+</div>
 
 </div>
 
@@ -167,10 +177,11 @@ include("connectdb.php");
 
 <script>
 
-function openRequirementEditModal(id,type,desc){
+function openRequirementEditModal(id,type,desc,date){
 
     $("#require_id").val(id);
     $("#require_desc").val(desc);
+     $("#require_date").val(date);
 
     const select=document.getElementById("require_type");
     const otherBox=document.getElementById("editOtherBox");
@@ -207,7 +218,8 @@ function updateRequirement(){
     $.post("updateRequire.php",{
         require_id:$("#require_id").val(),
         require_type:cat,
-        require_desc:$("#require_desc").val()
+        require_desc:$("#require_desc").val(),
+        require_date:$("#require_date").val()
     },function(res){
 
         if(res.trim()=="success"){

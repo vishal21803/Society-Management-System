@@ -15,7 +15,7 @@ include("connectdb.php");
         <div class="card shadow border-0">
             
             <div class="card-header bg-warning fw-bold text-dark">
-                <i class="bi bi-plus-circle me-2"></i> Add Service
+                <i class="bi bi-plus-circle me-2"></i> Add Requirement
             </div>
 
             <div class="card-body">
@@ -43,7 +43,7 @@ include("connectdb.php");
 
 <!-- hidden textbox -->
 <div class="col-md-6 mb-3 d-none" id="otherBox">
-    <label class="form-label">Service Type</label>
+    <label class="form-label">Requirement Type</label>
     <input type="text" name="other_category" id="other_category" 
            class="form-control" placeholder="Write category...">
 </div>
@@ -51,11 +51,19 @@ include("connectdb.php");
                        
 
                         <div class="col-md-12 mb-3">
-                            <label class="form-label">Service Description</label>
+                            <label class="form-label">Requirement Description</label>
                             <textarea class="form-control" name="details" rows="3" placeholder="About service..." required></textarea>
                         </div>
 
-                      
+                      <div class="col-md-6 mb-3">
+    <label class="form-label">Requirement Date</label>
+    <input type="date" 
+           name="require_date" 
+           
+           value="<?= date('Y-m-d'); ?>"
+           class="form-control"
+           required>
+</div>
 
                     </div>
 

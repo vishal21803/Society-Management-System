@@ -70,7 +70,8 @@ $i = 1;
                                 onclick="openServiceEditModal(
                                     '<?= $row['service_id'] ?>',
                                     '<?= addslashes($row['service_type']) ?>',
-                                    `<?= addslashes($row['service_desc']) ?>`
+                                    `<?= addslashes($row['service_desc']) ?>`,
+                                     `<?= addslashes($row['service_date']) ?>`
                                 )">
                                 <i class="bi bi-pencil"></i>
                             </button>
@@ -132,6 +133,17 @@ $i = 1;
             <textarea id="service_desc" class="form-control" rows="3"></textarea>
         </div>
 
+           <div class="mb-2">
+    <label class="form-label">Service Date</label>
+    <input type="date" 
+           id="service_date" 
+           
+         
+           class="form-control"
+           required>
+</div>
+
+
       </div>
 
       <div class="modal-footer">
@@ -147,10 +159,11 @@ $i = 1;
 
 <script>
 
-function openServiceEditModal(id, type, desc){
+function openServiceEditModal(id, type, desc,date){
 
     $("#service_id").val(id);
     $("#service_desc").val(desc);
+     $("#service_date").val(date);
 
     let select = document.getElementById("service_type");
     let box = document.getElementById("editOtherBox");
@@ -187,7 +200,8 @@ function updateService(){
     $.post("updateService.php",{
         service_id: $("#service_id").val(),
         service_type: cat,
-        service_desc: $("#service_desc").val()
+        service_desc: $("#service_desc").val(),
+        service_date: $("#service_date").val()
     },function(res){
 
         if(res.trim()=="success"){

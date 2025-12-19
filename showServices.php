@@ -80,6 +80,7 @@ include("connectdb.php");
 <thead class="table-dark">
 <tr>
     <th>#</th>
+    <th>Service Date</th>
     <th>Service Type</th>
     <th>Description</th>
     <th>Name</th>
@@ -102,6 +103,7 @@ SELECT
     s.service_id,
     s.service_type,
     s.service_desc,
+    s.service_date,
     m.fullname,
     m.phone,
     z.zone_name,
@@ -122,6 +124,7 @@ while($row=mysqli_fetch_assoc($res)){
 ?>
 <tr>
 <td><?= $i++ ?></td>
+<td><?= $row['service_date'] ?></td>
 <td><?= $row['service_type'] ?></td>
 <td><?= $row['service_desc'] ?></td>
 <td><?= $row['fullname'] ?></td>

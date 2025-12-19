@@ -146,7 +146,8 @@ if($isLoggedIn){
                     <div class="news-title"><?= $news['title'] ?></div>
 
                     <div class="news-date mb-2">
-                        📅 <?= date("d M Y", strtotime($news['news_date'])) ?>
+                        📅 <?= date("d M Y", strtotime($news['news_date'])). "/"."&nbsp;".$news['news_time'] ?> 
+                    
                     </div>
 
                     <p>
@@ -156,6 +157,7 @@ if($isLoggedIn){
        <?= json_encode($news["title"]) ?>,
        <?= json_encode($news["description"]) ?>,
        <?= json_encode($news["news_img"]) ?>,
+       <?= json_encode($news["news_time"]) ?>,
        "<?= date("d M Y", strtotime($news["news_date"])) ?>"
    )'>
                          Read More →
@@ -195,6 +197,13 @@ if($isLoggedIn){
         <p class="text-muted mb-2">
           <i class="bi bi-calendar-event"></i> 
           <span id="modalDate"></span>
+
+        </p>
+
+        <p class="text-muted mb-2">
+          <i class="bi bi-clock"></i> 
+          <span id="modalTime"></span>
+
         </p>
 
         <p id="modalDescription" style="font-size:16px;line-height:1.7;"></p>
@@ -206,10 +215,12 @@ if($isLoggedIn){
 </div>
 
 <script>
-function openNewsModal(title, desc, img, date){
+function openNewsModal(title, desc,img, time, date){
     document.getElementById("modalTitle").innerText = title;
     document.getElementById("modalDescription").innerText = desc;
     document.getElementById("modalImage").src = "upload/news/" + img;
+        document.getElementById("modalTime").innerText = time;
+
     document.getElementById("modalDate").innerText = date;
 
     let modal = new bootstrap.Modal(document.getElementById('newsModal'));

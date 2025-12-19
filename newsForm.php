@@ -31,7 +31,7 @@ include("header.php");
 
                         <!-- NEWS TITLE -->
                         <div class="form-floating mb-3 animate__animated animate__fadeInLeft">
-                            <input type="text" class="form-control" name="title" placeholder="News Title" >
+                            <input type="text" class="form-control" name="title" placeholder="News Title" required>
                             <label>News Title</label>
                         </div>
 

@@ -716,9 +716,9 @@ $(document).ready(function(){
         let selectedService = $("#filterService").val();
         let customService = $("#customService").val().trim().toLowerCase();
 
-        let rowZoneID = data[7];   // hidden zone_id
-        let rowCityID = data[8];   // hidden city_id
-        let rowServType = data[1].toLowerCase();  // service type column
+        let rowZoneID = data[8];   // hidden zone_id
+        let rowCityID = data[9];   // hidden city_id
+        let rowServType = data[2].toLowerCase();  // service type column
 
         // Zone filter
         if(selectedZone && selectedZone != rowZoneID){

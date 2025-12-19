@@ -56,6 +56,15 @@ include("connectdb.php");
                         </div>
 
                       
+         <div class="col-md-6 mb-3">
+    <label class="form-label">Service Date</label>
+    <input type="date" 
+           name="service_date" 
+           
+           value="<?= date('Y-m-d'); ?>"
+           class="form-control"
+           required>
+</div>
 
                     </div>
 
