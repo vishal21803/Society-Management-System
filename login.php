@@ -76,11 +76,12 @@ if(isset($_GET['regmsg'])){
         required
     >
 
-    <span 
-        id="eyeIcon"
-        onclick="togglePassword()" 
-        style="position:absolute; right:15px; top:50%; transform:translateY(-50%); cursor:pointer; font-size:18px;"
-    >👁️</span>
+  <i id="eyeIcon"
+   class="bi bi-eye"
+   onclick="togglePassword()"
+   style="position:absolute; right:15px; top:50%; transform:translateY(-50%); cursor:pointer; font-size:20px;">
+</i>
+
 </div>
 <div class="form-check text-start mb-3">
     <input class="form-check-input" type="checkbox" name="remember" id="remember">
@@ -163,12 +164,15 @@ function togglePassword(){
 
     if(pass.type === "password"){
         pass.type = "text";
-        eye.innerHTML = "🙈";   // password visible
+        eye.classList.remove("bi-eye");
+        eye.classList.add("bi-eye-slash");  // closed eye
     } else {
         pass.type = "password";
-        eye.innerHTML = "👁️";  // password hidden
+        eye.classList.remove("bi-eye-slash");
+        eye.classList.add("bi-eye"); // open eye
     }
 }
+
 
 document.addEventListener("DOMContentLoaded", function () {
 
