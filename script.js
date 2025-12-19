@@ -649,23 +649,26 @@ function editTargetSelect(){
     }
 }
 
-function editNews(id){
-    $.post("get_news.php",{id:id},function(data){
-        let n = JSON.parse(data);
+// function editNews(id){
+//     $.post("get_news.php",{id:id},function(res){
+//         let n = JSON.parse(res);
 
-        $("#edit_news_id").val(n.news_id);
-        $("#edit_title").val(n.title);
-        $("#edit_description").val(n.description);
-        $("#edit_toshow_type").val(n.toshow_type);
-        $("#edit_toshow_id").val(n.toshow_id);
-        $("#edit_news_date").val(n.news_date);
-        $("#edit_status").val(n.status);
+//         console.log("Time =", n.news_time);  // debug
 
-        $("#newsPreview").attr("src","upload/news/"+n.news_img);
+//         $("#edit_news_id").val(n.news_id);
+//         $("#edit_title").val(n.title);
+//         $("#edit_description").val(n.description);
+//         $("#edit_toshow_type").val(n.toshow_type);
+//         $("#final_toshow_id").val(n.toshow_id);
+//         $("#edit_news_date").val(n.news_date);
+//         $("#edit_news_time").val(n.news_time);  // AS IT IS
+//         $("#edit_status").val(n.status);
+//         $("#newsPreview").attr("src","upload/news/"+n.news_img);
 
-        $("#editNewsModal").modal("show");
-    });
-}
+//         $("#editNewsModal").modal("show");
+//     });
+// }
+
 
 $("#editNewsForm").submit(function(e){
     e.preventDefault();

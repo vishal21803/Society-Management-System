@@ -75,8 +75,14 @@ include("header.php");
                                 <input type="date" class="form-control" name="news_date" required>
                             </div>
 
+                             <div class="col-md-6 mb-3 animate__animated animate__fadeInLeft">
+                                <label class="form-label fw-semibold">News Time</label>
+                                <input type="text" class="form-control" name="news_time" required>
+                            </div>
+
+
                             <!-- STATUS -->
-                            <div class="col-md-6 mb-3 animate__animated animate__fadeInRight">
+                            <div class="col-md-12 mb-3 animate__animated animate__fadeInRight">
                                 <label class="form-label fw-semibold">Status</label>
                                 <select name="status" class="form-select">
                                     <option value="active">Active</option>

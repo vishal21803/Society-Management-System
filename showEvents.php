@@ -190,7 +190,7 @@ if(mysqli_num_rows($eventQuery) > 0){
         <img id="eventModalImage" class="img-fluid rounded mb-3" style="max-height:300px; object-fit:cover; width:100%;">
 
         <p><b>📍 Location:</b> <span id="eventModalLocation"></span></p>
-        <p><b>⏰ Time:</b> <span id="eventModalTime"></span></p>
+        <b></b> <span id="eventModalTime"></span>
         <p><b>📅 Date:</b> <span id="eventModalDate"></span></p>
 
         <hr>

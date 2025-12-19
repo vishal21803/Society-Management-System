@@ -7,3 +7,6 @@
 7.one new column (mstatus) is added to sens_members table.
 8.table:sens_services is created.
 9.table:sens_required is created.
+10.datatype of fullname(sens_members) and name(sens_users) has been changed from varchar to text.
+11.one new column (news_time,datatype is text) is added to sens_news table.
+

@@ -18,7 +18,7 @@ include("connectdb.php");
 
 /* Auto height - NO fixed height */
 .id-card{
-    width:400px;
+    width:420px;
     background:#fff;
     border-radius:12px;
     border:1px solid #ddd;
@@ -69,7 +69,7 @@ include("connectdb.php");
     object-fit:cover;
     border:2px solid #ffc107;
     box-shadow:0px 6px 14px rgba(0,0,0,0.18);
-    margin-top: 15px;
+    margin-top: 25px;
 }
 
 /* .info-area{
@@ -93,6 +93,7 @@ include("connectdb.php");
 .info-table{
     width:100%;
     border-collapse:collapse;
+    table-layout:fixed;
 }
 
 .info-table td{
@@ -101,9 +102,9 @@ include("connectdb.php");
 
 .info-label{
     width:38%;
-    font-weight:bold;
     text-align:left;
     padding-right:6px;
+    white-space:nowrap;
 }
 
 .info-value{
@@ -112,6 +113,9 @@ include("connectdb.php");
     word-break:break-word;
     position: relative;
     left: -215px;
+    white-space:normal;
+    font-weight: bold;
+    
 }
 
 /* auto height multi-line address */
@@ -122,11 +126,11 @@ include("connectdb.php");
 
 .footer-strip{
     font-size:11px;
-    background:#ffc107;
     padding:5px 8px;
     border-radius:6px;
     text-align:center;
     font-weight:bold;
+    border: 3px solid black;
 }
 
 @media print {
@@ -156,7 +160,7 @@ include("connectdb.php");
     filter:none !important;
     opacity:1 !important;
     box-shadow:none !important;
-    background:#fff9e6 !important;
+    /* background:#fff9e6 !important; */
 }
 .id-header{
     display:flex;
@@ -311,8 +315,8 @@ if($row['balance_amount'] == 0){
        <div class="info-area">
 <table class="info-table">
     <tr>
-        <td class="info-label">Name</td>
-        <td class="info-value">: <?=$row['fullname']?></td>
+        <td class="info-label" style="vertical-align:top;">Name</td>
+        <td class="info-value addr" style="width:25%;">: <?=$row['fullname']?></td>
     </tr>
     <tr>
         <td class="info-label">Phone</td>
@@ -331,15 +335,15 @@ if($row['balance_amount'] == 0){
         <td class="info-value">:&nbsp;<?=$row['city_name']?></td>
     </tr>
     <tr>
-        <td class="info-label" style="vertical-align:top;">Address :</td>
-        <td class="info-value addr"><?=$row['address']?></td>
+        <td class="info-label" style="vertical-align:top;">Address</td>
+        <td class="info-value addr" style="width:20%;">: <?=$row['address']?></td>
     </tr>
 </table>
 </div>
 
     </div>
 
-    <div class="footer-strip"> MEMBER ID - <?=$uniqueID?> </div>
+    <div class="footer-strip bg-warning"> MEMBER ID - <?=$uniqueID?> </div>
 
 </div>
 </div>
@@ -356,23 +360,20 @@ if($row['balance_amount'] == 0){
 function downloadPNG() {
     const card = document.querySelector(".id-card");
 
-    // blur remove before capture
     card.classList.add("no-blur-export");
 
-    html2canvas(card, {
-        scale: 4,
-        backgroundColor: "#fff9e6"
-    }).then(canvas => {
+    html2canvas(card,{
+        scale:4,
+        backgroundColor:"#fff"      // fixes footer color loss
+    }).then(canvas=>{
 
         const imgData = canvas.toDataURL("image/png");
-        const link = document.createElement("a");
-        link.href = imgData;
-        link.download = "ID_CARD_<?= $uid ?>.png";
+        const link=document.createElement("a");
+        link.href=imgData;
+        link.download="ID_CARD_<?= $uid ?>.png";
         link.click();
 
-        // restore blur
         card.classList.remove("no-blur-export");
-
     });
 }
 
