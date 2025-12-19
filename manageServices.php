@@ -52,6 +52,7 @@ $i = 1;
                 <thead class="table-dark">
                     <tr>
                         <th>#</th>
+                        <th>Service Date</th>
                         <th>Service Type</th>
                         <th>Description</th>
                         <th>Action</th>
@@ -62,6 +63,7 @@ $i = 1;
                     <?php while($row = mysqli_fetch_assoc($q)){ ?>
                     <tr id="srvRow<?= $row['service_id'] ?>">
                         <td><?= $i++ ?></td>
+                        <td><?= $row['service_date'] ?></td>
                         <td><?= $row['service_type'] ?></td>
                         <td><?= $row['service_desc'] ?></td>
 

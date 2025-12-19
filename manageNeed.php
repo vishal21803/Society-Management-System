@@ -71,6 +71,7 @@ include("connectdb.php");
                 <thead class="table-dark">
                     <tr>
                         <th>#</th>
+                        <th>Requirement Date</th>
                         <th>Requirement Type</th>
                         <th>Description</th>
                         <th>Action</th>
@@ -81,6 +82,7 @@ include("connectdb.php");
                     <?php while($row = mysqli_fetch_assoc($q)){ ?>
                     <tr id="srvRow<?= $row['require_id'] ?>">
                         <td><?= $i++ ?></td>
+                        <td><?= $row['require_date'] ?></td>
                         <td><?= $row['require_type'] ?></td>
                         <td><?= $row['require_desc'] ?></td>
 

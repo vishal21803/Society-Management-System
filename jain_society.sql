@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Dec 17, 2025 at 03:34 PM
+-- Generation Time: Dec 19, 2025 at 08:00 AM
 -- Server version: 9.1.0
 -- PHP Version: 8.3.14
 
@@ -96,7 +96,6 @@ INSERT INTO `sens_cities` (`city_id`, `zone_id`, `city_name`, `cstatus`, `create
 (4, 5, 'Jamul', 1, ''),
 (5, 5, 'Bhilai-3', 1, ''),
 (6, 6, 'Raipur', 1, ''),
-(7, 6, 'Arang', 1, ''),
 (8, 6, 'Tilda', 1, ''),
 (9, 6, 'Abhanpur', 1, ''),
 (10, 6, 'Naya Raipur', 1, ''),
@@ -353,7 +352,7 @@ CREATE TABLE IF NOT EXISTS `sens_members` (
   `address` text COLLATE utf8mb4_unicode_ci,
   `photo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT 'default.png',
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `fullname` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `fullname` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `balance_amount` float NOT NULL,
   `created_by` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `business` text COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -364,7 +363,7 @@ CREATE TABLE IF NOT EXISTS `sens_members` (
   KEY `zone_id` (`zone_id`),
   KEY `city_id` (`city_id`),
   KEY `plan_id` (`plan_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=41 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=42 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `sens_members`
@@ -373,23 +372,24 @@ CREATE TABLE IF NOT EXISTS `sens_members` (
 INSERT INTO `sens_members` (`member_id`, `user_id`, `zone_id`, `city_id`, `plan_id`, `gender`, `dob`, `membership_start`, `membership_end`, `phone`, `address`, `photo`, `created_at`, `fullname`, `balance_amount`, `created_by`, `business`, `education`, `mstatus`) VALUES
 (11, 9, 5, 4, 2, 'Male', '1988-09-01', '2025-12-04', '2026-11-04', '6666666666', 'Near Puri ITI,kohka', '1764877535_logo.png', '2025-12-04 19:45:35', 'Surya Naik', 500, NULL, '', '', 1),
 (7, 5, 5, 5, 1, 'Male', '1999-05-17', '2025-12-04', '2026-12-04', '1234567890', 'Kurud', '1764855137_AEGON_I.jpg', '2025-12-04 13:32:17', 'Vish', 0, NULL, 'Web Developer Freelancing', 'B.Tech ', 1),
-(10, 8, 7, 12, 1, 'Male', '2025-12-13', '2025-12-04', '2026-12-04', '8234567890', 'Near railway station,Kohka', '1764877201_wallpaperflare.com_wallpaper (2).jpg', '2025-12-04 19:40:01', 'Sonu kumar', 0, NULL, '', '', 0),
+(10, 8, 7, 12, 1, 'Male', '2025-12-13', '2025-12-04', '2026-12-04', '8234567890', 'Near railway station,Kohka', '1764877201_wallpaperflare.com_wallpaper (2).jpg', '2025-12-04 19:40:01', 'Sonu kumar', 0, NULL, '', '', 1),
 (13, 12, 6, 6, 1, 'Male', '1991-11-19', '2025-12-05', '2026-12-05', '1234567890', 'Near magneto', '1764919049_logo.png', '2025-12-05 07:17:29', 'Rajiv', 0, NULL, '', '', 1),
-(18, 15, 7, 12, 1, 'Male', '1994-11-03', '2025-12-04', '2026-12-04', '8234567890', 'Near Station', '1764942326_wallpaperflare.com_wallpaper.jpg', '2025-12-05 13:45:26', 'jon', 650, NULL, 'CEO', 'B.tech_AI', 0),
+(18, 15, 7, 12, 1, 'Male', '1994-11-03', '2025-12-04', '2026-12-04', '8234567890', 'Near Station', '1764942326_wallpaperflare.com_wallpaper.jpg', '2025-12-05 13:45:26', 'jon', 650, NULL, 'CEO', 'B.tech_AI', 1),
 (19, 16, 5, 17, 1, 'Male', '2000-10-10', '2025-12-07', '2026-12-07', '7321456980', 'Avanti bai chowk,kohka,Bhilai', '1765115919pray.jpg', '2025-12-07 13:49:57', 'Shiv kumar', 100, NULL, '', '', 1),
 (20, 17, 7, 14, 1, 'Male', '1989-04-14', '2025-12-07', '2026-12-07', '7321456980', 'Near China Market', '1765121172_flower.webp', '2025-12-07 15:26:12', 'Rajendra Kumar', -1250, NULL, '', '', 1),
 (37, 35, 5, 5, 2, 'Male', '1993-02-03', '0000-00-00', '0000-00-00', '1234567898', 'Middle Earth', 'default.png', '2025-12-11 15:36:40', 'Legolas', 0, NULL, '', '', 1),
 (23, 21, 5, 17, 2, '', '1994-06-15', '2025-12-08', NULL, '9479031444', 'Near hanuman Madir', NULL, '2025-12-08 11:16:40', 'Ravi Kumar', 0, NULL, 'dvd', 'dvd', 1),
-(27, 25, 6, 7, 1, '', '0000-00-00', '2025-12-08', NULL, '8888844444', NULL, NULL, '2025-12-08 18:30:56', 'efefee', 0, NULL, '', '', 1),
-(35, 33, 7, 11, 2, '', '0000-00-00', '2025-12-11', NULL, '123', NULL, 'default.png', '2025-12-11 06:16:01', 'Ravi kumar patni', 80, NULL, '', '', 1),
+(27, 25, 6, 6, 1, '', '0000-00-00', '2025-12-08', NULL, '8888844444', NULL, NULL, '2025-12-08 18:30:56', 'efefee', 0, NULL, '', '', 1),
+(35, 33, 7, 11, 2, '', '0000-00-00', '2025-12-11', NULL, '123', 'Near Ganj Para,Near Ganj Para,Near Ganj Para,Near Ganj Para,Near Ganj Para', '1765993867wallpaperflare.com_wallpaper (2).jpg', '2025-12-11 06:16:01', 'Ravi kumar patni', 0, NULL, '', '', 1),
 (28, 26, 5, 4, 2, '', '0000-00-00', '2025-12-09', NULL, '7896412307', NULL, 'default.png', '2025-12-09 16:50:09', 'pp', 0, NULL, '', '', 1),
 (29, 27, 5, 3, 1, 'Male', '1955-05-11', '2025-12-09', NULL, '8877799999', 'Casterly Rock,Westelands', '1765301392_1764875203_wallpaperflare.com_wallpaper.jpg', '2025-12-09 17:29:52', 'Tywin Lanister', -200, 'admin', '', '', 1),
 (31, 29, 7, 14, 2, '', '0000-00-00', '2025-12-09', NULL, '8788787454', NULL, 'default.png', '2025-12-09 17:44:10', 'Cersie', 0, NULL, '', '', 1),
-(38, 36, 7, 11, 2, '', '0000-00-00', NULL, NULL, '1478520000', NULL, 'default.png', '2025-12-11 15:44:33', 'ahoy', 0, NULL, '', '', 1),
-(33, 31, 5, 5, 1, 'Male', '2003-08-21', '0000-00-00', '0000-00-00', '7777777777', 'Dragonstone,Westeros', '1765974920wallpaperflare.com_wallpaper.jpg', '2025-12-10 12:36:05', 'Aegon Targaryen', 1, NULL, '', '', 1),
+(38, 36, 7, 11, 2, '', '0000-00-00', '2025-12-17', NULL, '1478520000', NULL, 'default.png', '2025-12-11 15:44:33', 'ahoy', 0, NULL, '', '', 1),
+(33, 31, 5, 5, 1, 'Male', '2003-08-21', '0000-00-00', '0000-00-00', '7777777777', 'Dragonstone,Westeros', '1766053422wallpaperflare.com_wallpaper.jpg', '2025-12-10 12:36:05', 'Aegon Targaryen  ', 10, NULL, '', '', 0),
 (36, 34, 5, 5, 2, '', '0000-00-00', NULL, NULL, '4440004400', NULL, 'default.png', '2025-12-11 15:24:37', 'end', 0, NULL, '', '', 1),
 (39, 38, 7, 11, 2, 'Female', '1996-06-10', '2025-12-11', '0000-00-00', '1234567885', 'Near Rani ganj,Bilaspur', 'default.png', '2025-12-11 15:57:13', 'Sujata', 0, 'admin', '', '', 1),
-(40, 39, 7, 14, 2, 'Ravi Husain', '0000-00-00', '2025-12-11', NULL, '1839721354', NULL, 'default.png', '2025-12-11 16:02:20', '', 0, 'admin', '', '', 1);
+(40, 39, 7, 14, 2, 'Ravi Husain', '0000-00-00', '2025-12-11', NULL, '1839721354', NULL, 'default.png', '2025-12-11 16:02:20', '', 0, 'admin', '', '', 1),
+(41, 40, 8, 19, 2, '', '0000-00-00', '2025-12-17', NULL, '128794630', NULL, 'default.png', '2025-12-17 18:06:18', 'Ronin', 0, NULL, '', '', 1);
 
 -- --------------------------------------------------------
 
@@ -441,26 +441,28 @@ CREATE TABLE IF NOT EXISTS `sens_news` (
   `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `news_date` date NOT NULL,
+  `news_time` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `status` varchar(40) COLLATE utf8mb4_unicode_ci NOT NULL,
   `news_img` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `toshow_type` enum('all','zone','city','member') COLLATE utf8mb4_unicode_ci DEFAULT 'all',
   `toshow_id` int DEFAULT NULL,
   `created_by` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`news_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `sens_news`
 --
 
-INSERT INTO `sens_news` (`news_id`, `title`, `description`, `created_at`, `news_date`, `status`, `news_img`, `toshow_type`, `toshow_id`, `created_by`) VALUES
-(4, 'National Jain Education Mission Announced', 'The All India Jain Federation officially announced the National Jain Education Mission 2026, a landmark nationwide initiative aimed at uplifting Jain students through structured educational support. Under this mission, thousands of deserving students from economically weaker backgrounds will receive merit-based and need-based scholarships for school, college, and professional courses such as engineering, medical, law, and management.\r\n\r\nIn addition to financial aid, the mission will also provide free digital learning resources, online coaching for competitive exams, career mentorship programs, and guidance sessions conducted by industry experts and senior academicians. The initiative focuses on empowering youth with ethical values, modern education tools, and career-oriented skills, strengthening the future of the Jain community across India.', '2025-12-06 19:37:50', '2026-02-12', 'active', '1740376392wallpaperflare.com_wallpaper.jpg', 'all', 0, 'dany'),
-(5, 'All India Jain Digital Donation Platform Launched', 'To bring transparency, convenience, and national-level unity in social service, the Jain community launched a centralized All India Digital Donation Platform in 2026. This secure system allows devotees and donors from anywhere in the country to contribute directly to verified Jain religious trusts, temples, educational institutions, medical services, and disaster relief programs.\r\n\r\nThe platform supports UPI, debit/credit cards, net banking, and international donations, ensuring easy and fast transactions. Every donation is tracked with digital receipts and real-time fund utilization updates. This initiative strengthens trust, accountability, and participation among community members while promoting large-scale humanitarian and welfare projects across India.', '2025-12-06 19:38:27', '2026-06-07', 'active', '1019412388wallpaperflare.com_wallpaper.jpg', 'all', 0, 'dany'),
-(6, 'Jain Community Leads National Tree Plantation Drive', 'In an inspiring step towards environmental responsibility, the Jain community launched a nationwide eco-awareness and plantation campaign named “Green Jain Bharat Mission” in 2026. Thousands of volunteers across multiple states participated in mass plantation drives near temples, schools, highways, villages, and public parks.\r\n\r\nThe campaign focuses on promoting non-violence towards nature, climate awareness, water conservation, and sustainable living among youth and families. Educational workshops, eco-pledge programs, and plastic-free awareness drives were also conducted alongside the plantation events. This movement highlights the Jain philosophy of “Ahimsa towards all living beings,” including nature itself, making it a powerful symbol of spiritual and environmental harmony.', '2025-12-06 19:38:51', '2026-10-18', 'active', '65492357wallpaperflare.com_wallpaper.jpg', 'all', 0, 'dany'),
-(7, 'Urgent Medical Help Required for Society Member', 'Our respected society member is currently undergoing critical medical treatment and urgently requires financial and emotional support. The Jain Society has initiated a special assistance drive for this purpose. All members are requested to come forward with whatever contribution they can make. Even a small help can save a life. Society will ensure complete transparency in fund utilization and regular health updates will be shared with contributors.', '2025-12-07 09:20:38', '2026-09-25', 'active', '1765099238_wallpaperflare.com_wallpaper.jpg', 'zone', 7, 'admin'),
-(8, 'Water Supply & Cleanliness Issue Raised in City Area', 'Several society members from the city have raised concerns regarding irregular water supply and poor sanitation conditions in residential areas. The Jain Society local committee has officially submitted a complaint to the municipal corporation. A city-level inspection will be conducted soon. Residents are requested to cooperate with officials and report any further issues for faster resolution.', '2025-12-07 09:21:36', '2026-03-12', 'active', '1765099296_wallpaperflare.com_wallpaper (2).jpg', 'city', 14, 'admin'),
-(9, 'Illegal Construction & Noise Pollution Issue Reported in Zone', 'Multiple complaints regarding illegal construction activities and late-night noise pollution have been received from different cities within the zone. The Jain Society Zone Committee has taken this matter seriously and has scheduled a joint action meeting with local authorities. Strict action will be taken against violations. Members are advised to maintain discipline and report such issues responsibly.', '2025-12-07 09:22:41', '2026-02-01', 'active', '1765099361_flower.webp', 'member', 18, 'admin'),
-(10, 'rrrfv', 'ewe', '2025-12-11 15:01:46', '2005-08-08', 'active', '1588781114wallpaperflare.com_wallpaper.jpg', 'all', 0, 'admin');
+INSERT INTO `sens_news` (`news_id`, `title`, `description`, `created_at`, `news_date`, `news_time`, `status`, `news_img`, `toshow_type`, `toshow_id`, `created_by`) VALUES
+(4, 'National Jain Education Mission Announced', 'The All India Jain Federation officially announced the National Jain Education Mission 2026, a landmark nationwide initiative aimed at uplifting Jain students through structured educational support. Under this mission, thousands of deserving students from economically weaker backgrounds will receive merit-based and need-based scholarships for school, college, and professional courses such as engineering, medical, law, and management.\r\n\r\nIn addition to financial aid, the mission will also provide free digital learning resources, online coaching for competitive exams, career mentorship programs, and guidance sessions conducted by industry experts and senior academicians. The initiative focuses on empowering youth with ethical values, modern education tools, and career-oriented skills, strengthening the future of the Jain community across India.', '2025-12-06 19:37:50', '2026-02-12', '', 'active', '1740376392wallpaperflare.com_wallpaper.jpg', 'all', 0, 'dany'),
+(5, 'All India Jain Digital Donation Platform Launched', 'To bring transparency, convenience, and national-level unity in social service, the Jain community launched a centralized All India Digital Donation Platform in 2026. This secure system allows devotees and donors from anywhere in the country to contribute directly to verified Jain religious trusts, temples, educational institutions, medical services, and disaster relief programs.\r\n\r\nThe platform supports UPI, debit/credit cards, net banking, and international donations, ensuring easy and fast transactions. Every donation is tracked with digital receipts and real-time fund utilization updates. This initiative strengthens trust, accountability, and participation among community members while promoting large-scale humanitarian and welfare projects across India.', '2025-12-06 19:38:27', '2026-06-07', '', 'active', '1019412388wallpaperflare.com_wallpaper.jpg', 'all', 0, 'dany'),
+(6, 'Jain Community Leads National Tree Plantation Drive', 'In an inspiring step towards environmental responsibility, the Jain community launched a nationwide eco-awareness and plantation campaign named “Green Jain Bharat Mission” in 2026. Thousands of volunteers across multiple states participated in mass plantation drives near temples, schools, highways, villages, and public parks.\r\n\r\nThe campaign focuses on promoting non-violence towards nature, climate awareness, water conservation, and sustainable living among youth and families. Educational workshops, eco-pledge programs, and plastic-free awareness drives were also conducted alongside the plantation events. This movement highlights the Jain philosophy of “Ahimsa towards all living beings,” including nature itself, making it a powerful symbol of spiritual and environmental harmony.', '2025-12-06 19:38:51', '2026-10-18', '', 'active', '65492357wallpaperflare.com_wallpaper.jpg', 'all', 0, 'dany'),
+(7, 'Urgent Medical Help Required for Society Member', 'Our respected society member is currently undergoing critical medical treatment and urgently requires financial and emotional support. The Jain Society has initiated a special assistance drive for this purpose. All members are requested to come forward with whatever contribution they can make. Even a small help can save a life. Society will ensure complete transparency in fund utilization and regular health updates will be shared with contributors.', '2025-12-07 09:20:38', '2026-09-25', '', 'active', '1765099238_wallpaperflare.com_wallpaper.jpg', 'zone', 7, 'admin'),
+(8, 'Water Supply & Cleanliness Issue Raised in City Area', 'Several society members from the city have raised concerns regarding irregular water supply and poor sanitation conditions in residential areas. The Jain Society local committee has officially submitted a complaint to the municipal corporation. A city-level inspection will be conducted soon. Residents are requested to cooperate with officials and report any further issues for faster resolution.', '2025-12-07 09:21:36', '2026-03-12', '', 'active', '1765099296_wallpaperflare.com_wallpaper (2).jpg', 'city', 14, 'admin'),
+(9, 'Illegal Construction & Noise Pollution Issue Reported in Zone', 'Multiple complaints regarding illegal construction activities and late-night noise pollution have been received from different cities within the zone. The Jain Society Zone Committee has taken this matter seriously and has scheduled a joint action meeting with local authorities. Strict action will be taken against violations. Members are advised to maintain discipline and report such issues responsibly.', '2025-12-07 09:22:41', '2026-02-01', '', 'active', '1765099361_flower.webp', 'member', 18, 'admin'),
+(10, 'rrrfv', 'ewe', '2025-12-11 15:01:46', '2005-08-08', '12:00 PM', 'active', '1588781114wallpaperflare.com_wallpaper.jpg', 'all', 0, 'admin'),
+(11, 'news 4', 'News 4 descriptionn', '2025-12-19 06:55:33', '2025-12-21', '10:00 AM', 'active', '1766127333_', 'all', 0, 'admin');
 
 -- --------------------------------------------------------
 
@@ -664,7 +666,7 @@ CREATE TABLE IF NOT EXISTS `sens_requests` (
   `approved_date` datetime DEFAULT NULL,
   `created_by` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`request_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `sens_requests`
@@ -692,11 +694,64 @@ INSERT INTO `sens_requests` (`request_id`, `member_id`, `status`, `request_date`
 (25, 29, 'approved', '2025-12-09 22:59:52', '2025-12-09 22:59:52', 'admin'),
 (26, 30, 'approved', '2025-12-09 23:08:08', NULL, NULL),
 (27, 31, 'approved', '2025-12-09 23:14:10', NULL, 'admin'),
-(34, 38, 'pending', '2025-12-11 21:14:33', NULL, NULL),
+(34, 38, 'approved', '2025-12-11 21:14:33', '2025-12-17 23:55:17', 'admin'),
 (29, 33, 'approved', '2025-12-10 18:06:05', NULL, 'admin'),
 (32, 36, 'pending', '2025-12-11 20:54:37', NULL, NULL),
 (35, 39, 'approved', '2025-12-11 21:27:13', '2025-12-11 21:27:13', 'admin'),
-(36, 40, 'approved', '2025-12-11 21:32:20', '2025-12-11 21:32:20', 'admin');
+(36, 40, 'approved', '2025-12-11 21:32:20', '2025-12-11 21:32:20', 'admin'),
+(37, 41, 'approved', '2025-12-17 23:36:18', '2025-12-17 23:56:21', 'admin');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sens_required`
+--
+
+DROP TABLE IF EXISTS `sens_required`;
+CREATE TABLE IF NOT EXISTS `sens_required` (
+  `require_id` int NOT NULL AUTO_INCREMENT,
+  `member_id` int NOT NULL,
+  `require_type` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `require_desc` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` datetime NOT NULL,
+  `require_date` date NOT NULL,
+  PRIMARY KEY (`require_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `sens_required`
+--
+
+INSERT INTO `sens_required` (`require_id`, `member_id`, `require_type`, `require_desc`, `created_at`, `require_date`) VALUES
+(4, 35, 'Hotel', 'Mera Hotel h', '2025-12-18 23:33:41', '0000-00-00'),
+(3, 33, 'Kirana', 'mujhe mere ilaak me ration ki dukaan chahiye', '2025-12-18 21:19:46', '2025-12-23'),
+(5, 33, 'Restaurant', 'fefef', '2025-12-19 13:18:18', '2025-12-19');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sens_services`
+--
+
+DROP TABLE IF EXISTS `sens_services`;
+CREATE TABLE IF NOT EXISTS `sens_services` (
+  `service_id` int NOT NULL AUTO_INCREMENT,
+  `member_id` int NOT NULL,
+  `service_type` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `service_desc` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` datetime NOT NULL,
+  `service_date` date NOT NULL,
+  PRIMARY KEY (`service_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `sens_services`
+--
+
+INSERT INTO `sens_services` (`service_id`, `member_id`, `service_type`, `service_desc`, `created_at`, `service_date`) VALUES
+(1, 33, 'Kirana', 'Ham kirana bechte hai', '2025-12-18 18:12:58', '2025-12-19'),
+(3, 35, 'Sanitary', 'Mera saaf safai ka business hai', '2025-12-18 23:34:32', '0000-00-00'),
+(4, 33, 'Education', 'Computer class', '2025-12-19 13:09:47', '2025-12-21');
 
 -- --------------------------------------------------------
 
@@ -735,7 +790,7 @@ INSERT INTO `sens_states` (`state_id`, `state_name`, `created_at`, `created_by`)
 DROP TABLE IF EXISTS `sens_users`;
 CREATE TABLE IF NOT EXISTS `sens_users` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '123456',
   `role` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'user',
@@ -743,7 +798,7 @@ CREATE TABLE IF NOT EXISTS `sens_users` (
   `onboarding` int NOT NULL DEFAULT '0',
   `created_by` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=40 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=41 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `sens_users`
@@ -772,12 +827,13 @@ INSERT INTO `sens_users` (`id`, `name`, `email`, `password`, `role`, `created_at
 (27, 'Tywin Lanister', '123vishal184910@gmail.com', '123456', 'user', '2025-12-09 17:29:52', 1, 'admin'),
 (29, 'Cersie', '123vis7hal18910@gmail.com', '123456', 'user', '2025-12-09 17:44:10', 0, NULL),
 (30, 'toren', 'to@gmail.com', '123456', 'user', '2025-12-10 07:12:09', 0, NULL),
-(31, 'Aegon Targaryen', '123vishal18910@gmail.com', '12345', 'user', '2025-12-10 12:36:05', 0, NULL),
+(31, 'Aegon Targaryen Aegon Targaryen Aegon Targaryen Aegon Targaryen  ', '123vishal18910@gmail.com', '12345', 'user', '2025-12-10 12:36:05', 0, NULL),
 (35, 'efefef', '', '123456', 'user', '2025-12-11 15:36:40', 0, NULL),
 (36, 'ahoy', '', '123456', 'user', '2025-12-11 15:44:33', 0, NULL),
 (37, 'Legolas', '', '123456', 'user', '2025-12-11 15:56:24', 1, 'admin'),
 (38, 'okadda44', '', '123456', 'user', '2025-12-11 15:57:13', 1, 'admin'),
-(39, 'Ravi Husain', '', '123456', 'user', '2025-12-11 16:02:20', 1, 'admin');
+(39, 'Ravi Husain', '', '123456', 'user', '2025-12-11 16:02:20', 1, 'admin'),
+(40, 'Ronin', '', '123456', 'user', '2025-12-17 18:06:18', 0, NULL);
 
 -- --------------------------------------------------------
 
