@@ -12,6 +12,8 @@
 12.one new column (require_date,datatype is date) is added to sens_required table.
 13.one new column (service_date,datatype is date) is added to sens_services table.
 
+--------------------------------------------------------------------------------------------------------------------
 14.one new column (gallery_front ,datatype is int,default value is 0) is added to sens_gallery table.
-
+14.one new column (event_front ,datatype is int,default value is 0) is added to sens_events table.
+14.one new column (news_front ,datatype is int,default value is 0) is added to sens_news table.
 

@@ -222,16 +222,17 @@ if($isLoggedIn){
 if($isLoggedIn){
 
 $newsQuery = mysqli_query($con, "
-SELECT * FROM sens_news 
-WHERE status='active'
-AND (
-    toshow_type='all'
-    OR (toshow_type='zone' AND toshow_id='$myZone')
-    OR (toshow_type='city' AND toshow_id='$myCity')
-    OR (toshow_type='member' AND toshow_id='$member_id')
-)
-ORDER BY news_id DESC
-LIMIT 3
+    SELECT * FROM sens_news 
+    WHERE status='active'
+    AND news_front = 1
+    AND (
+        toshow_type='all'
+        OR (toshow_type='zone' AND toshow_id='$myZone')
+        OR (toshow_type='city' AND toshow_id='$myCity')
+        OR (toshow_type='member' AND toshow_id='$member_id')
+    )
+    ORDER BY news_id DESC
+    LIMIT 3
 ");
 
 
@@ -239,13 +240,14 @@ LIMIT 3
 else{
 
     // ✅ Guest sirf ALL type dekhega
-    $newsQuery = mysqli_query($con, "
+   $newsQuery = mysqli_query($con, "
     SELECT * FROM sens_news 
     WHERE status='active'
+    AND news_front = 1
     AND toshow_type='all'
     ORDER BY news_id DESC
     LIMIT 3
-    ");
+");
 
 }
 ?>
@@ -255,26 +257,28 @@ else{
 
 // === Events Query
 if($isLoggedIn){
-    $eventQuery = mysqli_query($con, "
-        SELECT * FROM sens_events
-        WHERE event_status='upcoming'
-        AND (
-            toshow_type='all'
-            OR (toshow_type='zone' AND toshow_id='$myZone')
-            OR (toshow_type='city' AND toshow_id='$myCity')
-            OR (toshow_type='member' AND toshow_id='$member_id')
-        )
-        ORDER BY event_id 
-        LIMIT 3
-    ");
+  $eventQuery = mysqli_query($con, "
+    SELECT * FROM sens_events
+    WHERE event_front = 1
+    AND (
+        toshow_type='all'
+        OR (toshow_type='zone' AND toshow_id='$myZone')
+        OR (toshow_type='city' AND toshow_id='$myCity')
+        OR (toshow_type='member' AND toshow_id='$member_id')
+    )
+    ORDER BY event_id DESC
+    LIMIT 3
+");
+
 }else{
     $eventQuery = mysqli_query($con, "
-        SELECT * FROM sens_events
-        WHERE event_status='upcoming'
-        AND toshow_type='all'
-        ORDER BY event_id DESC
-        LIMIT 3
-    ");
+    SELECT * FROM sens_events
+    WHERE event_front = 1
+    AND toshow_type='all'
+    ORDER BY event_id DESC
+    LIMIT 3
+");
+
 }
 ?>
 
@@ -486,9 +490,8 @@ if($isLoggedIn){
 </section>
 
 
-
 <!-- ========== EVENTS CARDS ========== -->
-<section id="events" class="py-5 ">
+<section id="events" class="py-5">
     <div class="container">
         <h2 class="fw-bold text-center mb-4">Earlier Events</h2>
 
@@ -499,58 +502,85 @@ if($isLoggedIn){
                 while($event = mysqli_fetch_assoc($eventQuery)){
             ?>
                 <div class="col-md-4">
-                   
-
                     <div class="p-4 bg-white shadow rounded h-100 d-flex flex-column justify-content-between">
-                          <?php if(!empty($event['event_img'])){ ?>
-    <img src="upload/events/<?= htmlspecialchars($event['event_img']); ?>" 
-         class="img-fluid rounded mb-3"
-         style="height:180px;object-fit:cover;width:100%;">
-<?php } ?>
+
+                        <?php if(!empty($event['event_img'])){ ?>
+                            <img src="upload/events/<?= htmlspecialchars($event['event_img']); ?>" 
+                                 class="img-fluid rounded mb-3"
+                                 style="height:180px;object-fit:cover;width:100%;">
+                        <?php } ?>
+
                         <div>
-                            <h5 class="fw-bold"><?= htmlspecialchars($event['title']) ?></h5>
+                            <h5 class="fw-bold"><?= htmlspecialchars($event['title']); ?></h5>
+
                             <p class="text-muted mb-1">
-                                <i class="bi bi-calendar-event"></i> <?= date("d M Y", strtotime($event['event_date'])) ?> 
-                                 <i class="bi "></i> <?= $event['event_time'] ?>
+                                <i class="bi bi-calendar-event"></i> 
+                                <?= date("d M Y", strtotime($event['event_date'])); ?>
+                                · <?= htmlspecialchars($event['event_time']); ?>
                             </p>
+
                             <p class="text-muted mb-2">
-                                <i class="bi bi-geo-alt"></i> <?= htmlspecialchars($event['event_location']) ?>
+                                <i class="bi bi-geo-alt"></i> 
+                                <?= htmlspecialchars($event['event_location']); ?>
                             </p>
-                            <p>
-                                <?= substr($event['description'], 0, 100) ?>...
-                            </p>
+
+                            <p><?= substr($event['description'], 0, 100); ?>...</p>
                         </div>
 
-                        <div class="text-end">
+                        <!-- Buttons row -->
+                        <div class="d-flex justify-content-between align-items-center mt-3">
+
+                           
+
                             <a href="javascript:void(0)" 
                                class="btn btn-outline-primary btn-sm"
-                                onclick='openEventModal(
-       <?= json_encode($event["title"]) ?>,
-       <?= json_encode($event["description"]) ?>,
-       <?= json_encode($event["event_date"]) ?>,
-       <?= json_encode($event["event_time"]) ?>,
-       <?= json_encode($event["event_location"]) ?>,
-       <?= json_encode($event["event_img"]) ?>
-   )'>
-                               Read More
+                               onclick='openEventModal(
+                                    <?= json_encode($event["title"]); ?>,
+                                    <?= json_encode($event["description"]); ?>,
+                                    <?= json_encode($event["event_date"]); ?>,
+                                    <?= json_encode($event["event_time"]); ?>,
+                                    <?= json_encode($event["event_location"]); ?>,
+                                    <?= json_encode($event["event_img"]); ?>
+                               )'>
+                                Read More
                             </a>
+
+                             <?php if(!empty($event['video_link'])){ ?>
+                                <button class="btn btn-primary btn-sm"
+                                        onclick="openVideo('<?= $event['video_link']; ?>')">
+                                    <i class="bi bi-play-circle"></i> Play Video
+                                </button>
+                            <?php } ?>
+
                         </div>
 
                     </div>
                 </div>
-            <?php
-                }
-            } else {
-            ?>
+
+            <?php } } else { ?>
+
                 <div class="col-12 text-center">
                     <p>No Events Available</p>
                 </div>
+
             <?php } ?>
 
         </div>
     </div>
 </section>
 
+<!-- ===== VIDEO MODAL ===== -->
+<div class="modal fade" id="videoModal">
+  <div class="modal-dialog modal-md modal-dialog-centered">
+    <div class="modal-content p-0 rounded">
+
+      <div class="ratio ratio-16x9">
+        <iframe id="videoFrame" src="" allow="autoplay" allowfullscreen></iframe>
+      </div>
+
+    </div>
+  </div>
+</div>
 <!-- ========== EVENTS MODAL ========== -->
 <div class="modal fade" id="eventModal" tabindex="-1">
   <div class="modal-dialog modal-lg modal-dialog-centered">
@@ -650,6 +680,42 @@ function openEventModal(title, desc, date, time, location, img) {
 
     new bootstrap.Modal(document.getElementById("eventModal")).show();
 }
+
+
+// ===== OPEN VIDEO =====
+function openVideo(url){
+    let id = "";
+
+    // Short link: youtu.be/xxxxx
+    if(url.includes("youtu.be/")){
+        id = url.split("youtu.be/")[1].split("?")[0];
+    }
+
+    // Normal link: watch?v=xxxxx
+    else if(url.includes("watch?v=")){
+        id = url.split("watch?v=")[1].split("&")[0];
+    }
+
+    // Shorts link: youtube.com/shorts/xxxxx
+    else if(url.includes("/shorts/")){
+        id = url.split("/shorts/")[1].split("?")[0];
+    }
+
+    if(id == ""){
+        alert("Invalid YouTube Link!");
+        return;
+    }
+
+    document.getElementById("videoFrame").src =
+        "https://www.youtube.com/embed/" + id + "?autoplay=1";
+
+    new bootstrap.Modal(document.getElementById('videoModal')).show();
+
+    document.getElementById('videoModal').addEventListener('hidden.bs.modal', function () {
+        document.getElementById("videoFrame").src = "";
+    });
+}
+
 
 </script>
 
