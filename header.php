@@ -319,6 +319,7 @@ li{
                     <a class="dropdown-item-custom" href="manageFamily.php">My Family</a>
                     <a class="dropdown-item-custom" href="userMessages.php">My Chat</a>
                     <a class="dropdown-item-custom" href="userId.php">My I-Card</a>
+                      <a class="dropdown-item-custom" href="show_downloads.php">My Downloads</a>
                     <a class="dropdown-item-custom" href="manageServices.php">My Services</a>
                     <a class="dropdown-item-custom" href="manageNeed.php">My Requirement</a>
                 </div>
@@ -525,6 +526,7 @@ li{
                         <li><a href="manageFamily.php">My Family</a></li>
                         <li> <a  href="userMessages.php">My Chat</a></li>
                         <li> <a  href="userId.php">My I-Card</a></li>
+                        <li> <a  href="show_downloads.php">My Downloads</a></li>
                         <li><a href="manageServices.php">My Services</a></li>
                         <li><a href="manageNeed.php">My Requirement</a></li>
                     </ul>

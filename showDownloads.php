@@ -162,7 +162,7 @@ if(mysqli_num_rows($query) > 0){
         </div>
 
      
-            <a href="upload/files/<?= $row['file_name'] ?>" class="download-btn" download>
+            <a href="upload/<?= $row['file_name'] ?>" class="download-btn" download>
                 ⬇ Download
             </a>
       
