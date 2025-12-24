@@ -2,14 +2,66 @@
 include("header.php");
 ?>
 <style>
-     .hero {
-            background: url('./upload/mandir.jpg') ;
+     /* .hero {
+            background: url('./upload/Hero.png') ;
             background-size: cover;
             background-repeat: no-repeat;
             padding: 150px 0;
             color: white;
             text-shadow: 1px 1px 3px black;
-        }
+        } */
+
+
+            .hero {
+    min-height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: linear-gradient(
+        -45deg,
+        #1e3c72,
+        #9bbfffff,
+        #f7971e,
+        #ffd200
+    );
+    background-size: 400% 400%;
+    animation: gradientBG 12s ease infinite;
+    color: white;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Glass content */
+.hero-content {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(14px);
+    padding: 50px;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+}
+
+/* Fade animation */
+.animate-fade {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 1s ease forwards;
+}
+
+.delay-1 { animation-delay: 0.3s; }
+.delay-2 { animation-delay: 0.6s; }
+
+@keyframes fadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
         .feature-icon {
             font-size: 40px;
             color: #16a34a;
@@ -290,24 +342,32 @@ if($isLoggedIn){
 <main>
 <!-- ========== HERO SECTION ========== -->
 <section class="hero text-center">
-    <div class="container">
-        <h1 class="fw-bold display-4">Welcome to Our Jain Khandelwal Sabha</h1>
-        <p class="lead">Connecting Jain families, culture, values & community together.</p>
+    <div class="container hero-content">
+        <h1 class="fw-bold display-4 animate-fade">
+            Welcome to Society Management System
+        </h1>
+
+        <p class="lead animate-fade delay-1">
+            Connecting families, culture, values & community together.
+        </p>
+
         <?php if(!isset($_SESSION["uname"])) { ?>
-
-        <a href="register.php" class="btn btn-warning btn-lg mt-3" style="color:white;">Join Our Society</a>
-
+            <a href="register.php"
+               class="btn btn-warning btn-lg mt-3 animate-fade delay-2"
+               style="color:white;">
+                Join Our Society
+            </a>
         <?php } ?>
-
     </div>
 </section>
+
 
 <!-- ========== ABOUT SECTION ========== -->
 <section id="about" class="py-5">
     <div class="container">
         <h2 class="text-center fw-bold mb-4">About Us</h2>
         <p class="text-center w-75 mx-auto">
-           The <b>Shri Nagpur Prantiya Digambar Jain Khandelwal Sabha </b> was founded in 1916 with a noble vision — to bring together families of the Khandela Gram (Rajasthan) who had spread across different parts of India, and to keep alive the shared values, culture, and spiritual heritage of our community.
+            This Project was established with a vision to unite families from a common heritage and strengthen bonds across different regions. It aims to preserve cultural values, traditions, and social harmony while fostering a sense of belonging and collective growth within the community.
         </p>
     </div>
 </section>
@@ -457,37 +517,76 @@ if($isLoggedIn){
 
 
 <!-- ========== FEATURES SECTION ========== -->
-<section class="py-5 ">
+<section class="py-5">
     <div class="container">
         <h2 class="text-center fw-bold mb-5">Our Features</h2>
 
         <div class="row g-4 text-center">
+            
             <div class="col-lg-4">
-                <div class="p-4 bg-white shadow rounded">
-                    <div class="feature-icon mb-3">🛕</div>
-                    <h5 class="fw-bold">Temple Information</h5>
-                    <p>Explore nearby Jain temples and their timings.</p>
+                <div class="p-4 bg-white shadow rounded h-100">
+                    <div class="feature-icon mb-3">👥</div>
+                    <h5 class="fw-bold">Member Management</h5>
+                    <p>
+                        Maintain detailed member profiles with easy access to personal, family, and contact information.
+                    </p>
                 </div>
             </div>
 
             <div class="col-lg-4">
-                <div class="p-4 bg-white shadow rounded">
-                    <div class="feature-icon mb-3">🧘</div>
-                    <h5 class="fw-bold">Community Events</h5>
-                    <p>Religious, cultural & youth events updated regularly.</p>
+                <div class="p-4 bg-white shadow rounded h-100">
+                    <div class="feature-icon mb-3">📅</div>
+                    <h5 class="fw-bold">Events & Activities</h5>
+                    <p>
+                        Create, manage, and publish events with schedules, updates, and participation details.
+                    </p>
                 </div>
             </div>
 
             <div class="col-lg-4">
-                <div class="p-4 bg-white shadow rounded">
-                    <div class="feature-icon mb-3">📜</div>
-                    <h5 class="fw-bold">Member Directory</h5>
-                    <p>Find members based on zone & city structure.</p>
+                <div class="p-4 bg-white shadow rounded h-100">
+                    <div class="feature-icon mb-3">💳</div>
+                    <h5 class="fw-bold">Billing & Receipts</h5>
+                    <p>
+                        Track payments, generate bills and receipts, and view transaction history in one place.
+                    </p>
                 </div>
             </div>
+
+            <div class="col-lg-4">
+                <div class="p-4 bg-white shadow rounded h-100">
+                    <div class="feature-icon mb-3">📂</div>
+                    <h5 class="fw-bold">Document Downloads</h5>
+                    <p>
+                        Securely share and download notices, forms, reports, and official documents.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="p-4 bg-white shadow rounded h-100">
+                    <div class="feature-icon mb-3">💬</div>
+                    <h5 class="fw-bold">Communication System</h5>
+                    <p>
+                        Send messages and announcements to members for quick and effective communication.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="p-4 bg-white shadow rounded h-100">
+                    <div class="feature-icon mb-3">📊</div>
+                    <h5 class="fw-bold">Reports & Analytics</h5>
+                    <p>
+                        View insights, summaries, and reports to help manage operations efficiently.
+                    </p>
+                </div>
+            </div>
+
         </div>
     </div>
 </section>
+
 
 
 <!-- ========== EVENTS CARDS ========== -->
@@ -617,7 +716,7 @@ if($isLoggedIn){
 <?php if(!isset($_SESSION["uname"])) { ?>
     
 <!-- ========== MEMBERSHIP SECTION ========== -->
-<section id="membership" class="py-5 bg-light">
+<!-- <section id="membership" class="py-5 bg-light">
     <div class="container">
         <h2 class="fw-bold text-center mb-4">Membership Plans</h2>
 
@@ -639,7 +738,7 @@ if($isLoggedIn){
             </div>
         </div>
     </div>
-</section>
+</section> -->
 
 <?php } ?>
 

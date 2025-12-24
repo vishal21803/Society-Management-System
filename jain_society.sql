@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Dec 19, 2025 at 08:00 AM
+-- Generation Time: Dec 24, 2025 at 03:47 PM
 -- Server version: 9.1.0
 -- PHP Version: 8.3.14
 
@@ -181,12 +181,12 @@ CREATE TABLE IF NOT EXISTS `sens_downloads` (
   `id` int NOT NULL AUTO_INCREMENT,
   `topic` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `remark` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `file_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `file_name` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `downshow` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_by` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `sens_downloads`
@@ -204,7 +204,10 @@ INSERT INTO `sens_downloads` (`id`, `topic`, `remark`, `file_name`, `created_at`
 (10, 'Scholarship Form', 'Application form for scholarship', 'scholarship_form.pdf', '2025-12-14 12:11:00', 'members', 'admin'),
 (11, 'Festival Notice', 'Festival celebration notice', 'festival_notice.jpg', '2025-12-14 12:11:00', 'general', 'admin'),
 (12, 'Audit Report', 'Yearly audit report', 'audit_report.xlsx', '2025-12-14 12:11:00', 'general', 'accountant'),
-(13, 'Emergency Contacts', 'Important contact numbers', 'emergency_contacts.pdf', '2025-12-14 12:11:00', 'members', 'admin');
+(13, 'Emergency Contacts', 'Important contact numbers', 'emergency_contacts.pdf', '2025-12-14 12:11:00', 'members', 'admin'),
+(14, 'random 1', 'Random file', '1766284902_Resume.pdf', '2025-12-21 02:41:42', 'general', 'admin'),
+(15, 'fef', 'ef', '1766285161_My Resume.pdf', '2025-12-21 02:46:01', 'general', 'admin'),
+(16, 'jj', 'jj', '1766285295_Syllabus AI 5th SEM.pdf', '2025-12-21 02:48:15', 'members', 'admin');
 
 -- --------------------------------------------------------
 
@@ -227,20 +230,22 @@ CREATE TABLE IF NOT EXISTS `sens_events` (
   `toshow_id` int DEFAULT NULL,
   `created_by` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `video_link` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `event_front` int NOT NULL DEFAULT '0',
   PRIMARY KEY (`event_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `sens_events`
 --
 
-INSERT INTO `sens_events` (`event_id`, `title`, `description`, `event_date`, `created_at`, `event_time`, `event_location`, `event_status`, `event_img`, `toshow_type`, `toshow_id`, `created_by`, `video_link`) VALUES
-(12, 'Diwali 2k25', 'A peaceful spiritual gathering where members participated in Samayik, followed by an enlightening Pravachan by respected Jain scholars.', '2025-11-11', '2025-12-09 08:05:41', '', 'Club House', 'upcoming', '1764832607_a2.jpeg', 'all', 0, 'admin', 'https://youtu.be/LTeO_TNDJWI?si=-SqKVrHWk4T18cJl'),
-(13, 'Annual Samayik & Pravachan Day', 'A peaceful spiritual gathering where members participated in Samayik, followed by an enlightening Pravachan by respected Jain scholars.', '2025-08-08', '2025-12-09 12:18:21', '', 'Circus Ground', '', 'logo.png', 'zone', 5, 'dany', 'https://youtu.be/LTeO_TNDJWI?si=-SqKVrHWk4T18cJl'),
-(14, 'Health Check-up Camp', 'A free community health camp organized to promote wellness, including general health tests and doctor consultations.  A free community health camp organized to promote wellness, including general health tests and doctor consultations.  A free community health camp organized to promote wellness, including general health tests and doctor consultations.  A free community health camp organized to promote wellness, including general health tests and doctor consultations.', '2024-10-09', '2025-12-09 12:20:10', '', 'Jain Conference Cente', '', '1765095426_2171-blood-donation.jpg', 'member', 18, 'admin', 'https://youtu.be/jhBAUzoXj_A?si=qzF4dPoZX84XbD7D'),
-(17, 'fffffffffffffff', 'qqe', '2008-08-08', '2025-12-11 14:56:09', '', 'Jain Conference Cente', '', '1765465194_wallpaperflare.com_wallpaper (1).jpg', 'all', 0, 'dany', ''),
-(15, 'fef', 'fef', '2024-10-09', '2025-12-11 14:50:16', '', 'India Expo Mart', '', '', 'city', 10, 'admin', 'https://youtu.be/LTeO_TNDJWI?si=-SqKVrHWk4T18cJl'),
-(16, 'fffffffff', 'd', '2010-10-10', '2025-12-11 14:52:14', '', 'ss', '', 'WIN_20240504_16_34_38_Pro.jpg', 'all', 0, 'admin', '');
+INSERT INTO `sens_events` (`event_id`, `title`, `description`, `event_date`, `created_at`, `event_time`, `event_location`, `event_status`, `event_img`, `toshow_type`, `toshow_id`, `created_by`, `video_link`, `event_front`) VALUES
+(12, 'Diwali 2k25', 'A peaceful spiritual gathering where members participated in Samayik, followed by an enlightening Pravachan by respected Jain scholars.', '2025-11-11', '2025-12-09 08:05:41', '', 'Club House', 'upcoming', '1764832607_a2.jpeg', 'all', 0, 'admin', 'https://youtu.be/LTeO_TNDJWI?si=-SqKVrHWk4T18cJl', 0),
+(13, 'Annual Samayik & Pravachan Day', 'A peaceful spiritual gathering where members participated in Samayik, followed by an enlightening Pravachan by respected Jain scholars.', '2025-08-08', '2025-12-09 12:18:21', '', 'Circus Ground', '', 'logo.png', 'zone', 5, 'dany', 'https://youtu.be/LTeO_TNDJWI?si=-SqKVrHWk4T18cJl', 0),
+(14, 'Health Check-up Camp', 'A free community health camp organized to promote wellness, including general health tests and doctor consultations.  A free community health camp organized to promote wellness, including general health tests and doctor consultations.  A free community health camp organized to promote wellness, including general health tests and doctor consultations.  A free community health camp organized to promote wellness, including general health tests and doctor consultations.', '2024-10-09', '2025-12-09 12:20:10', '', 'Jain Conference Cente', '', '1765095426_2171-blood-donation.jpg', 'member', 18, 'admin', 'https://youtu.be/jhBAUzoXj_A?si=qzF4dPoZX84XbD7D', 0),
+(17, 'fffffffffffffff', 'qqe', '2008-08-08', '2025-12-11 14:56:09', '', 'Jain Conference Cente', '', '1765465194_wallpaperflare.com_wallpaper (1).jpg', 'all', 0, 'dany', 'https://youtube.com/shorts/9SmlAqAQHHE?si=vE5CT2H1m90zamGn', 1),
+(15, 'fef', 'fef', '2024-10-09', '2025-12-11 14:50:16', '', 'India Expo Mart', '', '', 'city', 10, 'admin', 'https://youtu.be/LTeO_TNDJWI?si=-SqKVrHWk4T18cJl', 0),
+(16, 'fffffffff', 'd', '2010-10-10', '2025-12-11 14:52:14', '', 'ss', '', 'WIN_20240504_16_34_38_Pro.jpg', 'all', 0, 'admin', 'https://youtu.be/p_KHoYe9uTU?si=b_fOtNRtrbMUUkpE', 0),
+(18, 'fedf', 'fvdvd', '2025-11-11', '2025-12-20 09:26:04', '', 'ede', '', '1766222764_', 'all', 0, 'admin', '', 0);
 
 -- --------------------------------------------------------
 
@@ -295,7 +300,7 @@ CREATE TABLE IF NOT EXISTS `sens_family` (
 
 INSERT INTO `sens_family` (`fam_id`, `member_id`, `fam_name`, `fam_gender`, `fam_phone`, `fam_relation`, `created_by`, `fam_dob`, `fam_education`, `marry_status`) VALUES
 (1, 18, 'Mary Jones', 'Female', '9874563311', 'Wife', 'jon', '1997-08-21', 'B.tech', 'Married'),
-(6, 33, 'Sonal', 'Female', '9874563310', 'Sister', 'Aegon Targaryen', '2025-12-03', 'BA pass', 'Unmarried');
+(6, 33, 'Sonal', 'Female', '9874563310', 'Sister', 'Aegon Targaryen', '2000-12-03', 'BA pass', 'Unmarried');
 
 -- --------------------------------------------------------
 
@@ -316,20 +321,23 @@ CREATE TABLE IF NOT EXISTS `sens_gallery` (
   `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
   `created_by` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `priority` int NOT NULL,
+  `gallery_front` int NOT NULL DEFAULT '0',
   PRIMARY KEY (`gallery_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `sens_gallery`
 --
 
-INSERT INTO `sens_gallery` (`gallery_id`, `title`, `description`, `visibility_type`, `zone_id`, `city_id`, `member_id`, `image`, `created_at`, `created_by`, `priority`) VALUES
-(5, 'Mahavir Jayanti Celebration', 'A nationwide celebration of Lord Mahavir Jayanti observed with grand processions, special prayers, pravachans, bhajan sandhya, and community service activities across Jain temples in India. Devotees participated with devotion, peace, and spiritual enthusiasm.', 'all', 0, 0, 0, '1765093066_mahavir-jayanti-f.webp', '2025-12-05 13:07:46', 'admin', 100),
-(6, 'Diwali & Nirvan Divas Mahotsav', 'Diwali was celebrated across the Jain community as the Nirvan Divas of Lord Mahavir with deep spiritual significance. Temples were illuminated with diyas, special pujas were performed, and messages of non-violence, truth, and self-discipline were spread.', 'all', 0, 0, 0, '1765093175_diwal.jpg', '2025-12-07 13:09:35', 'dany', 0),
-(7, 'Festival of Colors – Holi Utsav', 'The festival of Holi was celebrated with joy, unity, and cultural programs. Community members enjoyed flower Holi, traditional music, dance performances, and social bonding while promoting harmony and brotherhood.', 'all', 0, 0, 0, '1765093215_holi.webp', '2025-12-12 13:10:15', 'dany', 0),
-(8, 'Zone Level Jain Sports Meet', '', 'zone', 5, 0, 0, '1765095294_sports.jpg', '2025-12-07 13:44:54', 'admin', 0),
-(9, ' City Jain Blood Donation Camp', '', 'city', 0, 12, 0, '1765095426_2171-blood-donation.jpg', '2025-12-07 13:47:06', 'dany', 0),
-(10, 'My Personal Membership Anniversary', '', 'member', 0, 0, 18, '1765095510_flower.webp', '2025-12-07 13:48:30', 'admin', 0);
+INSERT INTO `sens_gallery` (`gallery_id`, `title`, `description`, `visibility_type`, `zone_id`, `city_id`, `member_id`, `image`, `created_at`, `created_by`, `priority`, `gallery_front`) VALUES
+(5, 'Mahavir Jayanti Celebration', 'A nationwide celebration of Lord Mahavir Jayanti observed with grand processions, special prayers, pravachans, bhajan sandhya, and community service activities across Jain temples in India. Devotees participated with devotion, peace, and spiritual enthusiasm.', 'all', 0, 0, 0, '1765093066_mahavir-jayanti-f.webp', '2025-12-05 13:07:46', 'admin', 100, 0),
+(6, 'Diwali & Nirvan Divas Mahotsav', 'Diwali was celebrated across the Jain community as the Nirvan Divas of Lord Mahavir with deep spiritual significance. Temples were illuminated with diyas, special pujas were performed, and messages of non-violence, truth, and self-discipline were spread.', 'all', 0, 0, 0, '1765093175_diwal.jpg', '2025-12-07 13:09:35', 'dany', 0, 0),
+(7, 'Festival of Colors – Holi Utsav', 'The festival of Holi was celebrated with joy, unity, and cultural programs. Community members enjoyed flower Holi, traditional music, dance performances, and social bonding while promoting harmony and brotherhood.', 'all', 0, 0, 0, '1765093215_holi.webp', '2025-12-12 13:10:15', 'dany', 0, 0),
+(8, 'Zone Level Jain Sports Meet', '', 'zone', 5, 0, 0, '1765095294_sports.jpg', '2025-12-07 13:44:54', 'admin', 0, 0),
+(9, ' City Jain Blood Donation Camp', '', 'city', 0, 12, 0, '1765095426_2171-blood-donation.jpg', '2025-12-07 13:47:06', 'dany', 0, 0),
+(10, 'My Personal Membership Anniversary', '', 'member', 0, 0, 18, '1765095510_flower.webp', '2025-12-07 13:48:30', 'admin', 0, 0),
+(12, 'Seven Kingdoms', 'Westeros5', 'all', 0, 0, 0, '1766213101_wallpaperflare.com_wallpaper.jpg', '2025-12-20 12:15:01', 'admin', 85, 1),
+(13, 'Gallery 2', 'गैलरी २ डेस्क', 'all', 0, 0, 0, '1766213476wallpaperflare.com_wallpaper (1).jpg', '2025-12-20 12:19:59', 'admin', 125, 1);
 
 -- --------------------------------------------------------
 
@@ -380,12 +388,12 @@ INSERT INTO `sens_members` (`member_id`, `user_id`, `zone_id`, `city_id`, `plan_
 (37, 35, 5, 5, 2, 'Male', '1993-02-03', '0000-00-00', '0000-00-00', '1234567898', 'Middle Earth', 'default.png', '2025-12-11 15:36:40', 'Legolas', 0, NULL, '', '', 1),
 (23, 21, 5, 17, 2, '', '1994-06-15', '2025-12-08', NULL, '9479031444', 'Near hanuman Madir', NULL, '2025-12-08 11:16:40', 'Ravi Kumar', 0, NULL, 'dvd', 'dvd', 1),
 (27, 25, 6, 6, 1, '', '0000-00-00', '2025-12-08', NULL, '8888844444', NULL, NULL, '2025-12-08 18:30:56', 'efefee', 0, NULL, '', '', 1),
-(35, 33, 7, 11, 2, '', '0000-00-00', '2025-12-11', NULL, '123', 'Near Ganj Para,Near Ganj Para,Near Ganj Para,Near Ganj Para,Near Ganj Para', '1765993867wallpaperflare.com_wallpaper (2).jpg', '2025-12-11 06:16:01', 'Ravi kumar patni', 0, NULL, '', '', 1),
+(35, 33, 7, 11, 2, '', '0000-00-00', '2025-12-11', NULL, '123', 'Near Ganj Para,Near Ganj Para,Near Ganj Para,Near Ganj Para,Near Ganj Para', '1765993867wallpaperflare.com_wallpaper (2).jpg', '2025-12-11 06:16:01', 'Ravi kumar patni', 0, NULL, '', 'f', 1),
 (28, 26, 5, 4, 2, '', '0000-00-00', '2025-12-09', NULL, '7896412307', NULL, 'default.png', '2025-12-09 16:50:09', 'pp', 0, NULL, '', '', 1),
 (29, 27, 5, 3, 1, 'Male', '1955-05-11', '2025-12-09', NULL, '8877799999', 'Casterly Rock,Westelands', '1765301392_1764875203_wallpaperflare.com_wallpaper.jpg', '2025-12-09 17:29:52', 'Tywin Lanister', -200, 'admin', '', '', 1),
 (31, 29, 7, 14, 2, '', '0000-00-00', '2025-12-09', NULL, '8788787454', NULL, 'default.png', '2025-12-09 17:44:10', 'Cersie', 0, NULL, '', '', 1),
 (38, 36, 7, 11, 2, '', '0000-00-00', '2025-12-17', NULL, '1478520000', NULL, 'default.png', '2025-12-11 15:44:33', 'ahoy', 0, NULL, '', '', 1),
-(33, 31, 5, 5, 1, 'Male', '2003-08-21', '0000-00-00', '0000-00-00', '7777777777', 'Dragonstone,Westeros', '1766053422wallpaperflare.com_wallpaper.jpg', '2025-12-10 12:36:05', 'Aegon Targaryen  ', 10, NULL, '', '', 0),
+(33, 31, 5, 5, 1, 'Male', '2003-08-21', '0000-00-00', '0000-00-00', '7777777777', 'Dragonstone,Westeros', '1766053422wallpaperflare.com_wallpaper.jpg', '2025-12-10 12:36:05', 'Aegon Targaryen  ', 10, NULL, '', '', 1),
 (36, 34, 5, 5, 2, '', '0000-00-00', NULL, NULL, '4440004400', NULL, 'default.png', '2025-12-11 15:24:37', 'end', 0, NULL, '', '', 1),
 (39, 38, 7, 11, 2, 'Female', '1996-06-10', '2025-12-11', '0000-00-00', '1234567885', 'Near Rani ganj,Bilaspur', 'default.png', '2025-12-11 15:57:13', 'Sujata', 0, 'admin', '', '', 1),
 (40, 39, 7, 14, 2, 'Ravi Husain', '0000-00-00', '2025-12-11', NULL, '1839721354', NULL, 'default.png', '2025-12-11 16:02:20', '', 0, 'admin', '', '', 1),
@@ -447,22 +455,24 @@ CREATE TABLE IF NOT EXISTS `sens_news` (
   `toshow_type` enum('all','zone','city','member') COLLATE utf8mb4_unicode_ci DEFAULT 'all',
   `toshow_id` int DEFAULT NULL,
   `created_by` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `news_front` int NOT NULL DEFAULT '0',
   PRIMARY KEY (`news_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `sens_news`
 --
 
-INSERT INTO `sens_news` (`news_id`, `title`, `description`, `created_at`, `news_date`, `news_time`, `status`, `news_img`, `toshow_type`, `toshow_id`, `created_by`) VALUES
-(4, 'National Jain Education Mission Announced', 'The All India Jain Federation officially announced the National Jain Education Mission 2026, a landmark nationwide initiative aimed at uplifting Jain students through structured educational support. Under this mission, thousands of deserving students from economically weaker backgrounds will receive merit-based and need-based scholarships for school, college, and professional courses such as engineering, medical, law, and management.\r\n\r\nIn addition to financial aid, the mission will also provide free digital learning resources, online coaching for competitive exams, career mentorship programs, and guidance sessions conducted by industry experts and senior academicians. The initiative focuses on empowering youth with ethical values, modern education tools, and career-oriented skills, strengthening the future of the Jain community across India.', '2025-12-06 19:37:50', '2026-02-12', '', 'active', '1740376392wallpaperflare.com_wallpaper.jpg', 'all', 0, 'dany'),
-(5, 'All India Jain Digital Donation Platform Launched', 'To bring transparency, convenience, and national-level unity in social service, the Jain community launched a centralized All India Digital Donation Platform in 2026. This secure system allows devotees and donors from anywhere in the country to contribute directly to verified Jain religious trusts, temples, educational institutions, medical services, and disaster relief programs.\r\n\r\nThe platform supports UPI, debit/credit cards, net banking, and international donations, ensuring easy and fast transactions. Every donation is tracked with digital receipts and real-time fund utilization updates. This initiative strengthens trust, accountability, and participation among community members while promoting large-scale humanitarian and welfare projects across India.', '2025-12-06 19:38:27', '2026-06-07', '', 'active', '1019412388wallpaperflare.com_wallpaper.jpg', 'all', 0, 'dany'),
-(6, 'Jain Community Leads National Tree Plantation Drive', 'In an inspiring step towards environmental responsibility, the Jain community launched a nationwide eco-awareness and plantation campaign named “Green Jain Bharat Mission” in 2026. Thousands of volunteers across multiple states participated in mass plantation drives near temples, schools, highways, villages, and public parks.\r\n\r\nThe campaign focuses on promoting non-violence towards nature, climate awareness, water conservation, and sustainable living among youth and families. Educational workshops, eco-pledge programs, and plastic-free awareness drives were also conducted alongside the plantation events. This movement highlights the Jain philosophy of “Ahimsa towards all living beings,” including nature itself, making it a powerful symbol of spiritual and environmental harmony.', '2025-12-06 19:38:51', '2026-10-18', '', 'active', '65492357wallpaperflare.com_wallpaper.jpg', 'all', 0, 'dany'),
-(7, 'Urgent Medical Help Required for Society Member', 'Our respected society member is currently undergoing critical medical treatment and urgently requires financial and emotional support. The Jain Society has initiated a special assistance drive for this purpose. All members are requested to come forward with whatever contribution they can make. Even a small help can save a life. Society will ensure complete transparency in fund utilization and regular health updates will be shared with contributors.', '2025-12-07 09:20:38', '2026-09-25', '', 'active', '1765099238_wallpaperflare.com_wallpaper.jpg', 'zone', 7, 'admin'),
-(8, 'Water Supply & Cleanliness Issue Raised in City Area', 'Several society members from the city have raised concerns regarding irregular water supply and poor sanitation conditions in residential areas. The Jain Society local committee has officially submitted a complaint to the municipal corporation. A city-level inspection will be conducted soon. Residents are requested to cooperate with officials and report any further issues for faster resolution.', '2025-12-07 09:21:36', '2026-03-12', '', 'active', '1765099296_wallpaperflare.com_wallpaper (2).jpg', 'city', 14, 'admin'),
-(9, 'Illegal Construction & Noise Pollution Issue Reported in Zone', 'Multiple complaints regarding illegal construction activities and late-night noise pollution have been received from different cities within the zone. The Jain Society Zone Committee has taken this matter seriously and has scheduled a joint action meeting with local authorities. Strict action will be taken against violations. Members are advised to maintain discipline and report such issues responsibly.', '2025-12-07 09:22:41', '2026-02-01', '', 'active', '1765099361_flower.webp', 'member', 18, 'admin'),
-(10, 'rrrfv', 'ewe', '2025-12-11 15:01:46', '2005-08-08', '12:00 PM', 'active', '1588781114wallpaperflare.com_wallpaper.jpg', 'all', 0, 'admin'),
-(11, 'news 4', 'News 4 descriptionn', '2025-12-19 06:55:33', '2025-12-21', '10:00 AM', 'active', '1766127333_', 'all', 0, 'admin');
+INSERT INTO `sens_news` (`news_id`, `title`, `description`, `created_at`, `news_date`, `news_time`, `status`, `news_img`, `toshow_type`, `toshow_id`, `created_by`, `news_front`) VALUES
+(4, 'National Jain Education Mission Announced', 'The All India Jain Federation officially announced the National Jain Education Mission 2026, a landmark nationwide initiative aimed at uplifting Jain students through structured educational support. Under this mission, thousands of deserving students from economically weaker backgrounds will receive merit-based and need-based scholarships for school, college, and professional courses such as engineering, medical, law, and management.\r\n\r\nIn addition to financial aid, the mission will also provide free digital learning resources, online coaching for competitive exams, career mentorship programs, and guidance sessions conducted by industry experts and senior academicians. The initiative focuses on empowering youth with ethical values, modern education tools, and career-oriented skills, strengthening the future of the Jain community across India.', '2025-12-06 19:37:50', '2026-02-12', '', 'active', '1740376392wallpaperflare.com_wallpaper.jpg', 'all', 0, 'dany', 0),
+(5, 'All India Jain Digital Donation Platform Launched', 'To bring transparency, convenience, and national-level unity in social service, the Jain community launched a centralized All India Digital Donation Platform in 2026. This secure system allows devotees and donors from anywhere in the country to contribute directly to verified Jain religious trusts, temples, educational institutions, medical services, and disaster relief programs.\r\n\r\nThe platform supports UPI, debit/credit cards, net banking, and international donations, ensuring easy and fast transactions. Every donation is tracked with digital receipts and real-time fund utilization updates. This initiative strengthens trust, accountability, and participation among community members while promoting large-scale humanitarian and welfare projects across India.', '2025-12-06 19:38:27', '2026-06-07', '', 'active', '1019412388wallpaperflare.com_wallpaper.jpg', 'all', 0, 'dany', 0),
+(6, 'Jain Community Leads National Tree Plantation Drive', 'In an inspiring step towards environmental responsibility, the Jain community launched a nationwide eco-awareness and plantation campaign named “Green Jain Bharat Mission” in 2026. Thousands of volunteers across multiple states participated in mass plantation drives near temples, schools, highways, villages, and public parks.\r\n\r\nThe campaign focuses on promoting non-violence towards nature, climate awareness, water conservation, and sustainable living among youth and families. Educational workshops, eco-pledge programs, and plastic-free awareness drives were also conducted alongside the plantation events. This movement highlights the Jain philosophy of “Ahimsa towards all living beings,” including nature itself, making it a powerful symbol of spiritual and environmental harmony.', '2025-12-06 19:38:51', '2026-10-18', '', 'active', '65492357wallpaperflare.com_wallpaper.jpg', 'all', 0, 'dany', 0),
+(7, 'Urgent Medical Help Required for Society Member', 'Our respected society member is currently undergoing critical medical treatment and urgently requires financial and emotional support. The Jain Society has initiated a special assistance drive for this purpose. All members are requested to come forward with whatever contribution they can make. Even a small help can save a life. Society will ensure complete transparency in fund utilization and regular health updates will be shared with contributors.', '2025-12-07 09:20:38', '2026-09-25', '', 'active', '1765099238_wallpaperflare.com_wallpaper.jpg', 'zone', 7, 'admin', 0),
+(8, 'Water Supply & Cleanliness Issue Raised in City Area', 'Several society members from the city have raised concerns regarding irregular water supply and poor sanitation conditions in residential areas. The Jain Society local committee has officially submitted a complaint to the municipal corporation. A city-level inspection will be conducted soon. Residents are requested to cooperate with officials and report any further issues for faster resolution.', '2025-12-07 09:21:36', '2026-03-12', '', 'active', '1765099296_wallpaperflare.com_wallpaper (2).jpg', 'city', 14, 'admin', 0),
+(9, 'Illegal Construction & Noise Pollution Issue Reported in Zone', 'Multiple complaints regarding illegal construction activities and late-night noise pollution have been received from different cities within the zone. The Jain Society Zone Committee has taken this matter seriously and has scheduled a joint action meeting with local authorities. Strict action will be taken against violations. Members are advised to maintain discipline and report such issues responsibly.', '2025-12-07 09:22:41', '2026-02-01', '', 'active', '1765099361_flower.webp', 'member', 18, 'admin', 0),
+(10, 'rrrfv', 'ewe', '2025-12-11 15:01:46', '2005-08-08', '12:00 PM', 'active', '1588781114wallpaperflare.com_wallpaper.jpg', 'all', 0, 'admin', 1),
+(11, 'news 4', 'News 4 descriptionn', '2025-12-19 06:55:33', '2025-12-21', '11:00 AM', 'active', '1317869238wallpaperflare.com_wallpaper (1).jpg', 'all', 0, 'admin', 1),
+(12, 'hhh', 'jjjjjjjjj', '2025-12-20 09:39:16', '2025-11-15', '8:00 AM', 'active', '1766223556_', 'all', 0, 'admin', 1);
 
 -- --------------------------------------------------------
 
@@ -495,52 +505,6 @@ CREATE TABLE IF NOT EXISTS `sens_past_commity` (
 INSERT INTO `sens_past_commity` (`comi_id`, `comi_name`, `comi_gender`, `comi_post`, `comi_img`, `comi_zone`, `comi_city`, `comi_address`, `comi_priority`, `comi_duration`, `created_by`) VALUES
 (2, 'Surya Pratap', 'Male', 'Karya Adhyaksh', 'comi_1765629833.png', 8, 19, 'Near Railway Station', 10, '1919-1921', 'admin'),
 (3, 'frffffffff', 'Male', 'Sah Sabhapati', 'default_person.png', 7, 11, 'ccc', 4, '2022-2023', 'admin');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `sens_payments`
---
-
-DROP TABLE IF EXISTS `sens_payments`;
-CREATE TABLE IF NOT EXISTS `sens_payments` (
-  `pay_id` int NOT NULL AUTO_INCREMENT,
-  `member_id` int NOT NULL,
-  `amount` decimal(10,2) NOT NULL,
-  `payment_date` datetime DEFAULT CURRENT_TIMESTAMP,
-  `payment_for_year` int DEFAULT NULL,
-  `note` text COLLATE utf8mb4_unicode_ci,
-  `created_by` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `receipt_no` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  PRIMARY KEY (`pay_id`),
-  UNIQUE KEY `receipt_no` (`receipt_no`),
-  KEY `member_id` (`member_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `sens_payments`
---
-
-INSERT INTO `sens_payments` (`pay_id`, `member_id`, `amount`, `payment_date`, `payment_for_year`, `note`, `created_by`, `receipt_no`, `status`) VALUES
-(1, 8, 500.00, '2025-12-04 00:00:00', 2026, 'We got your Payment', '0', NULL, ''),
-(2, 7, 500.00, '2025-12-04 00:00:00', 2026, 'Okay we got your money', '0', NULL, ''),
-(3, 7, 500.00, '2025-12-05 00:00:00', 2027, 'We got you payment', '0', NULL, ''),
-(25, 18, 500.00, '2025-12-05 00:00:00', 2025, NULL, NULL, 'JS380611', '');
-
---
--- Triggers `sens_payments`
---
-DROP TRIGGER IF EXISTS `auto_receipt_no`;
-DELIMITER $$
-CREATE TRIGGER `auto_receipt_no` BEFORE INSERT ON `sens_payments` FOR EACH ROW BEGIN
-   SET NEW.receipt_no = CONCAT(
-        'JS',
-        FLOOR(100000 + RAND() * 900000)
-   );
-END
-$$
-DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -681,7 +645,7 @@ INSERT INTO `sens_requests` (`request_id`, `member_id`, `status`, `request_date`
 (6, 10, 'approved', '2025-12-05 01:10:01', '2025-12-05 01:10:01', NULL),
 (7, 11, 'approved', '2025-12-05 01:15:35', '2025-12-05 01:15:35', NULL),
 (9, 13, 'approved', '2025-12-05 12:47:29', '2025-12-05 12:47:29', NULL),
-(16, 20, 'approved', '2025-12-07 20:56:12', '2025-12-07 21:18:57', NULL),
+(16, 20, 'approved', '2025-12-07 20:56:12', '2025-12-07 21:18:57', 'admin'),
 (15, 19, 'approved', '2025-12-07 19:19:57', '2025-12-07 19:19:57', NULL),
 (14, 18, 'approved', '2025-12-05 19:15:26', '2025-12-06 00:19:47', NULL),
 (17, 21, 'approved', '2025-12-07 22:43:30', '2025-12-07 22:43:53', NULL),
@@ -827,7 +791,7 @@ INSERT INTO `sens_users` (`id`, `name`, `email`, `password`, `role`, `created_at
 (27, 'Tywin Lanister', '123vishal184910@gmail.com', '123456', 'user', '2025-12-09 17:29:52', 1, 'admin'),
 (29, 'Cersie', '123vis7hal18910@gmail.com', '123456', 'user', '2025-12-09 17:44:10', 0, NULL),
 (30, 'toren', 'to@gmail.com', '123456', 'user', '2025-12-10 07:12:09', 0, NULL),
-(31, 'Aegon Targaryen Aegon Targaryen Aegon Targaryen Aegon Targaryen  ', '123vishal18910@gmail.com', '12345', 'user', '2025-12-10 12:36:05', 0, NULL),
+(31, 'Aegon Targaryen  ', '123vishal18910@gmail.com', 'a', 'user', '2025-12-10 12:36:05', 0, NULL),
 (35, 'efefef', '', '123456', 'user', '2025-12-11 15:36:40', 0, NULL),
 (36, 'ahoy', '', '123456', 'user', '2025-12-11 15:44:33', 0, NULL),
 (37, 'Legolas', '', '123456', 'user', '2025-12-11 15:56:24', 1, 'admin'),

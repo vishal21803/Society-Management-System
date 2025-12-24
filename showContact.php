@@ -26,7 +26,7 @@
 
     .contact-info-box {
         margin-bottom: 25px;
-        padding: 18px 22px;
+        padding: 20px 22px;
         background: #ffffff;
         border-left: 5px solid #fcc203;
         border-radius: 10px;
@@ -90,7 +90,7 @@
                             <i class="bi bi-envelope-fill"></i>
                             <div>
                                 <strong>Email:</strong><br>
-                                digambarjainnagpurprantiya@gmail.com
+                                123vishal18910@gmail.com
                             </div>
                         </div>
 
@@ -99,9 +99,8 @@
                             <i class="bi bi-telephone-fill"></i>
                             <div>
                                 <strong>Phone:</strong><br>
-                                +91 9981511572 <br>
-                                +91 9425235045 <br>
-                                +91 9425506778
+                                +91 9479031066 
+                                
                             </div>
                         </div>
 
@@ -110,7 +109,7 @@
                             <i class="bi bi-geo-alt-fill"></i>
                             <div>
                                 <strong>Address:</strong><br>
-                                कार्यालय : इतवारी, भाजीमंडी, फूलओली, नागपुर – 440002
+                                Bhilai,Chhattisgarh
                             </div>
                         </div>
 

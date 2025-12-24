@@ -127,7 +127,7 @@ if($isLoggedIn){
 <!-- ✅ HERO -->
 <section class="news-hero">
     <h1 class="fw-bold">📰 Society News & Announcements</h1>
-    <p>Latest updates from Jain Society</p>
+    <p>Latest updates from Society</p>
 </section>
 
 <!-- ✅ NEWS GRID -->

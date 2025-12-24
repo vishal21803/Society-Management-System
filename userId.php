@@ -51,7 +51,7 @@ include("connectdb.php");
 }
 
 .org-name{
-    font-size:8px;
+    font-size:12px;
     text-align:right;
     font-weight:600;
     color:#444;
@@ -189,7 +189,7 @@ include("connectdb.php");
 
 .inline-text{
     font-weight:600;
-    font-size:10px;
+    font-size:15px;
     text-shadow: black;
 }
 
@@ -276,20 +276,20 @@ $uniqueID = strtolower(substr($row['fullname'],0,4)) . $row['member_id'];
 
   <div class="id-header">
     <div class="logo-text-wrapper">
-        <img src="upload/reclogo.png" class="header-logo">
+        <!-- <img src="upload/reclogo.png" class="header-logo"> -->
         <div class="header-text">
-            <span class="inline-text text-danger">श्री नागपुर प्रान्तीय दिगंबर</span>
-            <span class="below-text text-danger">जैन खंडेलवाल सभा</span>
-            <span class="year-text text-dark">स्थापना वर्ष - 1916</span>
+            <span class="inline-text text-danger"> <i class="bi bi-buildings me-2" style="font-size: 2rem;"></i>
+    SocioManage</span>
+            <span class="below-text text-danger"></span>
+            <span class="year-text text-dark"></span>
 
         </div>
     </div>
 
     <div class="org-name">
-        पंजीकृत कार्यालय: छिंदवाड़ा (म.प्र.)<br>
-       पंजीकृत क्रमांक: 173/53/54<br>
-       कार्यालय : इतवारी,भाजीमंडी,फूलओली<br>
-        नागपुर - 440002
+        Bhilai,Chhattisgarh<br>
+       India<br>
+       
     </div>
 </div>
 

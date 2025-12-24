@@ -617,4 +617,45 @@ td, th {
         transition: 0.3s;
     }
 
-    
+    .footer {
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: #ffffff;
+    padding: 50px 0 20px;
+}
+
+.footer-title {
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.footer-text {
+    font-size: 0.95rem;
+    opacity: 0.9;
+}
+
+.footer-links li {
+    margin-bottom: 8px;
+}
+
+.footer-links a {
+    color: #ffffff;
+    text-decoration: none;
+    opacity: 0.9;
+    transition: all 0.3s ease;
+}
+
+.footer-links a:hover {
+    opacity: 1;
+    padding-left: 5px;
+    color: #ffd200;
+}
+
+.footer-divider {
+    border-color: rgba(255,255,255,0.2);
+    margin: 30px 0 15px;
+}
+
+.footer-bottom {
+    font-size: 0.9rem;
+    opacity: 0.85;
+}

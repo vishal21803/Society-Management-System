@@ -63,6 +63,7 @@ if(isset($purposes[$purpose])){
 <title>Receipt</title>
 <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
 
     <!-- Bootstrap JS Bundle -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
@@ -162,6 +163,11 @@ table,th,td{ border:1px solid black;padding:6px; }
     top:-20px
 }
 
+.receipt-building-icon{
+    font-size:70px;
+    
+    text-shadow: 0 3px 6px rgba(0,0,0,0.3);
+}
 
 </style>
 </head>
@@ -183,16 +189,20 @@ table,th,td{ border:1px solid black;padding:6px; }
 
 <div class="receipt-header">
     
-    <div class="logo-left">
+    <!-- <div class="logo-left">
         <img src="upload/reclogo.png" class="receipt-logo">
-    </div>
+    </div> -->
+
+    <div class="logo-left text-center text-danger ms-5">
+    <i class="bi bi-building receipt-building-icon"></i>
+</div>
+
 
     <div class="center">
-       <span class="god-text">|| श्री महावीराय नमः ||</span>  <br>
+       <span class="god-text">|| SocioManage ||</span>  <br>
        
-      <span class="text-danger" style="font-size:20px">श्री नागपुर प्रांतीय दिगम्बर जैन खण्डेलवाल सभा</span>  <br>
-        पंजीयन ऑफिस - छिंदवाड़ा, पंजीयन नं. 173/53/54 <br>
-        कार्यालय : इतवारी, भाजीमंडी, फूलओली  नागपुर (महाराष्ट्र)- 440002
+      <span class="text-danger" style="font-size:20px">Society Management System</span>  <br>
+      
     </div>
 
 </div>

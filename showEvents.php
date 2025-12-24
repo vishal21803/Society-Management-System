@@ -109,7 +109,7 @@ if($isLoggedIn){
 
 <section class="events-hero">
     <h1 class="fw-bold display-5">Events</h1>
-    <p class="lead">Stay updated with all Jain community activities & programs</p>
+    <p class="lead">Stay updated with all community activities & programs</p>
 </section>
 
 <div class="container my-5">

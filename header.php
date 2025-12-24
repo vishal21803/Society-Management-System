@@ -12,7 +12,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Jain Society</title>
+    <title>SocioManage</title>
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -175,9 +175,14 @@ li{
   <div class="container">
 
     <!-- LOGO -->
-    <a class="navbar-brand fw-bold text-white" href="index.php">
-      <img src="upload/logo2.png" style="width:300px;">
-    </a>
+    <a class="navbar-brand fw-bold text-white d-flex align-items-center"
+   href="index.php"
+   style="font-size: 1.6rem;">
+
+    <i class="bi bi-buildings me-2" style="font-size: 4rem;"></i>
+    SocioManage
+</a>
+
 
     <!-- mobile button -->
     <button class="btn text-dark d-lg-none"
@@ -372,10 +377,7 @@ li{
             <a class="nav-link text-white <?= ($currentPage == 'showDownloads.php') ? 'active-link' : '' ?>" href="showDownloads.php">Downloads</a>
         </li>
 
-        <li class="nav-item">
-            <a class="nav-link text-white <?= ($currentPage == 'showDonate.php') ? 'active-link' : '' ?>" href="showDonate.php">Donation</a>
-        </li>
-
+       
         <li class="nav-item">
             <a class="nav-link text-white <?= ($currentPage == 'showContact.php') ? 'active-link' : '' ?>" href="showContact.php">Contact Us</a>
         </li>
@@ -391,7 +393,6 @@ li{
             </div>
         </li>
 
-        <li class="nav-item"><a class="nav-link text-white"  href="https://jainkhandelwal.org/matrimony/">Matrimony</a></li>
          
          <li class="nav-item">
             <a class="nav-link text-white <?= ($currentPage == 'login.php') ? 'active-link' : '' ?>" href="login.php">Login</a>
@@ -554,7 +555,6 @@ li{
             </li>
 
             <li><a href="showDownloads.php">Downloads</a></li>
-            <li><a href="showDonate.php">Donation</a></li>
             <li><a href="showContact.php">Contact Us</a></li>
 
             <li class="menu-dropdown">
@@ -567,7 +567,6 @@ li{
                   <li><a  href="showNeed.php">Our Requirement</a></li>
                 </ul>
             </li>
-            <li><a  href="https://jainkhandelwal.org/matrimony/">Matrimony</a></li>
                 <li><a href="login.php">Login</a></li>
             <?php } ?>
 
