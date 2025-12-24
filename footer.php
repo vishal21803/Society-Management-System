@@ -745,6 +745,46 @@ $(document).ready(function(){
 
 });
 
+$(document).ready(function(){
+
+    let table = $('#familyTable').DataTable({
+        pageLength:10,
+    dom:
+            "<'row'<'col-sm-6'l><'col-sm-6'f>>" +
+            "<'row'<'col-sm-12'tr>>" +
+            "<'row'<'col-sm-5'i><'col-sm-7'p>>" +
+            "<'row'<'col-sm-12'B>>",
+
+        bLengthChange: true,
+        pageLength: 10,
+        lengthMenu: [10, 25, 50, 100],
+        buttons: ['excelHtml5', 'csvHtml5', 'pdfHtml5', 'print']
+    });
+
+    $('#zoneFilter, #cityFilter, #maritalFilter').on('change', function(){
+        table.draw();
+    });
+
+    $.fn.dataTable.ext.search.push(function(settings, data){
+
+         if (settings.nTable.id !== 'familyTable') return true;
+
+        let zone    = $('#zoneFilter').val();
+        let city    = $('#cityFilter').val();
+        let marital = $('#maritalFilter').val();
+
+        let rowZone    = data[8].trim();
+        let rowCity    = data[9].trim();
+        let rowMarital = data[5].trim();
+
+        if(zone && rowZone !== zone) return false;
+        if(city && rowCity !== city) return false;
+        if(marital && rowMarital !== marital) return false;
+
+        return true;
+    });
+
+});
 
 </script>
 

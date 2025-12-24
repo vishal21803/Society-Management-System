@@ -120,6 +120,17 @@ include("header.php");
                 </div>
             </a>
         </div>
+
+         <div class="col-md-2">
+            <a href="reportFamily.php" class="text-decoration-none">
+                <div class="dashboard-square-card bg-primary text-white shadow animate__animated animate__fadeInLeft">
+                    <div class="text-center">
+                        <i class="bi bi-pencil fs-1 mb-2"></i>
+                        <h4 class="fw-bold">Family Report</h4>
+                    </div>
+                </div>
+            </a>
+        </div>
       
 
     </div>
