@@ -56,12 +56,12 @@ if(isset($_POST['action'], $_POST['request_id'])){
                 $mail->isSMTP();
                 $mail->Host       = 'smtp.gmail.com';
                 $mail->SMTPAuth   = true;
-                $mail->Username   = 'vishal21082003patil@gmail.com';
-                $mail->Password   = 'durynjnibluwgfor'; 
+                $mail->Username   = 'yourID@gmail.com';  // your Gmail ID
+                $mail->Password   = '';  // your Gmail app Password
                 $mail->SMTPSecure = 'tls';
                 $mail->Port       = 587;
 
-                $mail->setFrom('vishal21082003patil@gmail.com', 'Society Management');
+                $mail->setFrom('yourID@gmail.com', 'Society Management');
                 $mail->addAddress($user_email, $user_name);
 
                 $mail->isHTML(true);
@@ -101,12 +101,12 @@ if(isset($_POST['action'], $_POST['request_id'])){
                 $mail->isSMTP();
                 $mail->Host       = 'smtp.gmail.com';
                 $mail->SMTPAuth   = true;
-                $mail->Username   = 'vishal21082003patil@gmail.com';
-                $mail->Password   = '';
+                $mail->Username   = 'yourID@gmail.com';  // your Gmail ID
+                $mail->Password   = '';  // your Gmail app Password
                 $mail->SMTPSecure = 'tls';
                 $mail->Port       = 587;
 
-                $mail->setFrom('vishal21082003patil@gmail.com', 'Society Management');
+                $mail->setFrom('yourID@gmail.com', 'Society Management');
                 $mail->addAddress($user_email, $user_name);
 
                 $mail->isHTML(true);

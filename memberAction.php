@@ -44,12 +44,12 @@ if(isset($_POST['action'], $_POST['member_id'], $_POST['user_id'])){
         $mail->isSMTP();
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
-        $mail->Username = 'vishal21082003patil@gmail.com'; 
-        $mail->Password = 'durynjnibluwgfor'; // your Gmail app password
+        $mail->Username = 'yourID@gmail.com';  // your Gmail ID
+        $mail->Password = ''; // your Gmail app password
         $mail->SMTPSecure = 'tls';
         $mail->Port = 587;
 
-        $mail->setFrom('vishal21082003patil@gmail.com', 'Society Management');
+        $mail->setFrom('yourID@gmail.com', 'Society Management');
         $mail->addAddress($email, $fullname);
 
         $mail->isHTML(true);
