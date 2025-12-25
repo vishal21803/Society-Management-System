@@ -297,10 +297,40 @@ li{
                     Profile
                 </a>
                 <div class="dropdown-custom-menu">
-                    <a class="dropdown-item-custom" href="">Edit Profile</a>
+                    <a class="dropdown-item-custom" href="editPassword.php">Edit Password</a>
                     <a class="dropdown-item-custom" href="logout.php">Logout</a>
                 </div>
             </li>
+
+
+               <!-- ========== Accountant MENUS ========== -->
+        <?php } elseif(isset($_SESSION["uname"],$_SESSION["utype"]) && $_SESSION["utype"]=="accountant"){ ?>
+
+         
+
+            <!-- TRANSACTION -->
+            <li class="nav-item dropdown-custom">
+                <a class="nav-link text-white" href="#">Transactions</a>
+                <div class="dropdown-custom-menu">
+                    <a class="dropdown-item-custom" href="admin-payments.php">Bills/Receipt History</a>
+                    <a class="dropdown-item-custom" href="manageBills.php">Manage Bills</a>
+                    <a class="dropdown-item-custom" href="manageReceipt.php">Manage Receipt</a>
+                    <a class="dropdown-item-custom" href="manageExpenses.php"> Manage Expenses</a>
+                   
+                </div>
+            </li>
+
+               <!-- PROFILE -->
+            <li class="nav-item dropdown-custom">
+                <a class="nav-link text-white fw-semibold dropdown-toggle-custom d-flex align-items-center gap-2" href="javascript:void(0)">
+                    Profile
+                </a>
+                <div class="dropdown-custom-menu">
+                    <a class="dropdown-item-custom" href="editPassword.php">Edit Password</a>
+                    <a class="dropdown-item-custom" href="logout.php">Logout</a>
+                </div>
+            </li>
+    
 
 
         <!-- ========== USER MENUS ========== -->
@@ -498,7 +528,7 @@ li{
                 <li class="menu-dropdown">
                     <a data-bs-toggle="collapse" data-bs-target="#mobProf">Profile ▾</a>
                     <ul class="collapse" id="mobProf">
-                        <li><a href="">Edit Profile</a></li>
+                        <li><a href="editPassword.php">Edit Password</a></li>
                         <li><a href="logout.php">Logout</a></li>
                     </ul>
                 </li>
@@ -537,6 +567,33 @@ li{
                     <a data-bs-toggle="collapse" data-bs-target="#mobProfUser">Profile ▾</a>
                     <ul class="collapse" id="mobProfUser">
                         <li><a href="editProfile.php">Edit Profile</a></li>
+                        <li><a href="logout.php">Logout</a></li>
+                    </ul>
+                </li>
+
+
+                   <?php } elseif(isset($_SESSION["utype"]) && $_SESSION["utype"]=="accountant"){ ?>
+
+              
+                    
+                    
+
+                
+
+                <li class="menu-dropdown">
+                    <a data-bs-toggle="collapse" data-bs-target="#mobTransUser">Transaction ▾</a>
+                    <ul class="collapse" id="mobTransUser">
+                     <li><a  href="admin-payments.php">Bills/Receipt History</a></li>
+                        <li><a href="manageBills.php">Manage Bills</a></li>
+                        <li><a href="manageReceipt.php">Manage Receipt</a></li>
+                        <li><a href="manageExpenses.php">Manage Expenses</a></li>
+                    </ul>
+                </li>
+
+                  <li class="menu-dropdown">
+                    <a data-bs-toggle="collapse" data-bs-target="#mobProf">Profile ▾</a>
+                    <ul class="collapse" id="mobProf">
+                        <li><a href="editPassword.php">Edit Password</a></li>
                         <li><a href="logout.php">Logout</a></li>
                     </ul>
                 </li>

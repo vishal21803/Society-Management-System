@@ -1,6 +1,9 @@
 <?php 
 @session_start();
-if(isset($_SESSION["uname"]) && $_SESSION["utype"]=='admin')
+if (
+    isset($_SESSION["uname"]) && 
+    ($_SESSION["utype"] == 'admin' || $_SESSION["utype"] == 'accountant')
+)
 {
 include("header.php");
 include("connectdb.php");
